@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVP-DesktopPhone", "DVP-SoftPhone\DVP-DesktopPhone.csproj", "{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuoCallTesterLicenseKey", "DuoCallTesterLicenseKey\DuoCallTesterLicenseKey.csproj", "{8F191865-9CD0-48AB-B11C-C10C7287E7FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dvp_timmers", "dvp_timmers\dvp_timmers.csproj", "{3C7CD712-CB81-4603-943A-9FAE7DB7C650}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F191865-9CD0-48AB-B11C-C10C7287E7FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F191865-9CD0-48AB-B11C-C10C7287E7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F191865-9CD0-48AB-B11C-C10C7287E7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F191865-9CD0-48AB-B11C-C10C7287E7FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7CD712-CB81-4603-943A-9FAE7DB7C650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7CD712-CB81-4603-943A-9FAE7DB7C650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7CD712-CB81-4603-943A-9FAE7DB7C650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7CD712-CB81-4603-943A-9FAE7DB7C650}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\Release\dvp_timmers.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\Release\dvp_timmers.pdb
+E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.pdb
+E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.csprojResolveAssemblyReference.cache

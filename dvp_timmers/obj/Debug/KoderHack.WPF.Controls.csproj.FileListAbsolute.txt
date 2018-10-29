@@ -1,0 +1,5 @@
+C:\Users\Waruna\Downloads\TimerTextBlockDemoSrc\Src\KoderHack.WPF.Controls\bin\Debug\KoderHack.WPF.Controls.dll
+C:\Users\Waruna\Downloads\TimerTextBlockDemoSrc\Src\KoderHack.WPF.Controls\bin\Debug\KoderHack.WPF.Controls.pdb
+C:\Users\Waruna\Downloads\TimerTextBlockDemoSrc\Src\KoderHack.WPF.Controls\obj\Debug\KoderHack.WPF.Controls.csprojResolveAssemblyReference.cache
+C:\Users\Waruna\Downloads\TimerTextBlockDemoSrc\Src\KoderHack.WPF.Controls\obj\Debug\KoderHack.WPF.Controls.dll
+C:\Users\Waruna\Downloads\TimerTextBlockDemoSrc\Src\KoderHack.WPF.Controls\obj\Debug\KoderHack.WPF.Controls.pdb

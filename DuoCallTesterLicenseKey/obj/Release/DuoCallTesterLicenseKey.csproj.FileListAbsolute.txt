@@ -1,0 +1,7 @@
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\DuoCallTesterLicenseKey.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\DuoCallTesterLicenseKey.pdb
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\PlatformSpellCheck.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\PlatformSpellCheck.xml
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.pdb
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.csprojResolveAssemblyReference.cache

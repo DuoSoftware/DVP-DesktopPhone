@@ -1,0 +1,6 @@
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x86\Debug\DuoCallTesterLicenseKey.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x86\Debug\DuoCallTesterLicenseKey.pdb
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x86\Debug\PlatformSpellCheck.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x86\Debug\PlatformSpellCheck.xml
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x86\Debug\DuoCallTesterLicenseKey.dll
+E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x86\Debug\DuoCallTesterLicenseKey.pdb

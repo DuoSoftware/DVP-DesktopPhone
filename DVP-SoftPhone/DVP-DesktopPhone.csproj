@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\WPF_Softphone.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\WPF_Softphone.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>WPF_Softphone.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\sdk_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>DVP-DesktopPhone</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Alchemy, Version=2.2.0.238, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Alchemy.2.2.1\lib\net40\Alchemy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DuoSoftware.DuoTools.DuoLogger, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DuoSoftware.DuoTools.DuoLogger.dll</HintPath>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net45\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="jose-jwt, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\jose-jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PlatformSpellCheck, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PlatformSpellCheck.1.0.0\lib\net45\PlatformSpellCheck.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SIPSorcery.SIP.Core, Version=0.2.0.39489, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SIPSorcery.SIP.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhoneWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\AgentStatus\Agent.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentACW.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentBreak.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentBusy.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentIdle.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentInitiate.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentOffline.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentProfile.cs" />
+    <Compile Include="Controllers\AgentStatus\AgentState.cs" />
+    <Compile Include="Controllers\CallStatus\Call.cs" />
+    <Compile Include="Controllers\CallStatus\CallAgentClintConnectedState.cs" />
+    <Compile Include="Controllers\CallStatus\CallAgentSupConnectedState.cs" />
+    <Compile Include="Controllers\CallStatus\CallConferenceState.cs" />
+    <Compile Include="Controllers\CallStatus\CallConnectedState.cs" />
+    <Compile Include="Controllers\CallStatus\CallDisconnectedState.cs" />
+    <Compile Include="Controllers\CallStatus\CallHoldState.cs" />
+    <Compile Include="Controllers\CallStatus\CallIdleState.cs" />
+    <Compile Include="Controllers\CallStatus\CallIncommingState.cs" />
+    <Compile Include="Controllers\CallStatus\CallRingingState.cs" />
+    <Compile Include="Controllers\CallStatus\CallState.cs" />
+    <Compile Include="Controllers\CallStatus\CallTryingState.cs" />
+    <Compile Include="Controllers\Common\ComMethods.cs" />
+    <Compile Include="Controllers\Common\EnumCollector.cs" />
+    <Compile Include="Controllers\InterfaceClass.cs" />
+    <Compile Include="Controllers\SequenceNumberGenerator.cs" />
+    <Compile Include="Controllers\Service\ardsHandler.cs" />
+    <Compile Include="Controllers\Service\httpHandler.cs" />
+    <Compile Include="Controllers\Service\monitorRestApiHandler.cs" />
+    <Compile Include="Controllers\SessionId.cs" />
+    <Compile Include="Controllers\VeerySetting.cs" />
+    <Compile Include="Controllers\WebSocketServiceHost.cs" />
+    <Compile Include="PhoneWindow.xaml.cs">
+      <DependentUpon>PhoneWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PortSIP\PortSIPLib.cs" />
+    <Compile Include="PortSIP\PortSIPNativeMethods.cs" />
+    <Compile Include="PortSIP\PortSIPTypes.cs" />
+    <Compile Include="PortSIP\PortSIP_Errors.cs" />
+    <Compile Include="PortSIP\Session.cs" />
+    <Compile Include="PortSIP\SIPCallbackEvents.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sdk_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\kayaan-patil-wpf-softphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dial-pad-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DuoCallTesterLicenseKey\DuoCallTesterLicenseKey.csproj">
+      <Project>{8F191865-9CD0-48AB-B11C-C10C7287E7FF}</Project>
+      <Name>DuoCallTesterLicenseKey</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dvp_timmers\dvp_timmers.csproj">
+      <Project>{3c7cd712-cb81-4603-943a-9fae7db7c650}</Project>
+      <Name>dvp_timmers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+    <ProjectGuid>{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}</ProjectGuid>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
