@@ -7,36 +7,66 @@ using System.Text;
 
 namespace DuoCallTesterLicenseKey
 {
+    //https://stackoverflow.com/questions/10168240/encrypting-decrypting-a-string-in-c-sharp
     public class LicenseKeyHandler
     {
-        private const string initVector = "tu89geji340t89u2";
 
-        // This constant is used to determine the keysize of the encryption algorithm.
-        private const int keysize = 256;
-        private static string cipherText = "12";
+        private static string cipherText = "r6y45/ojonOzBeKSSznz2wZ/vYSjHZ708QQsLynWL9q+CikjbstdntvP+tIcxs1lQ7eWXKcqAAa7aDohK09fjA/VdUjVck3Ygobkx1OUzDJJXvg0UQyYsdU1keRM0lWiwMmoL1okkPyzQ/MZeIgAl8PloEaDmUga6NAjxgcJWVaK9N7Vse3iQW0DNsV0w7kcPWULIn7CcRs+9QnCa3hMDcBLDidarpMWdzY8MCqV8P1e8X+y2ZCfX4qfm8eZrESMYaXI0HIxJ0LBi493g2qXrkTKTn1mSG7pYWLijLdeCv3CK65pVKX8Lb383qcBXUzuRDltS+4aruqrFvXb2V6uWg==";
+       
+        // This constant is used to determine the keysize of the encryption algorithm in bits.
+        // We divide this by 8 within the code below to get the equivalent number of bytes.
+        private const int Keysize = 256;
+
+        // This constant determines the number of iterations for the password bytes generation function.
+        private const int DerivationIterations = 1000;
+
         public static string GetLicenseKey(string passPhrase)
         {
-            try
+            // Get the complete stream of bytes that represent:
+            // [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]
+            var cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText);
+            // Get the saltbytes by extracting the first 32 bytes from the supplied cipherText bytes.
+            var saltStringBytes = cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray();
+            // Get the IV bytes by extracting the next 32 bytes from the supplied cipherText bytes.
+            var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray();
+            // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
+            var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray();
+
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
             {
-                byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
-                byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
-                PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
-                byte[] keyBytes = password.GetBytes(keysize / 8);
-                RijndaelManaged symmetricKey = new RijndaelManaged();
-                symmetricKey.Mode = CipherMode.CBC;
-                ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes);
-                MemoryStream memoryStream = new MemoryStream(cipherTextBytes);
-                CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
-                byte[] plainTextBytes = new byte[cipherTextBytes.Length];
-                int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-                memoryStream.Close();
-                cryptoStream.Close();
-                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream(cipherTextBytes))
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                var plainTextBytes = new byte[cipherTextBytes.Length];
+                                var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                            }
+                        }
+                    }
+                }
             }
-            catch (Exception)
+        }
+
+        private static byte[] Generate256BitsOfRandomEntropy()
+        {
+            var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.
+            using (var rngCsp = new RNGCryptoServiceProvider())
             {
-                return "";
+                // Fill the array with cryptographically secure random bytes.
+                rngCsp.GetBytes(randomBytes);
             }
+            return randomBytes;
         }
     }
 }

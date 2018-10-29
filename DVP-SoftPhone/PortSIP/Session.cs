@@ -18,7 +18,7 @@ namespace PortSIP
         private int mDialogMessageId = 0;
         private int mOutOfDialogMessageId = 0;
 
-        public bool hasEarlyMeida()
+        public bool hasEarlyMedia()
         {
             return mHasEarlyMedia;
         }

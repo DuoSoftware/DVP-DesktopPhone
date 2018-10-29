@@ -44,6 +44,19 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public int portSipSessionId { get; set; }
 
+        public CallState CallPrvState
+        {
+            get
+            {
+                return _callPvState;
+            }
+            set
+            {
+                _callPvState = value;
+               
+            }
+        }
+
         public CallState CallCurrentState
         {
             get

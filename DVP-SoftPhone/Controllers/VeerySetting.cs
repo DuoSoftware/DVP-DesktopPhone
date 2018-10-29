@@ -21,6 +21,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             {
                 var section = (NameValueCollection)ConfigurationManager.GetSection("VeerySetting");
                 TransferExtCode = section["TransferExtCode"].ToCharArray();
+                TransferIvrCode = section["TransferIvrCode"].ToCharArray();
                 TransferPhnCode = section["TransferPhnCode"].ToCharArray();
                 SwapCode = section["SwapCode"].ToCharArray();
                 ConferenceCode = section["ConferenceCode"].ToCharArray();
@@ -46,7 +47,13 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 NotificationStateValidationIgnore = section["NotificationStateValidationIgnore"].Equals("1");
                 AcwGap = Convert.ToInt16(section["acwGap"]);
                 WebSocketlistnerEnable = section["WebSocketlistnerEnable"].ToLower().Equals("true");
+                AgentConsoleintegration = section["agentConsoleintegration"].ToLower().Equals("true");
+                ShowInTaskbar = section["showInTaskbar"].ToLower().Equals("true");
                 WebSocketlistnerPort = Convert.ToInt16(section["WebSocketlistnerPort"]);
+                stunServer = section["STUNserver"].ToString();
+                stunServerPort = section["STUNserverPort"].ToString()==""?0:Convert.ToInt16(section["STUNserverPort"].ToString());
+                audioDeviceLayer = string.IsNullOrEmpty(section["audioDeviceLayer"])? (0): (Convert.ToInt32(section["audioDeviceLayer"]));
+                videoDeviceLayer = string.IsNullOrEmpty(section["videoDeviceLayer"]) ? (0) : (Convert.ToInt32(section["videoDeviceLayer"]));
             }
             catch (Exception exception)
             {
@@ -72,6 +79,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         }
 
         public char[] TransferExtCode { get; private set; }
+        public char[] TransferIvrCode { get; private set; }
         public char[] TransferPhnCode { get; private set; }
         public char[] SwapCode { get; private set; }
         public char[] ConferenceCode { get; private set; }
@@ -82,5 +90,15 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public int AcwGap { get; private set; }
         public short WebSocketlistnerPort { get; private set; }
         public bool WebSocketlistnerEnable { get; private set; }
+        public bool AgentConsoleintegration { get; private set; }
+
+        public string stunServer { get; private set; }
+        public int stunServerPort { get; private set; }
+
+        public int audioDeviceLayer { get; private set; }
+
+        public int videoDeviceLayer { get; private set; }
+
+        public bool ShowInTaskbar { get; set; }
     }
 }

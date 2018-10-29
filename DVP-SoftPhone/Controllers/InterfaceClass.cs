@@ -10,8 +10,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         
         void ShowCallLogs();
         void ShowSetting();
-        void InAgentIdleState();
-        void InAgentAcwState();
+        void InAgentIdleState();       
         //void InRiggingState();
         void InCallConnectedState();
         void InOfflineState(string statusText, string msg,int statusCode);

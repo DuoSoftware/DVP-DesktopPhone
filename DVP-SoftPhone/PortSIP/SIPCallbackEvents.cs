@@ -1,11 +1,17 @@
 ﻿/*!
- * @author Copyright (c) 2006-2014 DuoCallTestTool Solutions,Inc. All rights reserved.
- * @version 11.2
- * @see http://www.DuoCallTestTool.com
- * @brief DuoCallTestTool SDK Callback events.
+ * @author Copyright (c) 2008-2017 PortSIP Solutions,Inc. All rights reserved.
+ * @version 15
+ * @see https://www.portsip.com
+ * @brief PortSIP SDK Callback events.
  
- DuoCallTestTool SDK Callback events description.
+ PortSIP VoIP SDK Callback events description.
  */
+
+//////////////////////////////////////////////////////////////////////////
+//
+//  !!!IMPORTANT!!! DON'T EDIT BELOW SOURCE CODE  
+//
+//////////////////////////////////////////////////////////////////////////  
 
 using System;
 using System.Collections.Generic;
@@ -17,7 +23,6 @@ namespace PortSIP
     /*!
     *  SIPCallbackEvents PortSIP VoIP SDK Callback events
     */
-
     interface SIPCallbackEvents
     {
         /** @defgroup groupDelegate SDK Callback events
@@ -30,22 +35,24 @@ namespace PortSIP
          */
 
         /*!
-         *  When successfully register to Server, this event will be triggered.
+         *  When successfully registered to server, this event will be triggered.
          *
-         *  @param callbackIndex This is a callback index which passed in when create the SDK library.
-         *  @param callbackObject This is a callback object which passed in when create the SDK library.
+         *  @param callbackIndex This is a callback index passed in when creating the SDK library.
+         *  @param callbackObject This is a callback object passed in when creating the SDK library.
          *  @param statusText The status text.
          *  @param statusCode The status code.
+         *  @param sipMessage        The SIP message received. 
          */
-        Int32 onRegisterSuccess(Int32 callbackIndex, Int32 callbackObject, String statusText, Int32 statusCode);
+        Int32 onRegisterSuccess(Int32 callbackIndex, Int32 callbackObject, String statusText, Int32 statusCode, StringBuilder sipMessage);
 
         /*!
-         *  If register to SIP Server is fail, this event will be triggered.
+         *  If registration to SIP server fails, this event will be triggered.
          *
          *  @param statusText The status text.
          *  @param statusCode The status code.
+         *  @param sipMessage        The SIP message received. 
          */
-        Int32 onRegisterFailure(Int32 callbackIndex, Int32 callbackObject, String statusText, Int32 statusCode);
+        Int32 onRegisterFailure(Int32 callbackIndex, Int32 callbackObject, String statusText, Int32 statusCode, StringBuilder sipMessage);
 
         /** @} */
         // end of group21
@@ -55,17 +62,18 @@ namespace PortSIP
          */
 
         /*!
-         *  When the call is coming, this event was triggered.
+         *  When the call is coming, this event will be triggered.
          *
          *  @param sessionId         The session ID of the call.
          *  @param callerDisplayName The display name of caller
          *  @param caller            The caller.
          *  @param calleeDisplayName The display name of callee.
          *  @param callee            The callee.
-         *  @param audioCodecNames   The matched audio codecs, it's separated by "#" if have more than one codec.
-         *  @param videoCodecNames   The matched video codecs, it's separated by "#" if have more than one codec.
-         *  @param existsAudio       If it's true means this call include the audio.
-         *  @param existsVideo       If it's true means this call include the video.
+         *  @param audioCodecNames   The matched audio codecs. It's separated by "#" if there are more than one codecs.
+         *  @param videoCodecNames   The matched video codecs. It's separated by "#" if there are more than one codecs.
+         *  @param existsAudio       If it's true, it indicates that this call includes the audio.
+         *  @param existsVideo       If it's true, it indicates that this call includes the video.
+         *  @param sipMessage        The SIP message received.         
          */
         Int32 onInviteIncoming(Int32 callbackIndex,
                                              Int32 callbackObject,
@@ -77,10 +85,11 @@ namespace PortSIP
                                              String audioCodecNames,
                                              String videoCodecNames,
                                              Boolean existsAudio,
-                                             Boolean existsVideo);
+                                             Boolean existsVideo,
+                                             StringBuilder sipMessage);
 
         /*!
-         *  If the outgoing call was processing, this event triggered.
+         *  If the outgoing call is being processed, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
          */
@@ -90,11 +99,12 @@ namespace PortSIP
          *  Once the caller received the "183 session progress" message, this event will be triggered.
          *
          *  @param sessionId        The session ID of the call.
-         *  @param audioCodecNames  The matched audio codecs, it's separated by "#" if have more than one codec.
-         *  @param videoCodecNames  The matched video codecs, it's separated by "#" if have more than one codec.
-         *  @param existsEarlyMedia If it's true means the call has early media.
-         *  @param existsAudio      If it's true means this call include the audio.
-         *  @param existsVideo      If it's true means this call include the video.
+         *  @param audioCodecNames  The matched audio codecs. It's separated by "#" if there are more than one codecs.
+         *  @param videoCodecNames  The matched video codecs. It's separated by "#" if there are more than one codecs.
+         *  @param existsEarlyMedia If it's true, it indicates that the call has early media.
+         *  @param existsAudio      If it's true, it indicates that this call includes the audio.
+         *  @param existsVideo      If it's true, it indicates that this call includes the video.
+         *  @param sipMessage       The SIP message received.   
          */
         Int32 onInviteSessionProgress(Int32 callbackIndex,
                                             Int32 callbackObject,
@@ -103,33 +113,37 @@ namespace PortSIP
                                              String videoCodecNames,
                                              Boolean existsEarlyMedia,
                                              Boolean existsAudio,
-                                             Boolean existsVideo);
+                                             Boolean existsVideo,
+                                             StringBuilder sipMessage);
 
         /*!
-         *  If the out going call was ringing, this event triggered.
+         *  If the outgoing call was ringing, this event would be triggered.
          *
          *  @param sessionId  The session ID of the call.
          *  @param statusText The status text.
          *  @param statusCode The status code.
+         *  @param sipMessage The SIP message received. 
          */
         Int32 onInviteRinging(Int32 callbackIndex,
                                             Int32 callbackObject,
                                             Int32 sessionId,
                                             String statusText,
-                                            Int32 statusCode);
+                                            Int32 statusCode,
+                                            StringBuilder sipMessage);
 
         /*!
-         *  If the remote party was answered the call, this event triggered.
+         *  If the remote party answered the call, this event would be triggered.
          *
          *  @param sessionId         The session ID of the call.
          *  @param callerDisplayName The display name of caller
          *  @param caller            The caller.
          *  @param calleeDisplayName The display name of callee.
          *  @param callee            The callee.
-         *  @param audioCodecNames   The matched audio codecs, it's separated by "#" if have more than one codec.
-         *  @param videoCodecNames   The matched video codecs, it's separated by "#" if have more than one codec.
-         *  @param existsAudio       If it's true means this call include the audio.
-         *  @param existsVideo       If it's true means this call include the video.
+         *  @param audioCodecNames   The matched audio codecs. It's separated by "#" if there are more than one codecs.
+         *  @param videoCodecNames   The matched video codecs. It's separated by "#" if there are more than one codecs.
+         *  @param existsAudio       If it's true, it indicates that this call includes the audio.
+         *  @param existsVideo       If it's true, it indicates that this call includes the video.
+         *  @param sipMessage           The SIP message received. 
          */
         Int32 onInviteAnswered(Int32 callbackIndex,
                                              Int32 callbackObject,
@@ -141,25 +155,28 @@ namespace PortSIP
                                              String audioCodecNames,
                                              String videoCodecNames,
                                              Boolean existsAudio,
-                                             Boolean existsVideo);
+                                             Boolean existsVideo,
+                                             StringBuilder sipMessage);
 
         /*!
-         *  If the outgoing call is fails, this event triggered.
+         *  If the outgoing call fails, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
          *  @param reason    The failure reason.
          *  @param code      The failure code.
+         *  @param sipMessage The SIP message received. 
          */
-        Int32 onInviteFailure(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, String reason, Int32 code);
+        Int32 onInviteFailure(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, String reason, Int32 code, StringBuilder sipMessage);
 
         /*!
-         *  This event will be triggered when remote party updated this call.
+         *  This event will be triggered when remote party updates this call.
          *
          *  @param sessionId   The session ID of the call.
-         *  @param audioCodecNames The matched audio codecs, it's separated by "#" if have more than one codec.
-         *  @param videoCodecNames The matched video codecs, it's separated by "#" if have more than one codec.
-         *  @param existsAudio If it's true means this call include the audio.
-         *  @param existsVideo If it's true means this call include the video.
+         *  @param audioCodecNames The matched audio codecs. It's separated by "#" if there are more than one codecs.
+         *  @param videoCodecNames The matched video codecs. It's separated by "#" if there are more than one codecs.
+         *  @param existsAudio If it's true, it indicates that this call includes the audio.
+         *  @param existsVideo If it's true, it indicates that this call includes the video.
+         *  @param sipMessage  The SIP message received. 
          */
         Int32 onInviteUpdated(Int32 callbackIndex,
                                              Int32 callbackObject,
@@ -167,44 +184,62 @@ namespace PortSIP
                                              String audioCodecNames,
                                              String videoCodecNames,
                                              Boolean existsAudio,
-                                             Boolean existsVideo);
+                                             Boolean existsVideo,
+                                             StringBuilder sipMessage);
 
         /*!
-         *  This event will be triggered when UAC sent/UAS received ACK(the call is connected). Some functions(hold, updateCall etc...) can called only after the call connected, otherwise the functions will return error.
+         *  This event would be triggered when UAC sent/UAS received ACK(the call is connected). Some functions (hold, updateCall etc...) can be called only after the call connected, otherwise these functions will return error.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onInviteConnected(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  If the enableCallForward method is called and a call is incoming, the call will be forwarded automatically and trigger this event.
+         *  If the enableCallForward method is called and a call is incoming, the call will be forwarded automatically and this event will be triggered.
          *
-         *  @param forwardTo The forward target SIP URI.
+         *  @param forwardTo The forwarding target SIP URI.
          */
         Int32 onInviteBeginingForward(Int32 callbackIndex, Int32 callbackObject, String forwardTo);
 
         /*!
-         *  This event is triggered once remote side close the call.
+         *  This event is triggered once remote side closes the call.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onInviteClosed(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  If the remote side has placed the call on hold, this event triggered.
+         *  If a user subscribed and his dialog status monitored, when the monitored user is holding a call
+         *  or being rang, this event will be triggered
+         *
+         *  @param BLFMonitoredUri the monitored user's URI
+         *  @param BLFDialogState - the status of the call
+         *  @param BLFDialogId - the id of the call
+         *  @param BLFDialogDirection - the direction of the call
+         */
+
+        Int32 onDialogStateUpdated(Int32 callbackIndex,
+                                        Int32 callbackObject,
+                                        String BLFMonitoredUri,
+                                        String BLFDialogState,
+                                        String BLFDialogId,
+                                        String BLFDialogDirection);
+
+        /*!
+         *  If the remote side placed the call on hold, this event would be triggered.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onRemoteHold(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  If the remote side was un-hold the call, this event triggered
+         *  If the remote side un-hold the call, this event would be triggered.
          *
          *  @param sessionId   The session ID of the call.
-         *  @param audioCodecNames The matched audio codecs, it's separated by "#" if have more than one codec.
-         *  @param videoCodecNames The matched video codecs, it's separated by "#" if have more than one codec.
-         *  @param existsAudio If it's true means this call include the audio.
-         *  @param existsVideo If it's true means this call include the video.
+         *  @param audioCodecNames The matched audio codecs. It's separated by "#" if there are more than one codecs.
+         *  @param videoCodecNames The matched video codecs. It's separated by "#" if there are more than one codecs.
+         *  @param existsAudio If it's true, it indicates that this call includes the audio.
+         *  @param existsVideo If it's true, it indicates that this call includes the video.
          */
         Int32 onRemoteUnHold(Int32 callbackIndex, 
                             Int32 callbackObject, 
@@ -223,31 +258,31 @@ namespace PortSIP
          */
 
         /*!
-         *  This event will be triggered once received a REFER message.
+         *  This event will be triggered once receiving a REFER message.
          *
          *  @param sessionId       The session ID of the call.
-         *  @param referId         The ID of the REFER message, pass it to acceptRefer or rejectRefer
+         *  @param referId         The ID of the REFER message. Pass it to acceptRefer or rejectRefer
          *  @param to              The refer target.
          *  @param from            The sender of REFER message.
-         *  @param referSipMessage The SIP message of "REFER", pass it to "acceptRefer" function.
+         *  @param referSipMessage The SIP message of "REFER". Pass it to "acceptRefer" function.
          */
         Int32 onReceivedRefer(Int32 callbackIndex,
-                                                    Int32 callbackObject,
-                                                    Int32 sessionId,
-                                                    Int32 referId,
-                                                    String to,
-                                                    String from,
-                                                    String referSipMessage);
+                             Int32 callbackObject,
+                             Int32 sessionId,
+                             Int32 referId,
+                             String to,
+                             String from,
+                             StringBuilder referSipMessage);
 
         /*!
-         *  This callback will be triggered once remote side called "acceptRefer" to accept the REFER
+         *  This callback will be triggered once remote side called "acceptRefer" to accept the REFER.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onReferAccepted(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  This callback will be triggered once remote side called "rejectRefer" to reject the REFER
+         *  This callback will be triggered once remote side called "rejectRefer" to reject the REFER.
          *
          *  @param sessionId The session ID of the call.
          *  @param reason    Reject reason.
@@ -256,30 +291,30 @@ namespace PortSIP
         Int32 onReferRejected(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, String reason, Int32 code);
 
         /*!
-         *  When the refer call is processing, this event trigged.
+         *  When the refer call is being processed, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onTransferTrying(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  When the refer call is ringing, this event trigged.
+         *  When the refer call is ringing, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onTransferRinging(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  When the refer call is succeeds, this event will be triggered. The ACTV means Active.
-            For example: A established the call with B, A transfer B to C, C accepted the refer call, A received this event.
+         *  When the refer call succeeds, this event will be triggered. The ACTV means Active.
+            For example: A established the call with B, and A transferred B to C. When C accepts the refer call, A will receive this event.
          *
          *  @param sessionId The session ID of the call.
          */
         Int32 onACTVTransferSuccess(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId);
 
         /*!
-         *  When the refer call is fails, this event will be triggered. The ACTV means Active.
-         For example: A established the call with B, A transfer B to C, C rejected this refer call, A will received this event.
+         *  When the refer call fails, this event will be triggered. The ACTV means Active.
+         For example: A established the call with B, and A transfered B to C. When C rejects the refer call, A will receive this event.
          *
          *  @param sessionId The session ID of the call.
          *  @param reason    The error reason.
@@ -294,18 +329,18 @@ namespace PortSIP
          * @{
          */
         /*!
-         *  This event will be triggered when received a SIP message.
+         *  This event will be triggered when receiving an SIP message.
          *
          *  @param sessionId The session ID of the call.
-         *  @param signaling The SIP message which is received.
+         *  @param signaling The SIP message received.
          */
         Int32 onReceivedSignaling(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, StringBuilder signaling);
 
         /*!
-         *  This event will be triggered when sent a SIP message.
+         *  This event will be triggered when a SIP message sent.
          *
          *  @param sessionId The session ID of the call.
-         *  @param signaling The SIP message which is sent.
+         *  @param signaling The SIP message sent.
          */
         Int32 onSendingSignaling(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, StringBuilder signaling);
 
@@ -317,7 +352,7 @@ namespace PortSIP
          */
 
         /*!
-         *  If has the waiting voice message(MWI), then this event will be triggered.
+         *  If there is voice message (MWI) waiting, this event will be triggered.
          *
          *  @param messageAccount        Voice message account
          *  @param urgentNewMessageCount Urgent new message count.
@@ -334,7 +369,7 @@ namespace PortSIP
                                                   Int32 oldMessageCount);
 
         /*!
-         *  If has the waiting fax message(MWI), then this event will be triggered.
+         *  If there is fax message (MWI) waiting, this event will be triggered.
          *
          *  @param messageAccount        Fax message account
          *  @param urgentNewMessageCount Urgent new message count.
@@ -358,10 +393,10 @@ namespace PortSIP
          */
 
         /*!
-         *  This event will be triggered when received a DTMF tone from remote side.
+         *  This event will be triggered when receiving a DTMF tone from remote side.
          *
          *  @param sessionId The session ID of the call.
-         *  @param tone      Dtmf tone.
+         *  @param tone      DTMF tone.
          * <p><table>
          * <tr><th>code</th><th>Description</th></tr>
          * <tr><td>0</td><td>The DTMF tone 0.</td></tr><tr><td>1</td><td>The DTMF tone 1.</td></tr><tr><td>2</td><td>The DTMF tone 2.</td></tr>
@@ -382,18 +417,49 @@ namespace PortSIP
          */
 
         /*!
-         *  This event will be triggered when received the OPTIONS message.
+         *  This event will be triggered when receiving the OPTIONS message.
          *
          *  @param optionsMessage The received whole OPTIONS message in text format.
          */
         Int32 onRecvOptions(Int32 callbackIndex, Int32 callbackObject, StringBuilder optionsMessage);
 
         /*!
-         *  This event will be triggered when received the INFO message.
+         *  This event will be triggered when receiving the INFO message.
          *
          *  @param infoMessage The received whole INFO message in text format.
          */
         Int32 onRecvInfo(Int32 callbackIndex, Int32 callbackObject, StringBuilder infoMessage);
+
+        /*!
+         *  This event will be triggered when receiving a NOTIFY message of the subscription.
+         *
+         *  @param subscribeId       The ID of SUBSCRIBE request.
+         *  @param notifyMessage     The received INFO message in text format.
+         *  @param contentData       The received message body. It's can be either text or binary data.
+         *  @param contentLenght The length of "messageData".
+         */
+        Int32 onRecvNotifyOfSubscription(Int32 callbackIndex, 
+                                        Int32 callbackObject,
+                                        Int32 subscribeId, 
+                                        StringBuilder notifyMsg,
+                                        byte[] contentData, 
+                                        Int32 contentLenght);
+
+        /*!
+         *  This event will be triggered on sending SUBSCRIBE failure.
+         *
+         *  @param subscribeId     The ID of SUBSCRIBE request.
+         *  @param statusCode The status code.
+         */
+        Int32 onSubscriptionFailure(Int32 callbackIndex, Int32 callbackObject, Int32 subscribeId, Int32 statusCode);
+
+        /*!
+         *  This event will be triggered when a SUBSCRIPTION is terminated or expired.
+         *
+         *  @param subscribeId     The ID of SUBSCRIBE request.
+         */
+        Int32 onSubscriptionTerminated(Int32 callbackIndex, Int32 callbackObject, Int32 subscribeId);
+
 
         /** @} */
         // end of group27
@@ -402,11 +468,11 @@ namespace PortSIP
          * @{
          */
         /*!
-         *  This event will be triggered when received the SUBSCRIBE request from a contact.
+         *  This event will be triggered when receiving the SUBSCRIBE request from a contact.
          *
-         *  @param subscribeId     The id of SUBSCRIBE request.
+         *  @param subscribeId     The ID of SUBSCRIBE request.
          *  @param fromDisplayName The display name of contact.
-         *  @param from            The contact who send the SUBSCRIBE request.
+         *  @param from            The contact who sends the SUBSCRIBE request.
          *  @param subject         The subject of the SUBSCRIBE request.
          */
         Int32 onPresenceRecvSubscribe(Int32 callbackIndex,
@@ -417,10 +483,10 @@ namespace PortSIP
                                                     String subject);
 
         /*!
-         *  When the contact is online or changed presence status, this event will be triggered.
+         *  When the contact is online or changes presence status, this event will be triggered.
          *
          *  @param fromDisplayName The display name of contact.
-         *  @param from            The contact who send the SUBSCRIBE request.
+         *  @param from            The contact who sends the SUBSCRIBE request.
          *  @param stateText       The presence status text.
          */
         Int32 onPresenceOnline(Int32 callbackIndex,
@@ -430,20 +496,20 @@ namespace PortSIP
                                                     String stateText);
 
         /*!
-         *  When the contact is went offline then this event will be triggered.
+         *  When the contact goes offline, this event will be triggered.
          *
          *  @param fromDisplayName The display name of contact.
-         *  @param from            The contact who send the SUBSCRIBE request
+         *  @param from            The contact who sends the SUBSCRIBE request
          */
         Int32 onPresenceOffline(Int32 callbackIndex, Int32 callbackObject, String fromDisplayName, String from);
 
         /*!
-         *  This event will be triggered when received a MESSAGE message in dialog.
+         *  This event will be triggered when receiving a MESSAGE message in dialog.
          *
          *  @param sessionId         The session ID of the call.
          *  @param mimeType          The message mime type.
          *  @param subMimeType       The message sub mime type.
-         *  @param messageData       The received message body, it's can be text or binary data.
+         *  @param messageData       The received message body. It can be text or binary data.
          *  @param messageDataLength The length of "messageData".
          */
         Int32 onRecvMessage(Int32 callbackIndex,
@@ -455,15 +521,15 @@ namespace PortSIP
                                                  Int32 messageDataLength);
 
         /*!
-         *  This event will be triggered when received a MESSAGE message out of dialog, for example: pager message.
+         *  This event will be triggered when receiving a MESSAGE message out of dialog. For example: pager message.
          *
          *  @param fromDisplayName   The display name of sender.
          *  @param from              The message sender.
-         *  @param toDisplayName     The display name of receiver.
-         *  @param to                The receiver.
+         *  @param toDisplayName     The display name of recipient.
+         *  @param to                The recipient.
          *  @param mimeType          The message mime type.
          *  @param subMimeType       The message sub mime type.
-         *  @param messageData       The received message body, it's can be text or binary data.
+         *  @param messageData       The received message body. It can be text or binary data.
          *  @param messageDataLength The length of "messageData".
          */
         Int32 onRecvOutOfDialogMessage(Int32 callbackIndex,
@@ -478,10 +544,10 @@ namespace PortSIP
                                                  Int32 messageDataLength);
 
         /*!
-         *  If the message was sent succeeded in dialog, this event will be triggered.
+         *  If the message is sent successfully in dialog, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
-         *  @param messageId The message ID, it's equals the return value of sendMessage function.
+         *  @param messageId The message ID. It's equal to the return value of sendMessage function.
          */
         Int32 onSendMessageSuccess(Int32 callbackIndex,
                                                         Int32 callbackObject,
@@ -489,10 +555,10 @@ namespace PortSIP
                                                         Int32 messageId);
 
         /*!
-         *  If the message was sent failure out of dialog, this event will be triggered.
+         *  If the message fails to be sent out of dialog, this event will be triggered.
          *
          *  @param sessionId The session ID of the call.
-         *  @param messageId The message ID, it's equals the return value of sendMessage function.
+         *  @param messageId The message ID. It's equal to the return value of sendMessage function.
          *  @param reason    The failure reason.
          *  @param code      Failure code.
          */
@@ -506,12 +572,12 @@ namespace PortSIP
 
 
         /*!
-         *  If the message was sent succeeded out of dialog, this event will be triggered.
+         *  If the message is sent succeeded out of dialog, this event will be triggered.
          *
-         *  @param messageId       The message ID, it's equals the return value of SendOutOfDialogMessage function.
+         *  @param messageId       The message ID. It's equal to the return value of SendOutOfDialogMessage function.
          *  @param fromDisplayName The display name of message sender.
          *  @param from            The message sender.
-         *  @param toDisplayName   The display name of message receiver.
+         *  @param toDisplayName   The display name of message recipient.
          *  @param to              The message receiver.
          */
         Int32 onSendOutOfDialogMessageSuccess(Int32 callbackIndex,
@@ -525,11 +591,11 @@ namespace PortSIP
         /*!
          *  If the message was sent failure out of dialog, this event will be triggered.
          *
-         *  @param messageId       The message ID, it's equals the return value of SendOutOfDialogMessage function.
+         *  @param messageId       The message ID. It's equal to the return value of SendOutOfDialogMessage function.
          *  @param fromDisplayName The display name of message sender
          *  @param from            The message sender.
-         *  @param toDisplayName   The display name of message receiver.
-         *  @param to              The message receiver.
+         *  @param toDisplayName   The display name of message recipient.
+         *  @param to              The message recipient.
          *  @param reason          The failure reason.
          *  @param code            The failure code.
          */
@@ -551,15 +617,15 @@ namespace PortSIP
          */
 
         /*!
-         *  If called playAudioFileToRemote function with no loop mode, this event will be triggered once the file play finished.
+         *  If playAudioFileToRemote function is called with no loop mode, this event will be triggered once the file play finished.
          *
          *  @param sessionId The session ID of the call.
-         *  @param fileName  The play file name.
+         *  @param fileName  The name of the file played.
          */
         Int32 onPlayAudioFileFinished(Int32 callbackIndex, Int32 callbackObject, Int32 sessionId, String fileName);
 
         /*!
-         *  If called playVideoFileToRemote function with no loop mode, this event will be triggered once the file play finished.
+         *  If playVideoFileToRemote function is called with no loop mode, this event will be triggered once the file play finished.
          *
          *  @param sessionId The session ID of the call.
          */
@@ -572,13 +638,13 @@ namespace PortSIP
          * @{
          */
         /*!
-         *  If called setRTPCallback function to enabled the RTP callback, this event will be triggered once received a RTP packet.
+         *  If setRTPCallback function is called to enable the RTP callback, this event will be triggered once receiving a RTP packet.
          *
          *  @param sessionId  The session ID of the call.
-         *  @param isAudio    If the received RTP packet is of audio, this parameter is true, otherwise false.
+         *  @param isAudio    If the received RTP packet is of audio, this parameter returns true, otherwise false.
          *  @param RTPPacket  The memory of whole RTP packet.
          *  @param packetSize The size of received RTP Packet.
-          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which will spend long time, you should post a message to another thread and execute SDK API functions or other code in another thread.
+          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which is time-consuming, you should post a message to another thread and execute SDK API functions or other code in another thread.
          */
         Int32 onReceivedRtpPacket(IntPtr callbackObject,
                           Int32 sessionId,
@@ -587,13 +653,13 @@ namespace PortSIP
                           Int32 packetSize);
 
         /*!
-         *  If called setRTPCallback function to enabled the RTP callback, this event will be triggered once sending a RTP packet.
+         *  If setRTPCallback function is called to enable the RTP callback, this event will be triggered once a RTP packet sent.
          *
          *  @param sessionId  The session ID of the call.
-         *  @param isAudio    If the received RTP packet is of audio, this parameter is true, otherwise false.
+         *  @param isAudio    If the received RTP packet is of audio, this parameter returns true, otherwise false.
          *  @param RTPPacket  The memory of whole RTP packet.
          *  @param packetSize The size of received RTP Packet.
-          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which will spend long time, you should post a message to another thread and execute SDK API functions or other code in another thread.
+          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which is time-consuming, you should post a message to another thread and execute SDK API functions or other code in another thread.
          */
         Int32 onSendingRtpPacket(IntPtr callbackObject,
                                   Int32 sessionId,
@@ -609,14 +675,14 @@ namespace PortSIP
         */
 
         /*!
-         *  This event will be triggered once received the audio packets if called enableAudioStreamCallback function.
+         *  This event will be triggered once receiving the audio packets if called enableAudioStreamCallback function.
          *
          *  @param sessionId         The session ID of the call.
-         *  @param audioCallbackMode TThe type which pasdded in enableAudioStreamCallback function.
-         *  @param data              The memory of audio stream, it's PCM format.
+         *  @param audioCallbackMode The type that is passed in enableAudioStreamCallback function.
+         *  @param data              The memory of audio stream. It's in PCM format.
          *  @param dataLength        The data size.
-         *  @param samplingFreqHz    The audio stream sample in HZ, for example, it's 8000 or 16000.
-          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which will spend long time, you should post a message to another thread and execute SDK API functions or other code in another thread.
+         *  @param samplingFreqHz    The audio stream sample in HZ. For example, it's 8000 or 16000.
+          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which is time-consuming, you should post a message to another thread and execute SDK API functions or other code in another thread.
          */
         Int32 onAudioRawCallback(IntPtr callbackObject,
                                                Int32 sessionId,
@@ -626,15 +692,15 @@ namespace PortSIP
                                                Int32 samplingFreqHz);
 
         /*!
-         *  This event will be triggered once received the video packets if called enableVideoStreamCallback function.
+         *  This event will be triggered once receiving the video packets if called enableVideoStreamCallback function.
          *
          *  @param sessionId         The session ID of the call.
-         *  @param videoCallbackMode The type which pasdded in enableVideoStreamCallback function.
+         *  @param videoCallbackMode The type which is passed in enableVideoStreamCallback function.
          *  @param width             The width of video image.
          *  @param height            The height of video image.
-         *  @param data              The memory of video stream, it's YUV420 format, YV12.
+         *  @param data              The memory of video stream. It's in YUV420 format, YV12.
          *  @param dataLength        The data size.
-          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which will spend long time, you should post a message to another thread and execute SDK API functions or other code in another thread.
+          @note Don't call any SDK API functions in this event directly. If you want to call the API functions or other code which is time-consuming, you should post a message to another thread and execute SDK API functions or other code in another thread.
          */
         Int32 onVideoRawCallback(IntPtr callbackObject,
                                                Int32 sessionId,
@@ -645,6 +711,10 @@ namespace PortSIP
                                                Int32 dataLength);
 
 
+        /** @} */
+        // end of group32
+        /** @} */
+        // end of groupDelegate
 
     }
 }

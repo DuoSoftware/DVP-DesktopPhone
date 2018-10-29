@@ -1,7 +1,7 @@
 ﻿using Alchemy;
 using Alchemy.Classes;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
+
 using DuoSoftware.DuoTools.DuoLogger;
 using System;
 using System.Dynamic;
@@ -15,7 +15,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
 {
 
     //delegate 
-    public delegate void SocketMessage(CallFunctions callFunction, string message);
+    public delegate void SocketMessage(CallFunctions callFunction, string message, string othr);
     /// <summary>
     /// Socket Listener 
     /// </summary>
@@ -24,7 +24,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
 
         private static UserContext currentContext;
         //event
-        public event SocketMessage OnRecive;
+        public static event SocketMessage OnRecive;
 
         // key
         private static string _duoKey;
@@ -48,7 +48,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                     OnSend = OnSend,
                     OnConnect = OnConnect,
                     OnReceive = OnRecieve,
-                    TimeOut = new TimeSpan(0, 5, 0)
+                    TimeOut = new TimeSpan(24, 5, 0)
                 };
 
                 Console.WriteLine(server.ListenAddress);
@@ -77,13 +77,21 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        private static void Reply(string message)
+        public void SendMessageToClient(CallFunctions message)
+        {
+            Reply(message.ToString());
+        }
+
+        public void SendMessageToClient(CallFunctions message, dynamic expando)
         {
             try
             {
                 if (currentContext == null) return;
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, message), Logger.LogLevel.Info);
-                currentContext.Send(message);
+
+                expando.veery_api_key = _duoKey;
+                expando.veery_command = message.ToString();
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
+                currentContext.Send(expando.ToString());
             }
             catch (Exception exception)
             {
@@ -91,19 +99,26 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        private bool ValidateToken(string token)
+        private static void Reply(string message)
         {
             try
             {
-                return ardsHandler.ValidateToken(token);
+                if (currentContext == null) return;
+                //abc123|Initiate|123456789|othr
+                dynamic expando = new JObject();
+                expando.veery_api_key = _duoKey;
+              expando.veery_command = message;
+                
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
+                currentContext.Send(expando.ToString());
             }
             catch (Exception exception)
             {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "validateToken", exception, Logger.LogLevel.Error);
-                return false;
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "Reply", exception, Logger.LogLevel.Error);
             }
-
         }
+
+        
         /// <summary>
         /// On Receive 
         /// </summary>
@@ -112,6 +127,9 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         {
             try
             {
+                //1) . abc123|Initiate|123456789|othr 
+                //2). 721dab71-f9ae-44eb-9bbe-955261d4a726|Registor|123456789|9502-DuoS123-duo.media1.veery.cloud
+                //3). 94625283-874f-4de6-b870-b3aaecc9c930|MakeCall|94112375000|othr
 
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnRecieve : " + aContext.ClientAddress, Logger.LogLevel.Info);
                 if (aContext.DataFrame == null) return;
@@ -129,17 +147,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 if (callFunction == CallFunctions.Initiate)
                 {
                     currentContext = aContext;
-                    if (ValidateToken(callInfo[0]))
-                    {
-                        _duoKey = Guid.NewGuid().ToString();
-                        dynamic expando = new JObject();
-                        expando.veery_api_key = _duoKey;
-                        Reply(expando.ToString());
-                    }
-                    else
-                    {
-                        Reply("Invalid SecurityToken or Expired.");
-                    }
+                    _duoKey = Guid.NewGuid().ToString();
+                    Reply(CallFunctions.Handshake.ToString());
                     return;
                 }
                 if (!_duoKey.Equals(callInfo[0]))
@@ -149,7 +158,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 }
 
                 if (OnRecive != null)
-                    OnRecive(callFunction, callInfo[2]);
+                    OnRecive(callFunction, callInfo[2], callInfo[3]);
 
             }
             catch (Exception exception)
@@ -158,6 +167,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
+        
         /// <summary>
         /// On Connect
         /// </summary>
@@ -165,6 +175,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         private static void OnConnect(UserContext aContext)
         {
             Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
+            
             //try
             //{
             //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
@@ -200,16 +211,19 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         private static void OnDisconnected(UserContext aContext)
         {
             Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected : " + aContext.ClientAddress, Logger.LogLevel.Info);
-            currentContext = null;
-            _duoKey = Guid.NewGuid().ToString();
-            //try
-            //{
+            //currentContext = null;
+            //_duoKey = Guid.NewGuid().ToString();
 
-            //}
-            //catch (Exception exception)
-            //{
-            //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected", exception, Logger.LogLevel.Error);
-            //}
+
+            try
+            {
+                if (OnRecive != null)
+                    OnRecive(CallFunctions.Unregistor, null, null);
+            }
+            catch (Exception exception)
+            {
+               Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected", exception, Logger.LogLevel.Error);
+            }
         }
     }
 }

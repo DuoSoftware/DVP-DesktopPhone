@@ -1,6 +1,6 @@
 ﻿using System;
 using DuoSoftware.DuoTools.DuoLogger;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
+
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
 {
@@ -64,11 +64,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "AgentIdle", exception, Logger.LogLevel.Error); }
         }
 
-        public override void OnEndACW(ref Agent agent, string callSessionId, bool afterAcw)
-        {
-            try { throw new NotImplementedException("Invalid Agent Status."); }
-            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "AgentIdle", exception, Logger.LogLevel.Error); }
-        }
+       
 
         public override void OnLogin(ref Agent agent)
         {
@@ -84,7 +80,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
 
         public override void OnLogOff(ref Agent agent)
         {
-            try { agent.ResourceUnregistration(); }
+            try { }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "AgentIdle", exception, Logger.LogLevel.Error); }
         }
 

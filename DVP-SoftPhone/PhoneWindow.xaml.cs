@@ -1,39 +1,46 @@
-﻿using PortSIP;
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Input;
+﻿using Controllers;
 using DuoCallTesterLicenseKey;
 using DuoSoftware.DuoSoftPhone.Controllers;
 using DuoSoftware.DuoSoftPhone.Controllers.AgentStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.CallStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
 using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
+using PortSIP;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Management;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
 using Button = System.Windows.Controls.Button;
 using MessageBox = System.Windows.MessageBox;
-using System.ComponentModel;
-using System.IO;
-using System.Windows.Media;
 
 
 namespace DVP_DesktopPhone
 {
     public partial class PhoneWindow : Window, SIPCallbackEvents, IUiState
     {
+        private static Mutex mutex;
+        private System.Windows.Forms.NotifyIcon m_notifyIcon;
         private PortSIPLib _phoneController;
         private Agent _agent;
         private Call _call;
         private bool _sipLogined = false;
         NotifyIcon mynotifyicon = new NotifyIcon();
         private bool isCallAnswerd;
-        private MediaPlayer _wavPlayer = new MediaPlayer();
-
+        private System.Media.SoundPlayer _wavPlayer = new System.Media.SoundPlayer();
+        private int AutoAnswerDelay = 10000;
+        private bool AutoAnswerEnable = false;
+        System.Timers.Timer _callDurations;
+        DateTime _callStarTime;
+        int audioDivID = 0;
         #region Keypad events
 
         private void buttonConference_Click(object sender, RoutedEventArgs e)
@@ -46,6 +53,7 @@ namespace DVP_DesktopPhone
                 {
                     SendDtmf(setting.DtmfValues[c]);
                 }
+                webSocketlistner.SendMessageToClient(CallFunctions.ConfCall);
             }
             catch (Exception exception)
             {
@@ -63,7 +71,7 @@ namespace DVP_DesktopPhone
                 {
                     SendDtmf(setting.DtmfValues[c]);
                 }
-
+                webSocketlistner.SendMessageToClient(CallFunctions.EtlCall);
             }
             catch (Exception exception)
             {
@@ -96,90 +104,26 @@ namespace DVP_DesktopPhone
         {
             GrdCallFunctions.Visibility = Visibility.Visible;
             GrdDailpad.Visibility = Visibility.Hidden;
-            GrdLogin.Visibility = Visibility.Hidden;
-            GrdAcw.Visibility = Visibility.Hidden;
-            buttonDialPad.Visibility=Visibility.Hidden;
-            
+
+
+            buttonDialPad.Visibility = Visibility.Hidden;
+
         }
 
         private void buttonDilapadshow_Click(object sender, RoutedEventArgs e)
         {
             GrdCallFunctions.Visibility = Visibility.Hidden;
             GrdDailpad.Visibility = Visibility.Visible;
-            GrdLogin.Visibility = Visibility.Hidden;
-            GrdAcw.Visibility = Visibility.Hidden;
+
+
             buttonDialPad.Visibility = Visibility.Visible;
         }
 
-        private void BtnAcw_Click(object sender, RoutedEventArgs e)
-        {
-            _agent.AgentCurrentState.OnEndACW(ref _agent, _agent.CallSessionId, true);
-        }
 
         string _userName = String.Empty;
         string _password = String.Empty;
         private BackgroundWorker _bw = new BackgroundWorker();
-        
-        
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            _userName = TxtUserName.Text.Trim();
-            _password = TxtPassword.Password.Trim();
-            //Background Worker code///
-            _bw.WorkerReportsProgress = true;
 
-            _bw.DoWork += (o, args) =>
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    waitPanel.Visibility = Visibility.Visible;
-                    GrdLogin.Visibility = Visibility.Hidden;
-                });
-
-                args.Result = AgentProfile.Instance.Login(_userName, _password);
-                //var isSuccess = AgentProfile.Instance.Login(_userName, _password);
-                //if (isSuccess)
-                //{
-                //    new Thread(MonitorRestApiHandler.MapResourceToVeery).Start();
-                //}
-                //else
-                //{
-                //    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "Login Fail", Logger.LogLevel.Error);
-                //    MessageBox.Show("Fail To Login", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
-                //    Dispatcher.Invoke(new Action(() =>
-                //    {
-                //        waitPanel.Visibility = Visibility.Hidden;
-                //        GrdLogin.Visibility = Visibility.Visible;
-                //    }));
-                //}
-            };
-            _bw.ProgressChanged += (o, args) => {};
-            _bw.RunWorkerCompleted += (o, args) =>
-            {
-                
-                if ((bool) args.Result)
-                {
-                    new Thread(MonitorRestApiHandler.MapResourceToVeery).Start();
-                    Dispatcher.Invoke(() =>
-                    {
-                        InitializePhone(false);
-                    });
-                }
-                else
-                {
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "Login Fail", Logger.LogLevel.Error);
-                    MessageBox.Show("Fail To Login", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        waitPanel.Visibility = Visibility.Hidden;
-                        GrdLogin.Visibility = Visibility.Visible;
-                    }));
-                }
-
-               
-            };
-            _bw.RunWorkerAsync();
-        }
 
         private void SetStatusMessage(string message)
         {
@@ -197,8 +141,22 @@ namespace DVP_DesktopPhone
         }
         private void buttonPickUp_Click(object sender, RoutedEventArgs e)
         {
-            SetStatusMessage("Dialing");
-            MakeCall(textBlockDialingNumber.Text);
+
+            Dispatcher.Invoke(new Action(() =>
+            {
+
+                buttonAnswer.IsEnabled = false;
+                if (string.IsNullOrEmpty(textBlockDialingNumber.Text))
+                {
+                    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Please Enter Number To Dial.", ToolTipIcon.Warning);
+                    return;
+                }
+
+                MakeCall(textBlockDialingNumber.Text);
+
+            }));
+
+
         }
 
         private void buttonHangUp_Click(object sender, RoutedEventArgs e)
@@ -211,19 +169,19 @@ namespace DVP_DesktopPhone
             var btn = sender as Button;
             if (btn == null)
                 return;
-            
+
             textBlockDialingNumber.Text += btn.Content.ToString().Trim();
             SendDtmf(GetDtmfSignalFromButtonTag(btn));
         }
 
         private void buttonKeyPad_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void buttonKeyPad_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private int GetDtmfSignalFromButtonTag(Button button)
@@ -241,22 +199,25 @@ namespace DVP_DesktopPhone
             return -1;
         }
 
-        
+
         #endregion
 
         #region Menu events
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            
-            App.Current.Shutdown();
+            MessageBoxResult result = MessageBox.Show("Do You Want To Exit?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
         }
 
         private void HelpMenuItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Process.Start("http://www.yourwebsite.com/");
+                Process.Start("http://www.facetone.com/");
             }
             catch (Exception exception)
             {
@@ -264,11 +225,136 @@ namespace DVP_DesktopPhone
             }
         }
 
-        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        private void phone_minimize_Click(object sender, RoutedEventArgs e)
         {
-            AboutWindow wnd = new AboutWindow();
-            wnd.Owner = this;
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ButtonTestAudio_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ButtonTestAudio.IsChecked == true)
+                {
+                    ButtonTestAudio.ToolTip = "Stop Test";
+                    _phoneController.audioPlayLoopbackTest(true);
+                }
+                else
+                {
+                    ButtonTestAudio.ToolTip = "Test Audio";
+                    _phoneController.audioPlayLoopbackTest(false);
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "ButtonTestAudio_Click", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void TrackBarSpeaker_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            try
+            {
+                _phoneController.setSpeakerVolume(Convert.ToInt16(TrackBarSpeaker.Value));
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "frmAudio.OnSpeakerVolumeChanged", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void TrackBarMicrophone_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            try
+            {
+                _phoneController.setMicVolume(Convert.ToInt16(TrackBarMicrophone.Value));
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "frmAudio.OnMicVolumeChanged", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void chkboxMuteSpeaker_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var val = chkboxMuteSpeaker.IsChecked == true;
+                _phoneController.muteSpeaker(val);
+                picSpek.Visibility = val ? Visibility.Visible : Visibility.Hidden;
+                if (val) return;
+                _phoneController.setSpeakerVolume(_phoneController.getSpeakerVolume());
+                TrackBarSpeaker.Value = _phoneController.getSpeakerVolume();
+
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "frmAudio.OnSpeakerMute", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void CheckBoxMute_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var val = CheckBoxMute.IsChecked == true;
+                _phoneController.muteMicrophone(val);
+                picMic.Visibility = val ? Visibility.Visible : Visibility.Hidden;
+                if (val) return;
+                _phoneController.setMicVolume(_phoneController.getMicVolume());
+                TrackBarMicrophone.Value = _phoneController.getMicVolume();
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "frmAudio.OnMicMute", exception, Logger.LogLevel.Error);
+            }
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            GrdCallButton.Visibility = Visibility.Visible;
+            GrdVolume.Visibility = Visibility.Hidden;
+        }
+        private void volumeMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //if (_agent.AgentCurrentState.GetType() != typeof(AgentIdle))
+            //{
+            //    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Not Allow", ToolTipIcon.Warning);
+            //    return;
+            //}
+            GrdCallButton.Visibility = Visibility.Hidden;
+            GrdVolume.Visibility = Visibility.Visible;
+        }
+
+        private void SettingMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            UninitializePhone();
+            SettingWindow wnd = new SettingWindow { Owner = this };
+            wnd.Closing += (a, k) =>
+            {
+                //var data = FileHandler.ReadUserData();
+                //if (data != null)
+                //{
+                //    _agent.Profile.Login(data.GetValue("name").ToString(), data.GetValue("password").ToString(), data.GetValue("domain").ToString());
+
+                //   InitializePhone(true);                    
+                //}
+                if (!wnd.isSaved) return;
+                System.Windows.Forms.Application.Restart();
+                System.Windows.Application.Current.Shutdown();
+            };
             wnd.ShowDialog();
+        }
+
+        private void autoanswerMenu_Checked(object sender, RoutedEventArgs e)
+        {
+            AutoAnswerEnable = true;
+        }
+
+        private void autoanswerMenu_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AutoAnswerEnable = false;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -286,76 +372,16 @@ namespace DVP_DesktopPhone
 
         #region FormEvents
 
-        private void EndFreezDefault(object sender, EventArgs e)
-        {
-            try
-            {
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    textBlockCallStateInfo.Text = "Freeze";
 
-                }));
-
-                _agent.AgentCurrentState.OnEndACW(ref _agent, _agent.CallSessionId, false);
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("EndFreezDefault. {0}", _agent.CallSessionId), Logger.LogLevel.Info);
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "EndFreez", exception, Logger.LogLevel.Error);
-            }
-        }
-
-        private void EndFreez(bool freeze)
-        {
-            try
-            {
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    textBlockCallStateInfo.Text = "Freeze";
-                    
-                }));
-                var sid = _agent.CallSessionId;
-                ardsHandler.FreezeAcw(sid, freeze);
-                if (!freeze)
-                    _agent.AgentCurrentState.OnEndACW(ref _agent, _agent.CallSessionId, false);
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1,string.Format("End ACW time After Freeze. {0}", _agent.CallSessionId), Logger.LogLevel.Info);
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "EndFreez", exception, Logger.LogLevel.Error);
-            }
-           
-        }
-
-        private void btnFreeze_Click(object sender, RoutedEventArgs e)
-        {
-            if (acwcounttimer.Visibility == Visibility.Visible)
-            {
-                ttbCountDown.IsStarted = false;
-                ttbTimer.IsStarted = true;
-                acwcounttimer.Visibility = Visibility.Hidden;
-                acwtimer.Visibility = Visibility.Visible;
-                btnFreeze.Content = "EndFreeze";
-                SetStatusMessage("Freeze");
-            }
-            else
-            {
-                ttbCountDown.IsStarted = false;
-                ttbTimer.IsStarted = false;
-                acwcounttimer.Visibility = Visibility.Hidden;
-                acwtimer.Visibility = Visibility.Hidden;
-                btnFreeze.Content = "Freeze";
-            }
-            EndFreez(acwtimer.Visibility == Visibility.Visible);
-        }
-
-        
+        private System.Windows.Forms.NotifyIcon MyNotifyIcon;
         public PhoneWindow()
         {
             InitializeComponent();
 
         }
 
+
+        WebSocketServiceHost webSocketlistner;
         private void InitiateWebSocket()
         {
             #region WebSocket Server
@@ -365,61 +391,122 @@ namespace DVP_DesktopPhone
 
                 if (VeerySetting.Instance.WebSocketlistnerEnable)
                 {
-                    var webSocketlistner = new WebSocketServiceHost(VeerySetting.Instance.WebSocketlistnerPort);
+                    webSocketlistner = new WebSocketServiceHost(VeerySetting.Instance.WebSocketlistnerPort);
 
-                    webSocketlistner.OnRecive += (callFunction, no) =>
+                    WebSocketServiceHost.OnRecive += (callFunction, no, othr) =>
                     {
+
+
                         try
                         {
-                            Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault,
+
+                            Dispatcher.Invoke(new Action(() =>
+                            {
+                                try
+                                {
+
+
+                                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault,
                                 string.Format(
                                     "[webSocketlistner]External Application send Commands. callFunction : {0}, Phone No : {1}",
                                     callFunction, no), Logger.LogLevel.Info);
-                            switch (callFunction)
-                            {
-                                case CallFunctions.MakeCall:
-                                {
-                                    Dispatcher.Invoke(new Action(() =>
+                                    switch (callFunction)
                                     {
-                                        textBlockDialingNumber.Text = no;
-                                        SetStatusMessage("Dialing");
-                                        MakeCall(no);
-                                    }));
-                                        
-                                    }
-                                    break;
-
-                                case CallFunctions.EndCall:
-                                    EndCall();
-                                    break;
-
-                                case CallFunctions.HoldCall:
-                                    HoldUnholdCall();
-                                    break;
-
-                                case CallFunctions.TransferCall:
-                                    {
-                                        if (!string.IsNullOrEmpty(no))
-                                        {
-                                            if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
+                                        case CallFunctions.Registor:
+                                            RegistorPhone(othr);
+                                            break;
+                                        case CallFunctions.Unregistor:
+                                            UnregistorPhone(othr);
+                                            break;
+                                        case CallFunctions.MakeCall:
                                             {
-                                                HoldUnholdCall();
+                                                Dispatcher.Invoke(new Action(() =>
+                                                {
+                                                    textBlockDialingNumber.Text = no;
+                                                    SetStatusMessage("Dialing");
+                                                    MakeCall(no);
+                                                }));
+
                                             }
+                                            break;
+                                        case CallFunctions.AnswerCall:
+                                            AnswerCall();
+                                            break;
+                                        case CallFunctions.EndCall:
+                                        case CallFunctions.RejectCall:
+                                            EndCall();
+                                            break;
 
-                                            Dispatcher.Invoke(new Action(() =>
+                                        case CallFunctions.HoldCall:
+                                            HoldUnholdCall();
+                                            break;
+                                        case CallFunctions.MuteCall:
+                                            MuteUnmute();
+                                            break;
+                                        case CallFunctions.EtlCall:
+                                            buttonEtl_Click(null, null);
+                                            break;
+                                        case CallFunctions.ConfCall:
+                                            buttonConference_Click(null, null);
+                                            break;
+                                        case CallFunctions.Inbound:
+                                            _agent.AgentMode = AgentMode.Inbound;
+                                            break;
+                                        case CallFunctions.Outbound:
+                                            _agent.AgentMode = AgentMode.Outbound;
+                                            break;
+                                        case CallFunctions.TransferIVR:
                                             {
-                                                textBlockDialingNumber.Text = no;
-                                                TransferCall();
+                                                if (!string.IsNullOrEmpty(no))
+                                                {
+                                                    if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
+                                                    {
+                                                        HoldUnholdCall();
+                                                    }
 
-                                            }));
+                                                    Dispatcher.Invoke(new Action(() =>
+                                                    {
+                                                        textBlockDialingNumber.Text = no;
+                                                        TransferIVR();
 
-                                        }
+                                                    }));
+
+                                                }
+                                            }
+                                            break;
+                                        case CallFunctions.TransferCall:
+                                            {
+                                                if (!string.IsNullOrEmpty(no))
+                                                {
+                                                    if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
+                                                    {
+                                                        HoldUnholdCall();
+                                                    }
+
+                                                    Dispatcher.Invoke(new Action(() =>
+                                                    {
+                                                        textBlockDialingNumber.Text = no;
+                                                        TransferCall();
+
+                                                    }));
+
+                                                }
+                                            }
+                                            break;
+
+                                        default:
+                                            throw new ArgumentOutOfRangeException("callFunction");
                                     }
-                                    break;
+                                }
+                                catch (Exception exception)
+                                {
+                                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault,
+                                        "[webSocketlistner]FormDialPad_Load-OnSocketMessageRecive-Dispatcher", exception,
+                                        Logger.LogLevel.Error);
+                                }
 
-                                default:
-                                    throw new ArgumentOutOfRangeException("callFunction");
-                            }
+                            }));
+
                         }
                         catch (Exception exception)
                         {
@@ -445,14 +532,127 @@ namespace DVP_DesktopPhone
             #endregion WebSocket Server
         }
 
-        
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            bool ok;
+
+            //The name used when creating the mutex can be any string you want
+            mutex = new Mutex(true, "Facetone_soft_phone", out ok);
+
+            if (!ok)
+            {
+                MessageBox.Show("Application Already Running", "Facetone", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(100);
+            }
+
             _agent = new Agent(Guid.NewGuid().ToString(), this) { AgentReqMode = AgentMode.initiate };
-            _wavPlayer.Open(new Uri(String.Format("{0}/{1}", System.AppDomain.CurrentDomain.BaseDirectory,"ringtone.mp3")));
-           
-            
-           
+
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string filePath = string.Format("{0}{1}", appDataFolder, "\\veery\\ringtone.wav");
+
+            _wavPlayer = (File.Exists(filePath)) ? new System.Media.SoundPlayer(filePath) : new System.Media.SoundPlayer(Properties.Resources.ringtone);
+
+            //_wavPlayer.Open(new Uri(String.Format("{0}/{1}", System.AppDomain.CurrentDomain.BaseDirectory, "ringtone.wav")));
+
+            if (VeerySetting.Instance.AgentConsoleintegration)
+            {
+                textBlockCallStateInfo.Text = "Loading.....";
+                Task.Delay(10000).ContinueWith(_ =>
+                    {
+                        InitiateWebSocket();
+                        Dispatcher.Invoke(() =>
+                        {
+                            textBlockCallStateInfo.Text = "Idle";
+                        });
+                    }
+                );
+
+            }
+            else
+            {
+                var data = FileHandler.ReadUserData();
+                if (data == null)
+                {
+                    SettingMenuItem_Click(sender, e);
+                    //data = FileHandler.WriteUserData("9502", "DuoS123", "duo.media1.veery.cloud");
+                    data = FileHandler.ReadUserData();
+                }
+                _agent.Profile.Login(data.GetValue("name").ToString(), data.GetValue("password").ToString(), data.GetValue("domain").ToString());
+
+                //            _agent.Profile.Login("9502", "DuoS123", "duo.media1.veery.cloud");
+                InitializePhone(false);
+                AutoAnswerDelay = Convert.ToInt16(data.GetValue("Delay").ToString()) * 1000;
+                settingMenuItem.Visibility = System.Windows.Visibility.Visible;
+            }
+
+            this.ShowInTaskbar = VeerySetting.Instance.ShowInTaskbar;
+
+            //Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
+
+
+            _callDurations = new System.Timers.Timer(TimeSpan.FromSeconds(1).TotalSeconds);
+            _callDurations.Elapsed += (s, e1) =>
+                {
+                    var ts = e1.SignalTime.Subtract(_callStarTime);
+                    var elapsedTime = ts.Hours > 0
+                        ? String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds)
+                        : String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        textBlockCallStateInfo.Text = elapsedTime;
+                    }));
+
+                };
+
+            m_notifyIcon = new System.Windows.Forms.NotifyIcon();
+            m_notifyIcon.BalloonTipText = "Facetone Phone Has Been Minimised. Click The Tray Icon To Show.";
+            m_notifyIcon.BalloonTipTitle = "Facetone Phone";
+            m_notifyIcon.Text = "Facetone Phone";
+            m_notifyIcon.Icon = Properties.Resources.facetone_logo;//E:\DuoProject\Applications\DVP-DesktopPhone\DVP-SoftPhone\Resources\facetone-logo.ico
+            m_notifyIcon.DoubleClick += new EventHandler(m_notifyIcon_Click);
+
+            WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        void OnClose(object sender, CancelEventArgs args)
+        {
+            m_notifyIcon.Dispose();
+            m_notifyIcon = null;
+        }
+
+        private WindowState m_storedWindowState = WindowState.Normal;
+        void OnStateChanged(object sender, EventArgs args)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                Hide();
+                if (m_notifyIcon != null)
+                    m_notifyIcon.ShowBalloonTip(2000);
+            }
+            else
+                m_storedWindowState = WindowState;
+        }
+        void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs args)
+        {
+            CheckTrayIcon();
+        }
+
+        void m_notifyIcon_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = m_storedWindowState;
+        }
+        void CheckTrayIcon()
+        {
+            ShowTrayIcon(!IsVisible);
+        }
+
+        void ShowTrayIcon(bool show)
+        {
+            if (m_notifyIcon != null)
+                m_notifyIcon.Visible = show;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -469,6 +669,88 @@ namespace DVP_DesktopPhone
         #endregion
 
         #region Phone
+
+        private void RegistorPhone(string message)
+        {
+            try
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    SetStatusMessage(". . .Registoring. . .");
+                }));
+                var callInfo = message.Split('-'); // "name-password-domain"
+                if (callInfo.Length < 3 || string.IsNullOrEmpty(callInfo[0]) || callInfo[0] == "undefined" ||
+                    string.IsNullOrEmpty(callInfo[1]) || callInfo[1] == "undefined" ||
+                    string.IsNullOrEmpty(callInfo[2]) || callInfo[2] == "undefined")
+                {
+                    webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
+                    return;
+                }
+
+                UninitializePhone();
+                var domain = callInfo[2]; var password = callInfo[1]; var username = callInfo[0];
+
+
+                if (callInfo[2].Contains('@'))
+                {
+                    var values = callInfo[2].Split('@');
+                    if (values.Any() && values.Length >= 2)
+                    {
+                        domain = values[1];
+                        values = domain.Split(':');
+                        if (values.Any() && values.Length >= 2)
+                        {
+                            domain = values[0];
+                            sipServerPort = Convert.ToInt32(values[1]);
+                        }
+                    }
+                }
+                else if (callInfo[2].Contains(':'))
+                {
+                    var values = domain.Split(':');
+                    if (values.Any() && values.Length >= 2)
+                    {
+                        domain = values[0];
+                        sipServerPort = Convert.ToInt32(values[1]);
+                    }
+                }
+
+
+                _agent.Profile.Login(username, password, domain);
+                InitializePhone(true);
+            }
+            catch (Exception exception)
+            {
+                webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "RegistorPhone", exception, Logger.LogLevel.Error);
+
+            }
+
+        }
+
+        private void UnregistorPhone(string message)
+        {
+            try
+            {
+                UninitializePhone();
+
+                Dispatcher.Invoke(() =>
+                {
+                    textBlockIdentifier.Text = "Offline";
+                    buttonAnswer.IsEnabled = false;
+                    textBlockRegStatus.Text = "Offline";
+                    textBlockCallStateInfo.Text = "Offline";
+                    textBlockDialingNumber.Text = "0000000000";
+                    _callDurations.Stop();
+                    _callDurations.Enabled = false;
+                });
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "UnregistorPhone", exception, Logger.LogLevel.Error);
+            }
+
+        }
 
         private void TransferCall()
         {
@@ -507,6 +789,53 @@ namespace DVP_DesktopPhone
                             Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "TransferCall-SendDTMF", exception, Logger.LogLevel.Error);
                         }
                     }
+                    webSocketlistner.SendMessageToClient(CallFunctions.TransferCall);
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void TransferIVR()
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, string.Format("TransferIVR-> Session Id : {0} , Status : {1}", _call.CallSessionId, _call.CallCurrentState), Logger.LogLevel.Info);
+                if (!String.IsNullOrEmpty(textBlockDialingNumber.Text))
+                {
+                    var setting = VeerySetting.Instance;
+                    var tranNo = textBlockDialingNumber.Text.Trim();
+
+                    var dtmfSet = setting.TransferExtCode;
+
+                    foreach (var d in dtmfSet)
+                    {
+                        try
+                        {
+                            SendDtmf(setting.DtmfValues[d]);
+                        }
+                        catch (Exception exception)
+                        {
+                            Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "TransferIVR-SendDTMF", exception, Logger.LogLevel.Error);
+                        }
+                    }
+                    Thread.Sleep(1000);
+                    tranNo = string.Format("{0}#", tranNo);
+                    foreach (var d in tranNo.ToCharArray())
+                    {
+                        try
+                        {
+                            SendDtmf(setting.DtmfValues[d]);
+
+                        }
+                        catch (Exception exception)
+                        {
+                            Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "TransferIVR-SendDTMF", exception, Logger.LogLevel.Error);
+                        }
+                    }
+                    webSocketlistner.SendMessageToClient(CallFunctions.TransferIVR);
                 }
             }
             catch (Exception exception)
@@ -520,9 +849,15 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                _phoneController.muteMicrophone(!_isMute);
-                buttonMute.Content = _isMute ? "mute" : "Unmute";
-                _isMute = !_isMute;
+                Dispatcher.Invoke(() =>
+                {
+                    _phoneController.muteMicrophone(!_isMute);
+                    buttonMute.Content = _isMute ? "mute" : "Unmute";
+                    _isMute = !_isMute;
+                    picMic.Visibility = _isMute ? Visibility.Visible : Visibility.Hidden;
+                });
+                webSocketlistner.SendMessageToClient(_isMute ? CallFunctions.MuteCall : CallFunctions.UnmuteCall);
+
             }
             catch (Exception exception)
             {
@@ -544,8 +879,7 @@ namespace DVP_DesktopPhone
                         _call.CallCurrentState.OnHold(ref _call, CallActions.Hold);
                         status = "Hold Call";
                     }
-                    //call.CallCurrentState.OnHold(ref call, CallActions.Hold_Requested);
-                    //res = phoneController.sendInfo(call.portSipSessionId, "text", "plain", "hold");//, "hold".Length);
+                    webSocketlistner.SendMessageToClient(CallFunctions.HoldCall);
 
                 }
                 else if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
@@ -556,15 +890,14 @@ namespace DVP_DesktopPhone
                         _call.CallCurrentState.OnUnHold(ref _call, CallActions.UnHold);
                         status = "Connected";
                     }
-                    //call.CallCurrentState.OnUnHold(ref call, CallActions.UnHold_Requested);
-                    //res = phoneController.sendInfo(call.portSipSessionId, "text", "plain", "unhold");
+                    webSocketlistner.SendMessageToClient(CallFunctions.UnholdCall);
                 }
                 if (!string.IsNullOrEmpty(status))
                 {
                     SetStatusMessage(status);
                 }
-                
-                
+
+
             }
             catch (Exception exception)
             {
@@ -576,9 +909,9 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                if (digit<0)
+                if (digit < 0)
                     return;
-                
+
                 if (_call.CallCurrentState.GetType() == typeof(CallConnectedState))
                     _phoneController.sendDtmf(_agent.PortsipSessionId, DTMF_METHOD.DTMF_RFC2833, Convert.ToInt16(digit), 160, true);
             }
@@ -607,7 +940,7 @@ namespace DVP_DesktopPhone
                         _phoneController.rejectCall(_call.portSipSessionId, 486);
                         status = "Call Rejected";
                     }
-
+                    //webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                 }
                 else
                     _phoneController.hangUp(_call.portSipSessionId);
@@ -616,7 +949,9 @@ namespace DVP_DesktopPhone
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, string.Format("End call. Agent Status : [{0}], Call Status : [{1}] , status : [{2}]", _agent.AgentCurrentState, _call.CallCurrentState, status), Logger.LogLevel.Info);
                 _call.CallCurrentState.OnDisconnected(ref _call);
                 _agent.AgentCurrentState.OnEndCall(ref _agent, true);
-                
+                if (_isMute)
+                    MuteUnmute();
+                // webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
             }
             catch (Exception exception)
             {
@@ -624,11 +959,40 @@ namespace DVP_DesktopPhone
             }
         }
 
+        private void AnswerCall()
+        {
+            try
+            {
+                StopRingInTone();
+                StopRingTone();
+                if (_call.CallCurrentState.GetType() == typeof(CallRingingState) || _call.CallCurrentState.GetType() == typeof(CallIncommingState))
+                {
+                    SetStatusMessage("Answering");
+                    _phoneController.answerCall(_call.portSipSessionId, false);
+                    webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
+                }
+                else
+                {
+
+                    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Answer Call.\nPlease change Mode to Outbound.", ToolTipIcon.Warning);
+                    SetStatusMessage("Fail to Answer Call");
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("MakeCall-Fail. AgentCurrentState: {0}, CallCurrentState: {1}", _agent.AgentCurrentState, _call.CallCurrentState), Logger.LogLevel.Error);
+
+                }
+
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "MakeCall", exception, Logger.LogLevel.Error);
+            }
+        }
+
         private void MakeCall(string no)
         {
             try
             {
-
+                StopRingInTone();
+                StopRingTone();
                 if (_agent.AgentCurrentState.GetType() == typeof(AgentIdle) && _agent.AgentMode == AgentMode.Outbound)
                 {
                     if (!String.IsNullOrEmpty(no))
@@ -646,11 +1010,13 @@ namespace DVP_DesktopPhone
                             mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call", ToolTipIcon.Error);
                             _agent.AgentCurrentState.OnFailMakeCall(ref _agent);
                             _call.CallCurrentState.OnTimeout(ref _call);
+                            webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                             return;
                         }
+                        SetStatusMessage("Dialing");
                         _agent.PortsipSessionId = _call.portSipSessionId;
                         _call.SetDialInfo(_call.portSipSessionId, Guid.NewGuid());
-                        //AddOutgoingCallToCallLogs(no);
+                        webSocketlistner.SendMessageToClient(CallFunctions.MakeCall);
                     }
                     else
                     {
@@ -659,7 +1025,9 @@ namespace DVP_DesktopPhone
                 }
                 else if (_call.CallCurrentState.GetType() == typeof(CallRingingState) || _call.CallCurrentState.GetType() == typeof(CallIncommingState))
                 {
+                    SetStatusMessage("Answering");
                     _phoneController.answerCall(_call.portSipSessionId, false);
+                    webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
                 }
                 else if (_agent.AgentCurrentState.GetType() == typeof(AgentIdle) && _agent.AgentMode == AgentMode.Inbound && _call.CallCurrentState.GetType() == typeof(CallIdleState))
                 {
@@ -668,10 +1036,19 @@ namespace DVP_DesktopPhone
                     //    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone",
                     //        "Fail to Make Call.\nPlease change Mode to Outbound.", ToolTipIcon.Warning);
                     //}
+                    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call.\nPlease change Mode to Outbound.", ToolTipIcon.Warning);
+                    SetStatusMessage("Fail to Make Call");
+                    webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("MakeCall-Fail. AgentCurrentState: {0}, CallCurrentState: {1}", _agent.AgentCurrentState, _call.CallCurrentState), Logger.LogLevel.Error);
 
                 }
-                
+                else
+                {
+                    mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call.", ToolTipIcon.Warning);
+                    webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                    SetStatusMessage("Fail to Make Call");
+                }
+
 
 
             }
@@ -681,55 +1058,78 @@ namespace DVP_DesktopPhone
             }
         }
 
+        private int sipServerPort = 5060;
         private void InitializePhone(bool isReInit)
         {
             try
             {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    SetStatusMessage(". . .Initializing. . .");
+                }));
+                StopRingInTone();
+                StopRingTone();
                 //var settingObject = AgentProfile.Instance.settingObject;
                 var agentProfile = AgentProfile.Instance;
                 var userName = agentProfile.authorizationName;
                 var password = agentProfile.Password;
                 var displayName = agentProfile.displayName;
                 var authName = agentProfile.authorizationName;
-                var localPort = agentProfile.settingObject["localPort"];
-                var sipServerPort = agentProfile.settingObject["sipServerPort"];
-                var sipServer = agentProfile.server.domain;
+                Random rd = new Random();
+                var localPort = string.IsNullOrEmpty(agentProfile.settingObject["localPort"]) ? (rd.Next(1000, 5000) + 4000) : (Convert.ToInt32(agentProfile.settingObject["localPort"]));
+                sipServerPort = sipServerPort > 0 ? sipServerPort : Convert.ToInt16(agentProfile.settingObject["sipServerPort"]);
+                var sipServer = agentProfile.Domain;
                 var localIp = agentProfile.localIPAddress;
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}", userName, authName, password, localPort), Logger.LogLevel.Info);
 
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}.............................step 1 : pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
                 int errorCode = 0;
 
                 _phoneController = new PortSIPLib(0, 0, this);
                 _phoneController.createCallbackHandlers();
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "createCallbackHandlers-end, call initialize method", Logger.LogLevel.Info);
+
                 var rt = _phoneController.initialize(TRANSPORT_TYPE.TRANSPORT_UDP,
-                                 PORTSIP_LOG_LEVEL.PORTSIP_LOG_NONE,
-                                 System.AppDomain.CurrentDomain.BaseDirectory,
-                                 1,
-                                 "DuoSoftPhone",
-                                 false,
-                                 false);
+                    // Use 0.0.0.0 for local IP then the SDK will choose an available local IP automatically.
+                    // You also can specify a certain local IP to instead of "0.0.0.0", more details please read the SDK User Manual
+                    localIp,
+                    localPort,
+                    PORTSIP_LOG_LEVEL.PORTSIP_LOG_NONE,
+                    System.AppDomain.CurrentDomain.BaseDirectory,
+                    1,
+                    "veery_soft_phone",
+                    VeerySetting.Instance.audioDeviceLayer,
+                    VeerySetting.Instance.videoDeviceLayer,
+                    "/",
+                    "",
+                    false);
                 if (rt != 0)
                 {
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "initialize-failed", Logger.LogLevel.Info);
                     _phoneController.releaseCallbackHandlers();
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}.............................Phone Initialization failed. errorCode : {4}", userName, authName, password, localPort, errorCode), Logger.LogLevel.Info);
-                    InitializeError("Phone Initialization failed.", 408);
+                    InitializeError("failed.", 408);
                     return;
                 }
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "initialize-end", Logger.LogLevel.Info);
 
-                InitAdioWizItems();
                 loadDevices();
-                _phoneController.setAudioDeviceId(0, 0);
-                _phoneController.setAudioCodecParameter(AUDIOCODEC_TYPE.AUDIOCODEC_AMRWB, "mode-set=0; octet-align=0; robust-sorting=0");
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}.............................step 2 : pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
 
                 var outboundServer = "";
                 var outboundServerPort = 0;
                 var userDomain = "";
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "loadDevices-end", Logger.LogLevel.Info);
 
-                var rt_userInfo = _phoneController.setUser(userName, displayName, authName, password, localIp, Convert.ToInt16(localPort), userDomain, sipServer, Convert.ToInt16(sipServerPort), "", 5060, outboundServer, outboundServerPort);
-
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}.............................step 4 : Pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
+                var rt_userInfo = _phoneController.setUser(userName,
+                    displayName,
+                    authName,
+                    password,
+                    userDomain,
+                    sipServer,
+                    sipServerPort,
+                    VeerySetting.Instance.stunServer,
+                    VeerySetting.Instance.stunServerPort,
+                    outboundServer,
+                    outboundServerPort);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setUser-end", Logger.LogLevel.Info);
                 if (rt_userInfo != 0)
                 {
                     if (!isReInit)
@@ -740,20 +1140,21 @@ namespace DVP_DesktopPhone
                             string.Format(
                                 "userName : {0}, authName : {1}, password : {2}, localPort : {3}.............................SetUserInfo Failed. errorCode : {4}",
                                 userName, authName, password, localPort, errorCode), Logger.LogLevel.Info);
-                        InitializeError("Fail to Set User Information's.", rt_userInfo);
+                        InitializeError("Fail", rt_userInfo);
                         return;
                     }
                 }
 
-                _phoneController.setSrtpPolicy(SRTP_POLICY.SRTP_POLICY_NONE);
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}..............................step 5 : Pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
+                _phoneController.setSrtpPolicy(SRTP_POLICY.SRTP_POLICY_NONE, false);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setSrtpPolicy-end", Logger.LogLevel.Info);
+
                 string licenseKey = LicenseKeyHandler.GetLicenseKey("DuoS123");
-                rt = _phoneController.setLicenseKey("");
+                rt = _phoneController.setLicenseKey(licenseKey);
 
                 if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
                 {
                     MessageBox.Show("This sample was built base on evaluation key, which allows only three minutes conversation. The conversation will be cut off automatically after three minutes, then you can't hearing anything. Feel free contact us at: waruna@duosoftware.com to purchase the official version.");
-                    
+
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "This sample was built base on evaluation key, which allows only three minutes conversation. The conversation will be cut off automatically after three minutes, then you can't hearing anything. Feel free contact us at: waruna@duosoftware.com to purchase the official version.", Logger.LogLevel.Info);
                 }
                 else if (rt == PortSIP_Errors.ECoreWrongLicenseKey)
@@ -762,26 +1163,55 @@ namespace DVP_DesktopPhone
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "The wrong license key was detected, please check with waruna@duosoftware.com or support@duosoftware.com", Logger.LogLevel.Info);
                 }
 
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setLocalVideoWindow", Logger.LogLevel.Info);
+                _phoneController.setLocalVideoWindow(IntPtr.Zero);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setLocalVideoWindow-end", Logger.LogLevel.Info);
+                initAutioCodecs();
+
+                _phoneController.enableVAD(false);
+                _phoneController.enableAEC(EC_MODES.EC_DEFAULT);
+                _phoneController.enableCNG(false);
+                _phoneController.enableAGC(AGC_MODES.AGC_DEFAULT);
+                _phoneController.enableANS(NS_MODES.NS_DEFAULT);
+                _phoneController.enableReliableProvisional(false);
+
                 var rt_register = _phoneController.registerServer(3600, 3);
 
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}..............................step 6 : Pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "registerServer-end", Logger.LogLevel.Info);
                 if (rt_register != 0)
                 {
                     _phoneController.unInitialize();
                     _phoneController.releaseCallbackHandlers();
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}..............................Registration Failed. errorCode : {4}", userName, authName, password, localPort, errorCode), Logger.LogLevel.Info);
-                    InitializeError("Fail to Register With SIP Server.", rt_register);
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}..............................Registration Failed. errorCode : {4}", userName, authName, password, localPort, rt_register), Logger.LogLevel.Info);
+                    InitializeError("Fail", rt_register);
                     return;
                 }
 
+                _phoneController.setAudioDeviceId(0, 0);
+                //_phoneController.setAudioCodecParameter(AUDIOCODEC_TYPE.AUDIOCODEC_AMRWB, "mode-set=0; octet-align=0; robust-sorting=0");
+
+
+
                 _phoneController.addSupportedMimeType("INFO", "text", "plain");
-                initAutioCodecs();
+
 
                 //phoneController.setSpeakerVolume(26214);//40% volume
                 //phoneController.setMicVolume(52428);//80%
+                if (!isReInit && !VeerySetting.Instance.WebSocketlistnerEnable)
+                {
+                    textBlockCallStateInfo.Text = "Loading.....";
+                    Task.Delay(10000).ContinueWith(_ =>
+                        {
+                            InitiateWebSocket();
+                            Dispatcher.Invoke(() =>
+                            {
+                                textBlockCallStateInfo.Text = "Idle";
+                            });
+                        }
+                    );
+                }
 
-                InitiateWebSocket();
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}..............................step 7 : Pass.", userName, authName, password, localPort), Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "InitializePhone-end", Logger.LogLevel.Info);
 
             }
             catch (Exception exception)
@@ -794,19 +1224,12 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                try
-                {
-                    _phoneController.hangUp(_agent.PortsipSessionId);
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger9, string.Format("UninitializePhone[486]. Agent Status : [{0}], Call Status : [{1}]", _agent.AgentCurrentState, _call.CallCurrentState), Logger.LogLevel.Debug);
-                    _phoneController.rejectCall(_agent.PortsipSessionId, 486);
-                    _phoneController.unRegisterServer();
-                    _phoneController.unInitialize();
-                    _phoneController.releaseCallbackHandlers();
-                }
-                catch (Exception exception)
-                {
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "UninitializePhone", exception, Logger.LogLevel.Error);
-                }
+                _phoneController.hangUp(_agent.PortsipSessionId);
+
+                _phoneController.rejectCall(_agent.PortsipSessionId, 486);
+                _phoneController.unRegisterServer();
+                _phoneController.unInitialize();
+                _phoneController.releaseCallbackHandlers();
             }
             catch (Exception exception)
             {
@@ -819,6 +1242,7 @@ namespace DVP_DesktopPhone
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMA);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMU);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_G729);
+            _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_OPUS);
 
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_DTMF); // For RTP event - DTMF (RFC2833)
         }
@@ -827,40 +1251,56 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                //ComboBoxSpeakers.Items.Clear();
-                //ComboBoxMicrophones.Items.Clear();
-                //int num = phoneController.getNumOfPlayoutDevices();
-                //for (int i = 0; i < num; ++i)
-                //{
-                //    StringBuilder deviceName = new StringBuilder();
-                //    deviceName.Length = 256;
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "loadDevices", Logger.LogLevel.Info);
+                //InitAdioWizItems();
+                Dispatcher.Invoke(() =>
+                {
+                    ComboBoxSpeakers.Items.Clear();
+                    ComboBoxMicrophones.Items.Clear();
+                    int num = _phoneController.getNumOfPlayoutDevices();
+                    for (int i = 0; i < num; ++i)
+                    {
+                        StringBuilder deviceName = new StringBuilder();
+                        deviceName.Length = 256;
 
-                //    if (phoneController.getPlayoutDeviceName(i, deviceName, 256) == 0)
-                //    {
-                //        ComboBoxSpeakers.Items.Add(deviceName.ToString());
-                //    }
-                //}
+                        if (_phoneController.getPlayoutDeviceName(i, deviceName, 256) == 0)
+                        {
+                            ComboBoxSpeakers.Items.Add(deviceName.ToString());
+                        }
+                        ComboBoxSpeakers.SelectedIndex = 0;
+                    }
 
-                //if (ComboBoxSpeakers.Items.Count > 0)
-                //    ComboBoxSpeakers.SelectedIndex = selectedSpeaker.Equals(string.Empty) ? 0 : ComboBoxSpeakers.FindString(selectedSpeaker);
+                    /*if (ComboBoxSpeakers.Items.Count > 0)
+                        ComboBoxSpeakers.SelectedIndex = 0;*/
 
-                //num = phoneController.getNumOfRecordingDevices();
-                //for (int i = 0; i < num; ++i)
-                //{
-                //    var deviceName = new StringBuilder { Length = 256 };
+                    num = _phoneController.getNumOfRecordingDevices();
+                    for (int i = 0; i < num; ++i)
+                    {
+                        var deviceName = new StringBuilder { Length = 256 };
 
-                //    if (phoneController.getRecordingDeviceName(i, deviceName, 256) == 0)
-                //    {
-                //        ComboBoxMicrophones.Items.Add(deviceName.ToString());
-                //    }
-                //}
+                        if (_phoneController.getRecordingDeviceName(i, deviceName, 256) == 0)
+                        {
+                            ComboBoxMicrophones.Items.Add(deviceName.ToString());
+                        }
+                        ComboBoxMicrophones.SelectedIndex = 0;
+                    }
 
-                //if (ComboBoxMicrophones.Items.Count > 0)
-                //    ComboBoxMicrophones.SelectedIndex = selectedMic.Equals(string.Empty) ? 0 : ComboBoxMicrophones.FindString(selectedMic);
+                    /*if (ComboBoxMicrophones.Items.Count > 0)
+                        ComboBoxMicrophones.SelectedIndex = 0;*/
 
-                //int volume = phoneController.getSpeakerVolume();
+                    //int volume = _phoneController.getSpeakerVolume();
 
-                //volume = phoneController.getMicVolume();
+                    //volume = _phoneController.getMicVolume();
+
+                    //TrackBarSpeaker.SetRange(0, 255);
+                    TrackBarSpeaker.Value = _phoneController.getSpeakerVolume();
+
+                    //TrackBarMicrophone.SetRange(0, 255);
+                    TrackBarMicrophone.Value = _phoneController.getMicVolume();
+
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, string.Format("Mic : {0}, Spk : {1}", TrackBarMicrophone.Value, TrackBarSpeaker.Value), Logger.LogLevel.Info);
+                });
+
             }
             catch (Exception exception)
             {
@@ -868,8 +1308,53 @@ namespace DVP_DesktopPhone
             }
         }
 
+
         private void InitAdioWizItems()
         {
+            try
+            {
+                ManagementObjectSearcher objSearcher = new ManagementObjectSearcher(
+                    "SELECT * FROM Win32_SoundDevice");
+
+                ManagementObjectCollection objCollection = objSearcher.Get();
+
+
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "**********************************",
+                    Logger.LogLevel.Info);
+                foreach (ManagementObject obj in objCollection)
+                {
+                    foreach (PropertyData property in obj.Properties)
+                    {
+                        //Console.Out.WriteLine(String.Format("{0}:{1}", property.Name, property.Value));
+                        Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault,
+                            String.Format("{0}:{1}", property.Name, property.Value), Logger.LogLevel.Info);
+
+                    }
+
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault,
+                        "-----------------------------------------------------------------", Logger.LogLevel.Info);
+
+                }
+
+                foreach (ManagementObject obj in objCollection)
+                {
+
+                    if (obj.Properties["Status"].Value.ToString().ToLower().Equals("ok"))
+                    {
+                        break;
+                    }
+                    audioDivID++;
+
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "InitAdioWizItems", exception,
+                    Logger.LogLevel.Error);
+            }
+
+
+
             //this.ComboBoxMicrophones = new ComboBox();
             //this.ComboBoxSpeakers = new ComboBox();
             ////
@@ -928,8 +1413,10 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("phoneController_OnInitializeError : {0} , SipRegisterTryCount : {1}", statusText, 0), Logger.LogLevel.Error);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("phoneController_OnInitializeError : {0} , statusCode: {1}, SipRegisterTryCount : {2}", statusText, statusCode, 0), Logger.LogLevel.Error);
                 _sipLogined = false;
+                Dispatcher.Invoke(() =>
+                { textBlockIdentifier.Text = statusText; });
                 _agent.AgentCurrentState.OnError(ref _agent, statusText, statusCode, "Unable to Communicate With Servers. Please Contact Your System Administrator.");
 
             }
@@ -961,7 +1448,7 @@ namespace DVP_DesktopPhone
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "StopRingTone>Start", Logger.LogLevel.Info);
                 Dispatcher.Invoke(() =>
-                { _wavPlayer.Stop(); }); 
+                { _wavPlayer.Stop(); });
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "StopRingTone>End", Logger.LogLevel.Info);
             }
             catch (Exception exception)
@@ -984,7 +1471,7 @@ namespace DVP_DesktopPhone
                 //    return;
                 //if (_wavPlayerRingIn == null) return;
                 //_wavPlayerRingIn.PlayLooping();
-              
+
                 //playingRingIntone = true;
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "PlayRingInTone > End", Logger.LogLevel.Info);
             }
@@ -1038,10 +1525,10 @@ namespace DVP_DesktopPhone
         {
             return System.Text.Encoding.Default.GetString(bytes);
         }
-        
+
         #region SIPCallbackEvents
-        
-        public int onRegisterSuccess(int callbackIndex, int callbackObject, string statusText, int statusCode)
+
+        public int onRegisterSuccess(int callbackIndex, int callbackObject, string statusText, int statusCode, StringBuilder sipMessage)
         {
             try
             {
@@ -1049,25 +1536,33 @@ namespace DVP_DesktopPhone
 
                 _sipLogined = true;
                 _agent.SipStatus = false;
-                
+
                 mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Phone Initialized.", ToolTipIcon.Info);
                 _call = new Call(string.Empty, this);
                 _agent.AgentCurrentState.OnLogin(ref _agent);
 
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    GrdLogin.Visibility = Visibility.Hidden;
+
                     GrdCallButton.Visibility = Visibility.Visible;
                     GrdDailpad.Visibility = Visibility.Visible;
                     textBlockRegStatus.Text = "Online";
-                    textBlockIdentifier.Text = TxtUserName.Text;
+                    textBlockIdentifier.Text = _agent.Profile.displayName;
                     textBlockCallStateInfo.Text = "Idle";
                     textBlockDialingNumber.Text = "0000000000";
+
+                    TrackBarSpeaker.Value = _phoneController.getSpeakerVolume();
+
+                    //TrackBarMicrophone.SetRange(0, 255);
+                    TrackBarMicrophone.Value = _phoneController.getMicVolume();
+
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, string.Format("Mic : {0}, Spk : {1}", TrackBarMicrophone.Value, TrackBarSpeaker.Value), Logger.LogLevel.Info);
                 }));
-                _agent.AgentMode = AgentMode.Outbound;
-                 mynotifyicon.ShowBalloonTip(1000, "FaceTone", "Phone Initialized.", ToolTipIcon.Info);
+                _agent.AgentMode = AgentMode.Offline;
+                mynotifyicon.ShowBalloonTip(1000, "FaceTone", "Phone Initialized.", ToolTipIcon.Info);
                 _call = new Call(string.Empty, this);
                 _agent.AgentCurrentState.OnLogin(ref _agent);
+                webSocketlistner.SendMessageToClient(CallFunctions.Initialized);
             }
             catch (Exception exception)
             {
@@ -1076,35 +1571,17 @@ namespace DVP_DesktopPhone
             return 0;
         }
 
-        public int onRegisterFailure(int callbackIndex, int callbackObject, string statusText, int statusCode)
+        public int onRegisterFailure(int callbackIndex, int callbackObject, string statusText, int statusCode, StringBuilder sipMessage)
         {
             Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("onRegisterFailure. statusText: {0}, statusCode: {1}", statusText, statusCode), Logger.LogLevel.Info);
             _agent.SipStatus = false;
             _sipLogined = false;
             InitializeError(statusText, statusCode);
-
+            webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
             return 0;
         }
 
-        public int onInviteRinging(int callbackIndex, int callbackObject, int sessionId, string statusText, int statusCode)
-        {
-            try
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteRinging", Logger.LogLevel.Info);
-                SetStatusMessage(statusText);
-                _call.CallCurrentState.OnRinging(ref _call, callbackIndex, callbackObject, sessionId, statusText, statusCode);
-                
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteRinging", exception, Logger.LogLevel.Error);
-            }
-            return 0;
-        }
-
-        public int onInviteIncoming(int callbackIndex, int callbackObject, int sessionId, string callerDisplayName, string caller,
-            string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio,
-            bool existsVideo)
+        public int onInviteIncoming(int callbackIndex, int callbackObject, int sessionId, string callerDisplayName, string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
             try
             {
@@ -1126,12 +1603,23 @@ namespace DVP_DesktopPhone
                 _call.SetDialInfo(sessionId, Guid.NewGuid());
                 _call.CallCurrentState.OnIncoming(ref _call, callbackIndex, callbackObject, sessionId, calleeDisplayName, caller, calleeDisplayName, callee, audioCodecNames, videoCodecNames, existsAudio, existsVideo);
                 _call.currentCallLogId = Guid.NewGuid();
-                
+
                 textBlockDialingNumber.Dispatcher.Invoke(((MethodInvoker)(() =>
                 {
                     textBlockDialingNumber.Text = _call.PhoneNo;
                 })));
                 PlayRingTone();
+                if (AutoAnswerEnable)
+                {
+                    Task.Delay(AutoAnswerDelay).ContinueWith(_ =>
+                    {
+                        MakeCall(_call.PhoneNo);
+                    }
+                    );
+                }
+                dynamic expando = new JObject();
+                expando.number = _call.PhoneNo;
+                webSocketlistner.SendMessageToClient(CallFunctions.IncomingCall, expando);
             }
             catch (Exception exception)
             {
@@ -1156,8 +1644,7 @@ namespace DVP_DesktopPhone
             return 0;
         }
 
-        public int onInviteSessionProgress(int callbackIndex, int callbackObject, int sessionId, string audioCodecNames,
-            string videoCodecNames, bool existsEarlyMedia, bool existsAudio, bool existsVideo)
+        public int onInviteSessionProgress(int callbackIndex, int callbackObject, int sessionId, string audioCodecNames, string videoCodecNames, bool existsEarlyMedia, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
             try
             {
@@ -1170,9 +1657,25 @@ namespace DVP_DesktopPhone
                 return -1;
             }
         }
-        public int onInviteAnswered(int callbackIndex, int callbackObject, int sessionId, string callerDisplayName, string caller,
-            string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio,
-            bool existsVideo)
+
+
+        public int onInviteRinging(int callbackIndex, int callbackObject, int sessionId, string statusText, int statusCode, StringBuilder sipMessage)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteRinging", Logger.LogLevel.Info);
+                SetStatusMessage(statusText);
+                _call.CallCurrentState.OnRinging(ref _call, callbackIndex, callbackObject, sessionId, statusText, statusCode);
+
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteRinging", exception, Logger.LogLevel.Error);
+            }
+            return 0;
+        }
+
+        public int onInviteAnswered(int callbackIndex, int callbackObject, int sessionId, string callerDisplayName, string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
             try
             {
@@ -1182,7 +1685,7 @@ namespace DVP_DesktopPhone
 
 
                 _call.CallCurrentState.OnAnswer(ref _call);
-                
+
                 isCallAnswerd = true;
             }
             catch (Exception exception)
@@ -1192,18 +1695,18 @@ namespace DVP_DesktopPhone
             return 0;
         }
 
-        public int onInviteFailure(int callbackIndex, int callbackObject, int sessionId, string reason, int code)
+        public int onInviteFailure(int callbackIndex, int callbackObject, int sessionId, string reason, int code, StringBuilder sipMessage)
         {
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteFailure", Logger.LogLevel.Info);
-                
+
                 StopRingInTone();
                 StopRingTone();
                 SetStatusMessage("Call Rejected from Other End" + reason);
                 _call.CallCurrentState.OnCallReject(ref _call);
                 _agent.AgentCurrentState.OnFailMakeCall(ref _agent);
-                
+
                 isCallAnswerd = false;
             }
             catch (Exception exception)
@@ -1213,8 +1716,7 @@ namespace DVP_DesktopPhone
             return 0;
         }
 
-        public int onInviteUpdated(int callbackIndex, int callbackObject, int sessionId, string audioCodecNames, string videoCodecNames,
-            bool existsAudio, bool existsVideo)
+        public int onInviteUpdated(int callbackIndex, int callbackObject, int sessionId, string audioCodecNames, string videoCodecNames, bool existsAudio, bool existsVideo, StringBuilder sipMessage)
         {
             try
             {
@@ -1233,12 +1735,12 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteConnected", Logger.LogLevel.Info);
-               
+
                 StopRingTone();
                 StopRingInTone();
                 SetStatusMessage("Call Established");
                 _call.CallCurrentState.OnAnswer(ref _call);
-                
+
                 isCallAnswerd = true;
             }
             catch (Exception exception)
@@ -1267,12 +1769,13 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onInviteClosed", Logger.LogLevel.Info);
-                
+
                 StopRingInTone();
                 StopRingTone();
                 _call.CallCurrentState.OnDisconnected(ref _call);
                 _agent.AgentCurrentState.OnEndCall(ref _agent, isCallAnswerd);
                 isCallAnswerd = false;
+
             }
             catch (Exception exception)
             {
@@ -1300,7 +1803,7 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onRemoteUnHold", Logger.LogLevel.Info);
-                SetStatusMessage("Remote UnHold");
+                SetStatusMessage("In-Call");
             }
             catch (Exception exception)
             {
@@ -1308,8 +1811,7 @@ namespace DVP_DesktopPhone
             } return 0;
         }
 
-        public int onReceivedRefer(int callbackIndex, int callbackObject, int sessionId, int referId, string to, string @from,
-            string referSipMessage)
+        public int onReceivedRefer(int callbackIndex, int callbackObject, int sessionId, int referId, string to, string from, StringBuilder referSipMessage)
         {
             try
             {
@@ -1416,7 +1918,7 @@ namespace DVP_DesktopPhone
                 {
                     var readText = "";
                     var isInvite = false;
-                    while ((readText =  reader.ReadLine()) != null)
+                    while ((readText = reader.ReadLine()) != null)
                     {
                         if (!isInvite)
                         {
@@ -1429,7 +1931,7 @@ namespace DVP_DesktopPhone
                                 return 0;
                             }
                         }
-                        
+
 
                         if (!readText.StartsWith("X-session")) continue;
                         var data = readText.Split(':');
@@ -1447,7 +1949,7 @@ namespace DVP_DesktopPhone
                 //        Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, String.Format("onReceivedSignaling ---------- {0}: {1:N0}    ", prop.Name, prop.GetValue(signaling)), Logger.LogLevel.Info);
                 //    }
                 //}
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4,String.Format("onReceivedSignaling : {0}",signaling), Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, String.Format("onReceivedSignaling : {0}", signaling), Logger.LogLevel.Info);
                 return 0;
             }
             catch (Exception exception)
@@ -1462,7 +1964,7 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSendingSignaling", Logger.LogLevel.Info);
-                
+
                 return 0;
             }
             catch (Exception exception)
@@ -1714,7 +2216,8 @@ namespace DVP_DesktopPhone
 
         public int onReceivedRtpPacket(IntPtr callbackObject, int sessionId, bool isAudio, byte[] RTPPacket, int packetSize)
         {
-            try
+            return 0;
+            /*try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onReceivedRtpPacket", Logger.LogLevel.Info);
                 return 0;
@@ -1723,12 +2226,12 @@ namespace DVP_DesktopPhone
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "Sip Callback Events", exception, Logger.LogLevel.Error);
                 return -1;
-            }
+            }*/
         }
 
         public int onSendingRtpPacket(IntPtr callbackObject, int sessionId, bool isAudio, byte[] RTPPacket, int packetSize)
         {
-            try
+            /*try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSendingRtpPacket", Logger.LogLevel.Info);
                 return 0;
@@ -1737,7 +2240,8 @@ namespace DVP_DesktopPhone
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "Sip Callback Events", exception, Logger.LogLevel.Error);
                 return -1;
-            }
+            }*/
+            return 0;
         }
 
         public int onAudioRawCallback(IntPtr callbackObject, int sessionId, int callbackType, byte[] data, int dataLength,
@@ -1746,6 +2250,20 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onAudioRawCallback", Logger.LogLevel.Info);
+                AUDIOSTREAM_CALLBACK_MODE type = (AUDIOSTREAM_CALLBACK_MODE)callbackType;
+
+                if (type == AUDIOSTREAM_CALLBACK_MODE.AUDIOSTREAM_LOCAL_PER_CHANNEL)
+                {
+                    // The callback data is from local record device of each session, use the sessionId to identifying the session.
+                }
+                else if (type == AUDIOSTREAM_CALLBACK_MODE.AUDIOSTREAM_REMOTE_PER_CHANNEL)
+                {
+                    // The callback data is received from remote side of each session, use the sessionId to identifying the session.
+                }
+
+
+
+
                 return 0;
             }
             catch (Exception exception)
@@ -1753,6 +2271,9 @@ namespace DVP_DesktopPhone
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "Sip Callback Events", exception, Logger.LogLevel.Error);
                 return -1;
             }
+
+
+
         }
 
         public int onVideoRawCallback(IntPtr callbackObject, int sessionId, int callbackType, int width, int height, byte[] data,
@@ -1761,6 +2282,18 @@ namespace DVP_DesktopPhone
             try
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onVideoRawCallback", Logger.LogLevel.Info);
+                VIDEOSTREAM_CALLBACK_MODE type = (VIDEOSTREAM_CALLBACK_MODE)callbackType;
+
+                if (type == VIDEOSTREAM_CALLBACK_MODE.VIDEOSTREAM_LOCAL)
+                {
+
+                }
+                else if (type == VIDEOSTREAM_CALLBACK_MODE.VIDEOSTREAM_REMOTE)
+                {
+
+                }
+
+
                 return 0;
             }
             catch (Exception exception)
@@ -1770,13 +2303,82 @@ namespace DVP_DesktopPhone
             }
         }
 
+        public int onDialogStateUpdated(int callbackIndex, int callbackObject, string BLFMonitoredUri, string BLFDialogState, string BLFDialogId, string BLFDialogDirection)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onDialogStateUpdated", Logger.LogLevel.Info);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onDialogStateUpdated", exception, Logger.LogLevel.Error);
+                return -1;
+            }
+        }
+
+        public int onRecvNotifyOfSubscription(int callbackIndex, int callbackObject, int subscribeId, StringBuilder notifyMsg, byte[] contentData, int contentLenght)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onRecvNotifyOfSubscription", Logger.LogLevel.Info);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onRecvNotifyOfSubscriptions", exception, Logger.LogLevel.Error);
+                return -1;
+            }
+        }
+
+        public int onSubscriptionFailure(int callbackIndex, int callbackObject, int subscribeId, int statusCode)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSubscriptionFailure", Logger.LogLevel.Info);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSubscriptionFailure", exception, Logger.LogLevel.Error);
+                return -1;
+            }
+        }
+
+        public int onSubscriptionTerminated(int callbackIndex, int callbackObject, int subscribeId)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSubscriptionTerminated", Logger.LogLevel.Info);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onSubscriptionTerminated", exception, Logger.LogLevel.Error);
+                return -1;
+            }
+        }
+
+        public int onVideoDecoderCallback(IntPtr callbackObject, int sessionId, int width, int height, int framerate, int bitrate)
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onVideoDecoderCallback", Logger.LogLevel.Info);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, "onVideoDecoderCallback", exception, Logger.LogLevel.Error);
+                return -1;
+            }
+        }
         #endregion SIPCallbackEvents
 
 
         #endregion
 
         #region UI State
-       
+
 
         public void ShowCallLogs()
         {
@@ -1798,18 +2400,18 @@ namespace DVP_DesktopPhone
                 _call.CallSessionId = string.Empty;
                 _call.portSipSessionId = -1;
                 _call.PhoneNo = string.Empty;
-                
+
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    acwcounttimer.Visibility = Visibility.Hidden;
-                    acwtimer.Visibility = Visibility.Hidden;
+
+
                     waitPanel.Visibility = Visibility.Hidden;
                     GrdCallButton.Visibility = Visibility.Visible;
                     GrdDailpad.Visibility = Visibility.Visible;
                     buttonAnswer.IsEnabled = true;
                     buttonReject.IsEnabled = true;
-                    GrdLogin.Visibility = Visibility.Hidden;
-                    GrdAcw.Visibility = Visibility.Hidden;
+
+
                     GrdCallFunctions.Visibility = Visibility.Hidden;
                     buttonDialPad.Visibility = Visibility.Hidden;
                     textBlockCallStateInfo.Text = "IDLE";
@@ -1817,25 +2419,29 @@ namespace DVP_DesktopPhone
 
                     buttonHold.Content = "Hold";
                     buttonHold.IsEnabled = false;
-                    
+
                     buttontransferIvr.IsEnabled = false;
                     buttontransferCall.IsEnabled = false;
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
-                    
-                    ttbCountDown.IsStarted = false;
-                    ttbTimer.IsStarted = false;
-                    
-                    
-                    ttbCountDown.Reset();
-                    ttbCountDown.TimeSpan = TimeSpan.FromSeconds(_agent.Profile.acwTime);
-                    ttbTimer.Reset();
+
+
                 }));
 
-                
+                Task.Delay(1000).ContinueWith(_ =>
+                {
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        _callDurations.Stop();
+                        _callDurations.Enabled = false;
+                        textBlockCallStateInfo.Text = "IDLE";
+                    }));
+                }
+                    );
+
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger7, string.Format("in Agent Idle CallSessionId set to Empty . {0}", _agent.CallSessionId), Logger.LogLevel.Debug);
-                
+
             }
             catch (Exception exception)
             {
@@ -1843,55 +2449,19 @@ namespace DVP_DesktopPhone
             }
         }
 
-        public void InAgentAcwState()
-        {
-            try
-            {
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    GrdCallFunctions.Visibility = Visibility.Hidden;
-                    GrdCallButton.Visibility=Visibility.Hidden;
-                    GrdDailpad.Visibility = Visibility.Hidden;
-                    GrdLogin.Visibility = Visibility.Hidden;
-                    GrdAcw.Visibility = Visibility.Visible;
-                    buttonDialPad.Visibility = Visibility.Hidden;
-                    textBlockCallStateInfo.Text = "A C W";
-                    btnFreeze.Content = "Freeze";
-
-                    buttonHold.Content = "Hold";
-                    buttonHold.IsEnabled = false;
-                    //buttonAnswer.IsEnabled = false;
-                    //buttonReject.IsEnabled = false;
-                    buttontransferIvr.IsEnabled = false;
-                    buttontransferCall.IsEnabled = false;
-                    buttonEtl.IsEnabled = false;
-                    buttonswapCall.IsEnabled = false;
-                    buttonConference.IsEnabled = false;
-                    
-                    ttbCountDown.IsStarted = true;
-                    ttbTimer.IsStarted = false;
-                    acwcounttimer.Visibility = Visibility.Visible;
-                    acwtimer.Visibility = Visibility.Hidden;
-
-                }));
-                //InCallIdleState();
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "InAcwState", exception, Logger.LogLevel.Error);
-            }
-        }
 
         public void InCallConnectedState()
         {
             try
             {
+
+
                 Dispatcher.Invoke(new Action(() =>
                 {
                     GrdCallFunctions.Visibility = Visibility.Visible;
                     GrdDailpad.Visibility = Visibility.Hidden;
-                    GrdLogin.Visibility = Visibility.Hidden;
-                    GrdAcw.Visibility = Visibility.Hidden;
+
+
                     textBlockCallStateInfo.Text = "IN-CALL";
 
                     buttonHold.Content = "Hold";
@@ -1903,10 +2473,26 @@ namespace DVP_DesktopPhone
                     buttonEtl.IsEnabled = true;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = true;
-                   
+
                 }));
 
                 _agent.IsCallAnswer = true;
+                if (_call.CallPrvState.GetType() == typeof(CallHoldState))
+                {
+                    return;
+                }
+                _callStarTime = DateTime.Now;
+                _callDurations.Enabled = true;
+                _callDurations.Start();
+                /*Task.Delay(10000).ContinueWith(_ =>
+                    {                        
+                        _callDurations.Enabled = true;
+                        _callDurations.Start();
+
+                        Dispatcher.Invoke(new Action(() => { buttonReject.IsEnabled = true; }));
+                    }
+                );*/
+
             }
             catch (Exception exception)
             {
@@ -1924,8 +2510,8 @@ namespace DVP_DesktopPhone
                 {
                     GrdCallFunctions.Visibility = Visibility.Hidden;
                     GrdDailpad.Visibility = Visibility.Hidden;
-                    GrdLogin.Visibility = Visibility.Visible;
-                    GrdAcw.Visibility = Visibility.Hidden;
+
+
                     textBlockCallStateInfo.Text = "OFFLINE";
                     textBlockDialingNumber.Text = String.Empty;
                 }));
@@ -1944,10 +2530,10 @@ namespace DVP_DesktopPhone
                 Dispatcher.Invoke(new Action(() =>
                 {
                     GrdCallFunctions.Visibility = Visibility.Hidden;
-                    GrdDailpad.Visibility = Visibility.Hidden;
-                    GrdLogin.Visibility = Visibility.Visible;
-                    GrdAcw.Visibility = Visibility.Hidden;
-                    GrdCallButton.Visibility=Visibility.Hidden;
+                    GrdDailpad.Visibility = Visibility.Visible;
+
+
+                    GrdCallButton.Visibility = Visibility.Visible;
                     textBlockCallStateInfo.Text = "";
 
                     buttonHold.Content = "Hold";
@@ -1973,8 +2559,8 @@ namespace DVP_DesktopPhone
                 {
                     GrdCallFunctions.Visibility = Visibility.Hidden;
                     GrdDailpad.Visibility = Visibility.Hidden;
-                    GrdLogin.Visibility = Visibility.Visible;
-                    GrdAcw.Visibility = Visibility.Hidden;
+
+
                     textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -1987,7 +2573,7 @@ namespace DVP_DesktopPhone
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
                 }));
-            
+
             Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "InInitiateMsgState", Logger.LogLevel.Debug);
         }
 
@@ -2000,7 +2586,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                
+
             }
             catch (Exception exception)
             {
@@ -2016,7 +2602,7 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Visible;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Hidden;
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -2044,7 +2630,7 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -2072,7 +2658,7 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -2097,11 +2683,16 @@ namespace DVP_DesktopPhone
         {
             try
             {
+
+
+
                 Dispatcher.Invoke(new Action(() =>
                 {
+                    _callDurations.Stop();
+                    _callDurations.Enabled = false;
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -2113,8 +2704,13 @@ namespace DVP_DesktopPhone
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
+                    textBlockCallStateInfo.Text = "DISCONNECTED";
+                    _phoneController.muteMicrophone(false);
+                    _phoneController.muteSpeaker(false);
+                    picMic.Visibility = Visibility.Hidden;
+                    picSpek.Visibility = Visibility.Hidden;
                 }));
-
+                webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
             }
             catch (Exception exception)
             {
@@ -2130,13 +2726,13 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Unhold";
                     buttonHold.IsEnabled = true;
                     buttonAnswer.IsEnabled = false;
-                    buttonReject.IsEnabled = false;
+                    buttonReject.IsEnabled = true;
                     buttontransferIvr.IsEnabled = false;
                     buttontransferCall.IsEnabled = true;
                     buttonEtl.IsEnabled = true;
@@ -2158,7 +2754,7 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
+                    //
                     //GrdAcw.Visibility=Visibility.Hidden;
                     //textBlockCallStateInfo.Text = "";
                     buttonDialPad.Visibility = Visibility.Hidden;
@@ -2171,6 +2767,10 @@ namespace DVP_DesktopPhone
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
+                    textBlockCallStateInfo.Text = "IDLE";
+
+                    _callDurations.Stop();
+                    _callDurations.Enabled = false;
                 }));
             }
             catch (Exception exception)
@@ -2188,8 +2788,8 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
-                    //GrdAcw.Visibility = Visibility.Hidden;
+                    //
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     var val = callDirection == CallDirection.Incoming;
@@ -2218,8 +2818,8 @@ namespace DVP_DesktopPhone
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
                     //GrdDailpad.Visibility = Visibility.Hidden;
-                    //GrdLogin.Visibility = Visibility.Visible;
-                    //GrdAcw.Visibility = Visibility.Hidden;
+                    //
+                    //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
@@ -2231,6 +2831,7 @@ namespace DVP_DesktopPhone
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
+                    textBlockCallStateInfo.Text = "RINGING";
                 }));
             }
             catch (Exception exception)
@@ -2253,8 +2854,8 @@ namespace DVP_DesktopPhone
                 {
                     GrdCallFunctions.Visibility = Visibility.Hidden;
                     GrdDailpad.Visibility = Visibility.Visible;
-                    GrdLogin.Visibility = Visibility.Hidden;
-                    GrdAcw.Visibility = Visibility.Hidden;
+
+
                     textBlockCallStateInfo.Text = "Incoming Call";
 
                     buttonHold.Content = "Hold";
@@ -2285,12 +2886,12 @@ namespace DVP_DesktopPhone
                         break;
                     case AgentMode.Inbound:
                         {
-                          
+
                         }
                         break;
                     case AgentMode.Outbound:
                         {
-                           
+
                         }
 
                         break;
@@ -2304,17 +2905,16 @@ namespace DVP_DesktopPhone
             }
         }
 
-      
+
         #endregion
 
-        
 
-        
 
-        
 
-        
 
-        
+
+
+
+
     }
 }
