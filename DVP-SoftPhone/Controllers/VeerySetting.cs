@@ -47,6 +47,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 AcwGap = Convert.ToInt16(section["acwGap"]);
                 WebSocketlistnerEnable = section["WebSocketlistnerEnable"].ToLower().Equals("true");
                 WebSocketlistnerPort = Convert.ToInt16(section["WebSocketlistnerPort"]);
+                stunServer = section["STUNserver"].ToString();
+                stunServerPort = Convert.ToInt16(section["STUNserverPort"].ToString());
             }
             catch (Exception exception)
             {
@@ -82,5 +84,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public int AcwGap { get; private set; }
         public short WebSocketlistnerPort { get; private set; }
         public bool WebSocketlistnerEnable { get; private set; }
+
+        public string stunServer { get; private set; }
+        public int stunServerPort { get; private set; }
     }
 }

@@ -12,20 +12,19 @@ using PortSIP;
 //////////////////////////////////////////////////////////////////////////
 
 /*!
-*  DuoCallTestTool The DuoCallTestTool VoIP SDK namespace
+*  PortSIP The PortSIP VoIP SDK namespace
 */
 namespace PortSIP
 {
     /*!
-     * @author Copyright (c) 2006-2014 DuoCallTestTool Solutions,Inc. All rights reserved.
-     * @version 11.2
-     * @see http://www.DuoCallTestTool.com
+     * @author Copyright (c) 2006-2016 PortSIP Solutions,Inc. All rights reserved.
+     * @version 11.3
+     * @see http://www.PortSIP.com
      * @class PortSIPLib
-     * @brief The DuoCallTestTool VoIP SDK class.
+     * @brief The PortSIP VoIP SDK class.
  
-     DuoCallTestTool VoIP SD functions class description.
+     PortSIP VoIP SD functions class description.
      */
-
     unsafe class PortSIPLib
     {
 
@@ -45,7 +44,7 @@ namespace PortSIP
         }
 
 
-        public Boolean createCallbackHandlers() // This must called before initialize
+        public Boolean createCallbackHandlers() // This must be called before initialization
         {
             if (_callbackDispatcher != IntPtr.Zero)
             {
@@ -76,7 +75,7 @@ namespace PortSIP
         }
 
 
-        public void releaseCallbackHandlers() // This must called after unInitialize
+        public void releaseCallbackHandlers() // This must called after unInitialization
         {
             if (_callbackDispatcher == IntPtr.Zero)
             {
@@ -144,22 +143,26 @@ namespace PortSIP
         /*!
          * @brief Initialize the SDK.
          *
-         * @param transportType Transport for SIP signaling.TRANSPORT_PERS is the DuoCallTestTool private transport for anti the SIP blocking, it must using with the PERS.
-         * @param logLevel Set the application log level, the SDK generate the "PortSIP_Log_datatime.log" file if the log enabled.
-         * @param logFilePath   The log file path, the path(folder) MUST is exists.
-         * @param maxCallLines  In theory support unlimited lines just depends on the device capability, for SIP client recommend less than 1 - 100;
+         * @param transportType Transport for SIP signaling. TRANSPORT_PERS is the PortSIP private transport for anti SIP blocking. It must be used with the PERS.
+         * @param logLevel Set the application log level. The SDK will generate "PortSIP_Log_datatime.log" file if the log enabled.
+         * @param logFilePath   The log file path. The path (folder) MUST be existent.
+         * @param maxCallLines  Theoretically unlimited lines could be supported depending on the device capability. For SIP client recommended value ranges 1 - 100;
          * @param sipAgent     The User-Agent header to insert in SIP messages.
-         * @param useVirtualAudioDevice Set to true to use the virtual audio device if the no sound device installed.
-         * @param useVirtualVideoDevice Set to true to use the virtual video device if no camera installed.
-         * @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code
+         * @param audioDeviceLayer            Specifies the audio device layer should be used: <br>
+         *            0 = Use the OS default device.<br>
+         *            1 = Virtual device, usually use this for the device which has no sound device installed.<br>
+         * @param videoDeviceLayer Specifies the video device layer that should be used: <br>
+         *            0 = Use the OS default device.<br>
+         *            1 = Use Virtual device. Usually use this for the device which has no camera installed.
+         * @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code
          */
         public Int32 initialize(TRANSPORT_TYPE transportType,
                                           PORTSIP_LOG_LEVEL logLevel,
                                           String logFilePath,
                                           Int32 maxCallLines,
                                           String sipAgent,
-                                          Boolean useVirtualAudioDevice,
-                                          Boolean useVirtualVideoDevice)
+                                          Int32 audioDeviceLayer,
+                                          Int32 videoDeviceLayer)
         {
             if (_callbackDispatcher == IntPtr.Zero || _LibSDK != IntPtr.Zero)
             {
@@ -173,13 +176,32 @@ namespace PortSIP
                                                            logFilePath,
                                                            maxCallLines,
                                                            sipAgent,
-                                                           useVirtualAudioDevice,
-                                                           useVirtualVideoDevice,
+                                                           audioDeviceLayer,
+                                                           videoDeviceLayer,
                                                            out errorCode);
 
             return errorCode;
         }
 
+        /*!
+         * @brief Set the instance Id, the outbound instanceId((RFC5626) ) used in contact headers.
+         *
+         * @param instanceId
+         *			  The SIP instance ID. If this function is not called, the SDK will generate an instance ID automatically.
+         *            The instance ID MUST be unique on the same device (device ID or IMEI ID is recommended).
+         *            Recommend to call this function to set the ID on Android devices.
+         * @return If the function succeeds, it will return value 0. If the function
+         *         fails, it will return a specific error code.
+         */
+        public Int32 setInstanceId(String instanceId)
+        {
+            if (_LibSDK == IntPtr.Zero)
+            {
+                return PortSIP_Errors.ECoreSDKObjectNull;
+            }
+
+            return PortSIP_NativeMethods.PortSIP_setInstanceId(_LibSDK, instanceId);
+        }
 
         /*!
          *  @brief Un-initialize the SDK and release resources.
@@ -198,21 +220,21 @@ namespace PortSIP
         /*!
          *  @brief Set user account info.
          *
-         *  @param userName           Account(User name) of the SIP, usually provided by an IP-Telephony service provider.
-         *  @param displayName        The display name of user, you can set it as your like, such as "James Kend". It's optional.
-         *  @param authName           Authorization user name (usually equals the username).
-         *  @param password           The password of user, it's optional.
-         *  @param localIp            The local computer IP address to bind (for example: 192.168.1.108), it will be using for send and receive SIP message and RTP packet. If pass this IP as the IPv6 format then the SDK using IPv6.
-         *  @param localSipPort       The SIP message transport listener port(for example: 5060).
-         *  @param userDomain         User domain; this parameter is optional that allow pass a empty string if you are not use domain.
-         *  @param sipServer          SIP proxy Server IP or domain(for example: xx.xxx.xx.x or sip.xxx.com).
-         *  @param sipServerPort      Port of the SIP proxy Server, (for example: 5060).
-         *  @param stunServer         Stun Server, use for NAT traversal, it's optional and can be pass empty string to disable STUN.
-         *  @param stunServerPort     STUN Server port,it will be ignored if the outboundServer is empty.
-         *  @param outboundServer     Outbound proxy Server(for example: sip.domain.com), it's optional that allow pass a empty string if not use outbound Server.
-         *  @param outboundServerPort Outbound proxy Server port, it will be ignored if the outboundServer is empty.
+         *  @param userName           Account (User name) of the SIP. Usually provided by an IP-Telephony service provider.
+         *  @param displayName        The display name of user. You can set it as your like, such as "James Kend". It's optional.
+         *  @param authName           Authorization user name (usually equal to the username).
+         *  @param password           The password of user. It's optional.
+         *  @param localIp            The local computer IP address to be bound. For example: 192.168.1.108. It will be used for sending and receiving SIP message and RTP packet. If pass this IP as the IPv6 format, the SDK will use IPv6.
+         *  @param localSipPort       The SIP message transport listener port. For example: 5060.
+         *  @param userDomain         User domain; this parameter is optional that allows to pass an empty string if you are not using the domain.
+         *  @param sipServer          SIP proxy server IP or domain. For example: xx.xxx.xx.x or sip.xxx.com.
+         *  @param sipServerPort      Port of the SIP proxy server. For example: 5060.
+         *  @param stunServer         Stun server used for NAT traversal. It's optional and can pass empty string to disable STUN.
+         *  @param stunServerPort     STUN server port. It will be ignored if the outboundServer is empty.
+         *  @param outboundServer     Outbound proxy server. For example: sip.domain.com. It's optional and allows to pass a empty string if not using outbound server.
+         *  @param outboundServerPort Outbound proxy server port, it will be ignored if the outboundServer is empty.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setUser(String userName,
                          String displayName,
@@ -250,13 +272,13 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Register to SIP proxy Server(login to Server)
+         *  @brief Register to SIP proxy server (login to server).
          *
-         *  @param expires Registration refresh Interval in seconds, maximum is 3600, it will be inserted into SIP REGISTER message headers.
-          *  @param retryTimes The retry times if failed to refresh the registration, set to <= 0 the retry will be disabled and onRegisterFailure callback triggered when retry failure.
+         *  @param expires Registration refresh Interval in seconds with maximum 3600. It will be inserted into SIP REGISTER message headers.
+          *  @param retryTimes The retry times if failed to refresh the registration. If it's set to be less than or equal to 0, the retry will be disabled and onRegisterFailure callback triggered when retry failed.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  if register to Server succeeded then onRegisterSuccess will be triggered, otherwise onRegisterFailure triggered.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  If registration to server succeeded, onRegisterSuccess will be triggered, otherwise onRegisterFailure triggered.
          */
         public Int32 registerServer(Int32 expires, Int32 retryTimes)
         {
@@ -269,9 +291,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Un-register from the SIP proxy Server.
+         *  @brief Un-register from the SIP proxy server.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 unRegisterServer()
         {
@@ -284,11 +306,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the license key, must called before setUser function.
+         *  @brief Set the license key. It must be called before setUser function.
          *
-         *  @param key The SDK license key, please purchase from DuoCallTestTool
+         *  @param key The SDK license key, please purchase from PortSIP.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setLicenseKey(String key)
         {
@@ -310,7 +332,7 @@ namespace PortSIP
         /*!
          *  @brief Get the Network Interface Card numbers.
          *
-         *  @return If the function succeeds, the return value is NIC numbers >= 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return the NIC numbers which is greater than or equal to 0. If the function fails, it will return a specific error code.
          */
         public Int32 getNICNums()
         {
@@ -325,11 +347,11 @@ namespace PortSIP
         /*!
          *  @brief Get the local IP address by Network Interface Card index.
          *
-         *  @param index The IP address index, for example, the PC has two NICs, we want to obtain the second NIC IP, then set this parameter 1. The first NIC IP index is 0.
-         *  @param ip The buffer that to receives the IP. 
-         *  @param ipSize The IP buffer size, don't let it less than 32 bytes. 
+         *  @param index The IP address index. For example, if the PC has two NICs, and we wish to obtain the second NIC IP. Set this parameter 1 and the first NIC IP index is 0.
+         *  @param ip The buffer that is used to receive the IP. 
+         *  @param ipSize The IP buffer size, which cannot be less than 32 bytes. 
          *
-         *  @return If the function succeeds, the return value is0. If the function fails, the return value is a specific error code. 
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code. 
          */
         public Int32 getLocalIpAddress(Int32 index, StringBuilder ip, Int32 ipSize)
         {
@@ -348,11 +370,11 @@ namespace PortSIP
          * @{
          */
         /*!
-         *  @brief Enable an audio codec, it will be appears in SDP.
+         *  @brief Enable an audio codec. It will be appears in SDP.
          *
          *  @param codecType Audio codec type.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 addAudioCodec(AUDIOCODEC_TYPE codecType)
         {
@@ -365,11 +387,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable a video codec, it will be appears in SDP.
+         *  @brief Enable a video codec. It will appear in SDP.
          *
          *  @param codecType Video codec type.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 addVideoCodec(VIDEOCODEC_TYPE codecType)
         {
@@ -383,9 +405,9 @@ namespace PortSIP
 
 
         /*!
-         *  @brief Detect enabled audio codecs is empty or not.
+         *  @brief Detect if enabled audio codecs is empty or not.
          *
-         *  @return If no audio codec was enabled the return value is true, otherwise is false.
+         *  @return If no audio codec is enabled, it will return value true, otherwise false.
          */
         public Boolean isAudioCodecEmpty()
         {
@@ -399,9 +421,9 @@ namespace PortSIP
 
 
         /*!
-         *  @brief Detect enabled video codecs is empty or not.
+         *  @brief Detect if enabled video codecs is empty or not.
          *
-         *  @return If no video codec was enabled the return value is true, otherwise is false.
+         *  @return If no video codec is enabled, it will return value true, otherwise false.
          */
         public Boolean isVideoCodecEmpty()
         {
@@ -416,10 +438,10 @@ namespace PortSIP
         /*!
          *  @brief Set the RTP payload type for dynamic audio codec.
          *
-         *  @param codecType   Audio codec type, defined in the PortSIPTypes file.
+         *  @param codecType   Audio codec type, which is defined in the PortSIPTypes file.
          *  @param payloadType The new RTP payload type that you want to set.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 setAudioCodecPayloadType(AUDIOCODEC_TYPE codecType, Int32 payloadType)
         {
@@ -434,10 +456,10 @@ namespace PortSIP
         /*!
          *  @brief Set the RTP payload type for dynamic Video codec.
          *
-         *  @param codecType   Video codec type, defined in the PortSIPTypes file.
+         *  @param codecType   Video codec type, which is defined in the PortSIPTypes file.
          *  @param payloadType The new RTP payload type that you want to set.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoCodecPayloadType(VIDEOCODEC_TYPE codecType, Int32 payloadType)
         {
@@ -482,7 +504,7 @@ namespace PortSIP
          *  @param codecType Audio codec type, defined in the PortSIPTypes file.
          *  @param parameter The parameter in string format.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          * @remark Example:
          *@code setAudioCodecParameter(AUDIOCODEC_AMR, "mode-set=0; octet-align=1; robust-sorting=0"); @endcode
          */
@@ -502,7 +524,7 @@ namespace PortSIP
          *  @param codecType Video codec type, defined in the PortSIPTypes file.
          *  @param parameter The parameter in string format.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          * @remark Example:
          *@code setVideoCodecParameter(VIDEO_CODEC_H264, "profile-level-id=420033; packetization-mode=0"); @endcode
          */
@@ -532,7 +554,7 @@ namespace PortSIP
          *
          *  @param name The display name.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setDisplayName(String name)
         {
@@ -551,7 +573,7 @@ namespace PortSIP
          *  @param majorVersion Return the major version number.
          *  @param minorVersion Return the minor version number.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 getVersion(out Int32 majorVersion, out Int32 minorVersion)
         {
@@ -569,9 +591,9 @@ namespace PortSIP
         /*!
          *  @brief Enable/disable PRACK.
          *
-         *  @param enable enable Set to true to enable the SDK support PRACK, default the PRACK is disabled.
+         *  @param enable Set to true to enable the SDK to support PRACK. By default the PRACK is disabled.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 enableReliableProvisional(Boolean enable)
         {
@@ -584,11 +606,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable/disable the 3Gpp tags, include "ims.icsi.mmtel" and "g.3gpp.smsip".
+         *  @brief Enable/disable the 3Gpp tags, including "ims.icsi.mmtel" and "g.3gpp.smsip".
          *
-         *  @param enable enable Set to true to enable the SDK support 3Gpp tags.
+         *  @param enable Set to true to enable the SDK to support 3Gpp tags.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 enable3GppTags(Boolean enable)
         {
@@ -601,9 +623,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable/disable callback the sending SIP messages.
+         *  @brief Enable/disable callback the sent SIP messages.
          *
-         *  @param enable enable Set as true to enable callback the sent SIP messages, false to disable. Once enabled,the "onSendingSignaling" event will be fired once the SDK sending a SIP message.
+         *  @param enable Set as true to enable callback the sent SIP messages, or false to disable. Once enabled, the "onSendingSignaling" event will be triggered when the SDK sends a SIP message.
          */
         public void enableCallbackSendingSignaling(Boolean enable)
         {
@@ -620,7 +642,7 @@ namespace PortSIP
          *
          *  @param srtpPolicy The SRTP policy.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 setSrtpPolicy(SRTP_POLICY srtpPolicy)
         {
@@ -640,9 +662,9 @@ namespace PortSIP
          *  @param minimumRtpVideoPort The minimum RTP port for video stream.
          *  @param maximumRtpVideoPort The maximum RTP port for video stream.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          *  @remark
-         *  The port range((max - min) % maxCallLines) should more than 4.
+         *  The port range ((max - min) % maxCallLines) should be greater than 4.
          */
         public Int32 setRtpPortRange(Int32 minimumRtpAudioPort, Int32 maximumRtpAudioPort, Int32 minimumRtpVideoPort, Int32 maximumRtpVideoPort)
         {
@@ -666,9 +688,9 @@ namespace PortSIP
          *  @param minimumRtcpVideoPort The minimum RTCP port for video stream.
          *  @param maximumRtcpVideoPort The maximum RTCP port for video stream.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          *  @remark
-         *  The port range((max - min) % maxCallLines) should more than 4.
+         *  The port range ((max - min) % maxCallLines) should be greater than 4.
          */
         public Int32 setRtcpPortRange(Int32 minimumRtcpAudioPort, Int32 maximumRtcpAudioPort, Int32 minimumRtcpVideoPort, Int32 maximumRtcpVideoPort)
         {
@@ -687,10 +709,10 @@ namespace PortSIP
         /*!
          *  @brief Enable call forward.
          *
-         *  @param forBusyOnly If set this parameter as true, the SDK will forward all incoming calls when currently it's busy. If set this as false, the SDK forward all inconing calls anyway.
-         *  @param forwardTo   The call forward target, it's must likes sip:xxxx@sip.DuoCallTestTool.com.
+         *  @param forBusyOnly If this parameter is set as true, the SDK will forward all incoming calls when currently it's busy. If it's set as false, the SDK forward all inconing calls anyway.
+         *  @param forwardTo   The call forward target. It must be like sip:xxxx@sip.portsip.com.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 enableCallForward(Boolean forBusyOnly, String forwardTo)
         {
@@ -703,9 +725,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Disable the call forward, the SDK is not forward any incoming call after this function is called.
+         *  @brief Disable the call forwarding. The SDK is not forwarding any incoming call after this function is called.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, the return value is a specific error code.
          */
         public Int32 disableCallForward()
         {
@@ -718,15 +740,15 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Allows to periodically refresh Session Initiation Protocol (SIP) sessions by sending repeated INVITE requests.
+         *  @brief Allows to periodically refresh Session Initiation Protocol (SIP) sessions by sending INVITE requests repeatedly.
          *
-         *  @param timerSeconds The value of the refresh interval in seconds. Minimum requires 90 seconds.
-         *  @param refreshMode  Allow set the session refresh by UAC or UAS: SESSION_REFERESH_UAC or SESSION_REFERESH_UAS;
+         *  @param timerSeconds The value of the refreshment interval in seconds. Minimum value of 90 seconds required.
+         *  @param refreshMode  Allow to set the session refresh by UAC or UAS: SESSION_REFERESH_UAC or SESSION_REFERESH_UAS;
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark The repeated INVITE requests, or re-INVITEs, are sent during an active call leg to allow user agents (UA) or proxies to determine the status of a SIP session. 
-         *  Without this keepalive mechanism, proxies that remember incoming and outgoing requests (stateful proxies) may continue to retain call state needlessly. 
-         *  If a UA fails to send a BYE message at the end of a session or if the BYE message is lost because of network problems, a stateful proxy does not know that the session has ended. 
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark The repeated INVITE requests, or re-INVITEs, are sent during an active call log to allow user agents (UA) or proxies to determine the status of a SIP session. 
+         *  Without this keepalive mechanism, proxies that remember incoming and outgoing requests (stateful proxies) may continue to retain call state in vain. 
+         *  If a UA fails to send a BYE message at the end of a session or if the BYE message is lost because of network problems, a stateful proxy will not know that the session has ended. 
          *  The re-INVITES ensure that active sessions stay active and completed sessions are terminated.
          */
         public Int32 enableSessionTimer(Int32 timerSeconds, SESSION_REFRESH_MODE refreshMode)
@@ -742,7 +764,7 @@ namespace PortSIP
         /*!
          *  @brief Disable the session timer.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 disableSessionTimer()
         {
@@ -757,7 +779,7 @@ namespace PortSIP
         /*!
          *  @brief Enable the "Do not disturb" to enable/disable.
          *
-         *  @param state If set to true, the SDK reject all incoming calls anyway.
+         *  @param state If it is set to true, the SDK will reject all incoming calls anyway.
          */
         public void setDoNotDisturb(Boolean state)
         {
@@ -770,9 +792,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Use to obtain the MWI status.
+         *  @brief Used to obtain the MWI status.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 detectMwi()
         {
@@ -785,11 +807,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Allows enable/disable the check MWI(Message Waiting Indication).
+         *  @brief Allows to enable/disable the check MWI (Message Waiting Indication).
          *
-         *  @param state If set as true will check MWI automatically once successfully registered to a SIP proxy Server.
+         *  @param state If it is set as true, MWI will be checked automatically once successfully registered to a SIP proxy server.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 enableCheckMwi(Boolean state)
         {
@@ -802,13 +824,13 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable or disable send RTP keep-alive packet during the call is established.
+         *  @brief Enable or disable to send RTP keep-alive packet when the call is established.
          *
-         *  @param state                Set to true allow send the keep-alive packet during the conversation.
-         *  @param keepAlivePayloadType The payload type of the keep-alive RTP packet, usually set to 126.
-         *  @param deltaTransmitTimeMS  The keep-alive RTP packet send interval, in millisecond, usually recommend 15000 - 300000.
+         *  @param state                Set to true to allow to send the keep-alive packet during the conversation.
+         *  @param keepAlivePayloadType The payload type of the keep-alive RTP packet. It's usually set to 126.
+         *  @param deltaTransmitTimeMS  The keep-alive RTP packet sending interval, in millisecond. Recommend value ranges 15000 - 300000.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setRtpKeepAlive(Boolean state, Int32 keepAlivePayloadType, Int32 deltaTransmitTimeMS)
         {
@@ -821,11 +843,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable or disable send SIP keep-alive packet.
+         *  @brief Enable or disable to send SIP keep-alive packet.
          *
-         *  @param keepAliveTime This is the SIP keep alive time interval in seconds, set to 0 to disable the SIP keep alive, it's in seconds, recommend 30 or 50.
+         *  @param keepAliveTime This is the SIP keep alive time interval in seconds. Set it to 0 to disable the SIP keep alive. Recommend to set as 30 or 50.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setKeepAliveTime(Int32 keepAliveTime)
         {
@@ -840,11 +862,11 @@ namespace PortSIP
         /*!
          *  @brief Set the audio capture sample.
          *
-         *  @param ptime    It's should be a multiple of 10, and between 10 - 60(included 10 and 60).
-         *  @param maxPtime For the "maxptime" attribute, should be a multiple of 10, and between 10 - 60(included 10 and 60). Can't less than "ptime".
+         *  @param ptime    It should be a multiple of 10 between 10 - 60 (with 10 and 60 inclusive).
+         *  @param maxPtime For the "maxptime" attribute, it should be a multiple of 10 between 10 - 60 (with 10 and 60 inclusive). It cannot be less than "ptime".
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark which will be appears in the SDP of INVITE and 200 OK message as "ptime and "maxptime" attribute.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark It will appear in the SDP of INVITE and 200 OK message as "ptime and "maxptime" attribute.
          */
         public Int32 setAudioSamples(Int32 ptime, Int32 maxPtime)
         {
@@ -859,13 +881,13 @@ namespace PortSIP
         /*!
          *  @brief Set the SDK receive the SIP message that include special mime type.
          *
-         *  @param methodName  Method name of the SIP message, likes INVITE, OPTION, INFO, MESSAGE, UPDATE, ACK etc. More details please read the RFC3261.
+         *  @param methodName  Method name of the SIP message, such as INVITE, OPTION, INFO, MESSAGE, UPDATE, ACK etc. For more details please read the RFC3261.
          *  @param mimeType    The mime type of SIP message.
          *  @param subMimeType The sub mime type of SIP message.
          *  
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          *@remark         
-         * Default, the DuoCallTestTool VoIP SDK support these media types(mime types) that in the below incoming SIP messages:
+         * By default, PortSIP VoIP SDK supports these media types (mime types) below for incoming SIP messages:
          * @code
                         "message/sipfrag" in NOTIFY message.
                         "application/simple-message-summary" in NOTIFY message.
@@ -873,19 +895,19 @@ namespace PortSIP
                         "application/dtmf-relay" in INFO message.
                         "application/media_control+xml" in INFO message.
          * @endcode
-         * The SDK allows received SIP message that included above mime types. Now if remote side send a INFO
-         * SIP message, this message "Content-Type" header value is "text/plain", the SDK will reject this INFO message,
-         * because "text/plain" of INFO message does not included in the default support list.
-         * Then how to let the SDK receive the SIP INFO message that included "text/plain" mime type? We should use
-         * addSupportedMimyType to do it:
+         * The SDK allows received SIP messages that includ above mime types. Now if remote side send a INFO
+         * SIP message with its "Content-Type" header value "text/plain", the SDK will reject this INFO message,
+         * as "text/plain" of INFO message is not included in the default support list.
+         * How should we enable the SDK to receive the SIP INFO message that includs "text/plain" mime type? The answer is
+         * addSupportedMimyType: 
          * @code
                         addSupportedMimeType("INFO", "text", "plain");
          * @endcode
-         * If want to receive the NOTIFY message with "application/media_control+xml", then:
+         * If we want to receive the NOTIFY message with "application/media_control+xml", please: 
          *@code
                         addSupportedMimeType("NOTIFY", "application", "media_control+xml");
          * @endcode
-         * About the mime type details, please visit this website: http://www.iana.org/assignments/media-types/ 
+         * For more details about the mime type, please visit this website: http://www.iana.org/assignments/media-types/ 
          */
         public Int32 addSupportedMimeType(String methodName, String mimeType, String subMimeType)
         {
@@ -908,13 +930,13 @@ namespace PortSIP
          *  @brief Access the SIP header of SIP message.
          *
          *  @param sipMessage        The SIP message.
-         *  @param headerName        Which header want to access of the SIP message.
+         *  @param headerName        The header which wishes to access the SIP message.
          *  @param headerValue       The buffer to receive header value.
-         *  @param headerValueLength The headerValue buffer size. Usually we recommended set it more than 512 bytes.
+         *  @param headerValueLength The headerValue buffer size. Usually we recommend to set it more than 512 bytes.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          * @remark
-         * When got a SIP message in the onReceivedSignaling callback event, and want to get SIP message header value, use getExtensionHeaderValue to do it:
+         * When receiving a SIP message in the onReceivedSignaling callback event, and wishes to get SIP message header value, please use getExtensionHeaderValue:
          * @code
             StringBuilder value = new StringBuilder();
             value.Length = 512;
@@ -932,12 +954,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Add the extension header(custom header) into every outgoing SIP message.
+         *  @brief Add the extension header (custom header) into every outgoing SIP message.
          *
-         *  @param headerName  The custom header name which will be appears in every outgoing SIP message.
+         *  @param headerName  The custom header name that will appears in every outgoing SIP message.
          *  @param headerValue The custom header value.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 addExtensionHeader(String headerName, String headerValue)
         {
@@ -950,10 +972,10 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Clear the added extension headers(custom headers)
+         *  @brief Clear the added extension headers (custom headers)
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark Example, we have added two custom headers into every outgoing SIP message and want remove them.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark For example, we have added two custom headers into every outgoing SIP message, and wish to remove them.
          * @code
             addExtensionHeader("Blling", "usd100.00");	
             addExtensionHeader("ServiceId", "8873456");
@@ -973,10 +995,10 @@ namespace PortSIP
         /*!
          *  @brief Modify the special SIP header value for every outgoing SIP message.
          *
-         *  @param headerName  The SIP header name which will be modify it's value.
-         *  @param headerValue The heaver value want to modify.
+         *  @param headerName  The SIP header name for which the value will be modified.
+         *  @param headerValue The heaver value to be modified.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 modifyHeaderValue(String headerName, String headerValue)
         {
@@ -1016,12 +1038,12 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Set the audio device that will use for audio call. 
+         *  @brief Set the audio device that will be used for audio call. 
          *
-         *  @param recordingDeviceId    Device ID(index) for audio record.(Microphone). 
-         *  @param playoutDeviceId      Device ID(index) for audio playback(Speaker). 
+         *  @param recordingDeviceId    Device ID (index) for audio recording. (Microphone). 
+         *  @param playoutDeviceId      Device ID (index) for audio playback (Speaker). 
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setAudioDeviceId(Int32 recordingDeviceId, Int32 playoutDeviceId)
         {
@@ -1034,11 +1056,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the video device that will use for video call.
+         *  @brief Set the video device that will be used for video call.
          *
-         *  @param deviceId Device ID(index) for video device(camera).
+         *  @param deviceId Device ID (index) for video device (camera).
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoDeviceId(Int32 deviceId)
         {
@@ -1051,28 +1073,29 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the video capture resolution.
+         *  @brief Set the video capturing resolution.
          *
-         *  @param resolution Video resolution, defined in PortSIPType file. Note: Some cameras don't support SVGA and XVGA, 720P, please read your camera manual.
+         *  @param width Video width.
+         *  @param height Video height.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
-        public Int32 setVideoResolution(VIDEO_RESOLUTION resolution)
+        public Int32 setVideoResolution(Int32 width, Int32 height)
         {
             if (_LibSDK == IntPtr.Zero)
             {
                 return PortSIP_Errors.ECoreSDKObjectNull;
             }
 
-            return PortSIP_NativeMethods.PortSIP_setVideoResolution(_LibSDK, (Int32)resolution);
+            return PortSIP_NativeMethods.PortSIP_setVideoResolution(_LibSDK, width, height);
         }
 
         /*!
-         *  @brief Set the video bit rate.
+         *  @brief Set the video bitrate.
          *
-         *  @param bitrateKbps The video bit rate in KBPS.
+         *  @param bitrateKbps The video bitrate in KBPS.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoBitrate(Int32 bitrateKbps)
         {
@@ -1087,10 +1110,10 @@ namespace PortSIP
         /*!
          *  @brief Set the video frame rate. 
          *
-         *  @param frameRate The frame rate value, minimum is 5, maximum is 30. The bigger value will give you better video quality but require more bandwidth.
+         *  @param frameRate The frame rate value with minimum value 5, and maximum value 30. A greater value will enable you better video quality but requires more bandwidth.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark Usually you do not need to call this function set the frame rate, the SDK using default frame rate.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark Usually you do not need to call this function to set the frame rate. The SDK uses default frame rate.
          */
         public Int32 setVideoFrameRate(Int32 frameRate)
         {
@@ -1106,9 +1129,9 @@ namespace PortSIP
          *  @brief Send the video to remote side.
          *
          *  @param sessionId The session ID of the call.
-         *  @param sendState Set to true to send the video, false to stop send.
+         *  @param sendState Set to true to send the video, or false to stop sending.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 sendVideo(Int32 sessionId, Boolean sendState)
         {
@@ -1121,11 +1144,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Changing the orientation of the video.
+         *  @brief Change the orientation of the video.
          *
-         *  @param rotation  The video rotation that you want to set(0,90,180,270).
+         *  @param rotation The video rotation that you want to set (0, 90, 180, 270).
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoOrientation(Int32 rotation)
         {
@@ -1138,9 +1161,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the the window that using to display the local video image.
+         *  @brief Set the window that is used to display the local video image.
          *
-         *  @param localVideoWindow The window to display local video image from camera. 
+         *  @param localVideoWindow The window on which the local video image from camera will be displayed. 
          */
         public void setLocalVideoWindow(IntPtr localVideoWindow)
         {
@@ -1153,12 +1176,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the window for a session that using to display the received remote video image.
+         *  @brief Set the window for a session that is used to display the received remote video image.
          *
          *  @param sessionId         The session ID of the call.
          *  @param remoteVideoWindow The window to display received remote video image. 
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 setRemoteVideoWindow(Int32 sessionId, IntPtr remoteVideoWindow)
         {
@@ -1171,11 +1194,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Start/stop to display the local video image.
+         *  @brief Start/stop displaying the local video image.
          *
-         *  @param state state Set to true to display local video iamge.
+         *  @param state Set to true to display local video image.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 displayLocalVideo(Boolean state)
         {
@@ -1188,11 +1211,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable/disable the NACK feature(rfc6642) which help to improve the video quatliy.
+         *  @brief Enable/disable the NACK feature (rfc6642) that helps to improve the video quality.
          *
-         *  @param state state Set to true to enable.
+         *  @param state Set to true to enable.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoNackStatus(Boolean state)
         {
@@ -1205,9 +1228,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Mute the device microphone.it's unavailable for Android and iOS.
+         *  @brief Mute the device microphone. It's unavailable for Android and iOS.
          *
-         *  @param mute If the value is set to true, the microphone is muted, set to false to un-mute it.
+         *  @param mute If the value is set to true, the microphone will be muted, or you could set it to false to un-mute it.
          */
         public void muteMicrophone(Boolean mute)
         {
@@ -1220,9 +1243,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Mute the device speaker, it's unavailable for Android and iOS.
+         *  @brief Mute the device speaker. It's unavailable for Android and iOS.
          *
-         *  @param mute If the value is set to true, the speaker is muted, set to false to un-mute it.
+         *  @param mute If the value is set to true, the speaker is muted, or you could set it to false to un-mute it.
          */
         public void muteSpeaker(Boolean mute)
         {
@@ -1237,8 +1260,8 @@ namespace PortSIP
         /*!
          *  @brief Obtain the dynamic microphone volume level from current call. 
          *
-         *  @param speakerVolume    Return the dynamic speaker volume by this parameter, the range is 0 - 9.
-         *  @param microphoneVolume Return the dynamic microphone volume by this parameter, the range is 0 - 9.
+         *  @param speakerVolume    Return the dynamic speaker volume by this parameter. It ranges 0 - 9.
+         *  @param microphoneVolume Return the dynamic microphone volume by this parameter. It ranges 0 - 9.
          *  @remark Usually set a timer to call this function to refresh the volume level indicator.
          */
         public void getDynamicVolumeLevel(out Int32 speakerVolume, out Int32 microphoneVolume)
@@ -1254,6 +1277,27 @@ namespace PortSIP
             PortSIP_NativeMethods.PortSIP_getDynamicVolumeLevel(_LibSDK, out speakerVolume, out microphoneVolume);
         }
 
+        /*!
+         * Set a volume |scaling| to be applied to the outgoing signal of a specific
+         * audio channel. 
+         * 
+         * @param sessionId
+         *            The session ID of the call.
+         * @param scaling
+         *            Valid scale ranges [0, 1000]. Default is 100.
+         * @return If the function succeeds, it will return value 0. If the function
+         *         fails, it will return a specific error code.
+         */
+        public void setChannelOutputVolumeScaling(Int32 sessionId, Int32 scaling)
+        {
+            if (_LibSDK == IntPtr.Zero)
+            {
+                return;
+            }
+
+            PortSIP_NativeMethods.PortSIP_setChannelOutputVolumeScaling(_LibSDK, sessionId, scaling);
+        }
+
         /** @} */
         // end of group6
 
@@ -1264,11 +1308,11 @@ namespace PortSIP
         /*!
          *  @brief Make a call
          *
-         *  @param callee    The callee, it can be name only or full SIP URI, for example: user001 or sip:user001@sip.iptel.org or sip:user002@sip.yourdomain.com:5068
-         *  @param sendSdp   If set to false then the outgoing call doesn't include the SDP in INVITE message.
-         *  @param videoCall If set the true and at least one video codec was added, then the outgoing call include the video codec into SDP.
+         *  @param callee    The callee. It can be either name or full SIP URI. For example: user001, sip:user001@sip.iptel.org or sip:user002@sip.yourdomain.com:5068
+         *  @param sendSdp   If it's set to false, the outgoing call doesn't include the SDP in INVITE message.
+         *  @param videoCall If it's set to true with at least one video codecs added, the outgoing call will include the video codec into SDP.
          *
-         *  @return If the function succeeds, the return value is the session ID of the call greater than 0. If the function fails, the return value is a specific error code. Note: the function success just means the outgoing call is processing, you need to detect the call final state in onInviteTrying, onInviteRinging, onInviteFailure callback events.
+         *  @return If the function succeeds, it will return the session ID of the call that is greater than 0. If the function fails, it will return a specific error code. Note: the function success just means the outgoing call is being processed. You need to detect the call final state in onInviteTrying, onInviteRinging, onInviteFailure callback events.
          */
         public Int32 call(String callee, Boolean sendSdp, Boolean videoCall)
         {
@@ -1285,9 +1329,9 @@ namespace PortSIP
          *  @brief rejectCall Reject the incoming call.
          *
          *  @param sessionId The sessionId of the call.
-         *  @param code      Reject code, for example, 486, 480 etc.
+         *  @param code      Reject code. For example, 486, 480 etc.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 rejectCall(Int32 sessionId, int code)
         {
@@ -1304,7 +1348,7 @@ namespace PortSIP
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 hangUp(Int32 sessionId)
         {
@@ -1320,9 +1364,9 @@ namespace PortSIP
          *  @brief answerCall Answer the incoming call.
          *
          *  @param sessionId The session ID of call.
-         *  @param videoCall If the incoming call is a video call and the video codec is matched, set to true to answer the video call.<br>If set to false, the answer call doesn't include video codec answer anyway.
+         *  @param videoCall If the incoming call is a video call and the video codec is matched, set it to true to answer the video call.<br>If it's set to false, the answered call will not include video codec answer anyway.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 answerCall(Int32 sessionId, Boolean videoCall)
         {
@@ -1337,20 +1381,20 @@ namespace PortSIP
         /*!
          *  @brief Use the re-INVITE to update the established call.
          *  @param sessionId   The session ID of call.
-         *  @param enableAudio Set to true to allow the audio in update call, false for disable audio in update call.
-         *  @param enableVideo Set to true to allow the video in update call, false for disable video in update call.
+         *  @param enableAudio Set to true to allow the audio in updated call, or false to disable audio in updated call.
+         *  @param enableVideo Set to true to allow the video in updated call, or false to disable video in updated call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          *  @remark
             Example usage:<br>
-         *  Example 1: A called B with the audio only, B answered A, there has an audio conversation between A, B. Now A want to see B video, 
-            A use these functions to do it.
+         *  Example 1: A called B with the audio only, B answered A, there has an audio conversation between A, B. Now A wants to see B visually, 
+            A could use these functions to do it.
             @code
                         clearVideoCodec();	
                         addVideoCodec(VIDEOCODEC_H264);
                         updateCall(sessionId, true, true);
             @endcode
-            Example 2: Remove video stream from currently conversation. 
+            Example 2: Remove video stream from current conversation. 
             @code
                         updateCall(sessionId, true, false);
             @endcode
@@ -1370,7 +1414,7 @@ namespace PortSIP
          *
          *  @param sessionId The session ID of call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 hold(Int32 sessionId)
         {
@@ -1387,7 +1431,7 @@ namespace PortSIP
          *
          *  @param sessionId The session ID of call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 unHold(Int32 sessionId)
         {
@@ -1403,12 +1447,12 @@ namespace PortSIP
          *  @brief Mute the specified session audio or video.
          *
          *  @param sessionId         The session ID of the call.
-         *  @param muteIncomingAudio Set it to true to mute incoming audio stredam, can't hearing remote side audio.
-         *  @param muteOutgoingAudio Set it to true to mute outgoing audio stredam, the remote side can't hearing audio.
-         *  @param muteIncomingVideo Set it to true to mute incoming video stredam, can't see remote side video.
-         *  @param muteOutgoingVideo Set it to true to mute outgoing video stredam, the remote side can't see video.
+         *  @param muteIncomingAudio Set it to true to mute incoming audio stream, and remote side audio cannot be heard.
+         *  @param muteOutgoingAudio Set it to true to mute outgoing audio stream, and the remote side can't hear the audio.
+         *  @param muteIncomingVideo Set it to true to mute incoming video stream, and the remote side video will be invisible.
+         *  @param muteOutgoingVideo Set it to true to mute outgoing video stream, and the remote side can't see the video.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 muteSession(Int32 sessionId,
                                 Boolean muteIncomingAudio,
@@ -1425,12 +1469,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Forward call to another one when received the incoming call.
+         *  @brief Forward call to another one when receiving the incoming call.
          *
          *  @param sessionId The session ID of the call.
-         *  @param forwardTo Target of the forward, it can be "sip:number@sipserver.com" or "number" only.
+         *  @param forwardTo Target of the forwarding. It can be "sip:number@sipserver.com" or "number" only.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 forwardCall(Int32 sessionId, String forwardTo)
         {
@@ -1446,8 +1490,8 @@ namespace PortSIP
          *  @brief Send DTMF tone.
          *
          *  @param sessionId    The session ID of the call.
-         *  @param dtmfMethod   Support send DTMF tone with two methods: DTMF_RFC2833 and DTMF_INFO. The DTMF_RFC2833 is recommend.
-         *  @param code         The DTMF tone(0-16).
+         *  @param dtmfMethod   DTMF tone could be sent with two methods: DTMF_RFC2833 and DTMF_INFO, of which DTMF_RFC2833 is recommend.
+         *  @param code         The DTMF tone (0-16).
          * <p><table>
          * <tr><th>code</th><th>Description</th></tr>
          * <tr><td>0</td><td>The DTMF tone 0.</td></tr><tr><td>1</td><td>The DTMF tone 1.</td></tr><tr><td>2</td><td>The DTMF tone 2.</td></tr>
@@ -1457,10 +1501,10 @@ namespace PortSIP
          * <tr><td>12</td><td>The DTMF tone A.</td></tr><tr><td>13</td><td>The DTMF tone B.</td></tr><tr><td>14</td><td>The DTMF tone C.</td></tr>
          * <tr><td>15</td><td>The DTMF tone D.</td></tr><tr><td>16</td><td>The DTMF tone FLASH.</td></tr>
          * </table></p>
-         *  @param dtmfDuration The DTMF tone samples, recommend 160.
-         *  @param playDtmfTone Set to true the SDK play local DTMF tone sound during send DTMF.
+         *  @param dtmfDuration The DTMF tone samples. Recommended value 160.
+         *  @param playDtmfTone If it is set to true, the SDK plays local DTMF tone sound when sending DTMF.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 sendDtmf(Int32 sessionId, DTMF_METHOD dtmfMethod, int code, int dtmfDuration, bool playDtmfTone)
         {
@@ -1479,18 +1523,18 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Refer the currently call to another one.<br>
+         *  @brief Refer the current call to another one.<br>
          *  @param sessionId The session ID of the call.
-         *  @param referTo   Target of the refer, it can be "sip:number@sipserver.com" or "number" only.
+         *  @param referTo   Target of the refer, which can be either "sip:number@sipserver.com" or "number".
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          *  @remark
          @code
-            refer(sessionId, "sip:testuser12@sip.DuoCallTestTool.com");
+            refer(sessionId, "sip:testuser12@sip.portsip.com");
          @endcode
-         You can download the demo AVI at:<br>
-         "http://www.DuoCallTestTool.com/downloads/video/blindtransfer.rar", use the Windows Media
-         Player to play the AVI file after extracted, it will shows how to do the transfer.
+         You can download the demo AVI at: <br>
+         "http://www.portsip.com/downloads/video/blindtransfer.rar". <br>Use the Windows Media
+         Player to play the AVI file after extracted, and it will demonstrate the transfer.
          */
         public Int32 refer(Int32 sessionId, String referTo)
         {
@@ -1506,13 +1550,13 @@ namespace PortSIP
          *  @brief  Make an attended refer.
          *
          *  @param sessionId        The session ID of the call.
-         *  @param replaceSessionId Session ID of the replace call.
-         *  @param referTo          Target of the refer, it can be "sip:number@sipserver.com" or "number" only.
+         *  @param replaceSessionId Session ID of the repferred call.
+         *  @param referTo          Target of the refer, which can be either "sip:number@sipserver.com" or "number".
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          *  @remark
-            Please read the sample project source code to got more details. Or download the demo AVI at:"http://www.DuoCallTestTool.com/downloads/video/blindtransfer.rar"<br>
-           use the Windows Media Player to play the AVI file after extracted, it will shows how to do the transfer.
+            Please read the sample project source code for more details, or download the demo AVI at: http://www.portsip.com/downloads/video/blindtransfer.rar<br>
+           Please use the Windows Media Player to play the AVI file after extracted, and it will demonstrate the transfer.
          */
         public Int32 attendedRefer(Int32 sessionId, Int32 replaceSessionId, String referTo)
         {
@@ -1525,12 +1569,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Accept the REFER request, a new call will be make if called this function, usuall called after onReceivedRefer callback event.
+         *  @brief Accept the REFER request, and a new call will be made if called this function. The function is usually called after onReceivedRefer callback event.
          *
          *  @param referId        The ID of REFER request that comes from onReceivedRefer callback event.
          *  @param referSignalingMessage The SIP message of REFER request that comes from onReceivedRefer callback event.
          *
-         *  @return If the function succeeds, the return value is a session ID greater than 0 to the new call for REFER, otherwise is a specific error code less than 0.
+         *  @return If the function succeeds, it will return a session ID greater than 0 to the new call for REFER; otherwise a specific error code less than 0.
          */
         public Int32 acceptRefer(Int32 referId, String referSignalingMessage)
         {
@@ -1547,7 +1591,7 @@ namespace PortSIP
          *
          *  @param referId The ID of REFER request that comes from onReceivedRefer callback event.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 rejectRefer(Int32 referId)
         {
@@ -1566,14 +1610,14 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Enable the SDK send PCM stream data to remote side from another source to instread of microphone.
+         *  @brief Enable the SDK to send PCM stream data to remote side from another source instead of microphone.
          *
          *  @param sessionId           The session ID of call.
-         *  @param state               Set to true to enable the send stream, false to disable.
-         *  @param streamSamplesPerSec The PCM stream data sample in seconds, for example: 8000 or 16000.
+         *  @param state               Set to true to enable the send stream, or false to disable.
+         *  @param streamSamplesPerSec The PCM stream data sample in seconds. For example: 8000 or 16000.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark MUST called this function first if want to send the PCM stream data to another side.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark This function MUST be called first to send the PCM stream data to another side.
          */
         public Int32 enableSendPcmStreamToRemote(Int32 sessionId, Boolean state, Int32 streamSamplesPerSec)
         {
@@ -1586,14 +1630,14 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Send the audio stream in PCM format from another source to instead of audio device capture(microphone).
+         *  @brief Send the audio stream in PCM format from another source instead of audio device capturing (microphone).
          *
          *  @param sessionId Session ID of the call conversation.
-         *  @param data        The PCM audio stream data, must is 16bit, mono.
+         *  @param data        The PCM audio stream data. It must be 16bit, mono.
          *  @param dataLength  The size of data. 
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark Usually we should use it like below:
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark Usually it should be used as below:
          *  @code
                         enableSendPcmStreamToRemote(sessionId, true, 16000);	
                         sendPcmStreamToRemote(sessionId, data, dataSize);
@@ -1610,12 +1654,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable the SDK send video stream data to remote side from another source to instread of camera.
+         *  @brief Enable the SDK send video stream data to remote side from another source instead of camera.
          *
          *  @param sessionId The session ID of call.
-         *  @param state     Set to true to enable the send stream, false to disable.
+         *  @param state     Set to true to enable the sending stream, or false to disable.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 enableSendVideoStreamToRemote(Int32 sessionId, Boolean state)
         {
@@ -1628,18 +1672,18 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Send the video stream to remote
+         *  @brief Send the video stream to remote side.
          *
          *  @param sessionId Session ID of the call conversation.
-         *  @param data      The video video stream data, must is i420 format.
+         *  @param data      The video stream data. It must be in i420 format.
          *  @param dataLength The size of data. 
          *  @param width     The video image width.
          *  @param height    The video image height.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark  Send the video stream in i420 from another source to instead of video device capture(camera).<br>
-         Before called this funtion,you MUST call the enableSendVideoStreamToRemote function.<br>
-         * Usually we should use it like below:
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark  Send the video stream in i420 from another source instead of video device capturing (camera).<br>
+         Before calling this funtion, you MUST call the enableSendVideoStreamToRemote function.<br>
+         * Usually it should be used as below:
          @code
                     enableSendVideoStreamToRemote(sessionId, true);	
                     sendVideoStreamToRemote(sessionId, data, dataSize, 352, 288);
@@ -1663,12 +1707,12 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Set the RTP callbacks to allow access the sending and received RTP packets.
+         *  @brief Set the RTP callbacks to allow access to the sent and received RTP packets.
          *
-         *  @param callbackObject The callback object that you passed in and can access it once callback function triggered.
-         *  @param enable Set to true to enable the RTP callback for received and sending RTP packets, the onSendingRtpPacket and onReceivedRtpPacket events will be triggered.
+         *  @param callbackObject The callback object that you passed in can be accessed once the callback function triggered.
+         *  @param enable Set to true to enable the RTP callback for received and sent RTP packets. The onSendingRtpPacket and onReceivedRtpPacket events will be triggered.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setRtpCallback(Int32 callbackObject, Boolean enable)
         {
@@ -1688,20 +1732,20 @@ namespace PortSIP
         /*!
          *  @brief Enable/disable the audio stream callback
          *
-         *  @param callbackObject The callback object that you passed in and can access it once callback function triggered.
+         *  @param callbackObject The callback object that you passed in can be accessed once callback function triggered.
          *  @param sessionId    The session ID of call.
-         *  @param enable       Set to true to enable audio stream callback, false to stop the callback.
+         *  @param enable       Set to true to enable audio stream callback, or false to stop the callback.
          *  @param callbackMode The audio stream callback mode
          * <p><table>
          * <tr><th>Mode</th><th>Description</th></tr>
          * <tr><td>AUDIOSTREAM_LOCAL_MIX</td><td>Callback the audio stream from microphone for all channels.  </td></tr>
-         * <tr><td>AUDIOSTREAM_LOCAL_PER_CHANNEL</td><td>Callback the audio stream from microphone for one channel base on the given sessionId. </td></tr>
-         * <tr><td>AUDIOSTREAM_REMOTE_MIX</td><td>Callback the received audio stream that mixed including all channels. </td></tr>
-         * <tr><td>AUDIOSTREAM_REMOTE_PER_CHANNEL</td><td>Callback the received audio stream for one channel base on the given sessionId.</td></tr>
+         * <tr><td>AUDIOSTREAM_LOCAL_PER_CHANNEL</td><td>Callback the audio stream from microphone for one channel based on the given sessionId. </td></tr>
+         * <tr><td>AUDIOSTREAM_REMOTE_MIX</td><td>Callback the received audio stream that mixed all included channels. </td></tr>
+         * <tr><td>AUDIOSTREAM_REMOTE_PER_CHANNEL</td><td>Callback the received audio stream for one channel based on the given sessionId.</td></tr>
          * </table></p>
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark the onAudioRawCallback event will be triggered if the callback is enabled.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark The onAudioRawCallback event will be triggered if the callback is enabled.
          */
         public Int32 enableAudioStreamCallback(Int32 callbackObject, Int32 sessionId, Boolean enable, AUDIOSTREAM_CALLBACK_MODE callbackMode)
         {
@@ -1716,7 +1760,7 @@ namespace PortSIP
         /*!
          *  @brief Enable/disable the video stream callback.
          *
-         *  @param callbackObject The callback object that you passed in and can access it once callback function triggered.
+         *  @param callbackObject The callback object that you passed in can be accessed once callback function triggered.
          *  @param sessionId    The session ID of call.
          *  @param callbackMode The video stream callback mode.
          * <p><table>
@@ -1724,11 +1768,11 @@ namespace PortSIP
          * <tr><td>VIDEOSTREAM_NONE</td><td>Disable video stream callback. </td></tr>
          * <tr><td>VIDEOSTREAM_LOCAL</td><td>Local video stream callback. </td></tr>
          * <tr><td>VIDEOSTREAM_REMOTE</td><td>Remote video stream callback. </td></tr>
-         * <tr><td>VIDEOSTREAM_BOTH</td><td>Both of local and remote video stream callback. </td></tr>
+         * <tr><td>VIDEOSTREAM_BOTH</td><td>Both local and remote video stream callback. </td></tr>
          * </table></p>
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
-         *  @remark the onVideoRawCallback event will be triggered if the callback is enabled.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         *  @remark The onVideoRawCallback event will be triggered if the callback is enabled.
          */
         public Int32 enableVideoStreamCallback(Int32 callbackObject, Int32 sessionId, VIDEOSTREAM_CALLBACK_MODE callbackMode)
         {
@@ -1741,6 +1785,25 @@ namespace PortSIP
             return PortSIP_NativeMethods.PortSIP_enableVideoStreamCallback(_LibSDK, sessionId, (Int32)callbackMode, (IntPtr)callbackObject, _vrc);
         }
 
+        /*!
+         *  @brief Enable/disable the video Decoder callback.
+         *
+         *  @param enable       Set to true to enable video Decoder callback, or false to stop the callback.
+         *
+         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @remark The onVideoDecoderCallback event will be triggered if the callback is enabled.
+         */
+        public Int32 enableVideoDecoderCallback(Int32 callbackObject, Boolean enable)
+        {
+            if (_LibSDK == IntPtr.Zero)
+            {
+                return PortSIP_Errors.ECoreSDKObjectNull;
+            }
+
+
+            return PortSIP_NativeMethods.PortSIP_enableVideoDecoderCallback(_LibSDK, enable, (IntPtr)callbackObject, _virc);
+        }
+
         /** @} */
         // end of group10
 
@@ -1749,18 +1812,18 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Start record the call.
+         *  @brief Start recording the call.
          *
          *  @param sessionId        The session ID of call conversation.
-         *  @param recordFilePath   The file path to save record file, it's must exists.
-         *  @param recordFileName   The file name of record file, for example: audiorecord.wav or videorecord.avi.
+         *  @param recordFilePath   The file path to which the record file will be saved. It must be existent.
+         *  @param recordFileName   The file name of record file. For example: audiorecord.wav or videorecord.avi.
          *  @param appendTimestamp  Set to true to append the timestamp to the recording file name.
          *  @param audioFileFormat  The audio record file format.
          *  @param audioRecordMode  The audio record mode.
-         *  @param videoFileCodecType The codec which using for compress the video data to save into video record file.
-         *  @param videoRecordMode  Allow set video record mode, support record received video/send video/both received and send.
+         *  @param videoFileCodecType The codec which is used for compressing the video data to save into video record file.
+         *  @param videoRecordMode  Allow to set video record mode, with record received and/or sent supported.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 startRecord(Int32 sessionId,
                                 String recordFilePath,
@@ -1792,7 +1855,7 @@ namespace PortSIP
          *
          *  @param sessionId The session ID of call conversation.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 stopRecord(Int32 sessionId)
         {
@@ -1806,7 +1869,7 @@ namespace PortSIP
         /** @} */
         // end of group11
 
-        /** @defgroup group12 Play audio and video file to remoe functions
+        /** @defgroup group12 Play audio and video file to remote functions
          * @{
          */
 
@@ -1815,11 +1878,11 @@ namespace PortSIP
          *  @brief Play an AVI file to remote party.
          *
          *  @param sessionId Session ID of the call.
-         *  @param fileName   The file full path name, such as "c:\\test.avi".
-         *  @param loop      Set to false to stop play video file when it is end. Set to true to play it as repeat.
-         *  @param playAudio If set to true then play audio and video together, set to false just play video only.
+         *  @param fileName   The full file path, such as "c:\\test.avi".
+         *  @param loop      Set to false to stop playing video file when it is ended, or true to play it repeatedly.
+         *  @param playAudio If it's set to true, audio and video will be played together; if false, only video will be played.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 playVideoFileToRemote(Int32 sessionId, String fileName, Boolean loop, Boolean playAudio)
         {
@@ -1832,11 +1895,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Stop play video file to remote side.
+         *  @brief Stop playing video file to remote side.
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 stopPlayVideoFileToRemote(Int32 sessionId)
         {
@@ -1849,14 +1912,14 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Play an wave file to remote party.
+         *  @brief Play a wave file to remote party.
          *
          *  @param sessionId         Session ID of the call.
-         *  @param fileName          The file full path name, such as "c:\\test.wav".
-         *  @param fileSamplesPerSec The wave file sample in seconds, should be 8000 or 16000 or 32000.
-         *  @param loop              Set to false to stop play audio file when it is end. Set to true to play it as repeat.
+         *  @param fileName          The full filepath, such as "c:\\test.wav".
+         *  @param fileSamplesPerSec The wave file sample in seconds. It should be 8000, 16000 or 32000.
+         *  @param loop              Set to false to stop playing audio file when it is ended, or true to play it repeatedly.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 playAudioFileToRemote(Int32 sessionId, String fileName, Int32 fileSamplesPerSec, Boolean loop)
         {
@@ -1869,11 +1932,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Stop play wave file to remote side.
+         *  @brief Stop playing wave file to remote side.
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 stopPlayAudioFileToRemote(Int32 sessionId)
         {
@@ -1886,13 +1949,13 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Play an wave file to remote party as conversation background sound.
+         *  @brief Play a wave file to remote party as conversation background sound.
          *
          *  @param sessionId         Session ID of the call.
-         *  @param fileName          The file full path name, such as "c:\\test.wav".
-         *  @param fileSamplesPerSec The wave file sample in seconds, should be 8000 or 16000 or 32000.
+         *  @param fileName          The full filepath, such as "c:\\test.wav".
+         *  @param fileSamplesPerSec The wave file sample in seconds. It should be 8000, 16000 or 32000.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 playAudioFileToRemoteAsBackground(Int32 sessionId, String fileName, Int32 fileSamplesPerSec)
         {
@@ -1905,11 +1968,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Stop play an wave file to remote party as conversation background sound.
+         *  @brief Stop playing wave file to remote party as conversation background sound.
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 stopPlayAudioFileToRemoteAsBackground(Int32 sessionId)
         {
@@ -1929,26 +1992,26 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Create a conference. It's failures if the exists conference isn't destroy yet.
+         *  @brief Create a conference. It will be failed if the existent conference is not ended yet.
          *
-         *  @param conferenceVideoWindow         The UIView which using to display the conference video.
+         *  @param conferenceVideoWindow         The UIView which is used to display the conference video.
          *  @param videoResolution               The conference video resolution.
          *  @param displayLocalVideoInConference Display the local video on video window or not. 
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
-        public Int32 createConference(IntPtr conferenceVideoWindow, VIDEO_RESOLUTION videoResolution, Boolean displayLocalVideoInConference)
+        public Int32 createConference(IntPtr conferenceVideoWindow, Int32 width, Int32 height, Boolean displayLocalVideoInConference)
         {
             if (_LibSDK == IntPtr.Zero)
             {
                 return PortSIP_Errors.ECoreSDKObjectNull;
             }
 
-            return PortSIP_NativeMethods.PortSIP_createConference(_LibSDK, conferenceVideoWindow, (Int32)videoResolution, displayLocalVideoInConference);
+            return PortSIP_NativeMethods.PortSIP_createConference(_LibSDK, conferenceVideoWindow, width, height, displayLocalVideoInConference);
         }
 
         /*!
-         *  @brief Destroy the exist conference.
+         *  @brief End the existeng conference.
          */
         public void destroyConference()
         {
@@ -1961,11 +2024,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the window for a conference that using to display the received remote video image.
+         *  @brief Set the window for a conference that is used to display the received remote video image.
          *
-         *  @param videoWindow The UIView which using to display the conference video.
+         *  @param videoWindow The UIView which is used to display the conference video.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setConferenceVideoWindow(IntPtr videoWindow)
         {
@@ -1978,11 +2041,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Join a session into exist conference, if the call is in hold, it will be un-hold automatically.
+         *  @brief Join a session into existent conference. If the call is in hold, it will be un-hold automatically.
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 joinToConference(Int32 sessionId)
         {
@@ -1995,11 +2058,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Remove a session from an exist conference.
+         *  @brief Remove a session from an existent conference.
          *
          *  @param sessionId Session ID of the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 removeFromConference(Int32 sessionId)
         {
@@ -2019,14 +2082,14 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Set the audio RTCP bandwidth parameters as the RFC3556.
+         *  @brief Set the audio RTCP bandwidth parameters to the RFC3556.
          *
          *  @param sessionId The session ID of call conversation.
          *  @param BitsRR    The bits for the RR parameter.
          *  @param BitsRS    The bits for the RS parameter.
          *  @param KBitsAS   The Kbits for the AS parameter.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setAudioRtcpBandwidth(Int32 sessionId,
                                            Int32 BitsRR,
@@ -2049,7 +2112,7 @@ namespace PortSIP
          *  @param BitsRS    The bits for the RS parameter.
          *  @param KBitsAS   The Kbits for the AS parameter.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoRtcpBandwidth(Int32 sessionId,
                                           Int32 BitsRR,
@@ -2065,13 +2128,13 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the DSCP(differentiated services code point) value of QoS(Quality of Service) for audio channel.
+         *  @brief Set the DSCP (differentiated services code point) value of QoS (Quality of Service) for audio channel.
          *
          *  @param state        Set to true to enable audio QoS.
-         *  @param DSCPValue    The six-bit DSCP value. Valid range is 0-63. As defined in RFC 2472, the DSCP value is the high-order 6 bits of the IP version 4 (IPv4) TOS field and the IP version 6 (IPv6) Traffic Class field.
-         *  @param priority     The 802.1p priority(PCP) field in a 802.1Q/VLAN tag. Values 0-7 set the priority, value -1 leaves the priority setting unchanged.
+         *  @param DSCPValue    The six-bit DSCP value. Valid value ranges 0-63. As defined in RFC 2472, the DSCP value is the high-order 6 bits of the IP version 4 (IPv4) TOS field and the IP version 6 (IPv6) Traffic Class field.
+         *  @param priority     The 802.1p priority (PCP) field in a 802.1Q/VLAN tag. Values 0-7 indicate the priority, while value -1 leaves the priority setting unchanged.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setAudioQos(Boolean state, Int32 DSCPValue, Int32 priority)
         {
@@ -2084,12 +2147,12 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Set the DSCP(differentiated services code point) value of QoS(Quality of Service) for video channel.
+         *  @brief Set the DSCP (differentiated services code point) value of QoS (Quality of Service) for video channel.
          *
-         *  @param state    Set as true to enable QoS, false to disable.
-         *  @param DSCPValue The six-bit DSCP value. Valid range is 0-63. As defined in RFC 2472, the DSCP value is the high-order 6 bits of the IP version 4 (IPv4) TOS field and the IP version 6 (IPv6) Traffic Class field.
+         *  @param state    Set as true to enable QoS, or false to disable.
+         *  @param DSCPValue The six-bit DSCP value. Valid value ranges 0-63. As defined in RFC 2472, the DSCP value is the high-order 6 bits of the IP version 4 (IPv4) TOS field and the IP version 6 (IPv6) Traffic Class field.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setVideoQos(Boolean state, Int32 DSCPValue)
         {
@@ -2099,6 +2162,23 @@ namespace PortSIP
             }
 
             return PortSIP_NativeMethods.PortSIP_setVideoQos(_LibSDK, state, DSCPValue);
+        }
+
+        /*!
+         *  @brief Set the MTU size for video RTP packet.
+         *
+         *  @param mtu    Set MTU value. Allow value ranges (512-65507). Other value will be modified to the default 1450.
+         *
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
+         */
+        public Int32 setVideoMTU(Int32 mtu)
+        {
+            if (_LibSDK == IntPtr.Zero)
+            {
+                return PortSIP_Errors.ECoreSDKObjectNull;
+            }
+
+            return PortSIP_NativeMethods.PortSIP_setVideoMTU(_LibSDK, mtu);
         }
 
         /** @} */
@@ -2112,15 +2192,15 @@ namespace PortSIP
          *  @brief Get the "in-call" statistics. The statistics are reset after the query.
          *
          *  @param sessionId             The session ID of call conversation.
-         *  @param currentBufferSize     Preferred (optimal) buffer size in ms.
+         *  @param currentBufferSize     Current jitter buffer size in ms.
          *  @param preferredBufferSize   Preferred (optimal) buffer size in ms.
-         *  @param currentPacketLossRate Loss rate (network + late) in percent.
-         *  @param currentDiscardRate    Fraction of synthesized speech inserted through pre-emptive expansion .
-         *  @param currentExpandRate     Fraction of synthesized speech inserted through pre-emptive expansion .
+         *  @param currentPacketLossRate Loss rate (network + late) in percentage.
+         *  @param currentDiscardRate    Late loss rate in percentage.
+         *  @param currentExpandRate     Fraction (of original stream) of synthesized speech inserted through expansion.
          *  @param currentPreemptiveRate Fraction of synthesized speech inserted through pre-emptive expansion.
-         *  @param currentAccelerateRate Fraction of data removed through acceleration .
+         *  @param currentAccelerateRate Fraction of data removed through acceleration.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 getNetworkStatistics(Int32 sessionId,
                                          out Int32 currentBufferSize,
@@ -2157,14 +2237,14 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Obtain the RTP statisics of audio channel.
+         *  @brief Obtain the RTP statistics of audio channel.
          *
          *  @param sessionId        The session ID of call conversation.
-         *  @param averageJitterMs  Short-time average jitter (in milliseconds).
-         *  @param maxJitterMs      Maximum short-time jitter (in milliseconds).
+         *  @param averageJitterMs  Short-time average jitter, in milliseconds.
+         *  @param maxJitterMs      Maximum short-time jitter, in milliseconds.
          *  @param discardedPackets The number of discarded packets on a channel during the call.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return value a specific error code.
          */
         public Int32 getAudioRtpStatistics(Int32 sessionId,
                                            out Int32 averageJitterMs,
@@ -2189,21 +2269,29 @@ namespace PortSIP
 
 
         /*!
-         *  @brief Obtain the RTCP statisics of audio channel.
+         *  @brief Obtain the RTCP statistics of audio channel.
          *
-         *  @param sessionId       The session ID of call conversation.
-         *  @param bytesSent       The number of sent bytes.
-         *  @param packetsSent     The number of sent packets.
-         *  @param bytesReceived   The number of received bytes.
-         *  @param packetsReceived The number of received packets.
+         *  @param sessionId       		The session ID of call conversation.
+         *  @param bytesSent       		The number of sent bytes.
+         *  @param packetsSent     		The number of sent packets.
+         *  @param bytesReceived   		The number of received bytes.
+         *  @param packetsReceived 		The number of received packets.
+         *  @param sendFractionLost  	Fraction of sent lost in percentage.
+         *  @param sendCumulativeLost The number of sent cumulative lost packet.
+         *  @param recvFractionLost  	Fraction of received lost in percentage.
+         *  @param recvCumulativeLost The number of received cumulative lost packets.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 getAudioRtcpStatistics(Int32 sessionId,
                                                     out Int32 bytesSent,
                                                     out Int32 packetsSent,
                                                     out Int32 bytesReceived,
-                                                    out Int32 packetsReceived)
+                                                    out Int32 packetsReceived,
+                                                    out Int32 sendFractionLost,
+                                                    out Int32 sendCumulativeLost,
+                                                    out Int32 recvFractionLost,
+                                                    out Int32 recvCumulativeLost)
         {
             if (_LibSDK == IntPtr.Zero)
             {
@@ -2211,6 +2299,10 @@ namespace PortSIP
                 packetsSent = 0;
                 bytesReceived = 0;
                 packetsReceived = 0;
+                sendFractionLost = 0;
+                sendCumulativeLost = 0;
+                recvFractionLost = 0;
+                recvCumulativeLost = 0;
 
                 return PortSIP_Errors.ECoreSDKObjectNull;
             }
@@ -2220,7 +2312,11 @@ namespace PortSIP
                                                                        out bytesSent,
                                                                        out packetsSent,
                                                                        out bytesReceived,
-                                                                       out packetsReceived);
+                                                                       out packetsReceived,
+                                                                       out sendFractionLost,
+                                                                       out sendCumulativeLost,
+                                                                       out recvFractionLost,
+                                                                       out recvCumulativeLost);
         }
 
         /*!
@@ -2232,7 +2328,7 @@ namespace PortSIP
          *  @param bytesReceived   The number of received bytes.
          *  @param packetsReceived The number of received packets.
          *
-         *  @return  If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return  If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 getVideoRtpStatistics(Int32 sessionId, 
                                             out Int32 bytesSent,
@@ -2266,9 +2362,9 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Enable/disable Voice Activity Detection(VAD).
+         *  @brief Enable/disable Voice Activity Detection (VAD).
          *
-         *  @param state Set to true to enable VAD, false to disable.
+         *  @param state Set to true to enable VAD, or false to disable.
          */
         public void enableVAD(Boolean state)
         {
@@ -2283,22 +2379,30 @@ namespace PortSIP
         /*!
          *  @brief Enable/disable AEC (Acoustic Echo Cancellation).
          *
-         *  @param state state Set to true to enable AEC, false to disable.
+         *  @param ecMode Allow to set the AEC mode to influence different scenarios.
+         *  
+         * <p><table>
+         * <tr><th>Mode</th><th>Description</th></tr>
+         * <tr><td>EC_NONE</td><td>Disable AEC. </td></tr>
+         * <tr><td>EC_DEFAULT</td><td>Platform default AEC. </td></tr>
+         * <tr><td>EC_CONFERENCE</td><td>Desktop platform (Windows, MAC) Conferencing default (aggressive AEC). </td></tr>
+         * </table></p>
+         * 
          */
-        public void enableAEC(Boolean state)
+        public void enableAEC(EC_MODES ecMode)
         {
             if (_LibSDK == IntPtr.Zero)
             {
                 return;
             }
 
-            PortSIP_NativeMethods.PortSIP_enableAEC(_LibSDK, state);
+            PortSIP_NativeMethods.PortSIP_enableAEC(_LibSDK, (Int32)ecMode);
         }
 
         /*!
-         *  @brief Enable/disable Comfort Noise Generator(CNG).
+         *  @brief Enable/disable Comfort Noise Generator (CNG).
          *
-         *  @param state state Set to true to enable CNG, false to disable.
+         *  @param state Set it to true to enable CNG, or false to disable.
          */
         public void enableCNG(Boolean state)
         {
@@ -2311,33 +2415,53 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Enable/disable Automatic Gain Control(AGC).
+         *  @brief Enable/disable Automatic Gain Control (AGC).
          *
-         *  @param state Set to true to enable AGC, false to disable.
+         *  @param agcMode  Allow to set the AGC mode to influence different scenarios.
+         *  
+         * <p><table>
+         * <tr><th>Mode</th><th>Description</th></tr>
+         * <tr><td>AGC_DEFAULT</td><td>Disable AGC. </td></tr>
+         * <tr><td>AGC_DEFAULT</td><td>Platform default. </td></tr>
+         * <tr><td>AGC_ADAPTIVE_ANALOG</td><td>Desktop platform (Windows, MAC) adaptive mode for use when analog volume control exists. </td></tr>
+         * <tr><td>AGC_ADAPTIVE_DIGITAL</td><td>Scaling takes place in the digital domain (e.g. for conference servers and embedded devices). </td></tr>
+         * <tr><td>AGC_FIXED_DIGITAL</td><td>It can be used on embedded devices where the capture signal level is predictable. </td></tr>
+         * </table></p>
          */
-        public void enableAGC(Boolean state)
+        public void enableAGC(AGC_MODES agcMode)
         {
             if (_LibSDK == IntPtr.Zero)
             {
                 return;
             }
 
-            PortSIP_NativeMethods.PortSIP_enableAGC(_LibSDK, state);
+            PortSIP_NativeMethods.PortSIP_enableAGC(_LibSDK, (Int32)agcMode);
         }
 
         /*!
-         *  @brief Enable/disable Audio Noise Suppression(ANS).
+         *  @brief Enable/disable Audio Noise Suppression (ANS).
          *
-         *  @param state Set to true to enable ANS, false to disable.
+         *  @param nsMode Allow to set the NS mode to influence different scenarios.
+         *  
+         * <p><table>
+         * <tr><th>Mode                     </th><th>Description</th></tr>
+         * <tr><td>NS_NONE                  </td><td>Disable NS. </td></tr>
+         * <tr><td>NS_DEFAULT               </td><td>Platform default. </td></tr>
+         * <tr><td>NS_Conference            </td><td>Conferencing default. </td></tr>
+         * <tr><td>NS_LOW_SUPPRESSION       </td><td>Lowest suppression. </td></tr>
+         * <tr><td>NS_MODERATE_SUPPRESSION  </td><td>Moderate suppression. </td></tr>
+         * <tr><td>NS_HIGH_SUPPRESSION      </td><td>High suppression </td></tr>
+         * <tr><td>NS_VERY_HIGH_SUPPRESSION </td><td>Highest suppression. </td></tr>
+         * </table></p>
          */
-        public void enableANS(Boolean state)
+        public void enableANS(NS_MODES nsMode)
         {
             if (_LibSDK == IntPtr.Zero)
             {
                 return;
             }
 
-            PortSIP_NativeMethods.PortSIP_enableANS(_LibSDK, state);
+            PortSIP_NativeMethods.PortSIP_enableANS(_LibSDK, (Int32)nsMode);
         }
 
         /** @} */
@@ -2350,10 +2474,10 @@ namespace PortSIP
         /*!
          *  @brief Send OPTIONS message.
          *
-         *  @param to  The receiver of OPTIONS message.
-         *  @param sdp The SDP of OPTIONS message, it's optional if don't want send the SDP with OPTIONS message.
+         *  @param to  The recipient of OPTIONS message.
+         *  @param sdp The SDP of OPTIONS message. It's optional if user does not wish to send the SDP with OPTIONS message.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 sendOptions(String to, String sdp)
         {
@@ -2371,9 +2495,9 @@ namespace PortSIP
          *  @param sessionId    The session ID of call.
          *  @param mimeType     The mime type of INFO message.
          *  @param subMimeType  The sub mime type of INFO message.
-         *  @param infoContents The contents that send with INFO message.
+         *  @param infoContents The contents that is sent with INFO message.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 sendInfo(Int32 sessionId, String mimeType, String subMimeType, String infoContents)
         {
@@ -2391,11 +2515,11 @@ namespace PortSIP
          *  @param sessionId     The session ID of the call.
          *  @param mimeType      The mime type of MESSAGE message.
          *  @param subMimeType   The sub mime type of MESSAGE message.
-         *  @param message       The contents which send with MESSAGE message, allow binary data.
+         *  @param message       The contents which is sent with MESSAGE message. Binary data allowed.
          *  @param messageLength The message size.
          *
-         *  @return If the function succeeds, the return value is a message ID allows track the message send state in onSendMessageSuccess and onSendMessageFailure. If the function fails, the return value is a specific error code less than 0.
-         *  @remark  Example 1: send a plain text message. Note: to send other languages text, please use the UTF8 to encode the message before send.
+         *  @return If the function succeeds, it will return a message ID that allows to track the message sending state in onSendMessageSuccess and onSendMessageFailure. If the function fails, it will return a specific error code less than 0.
+         *  @remark  Example 1: send a plain text message. Note: to send text in other languages, please use the UTF-8 to encode the message before sending.
          @code
          sendMessage(sessionId, "text", "plain", "hello",6);
          @endcode
@@ -2415,23 +2539,23 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Send a out of dialog MESSAGE message to remote side.
+         *  @brief Send an out of dialog MESSAGE message to remote side.
          *
-         *  @param to            The message receiver. Likes sip:receiver@DuoCallTestTool.com
+         *  @param to            The message recipient, such as sip:receiver@portsip.com
          *  @param mimeType      The mime type of MESSAGE message.
          *  @param subMimeType   The sub mime type of MESSAGE message.
-         *  @param message       The contents which send with MESSAGE message, allow binary data.
+         *  @param message       The contents which is sent with MESSAGE message. Binary data allowed.
          *  @param messageLength The message size.
          *
-         *  @return If the function succeeds, the return value is a message ID allows track the message send state in onSendOutOfMessageSuccess and onSendOutOfMessageFailure.  If the function fails, the return value is a specific error code less than 0.
+         *  @return If the function succeeds, it will return a message ID that allows to track the message sending state in onSendOutOfMessageSuccess and onSendOutOfMessageFailure. If the function fails, it will return a specific error code less than 0.
          *  @remark
-         *  Example 1: send a plain text message. Note: to send other languages text, please use the UTF8 to encode the message before send.
+         *  Example 1: send a plain text message. Note: to send text in other languages, please use the UTF-8 to encode the message before sending.
          *  @code
-            sendOutOfDialogMessage("sip:user1@sip.DuoCallTestTool.com", "text", "plain", "hello", 6);
+            sendOutOfDialogMessage("sip:user1@sip.portsip.com", "text", "plain", "hello", 6);
          *  @endcode
          Example 2: send a binary message.
          *  @code
-           sendOutOfDialogMessage("sip:user1@sip.DuoCallTestTool.com","application",  "vnd.3gpp.sms", binData, binDataSize);
+           sendOutOfDialogMessage("sip:user1@sip.portsip.com","application",  "vnd.3gpp.sms", binData, binDataSize);
          @endcode
          */
         public Int32 sendOutOfDialogMessage(String to, String mimeType, String subMimeType, byte[] message, Int32 messageLength)
@@ -2454,11 +2578,11 @@ namespace PortSIP
         /*!
          *  @brief Send a SUBSCRIBE message for presence to a contact.
          *
-         *  @param contact The target contact, it must likes sip:contact001@sip.DuoCallTestTool.com.
-         *  @param subject This subject text will be insert into the SUBSCRIBE message. For example: "Hello, I'm Jason".<br>
-         The subject maybe is UTF8 format, you should use UTF8 to decode it.
+         *  @param contact The target contact. It must be like sip:contact001@sip.portsip.com.
+         *  @param subject This subject text will be inserted into the SUBSCRIBE message. For example: "Hello, I'm Jason".<br>
+         The subject maybe in UTF-8 format. You should use UTF-8 to decode it.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 presenceSubscribeContact(String contact, String subject)
         {
@@ -2471,11 +2595,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Accept the presence SUBSCRIBE request which received from contact.
+         *  @brief Accept the presence SUBSCRIBE request which is received from contact.
          *
-         *  @param subscribeId Subscribe id, when received a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered,the event inclues the subscribe id.
+         *  @param subscribeId Subscription ID. When receiving a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered. The event will include the subscription ID.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 presenceRejectSubscribe(Int32 subscribeId)
         {
@@ -2488,11 +2612,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Reject a presence SUBSCRIBE request which received from contact.
+         *  @brief Reject a presence SUBSCRIBE request which is received from contact.
          *
-         *  @param subscribeId Subscribe id, when received a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered,the event inclues the subscribe id.
+         *  @param subscribeId Subscription ID. When receiving a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered. The event includes the subscription ID.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 presenceAcceptSubscribe(Int32 subscribeId)
         {
@@ -2507,10 +2631,10 @@ namespace PortSIP
         /*!
          *  @brief Send a NOTIFY message to contact to notify that presence status is online/changed.
          *
-         *  @param subscribeId Subscribe id, when received a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered,the event inclues the subscribe id.
-         *  @param stateText   The state text of presende online, for example: "I'm here"
+         *  @param subscribeId Subscription ID. When receiving a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered. The event includes the subscription ID.
+         *  @param stateText   The state text of presence online. For example: "I'm here".
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 presenceOnline(Int32 subscribeId, String stateText)
         {
@@ -2525,9 +2649,9 @@ namespace PortSIP
         /*!
          *  @brief Send a NOTIFY message to contact to notify that presence status is offline.
          *
-         *  @param subscribeId Subscribe id, when received a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered,the event inclues the subscribe id.
+         *  @param subscribeId Subscription ID. When receiving a SUBSCRIBE request from contact, the event onPresenceRecvSubscribe will be triggered. The event includes the subscription ID.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 presenceOffline(Int32 subscribeId)
         {
@@ -2547,9 +2671,9 @@ namespace PortSIP
          */
 
         /*!
-         *  @brief Gets the number of audio devices available for audio recording
+         *  @brief Gets the count of audio devices available for audio recording.
          *
-         *  @return The return value is number of recording devices. If the function fails, the return value is a specific error code less than 0.
+         *  @return It will return the count of recording devices. If the function fails, it will return a specific error code less than 0.
          */
         public Int32 getNumOfRecordingDevices()
         {
@@ -2564,7 +2688,7 @@ namespace PortSIP
         /*!
          *  @brief Gets the number of audio devices available for audio playout
          *
-         *  @return The return value is number of playout devices. If the function fails, the return value is a specific error code less than 0.
+         *  @return It will return the count of playout devices. If the function fails, it will return a specific error code less than 0.
          */
         public Int32 getNumOfPlayoutDevices()
         {
@@ -2580,10 +2704,10 @@ namespace PortSIP
          *  @brief Gets the name of a specific recording device given by an index.
          *
          *  @param deviceIndex Device index (0, 1, 2, ..., N-1), where N is given by getNumOfRecordingDevices (). Also -1 is a valid value and will return the name of the default recording device.
-         *  @param nameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF8 format. 
-         *  @param nameUTF8Length The size of nameUTF8 buffer, don't let it less than 128.
+         *  @param nameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF-8 format. 
+         *  @param nameUTF8Length The size of nameUTF8 buffer. It cannot be less than 128.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code. 
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code. 
          */
         public Int32 getRecordingDeviceName(Int32 deviceIndex, StringBuilder nameUTF8, Int32 nameUTF8Length)
         {
@@ -2596,14 +2720,14 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Gets the name of a specific playout device given by an index
+         *  @brief Get the name of a specific playout device given by an index.
          *
          *  @param deviceIndex 
          *  @param deviceIndex Device index (0, 1, 2, ..., N-1), where N is given by getNumOfRecordingDevices (). Also -1 is a valid value and will return the name of the default recording device.
-         *  @param nameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF8 format. 
-         *  @param nameUTF8Length The size of nameUTF8 buffer, don't let it less than 128.
+         *  @param nameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF-8 format. 
+         *  @param nameUTF8Length The size of nameUTF8 buffer. It cannot be less than 128.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code. 
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code. 
          */
         public Int32 getPlayoutDeviceName(Int32 deviceIndex, StringBuilder nameUTF8, Int32 nameUTF8Length)
         {
@@ -2618,9 +2742,9 @@ namespace PortSIP
         /*!
          *  @brief Set the speaker volume level,
          *
-         *  @param volume Volume level of speaker, valid range is 0 - 255.
+         *  @param volume Volume level of speaker. Valid value ranges 0 - 255.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setSpeakerVolume(Int32 volume)
         {
@@ -2633,9 +2757,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Gets the speaker volume level
+         *  @brief Gets the speaker volume level.
          *
-         *  @return If the function succeeds, the return value is speaker volume, valid range is 0 - 255. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return the speaker volume with valid range 0 - 255. If the function fails, it will return a specific error code.
          */
         public Int32 getSpeakerVolume()
         {
@@ -2648,11 +2772,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Mutes the speaker device completely in the OS
+         *  @brief Mute the speaker device completely in the OS.
          *
-         *  @param enable If set to true, the device output is muted. If set to false, the output is unmuted.
+         *  @param enable If it's set to true, the device output is muted. If false, the output is unmuted.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setSystemOutputMute(Boolean enable)
         {
@@ -2665,9 +2789,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Retrieves the output device mute state in the operating system
+         *  @brief Retrieves the output device mute state in the operating system.
          *
-         *  @return If return value is true, the output device is muted. If false, the output device is not muted.
+         *  @return If it returns value true, the output device is muted. If false, the output device is not muted.
          */
         public Boolean getSystemOutputMute()
         {
@@ -2699,7 +2823,7 @@ namespace PortSIP
         /*!
          *  @brief Retrieves the current microphone volume.
          *
-         *  @return If the function succeeds, the return value is the microphone volume. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return the microphone volume. If the function fails, it will return a specific error code.
          */
         public Int32 getMicVolume()
         {
@@ -2712,11 +2836,11 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Mute the microphone input device completely in the OS
+         *  @brief Mute the microphone input device completely in the OS.
          *
-         *  @param enable If set to true, the input device is muted. Set to false is unmuted.
+         *  @param enable If it is set to true, the input device is muted, or set to false to unmute.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 setSystemInputMute(Boolean enable)
         {
@@ -2729,9 +2853,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Gets the mute state of the input device in the operating system
+         *  @brief Gets the mute state of the input device in the operating system.
          *
-         *  @return If return value is true, the input device is muted. If false, the input device is not muted.
+         *  @return If it returns value true, the input device is muted. If false, the input device is not muted.
          */
         public  Boolean getSystemInputMute()
         {
@@ -2744,9 +2868,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Use to do the audio device loop back test
+         *  @brief Use it for the audio device loop back test
          *
-         *  @param enable Set to true start audio look back test; Set to fase to stop.
+         *  @param enable Set to true to start audio look back test; or fase to stop.
          */
         public void audioPlayLoopbackTest(Boolean enable)
         {
@@ -2759,9 +2883,9 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Gets the number of available capture devices.
+         *  @brief Get the number of available capturing devices.
          *
-         *  @return The return value is number of video capture devices, if fails the return value is a specific error code less than 0.
+         *  @return It will return the count of video capturing devices. If it fails, it will return a specific error code less than 0.
          */
         public Int32 getNumOfVideoCaptureDevices()
         {
@@ -2774,15 +2898,15 @@ namespace PortSIP
         }
 
         /*!
-         *  @brief Gets the name of a specific video capture device given by an index
+         *  @brief Get the name of a specific video capture device given by an index.
          *
-         *  @param deviceIndex          Device index (0, 1, 2, ..., N-1), where N is given by getNumOfVideoCaptureDevices (). Also -1 is a valid value and will return the name of the default capture device.
-         *  @param uniqueIdUTF8   Unique identifier of the capture device.
+         *  @param deviceIndex          Device index (0, 1, 2, ..., N-1), where N is given by getNumOfVideoCaptureDevices (). Also -1 is a valid value and will return the name of the default capturing device.
+         *  @param uniqueIdUTF8   Unique identifier of the capturing device.
          *  @param uniqueIdUTF8Length Size in bytes of uniqueIdUTF8. 
-         *  @param deviceNameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF8 format.
-         *  @param deviceNameUTF8Length The size of nameUTF8 buffer, don't let it less than 128.
+         *  @param deviceNameUTF8 A character buffer to which the device name will be copied as a null-terminated string in UTF-8 format.
+         *  @param deviceNameUTF8Length The size of nameUTF8 buffer. It cannot be less than 128.
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 getVideoCaptureDeviceName(Int32 deviceIndex,
                                                StringBuilder uniqueIdUTF8,
@@ -2809,11 +2933,11 @@ namespace PortSIP
          *  @param uniqueIdUTF8     Unique identifier of the capture device. 
          *  @param uniqueIdUTF8Length Size in bytes of uniqueIdUTF8. 
          *  @param dialogTitle      The title of the video settings dialog. 
-         *  @param parentWindow     Parent window to use for the dialog box, should originally be a HWND. 
+         *  @param parentWindow     Parent window used for the dialog box. It should originally be a HWND. 
          *  @param x                Horizontal position for the dialog relative to the parent window, in pixels. 
          *  @param y                Vertical position for the dialog relative to the parent window, in pixels. 
          *
-         *  @return If the function succeeds, the return value is 0. If the function fails, the return value is a specific error code.
+         *  @return If the function succeeds, it will return value 0. If the function fails, it will return a specific error code.
          */
         public Int32 showVideoCaptureSettingsDialogBox(String uniqueIdUTF8,
                                                                     Int32 uniqueIdUTF8Length,
@@ -2885,6 +3009,7 @@ namespace PortSIP
         private PortSIP_NativeMethods.playVideoFileFinished _pvf;
         private  PortSIP_NativeMethods.audioRawCallback _arc; 
         private  PortSIP_NativeMethods.videoRawCallback _vrc;
+        private PortSIP_NativeMethods.videoDecoderCallback _virc;
         private  PortSIP_NativeMethods.receivedRTPCallback _rrc;
         private PortSIP_NativeMethods.sendingRTPCallback _src;
 
@@ -2894,6 +3019,7 @@ namespace PortSIP
 
             _arc = new PortSIP_NativeMethods.audioRawCallback(onAudioRawCallback);
             _vrc = new PortSIP_NativeMethods.videoRawCallback(onVideoRawCallback);
+            _virc = new PortSIP_NativeMethods.videoDecoderCallback(onVideoDecoderCallback);
             _rrc = new PortSIP_NativeMethods.receivedRTPCallback(onReceivedRtpPacket);
             _src = new PortSIP_NativeMethods.sendingRTPCallback(onSendingRtpPacket);
 
@@ -3223,16 +3349,10 @@ namespace PortSIP
             return 0;
         }
 
-        /** @} */
-        // end of group27
-
-        /** @defgroup group28 Presence events
-         * @{
-         */
         /*!
-         *  This event will be triggered when received the SUBSCRIBE request from a contact.
+         *  This event will be triggered when receiving the SUBSCRIBE request from a contact.
          *
-         *  @param subscribeId     The id of SUBSCRIBE request.
+         *  @param subscribeId     The ID of SUBSCRIBE request.
          *  @param fromDisplayName The display name of contact.
          *  @param from            The contact who send the SUBSCRIBE request.
          *  @param subject         The subject of the SUBSCRIBE request.
@@ -3452,7 +3572,7 @@ namespace PortSIP
                                                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)] byte[] data,
                                                Int32 dataLength)
         {
-            _SIPCallbackEvents.onVideoRawCallback(callbackObject,
+           return _SIPCallbackEvents.onVideoRawCallback(callbackObject,
                                          sessionId,
                                          callbackType,
                                          width,
@@ -3460,15 +3580,26 @@ namespace PortSIP
                                          data,
                                          dataLength);
 
+        }
+
+
+        private unsafe Int32 onVideoDecoderCallback(IntPtr callbackObject,
+                                       Int32 sessionId,
+                                       Int32 width,
+                                       Int32 height,
+                                       Int32 framerate,
+                                       Int32 bitrate)
+        {
+            _SIPCallbackEvents.onVideoDecoderCallback(callbackObject,
+                                         sessionId,
+                                         width,
+                                         height,
+                                         framerate,
+                                         bitrate);
+
             return 0;
 
         }
-
-        /** @} */
-        // end of group32
-        /** @} */
-        // end of groupDelegate
-
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

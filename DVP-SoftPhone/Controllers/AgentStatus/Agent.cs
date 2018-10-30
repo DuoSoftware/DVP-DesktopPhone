@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DuoSoftware.DuoTools.DuoLogger;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
+
 
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
@@ -63,11 +63,11 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
                     switch (value)
                     {
                         case AgentMode.Inbound:
-                            isAccept = ardsHandler.SendModeChangeRequestInbound();
+                            isAccept = true;// ardsHandler.SendModeChangeRequestInbound();
                             break;
                         case AgentMode.Offline:
                         case AgentMode.Outbound:
-                            isAccept = ardsHandler.SendModeChangeRequestOutbound();
+                            isAccept =  true;//ardsHandler.SendModeChangeRequestOutbound();
                             break;
                         case AgentMode.initiate:
                             break;
@@ -159,11 +159,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
                        {
                            UiState.InAgentBusy(CallDirection);
                            
-                       })
-                        .Case<AgentAcw>(b =>
-                        {
-                            UiState.InAgentAcwState();
-                        })
+                       })                        
                          .Case<AgentBreak>(b =>
                          {
                              UiState.InBreakState();
@@ -256,7 +252,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
         {
             try
             {
-                ardsHandler.EndBreak("EndBreak");
+                //ardsHandler.EndBreak("EndBreak");
             }
             catch (Exception exception)
             {
@@ -269,7 +265,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
         {
             try
             {
-               IsBreakRequest = ardsHandler.BreakRequest(breakReason);
+                IsBreakRequest = true;// ardsHandler.BreakRequest(breakReason);
                 if (!IsBreakRequest) return;
                 if (AgentCurrentState.GetType() != typeof (AgentIdle)) return;
                 IsBreakRequest = false;
@@ -280,21 +276,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "SendStatusChangeRequestBreak", exception, Logger.LogLevel.Error);
             }
         }
-
-        public void ResourceUnregistration()
-        {
-
-            try
-            {
-
-                Profile.Unregistration();
                
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "SendStatusChangeRequestBreak", exception, Logger.LogLevel.Error);
-            }
-        }
 
         #endregion
 

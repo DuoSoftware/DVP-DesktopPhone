@@ -251,7 +251,7 @@ namespace PortSIP
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // The delegate methods for callback functions of portsip_sdk.dll
-        // These callback functions allows you access the raw audio and video data.
+        // These callback functions allows you to access the raw audio and video data.
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public unsafe delegate Int32 audioRawCallback(IntPtr callbackObject,
@@ -267,8 +267,16 @@ namespace PortSIP
                                                Int32 callbackType,
                                                Int32 width,
                                                Int32 height,
-                                               [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)] byte[] data,
+                                               [In, Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 6)] byte[] data,
                                                Int32 dataLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public unsafe delegate Int32 videoDecoderCallback(IntPtr callbackObject,
+                                               Int32 sessionId,
+                                               Int32 width,
+                                               Int32 height,
+                                               Int32 framerate,
+                                               Int32 bitrate);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public unsafe delegate Int32 receivedRTPCallback(IntPtr callbackObject,
@@ -578,9 +586,12 @@ namespace PortSIP
                                                    String logFilePath,
                                                    Int32 maxCallLines,
                                                    String sipAgent,
-                                                   [MarshalAs(UnmanagedType.I1)] Boolean useVirtualAudioDevice,
-                                                   [MarshalAs(UnmanagedType.I1)] Boolean useVirtualVideoDevice,
+                                                   Int32 audioDeviceLayer,
+                                                   Int32 videoDeviceLayer,
                                                    out Int32 errorCode);
+
+        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static unsafe extern Int32 PortSIP_setInstanceId(IntPtr libSDK, String instanceId);
 
         [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern void PortSIP_unInitialize(IntPtr libSDK);
@@ -765,7 +776,7 @@ namespace PortSIP
 
 
         [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static unsafe extern Int32 PortSIP_setVideoResolution(IntPtr libSDK, Int32 resolution);
+        public static unsafe extern Int32 PortSIP_setVideoResolution(IntPtr libSDK, Int32 width, Int32 height);
 
 
         [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -792,8 +803,11 @@ namespace PortSIP
         [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern void PortSIP_getDynamicVolumeLevel(IntPtr libSDK, out Int32 speakerVolume, out Int32 microphoneVolume);
 
+        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static unsafe extern void PortSIP_setChannelOutputVolumeScaling(IntPtr libSDK, Int32 sessionId, Int32 scaling);
 
-          [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
+
+        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
         public static unsafe extern void PortSIP_setLocalVideoWindow(IntPtr libSDK, IntPtr localVideoWindow);
 
 
@@ -910,6 +924,11 @@ namespace PortSIP
                                                                            IntPtr callbackObject,
                                                                            videoRawCallback callbackHandler);
 
+       [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
+       public static unsafe extern Int32 PortSIP_enableVideoDecoderCallback(IntPtr libSDK,
+                                                                           [MarshalAs(UnmanagedType.I1)] Boolean enable,
+                                                                           IntPtr callbackObject,
+                                                                           videoDecoderCallback callbackHandler);
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern Int32 PortSIP_startRecord(IntPtr libSDK,
@@ -965,7 +984,8 @@ namespace PortSIP
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern Int32 PortSIP_createConference(IntPtr libSDK,
                                                                    IntPtr conferenceVideoWindow,
-                                                                   Int32 videoResolution,
+                                                                   Int32 width,
+                                                                   Int32 height,
                                                                    [MarshalAs(UnmanagedType.I1)] Boolean displayLocalVideoInConference);
 
 
@@ -1025,7 +1045,11 @@ namespace PortSIP
                                                                         out Int32 bytesSent,
                                                                         out Int32 packetsSent,
                                                                         out Int32 bytesReceived,
-                                                                        out Int32 packetsReceived);
+                                                                        out Int32 packetsReceived,
+                                                                        out Int32 sendFractionLost,
+                                                                        out Int32 sendCumulativeLost,
+                                                                        out Int32 recvFractionLost,
+                                                                        out Int32 recvCumulativeLost);
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern Int32 PortSIP_getVideoRtpStatistics(IntPtr libSDK,
@@ -1038,7 +1062,7 @@ namespace PortSIP
 
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
-       public static unsafe extern void PortSIP_enableAEC(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state);
+       public static unsafe extern void PortSIP_enableAEC(IntPtr libSDK, Int32 ecMode);
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern void PortSIP_enableVAD(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state);
@@ -1047,11 +1071,11 @@ namespace PortSIP
        public static unsafe extern void PortSIP_enableCNG(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state);
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
-       public static unsafe extern void PortSIP_enableAGC(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state);
+       public static unsafe extern void PortSIP_enableAGC(IntPtr libSDK, Int32 agcMode);
 
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
-       public static unsafe extern void PortSIP_enableANS(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state);
+       public static unsafe extern void PortSIP_enableANS(IntPtr libSDK, Int32 nsMode);
 
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern Int32 PortSIP_setAudioQos(IntPtr libSDK,
@@ -1062,6 +1086,9 @@ namespace PortSIP
        [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
        public static unsafe extern Int32 PortSIP_setVideoQos(IntPtr libSDK, [MarshalAs(UnmanagedType.I1)] Boolean state, Int32 DSCPValue);
 
+
+       [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]
+       public static unsafe extern Int32 PortSIP_setVideoMTU(IntPtr libSDK, Int32 mtu);
 
 
         [DllImport("portsip_sdk.dll", CallingConvention = CallingConvention.Cdecl)]

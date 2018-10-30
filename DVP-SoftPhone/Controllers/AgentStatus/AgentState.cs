@@ -25,8 +25,6 @@
         public abstract void OnFailMakeCall(ref Agent agent);
         public abstract void OnCallReject(ref Agent agent, string callSessionId);
         public abstract void OnEndCall(ref Agent agent, bool isCallAnswerd);
-        public abstract void OnEndACW(ref Agent agent, string callSessionId,bool afterAcw);
-
 
         public abstract void OnLogin(ref Agent agent);
         public abstract void OnLoggedOn(ref Agent agent, string callSessionId);

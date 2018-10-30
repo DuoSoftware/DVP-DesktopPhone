@@ -47,7 +47,7 @@
     <StartupObject>WPF_Softphone.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\sdk_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\facetone-logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyName>DVP-DesktopPhone</AssemblyName>
@@ -109,23 +109,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AboutWindow.xaml">
+    <Page Include="SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Include="PhoneWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    <Compile Include="SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AgentStatus\Agent.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentACW.cs" />
     <Compile Include="Controllers\AgentStatus\AgentBreak.cs" />
     <Compile Include="Controllers\AgentStatus\AgentBusy.cs" />
     <Compile Include="Controllers\AgentStatus\AgentIdle.cs" />
@@ -147,12 +148,11 @@
     <Compile Include="Controllers\CallStatus\CallTryingState.cs" />
     <Compile Include="Controllers\Common\ComMethods.cs" />
     <Compile Include="Controllers\Common\EnumCollector.cs" />
+    <Compile Include="Controllers\FileHandler.cs" />
     <Compile Include="Controllers\InterfaceClass.cs" />
     <Compile Include="Controllers\SequenceNumberGenerator.cs" />
-    <Compile Include="Controllers\Service\ardsHandler.cs" />
-    <Compile Include="Controllers\Service\httpHandler.cs" />
-    <Compile Include="Controllers\Service\monitorRestApiHandler.cs" />
     <Compile Include="Controllers\SessionId.cs" />
+    <Compile Include="Controllers\StringCipher.cs" />
     <Compile Include="Controllers\VeerySetting.cs" />
     <Compile Include="Controllers\WebSocketServiceHost.cs" />
     <Compile Include="PhoneWindow.xaml.cs">
@@ -195,22 +195,32 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\help.png" />
+    <Content Include="Resources\end-call.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\answer-call.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\exit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\facetone-logo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ringtone.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\sdk_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\setting.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\sdk_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\kayaan-patil-wpf-softphone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dial-pad-128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Image1.png" />
+    <Content Include="Resources\dial-pad-128.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DuoCallTesterLicenseKey\DuoCallTesterLicenseKey.csproj">
@@ -221,6 +231,16 @@
       <Project>{3c7cd712-cb81-4603-943a-9fae7db7c650}</Project>
       <Name>dvp_timmers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\help.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\exit.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

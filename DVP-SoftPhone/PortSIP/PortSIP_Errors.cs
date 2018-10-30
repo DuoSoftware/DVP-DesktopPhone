@@ -62,8 +62,8 @@ namespace PortSIP
         public static readonly int ECoreSipHeaderParserEmpty			= -60057;
         public static readonly int ECoreSipHeaderValueListNull			= -60058;
         public static readonly int ECoreSipHeaderNameEmpty				= -60059;
-        public static readonly int ECoreAudioSampleNotmultiple			= -60060;	//	The audio sample should be multiple of 10
-        public static readonly int ECoreAudioSampleOutOfRange			= -60061;	//	The audio sample range is 10 - 60
+        public static readonly int ECoreAudioSampleNotmultiple			= -60060;	//	The audio sample should be a multiple of 10
+        public static readonly int ECoreAudioSampleOutOfRange			= -60061;	//	The audio sample ranges 10 - 60
         public static readonly int ECoreInviteSessionNotFound			= -60062;
         public static readonly int ECoreStackException					= -60063;
         public static readonly int ECoreMimeTypeUnknown			    	= -60064;
@@ -73,9 +73,9 @@ namespace PortSIP
         public static readonly int ECoreNotFoundSubscribeId		    	= -60068;
         public static readonly int ECoreCodecNotSupport				    = -60069;
         public static readonly int ECoreCodecParameterNotSupport        = -60070;
-        public static readonly int ECorePayloadOutofRange				= -60071;	//  Dynamic Payload range is 96 - 127
+        public static readonly int ECorePayloadOutofRange				= -60071;	//  Dynamic Payload ranges 96 - 127
         public static readonly int ECorePayloadHasExist				    = -60072;	//  Duplicate Payload values are not allowed.
-        public static readonly int ECoreFixPayloadCantChange            = -60073;   //  It's fixed payload type does not allows changed.
+        public static readonly int ECoreFixPayloadCantChange            = -60073;   //  It's fixed payload type that cannot be modified.
         public static readonly int ECoreCodecTypeInvalid				= -60074;
         public static readonly int ECoreCodecWasExist					= -60075;
         public static readonly int ECorePayloadTypeInvalid				= -60076;
@@ -92,9 +92,11 @@ namespace PortSIP
         public static readonly int ECoreTrialVersionLicenseKey			= -60087;
         public static readonly int ECoreOutgoingAudioMuted				= -60088;
         public static readonly int ECoreOutgoingVideoMuted              = -60089;
+        public static readonly int ECoreFailedCreateSdp                 = -60090;
+        public static readonly int ECoreTrialVersionExpired             = -60091;
+        public static readonly int ECoreStackFailure                    = -60092;
 
-
-// audio
+        // audio
         public static readonly int EAudioFileNameEmpty					= -70000;
         public static readonly int EAudioChannelNotFound				= -70001;
         public static readonly int EAudioStartRecordFailure		    	= -70002;
@@ -115,8 +117,9 @@ namespace PortSIP
         public static readonly int EAudioPlayFileNotEnabled			    = -70017;
         public static readonly int EAudioPlayFileUnknowSeekOrigin       = -70018;
         public static readonly int EAudioCantSetDeviceIdDuringCall      = -70019;
+        public static readonly int EAudioVolumeOutOfRange               = -70020;
 
-// video
+        // video
         public static readonly int EVideoFileNameEmpty					= -80000;
         public static readonly int EVideoGetDeviceNameFailure			= -80001;
         public static readonly int EVideoGetDeviceIdFailure			    = -80002;
@@ -130,9 +133,10 @@ namespace PortSIP
         public static readonly int EVideoCantSetDeviceIdDuringCall		= -80010;
         public static readonly int EVideoUnsupportCaptureRotate		    = -80011;
         public static readonly int EVideoUnsupportCaptureResolution     = -80012;
+        public static readonly int ECameraSwitchTooOften                = -80013;
+        public static readonly int EMTUOutOfRange                       = -80014;
 
-
-// Device
+        // Device
         public static readonly int EDeviceGetDeviceNameFailure         = -90001;
     }
 }

@@ -6,24 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
+
 using DuoSoftware.DuoTools.DuoLogger;
 using Newtonsoft.Json.Linq;
 using System.Web.Script.Serialization;
+using Controllers;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
 {
     
 
-    public struct Server
-    {
-        public string token;
-        public string domain;
-        public string websocketUrl;
-        public string outboundProxy;
-        public bool enableRtcwebBreaker;
-    }
-
+   
     public sealed class AgentProfile
     {
         private static volatile AgentProfile instance;
@@ -60,8 +53,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
         public string Password { private set; get; }
         public string displayName { private set; get; }
         public string authorizationName { private set; get; }
-        public string publicIdentity { private set; get; }
-        public Server server { private set; get; }
+        public string Domain { private set; get; }
+        public string publicIdentity { private set; get; }        
         public object veeryFormat { private set; get; }
         public int acwTime { private set; get; }
 
@@ -127,116 +120,29 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.AgentStatus
         }
 
 
-        private bool GetContactVeeryFormat()
-        {
-            var url = settingObject["userServiceBaseUrl"] + "Myprofile/veeryformat/veeryaccount";
-            var responseData = HttpHandler.MakeRequest(url, "Bearer " + server.token, null, "get");
-
-            var data = jsonSerializer.Deserialize<Dictionary<string, dynamic>>(responseData.ToString());
-            if (!data["IsSuccess"]) return false;
-            veeryFormat = data["Result"];
-            return true;
-        }
-
+       
         private struct HandlingTypes
         {
             public string Type;
             public object Contact;
         }
 
-        struct dataArds
-        {
-            public string ResourceId;
-            public HandlingTypes[] HandlingTypes;
 
-        }
-
-        struct dataArdsq
-        {
-            public string ResourceId;
-            public string[] HandlingTypes;
-
-        }
-
-
-        private bool RegisterWithArds()
-        {
-
-            var url = settingObject["ardsUrl"];
-
-            var postData = new dataArds
-            {
-                ResourceId = id,
-                HandlingTypes = new HandlingTypes[]
-                {
-                    new HandlingTypes()
-                    {
-                        Type = "CALL",
-                        Contact = veeryFormat,
-                    }
-                }
-            };
-
-
-            var responseData = HttpHandler.MakeRequest(url, "Bearer " + server.token, postData, "post");
-
-            if (responseData == null) return false;
-            var data = jsonSerializer.Deserialize<Dictionary<string, dynamic>>(responseData.ToString());
-            return data["IsSuccess"];
-        }
-
-
-        public void Unregistration()
-        {
-            var url = settingObject["ardsUrl"] + "/" + id;
-            var responseData = HttpHandler.MakeRequest(url, "Bearer " + server.token, null, "delete");
-            Console.WriteLine(responseData);
-        }
-
-        public bool Login(string username, string txtPassword)
+        public bool Login(string username, string txtPassword, string domain)
         {
             try
             {
-
-                var userServiceUrl = settingObject["userServiceUrl"];
-                var encoded = HttpHandler.Base64Encode("ae849240-2c6d-11e6-b274-a9eec7dab26b:6145813102144258048");
-
-                var authUrl = new Uri(userServiceUrl);
-
-                dynamic data = new JObject();
-                data.grant_type = "password";
-                data.username = username;
-                data.password = txtPassword;
-                data.scope =
-                    "write_ardsresource write_notification read_myUserProfile read_requestmeta write_sysmonitoring profile_veeryaccount resourceid";
-
-
-                var token = HttpHandler.MakeRequest(userServiceUrl, "Basic " + encoded, data, "post");
-                var dict = jsonSerializer.Deserialize<Dictionary<string, dynamic>>(token);
-                var tokenData1 = Jose.JWT.Payload<Dictionary<string, dynamic>>(dict["access_token"]);
-
-                id = tokenData1["context"]["resourceid"];
-                publicIdentity = "sip:" + tokenData1["context"]["veeryaccount"]["contact"];
-                id = tokenData1["context"]["resourceid"];
-                var values = tokenData1["context"]["veeryaccount"]["contact"].ToString().Split('@');
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, string.Format("Login Resourceid : {0}", id), Logger.LogLevel.Info);
-
-                displayName = values[0];
+                                
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "Login...............", Logger.LogLevel.Info);               
+                displayName = username;
                 UserName = username;
                 Password = txtPassword;
-                authorizationName = values[0];
-                server = new Server
-                {
-                    domain = values[1],
-                    outboundProxy = "",
-                    enableRtcwebBreaker = false,
-                    token = dict["access_token"],
-                    websocketUrl = "wss://" + values[1] + ":7443",
-                };
+                Domain = domain;
+                authorizationName = username;                
                 localIPAddress = GetLocalIPAddress();
-                acwTime = ardsHandler.GetAcwTime(this);
+                acwTime = 5;// ardsHandler.GetAcwTime(this);
 
-                return GetContactVeeryFormat() && RegisterWithArds();
+                return true;
             }
             catch (Exception exception)
             {

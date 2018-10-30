@@ -1,7 +1,7 @@
 ﻿using Alchemy;
 using Alchemy.Classes;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
-using DuoSoftware.DuoSoftPhone.Controllers.Service;
+
 using DuoSoftware.DuoTools.DuoLogger;
 using System;
 using System.Dynamic;
@@ -91,19 +91,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        private bool ValidateToken(string token)
-        {
-            try
-            {
-                return ardsHandler.ValidateToken(token);
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "validateToken", exception, Logger.LogLevel.Error);
-                return false;
-            }
-
-        }
+        
         /// <summary>
         /// On Receive 
         /// </summary>
@@ -129,7 +117,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 if (callFunction == CallFunctions.Initiate)
                 {
                     currentContext = aContext;
-                    if (ValidateToken(callInfo[0]))
+                    if (true)
                     {
                         _duoKey = Guid.NewGuid().ToString();
                         dynamic expando = new JObject();
