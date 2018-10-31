@@ -6,6 +6,42 @@
     mc:Ignorable="d" x:Class="DVP_DesktopPhone.PhoneWindow"
         Title="Facetone" Height="450" Width="246" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" MouseDown="Window_MouseDown"  Closed="Window_Closed" Icon="Resources/facetone-logo.ico" Closing="OnClose" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged">
 
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="#4f216d"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="3" Background="#ccc9c9" BorderBrush="#5e5b5b" BorderThickness="1" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Border CornerRadius="70" Padding="0,9,0,4" BorderThickness="5" >
         <Border.BorderBrush>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -15,6 +51,14 @@
                 <GradientStop Color="#FFACACAC" Offset="0.675"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
+        <!--<Border.BorderBrush>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#6a3390" Offset="0"/>
+                <GradientStop Color="#46126b" Offset="1"/>
+                <GradientStop Color="#2c0249" Offset="0.236"/>
+                <GradientStop Color="#d13c72" Offset="0.675"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>-->
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFC8C8C8" Offset="0"/>
@@ -22,6 +66,13 @@
                 <GradientStop Color="#FFD0D0D0" Offset="0.81"/>
             </LinearGradientBrush>
         </Border.Background>
+        <!--<Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#7d25ba" Offset="0"/>
+                <GradientStop Color="#ee437e" Offset="0.314"/>
+                <GradientStop Color="#2c0249" Offset="0.81"/>
+            </LinearGradientBrush>
+        </Border.Background>-->
         <Grid >            
             <Menu VerticalAlignment="Top" HorizontalAlignment="Right" Background="{x:Null}" Margin="0,9,16,0" Height="16" Width="49">
                 <MenuItem  Height="20" Width="16" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Setting">
@@ -63,12 +114,12 @@
                             <ColumnDefinition Width="65" />
                         </Grid.ColumnDefinitions>
 
-                        <Button  Cursor="Hand" Grid.Row="0" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonAnswer"  Click="buttonPickUp_Click" Background="{x:Null}" BorderBrush="#FF91DC5A"  >
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="0" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonAnswer"  Click="buttonPickUp_Click" Background="{x:Null}" BorderBrush="#FF91DC5A"  >
                             <Image Source="Resources/answer-call.png" />
                         </Button>
-                        
-                        <Button Cursor="Hand" Grid.Row="0" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonDialPad" Visibility="Hidden" Content="^"   Click="buttonDialPad_Click" Background="{x:Null}" />
-                        <Button Cursor="Hand" Grid.Row="0" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonReject"   Click="buttonHangUp_Click" Background="{x:Null}" BorderBrush="#FFD80027"  >
+
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="0" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonDialPad" Visibility="Hidden" Content="^"   Click="buttonDialPad_Click" Background="{x:Null}" />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="0" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonReject"   Click="buttonHangUp_Click" Background="{x:Null}" BorderBrush="#FFD80027"  >
                             <Image Source="Resources/end-call.png" />
                         </Button>
 
@@ -86,19 +137,19 @@
                             <ColumnDefinition Width="65" />
                             <ColumnDefinition Width="65" />
                         </Grid.ColumnDefinitions>
-                        <Button Cursor="Hand" Grid.Row="1" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="1" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="1" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
-                        <Button Cursor="Hand" Grid.Row="1" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="2" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="2" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
-                        <Button Cursor="Hand"  Grid.Row="1" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="3" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="3" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
-                        <Button Cursor="Hand" Grid.Row="2" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="4" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="4" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
-                        <Button Cursor="Hand" Grid.Row="2" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0"  Content="5" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="5" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
-                        <Button Cursor="Hand" Grid.Row="2" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="6" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="6" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
-                        <Button Cursor="Hand" Grid.Row="3" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="7" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="7" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
-                        <Button Cursor="Hand" Grid.Row="3" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="8" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="8" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
-                        <Button Cursor="Hand" Grid.Row="3" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="9" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="9" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
-                        <Button Cursor="Hand" Grid.Row="4" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="0" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
-                        <Button Cursor="Hand" Grid.Row="4" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="*" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="10" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
-                        <Button Cursor="Hand" Grid.Row="4" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="#" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="11" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
-                    </Grid>
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="1" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="1" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="1" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="1" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="2" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="2" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand"  Grid.Row="1" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="3" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="3" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="2" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="4" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="4" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="2" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0"  Content="5" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="5" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="2" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="6" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="6" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="3" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="7" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="7" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="3" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="8" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="8" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="3" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="9" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="9" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="4" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" Content="0" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="0" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"   />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="4" Grid.Column="1" Width="64" Height="34" Margin="0,0,0,0" Content="*" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="10" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="4" Grid.Column="2" Width="64" Height="34" Margin="0,0,0,0" Content="#" HorizontalAlignment="Center" VerticalAlignment="Center" Tag="11" Click="buttonKeyPadButton_Click" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B"  />
+                        </Grid>
                     <Border Panel.ZIndex="5000" Visibility="Hidden"  x:Name="GrdVolume" BorderBrush="#FF797979" Background="#FF404040" BorderThickness="2" Margin="0,4,0,0" CornerRadius="10" >
                         <Grid  Margin="0">
                         <Grid.RowDefinitions>
@@ -184,7 +235,7 @@
                     <TextBlock x:Name="textBlockRegStatus" HorizontalAlignment="Left" Height="24" Margin="8,8,0,0" TextWrapping="Wrap" Text="Offline" VerticalAlignment="Top" Width="82" FontSize="16" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="textBlockIdentifier" HorizontalAlignment="Right" Height="16" Margin="0,8,8,0" TextWrapping="Wrap" Text="Identifier" VerticalAlignment="Top" TextAlignment="Right" FontSize="16" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="textBlockCallStateInfo" Margin="8,50,8,0" TextWrapping="Wrap" Text="No connection" TextAlignment="Center" FontSize="18.667" FontFamily="Times New Roman" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBlockDialingNumber" Height="41" TextWrapping="Wrap" TextAlignment="Center" Margin="7,0,7,18" FontSize="30" FontFamily="Times New Roman" ToolTip="Number" Background="#FFE7E9F1" BorderThickness="2" Width="189" VerticalAlignment="Bottom" FontWeight="Bold"/>
+                    <TextBox Template="{StaticResource TextBoxBaseControlTemplate}" x:Name="textBlockDialingNumber" Height="41" TextWrapping="Wrap" TextAlignment="Center" Margin="7,0,7,18" FontSize="30" FontFamily="Times New Roman" ToolTip="Number" Background="#FFE7E9F1" BorderThickness="2" Width="189" VerticalAlignment="Bottom" FontWeight="Bold"/>
                     <Image x:Name="picMic" Source="Resources/Mutemicrophone.ico" Visibility="Hidden" Height="18" Width="18" VerticalAlignment="Top" Margin="24,8,0,0" Panel.ZIndex="7000"/>
                     <Image x:Name="picSpek" Source="Resources/muteSpek.ico" Visibility="Hidden" Height="18" Width="18" VerticalAlignment="Top" Margin="0,8,30,0" Panel.ZIndex="7001"/>
                 </Grid>
@@ -193,7 +244,8 @@
             <Image HorizontalAlignment="Left" Height="21" Margin="28,5,0,0" VerticalAlignment="Top" Width="24" Source="pack://siteoforigin:,,,/Resources/facetone-logo.ico"  />
             <TextBlock Height="16" TextWrapping="Wrap" Text="Facetone" Margin="92,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" LineHeight="14" TextAlignment="Center" FontWeight="Bold"/>
 
-
+            
         </Grid>
     </Border>
+    
 </Window>
