@@ -1169,10 +1169,10 @@ namespace DVP_DesktopPhone
                 initAutioCodecs();
 
                 _phoneController.enableVAD(false);
-                _phoneController.enableAEC(EC_MODES.EC_DEFAULT);
+                _phoneController.enableAEC(EC_MODES.EC_CONFERENCE);
                 _phoneController.enableCNG(false);
-                _phoneController.enableAGC(AGC_MODES.AGC_DEFAULT);
-                _phoneController.enableANS(NS_MODES.NS_DEFAULT);
+                _phoneController.enableAGC(AGC_MODES.AGC_ADAPTIVE_ANALOG);
+                _phoneController.enableANS(NS_MODES.NS_VERY_HIGH_SUPPRESSION);
                 _phoneController.enableReliableProvisional(false);
 
                 var rt_register = _phoneController.registerServer(3600, 3);
