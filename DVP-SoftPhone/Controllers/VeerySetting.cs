@@ -1,15 +1,14 @@
-﻿using System;
+﻿using DuoSoftware.DuoSoftPhone.Controllers.Common;
+using DuoSoftware.DuoTools.DuoLogger;
+using PortSIP;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DuoSoftware.DuoTools.DuoLogger;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers
 {
-    
+
     public sealed class VeerySetting
     {
         private static volatile VeerySetting instance;
@@ -51,9 +50,17 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 ShowInTaskbar = section["showInTaskbar"].ToLower().Equals("true");
                 WebSocketlistnerPort = Convert.ToInt16(section["WebSocketlistnerPort"]);
                 stunServer = section["STUNserver"].ToString();
-                stunServerPort = section["STUNserverPort"].ToString()==""?0:Convert.ToInt16(section["STUNserverPort"].ToString());
-                audioDeviceLayer = string.IsNullOrEmpty(section["audioDeviceLayer"])? (0): (Convert.ToInt32(section["audioDeviceLayer"]));
+                stunServerPort = section["STUNserverPort"].ToString() == "" ? 0 : Convert.ToInt16(section["STUNserverPort"].ToString());
+                audioDeviceLayer = string.IsNullOrEmpty(section["audioDeviceLayer"]) ? (0) : (Convert.ToInt32(section["audioDeviceLayer"]));
                 videoDeviceLayer = string.IsNullOrEmpty(section["videoDeviceLayer"]) ? (0) : (Convert.ToInt32(section["videoDeviceLayer"]));
+
+                enableVAD = section["enableVAD"].ToLower().Equals("true");
+                enableAEC = (EC_MODES)Enum.Parse(typeof(EC_MODES), section["enableAEC"], true); 
+                enableCNG = section["enableCNG"].ToLower().Equals("true");
+                enableAGC = (AGC_MODES)Enum.Parse(typeof(AGC_MODES), section["enableAGC"], true);
+                enableANS = (NS_MODES)Enum.Parse(typeof(NS_MODES), section["enableANS"], true); 
+                enableReliableProvisional = section["enableReliableProvisional"].ToLower().Equals("true");
+
             }
             catch (Exception exception)
             {
@@ -100,5 +107,17 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public int videoDeviceLayer { get; private set; }
 
         public bool ShowInTaskbar { get; set; }
+
+        public bool enableVAD { get; set; }
+
+        public EC_MODES enableAEC { get; set; }
+
+        public bool enableCNG { get; set; }
+
+        public AGC_MODES enableAGC { get; set; }
+
+        public NS_MODES enableANS { get; set; }
+
+        public bool enableReliableProvisional { get; set; }
     }
 }

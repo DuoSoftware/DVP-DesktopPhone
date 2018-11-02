@@ -1,31 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.Common
 {
+    
+
     public enum CallFunctions
     {
-        IncomingCall=0,
+        IncomingCall = 0,
         MakeCall = 1,
         EndCall = 2,
         HoldCall = 3,
         UnholdCall = 4,
         TransferCall = 5,
         AnswerCall = 6,
-        RejectCall=7,
-        MuteCall=8,
+        RejectCall = 7,
+        MuteCall = 8,
         UnmuteCall = 9,
         EtlCall = 10,
         ConfCall = 11,
         Initiate = 12,
         Registor = 13,
         Unregistor = 14,
-        Initialized=15,
-        InitializFail=16,
-        Handshake=17,
+        Initialized = 15,
+        InitializFail = 16,
+        Handshake = 17,
         Outbound = 18,
         Inbound = 19,
         TransferIVR = 20,

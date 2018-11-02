@@ -1168,12 +1168,12 @@ namespace DVP_DesktopPhone
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setLocalVideoWindow-end", Logger.LogLevel.Info);
                 initAutioCodecs();
 
-                _phoneController.enableVAD(false);
-                _phoneController.enableAEC(EC_MODES.EC_CONFERENCE);
-                _phoneController.enableCNG(false);
-                _phoneController.enableAGC(AGC_MODES.AGC_ADAPTIVE_ANALOG);
-                _phoneController.enableANS(NS_MODES.NS_VERY_HIGH_SUPPRESSION);
-                _phoneController.enableReliableProvisional(false);
+                _phoneController.enableVAD(VeerySetting.Instance.enableVAD);
+                _phoneController.enableAEC(VeerySetting.Instance.enableAEC);
+                _phoneController.enableCNG(VeerySetting.Instance.enableCNG);
+                _phoneController.enableAGC(VeerySetting.Instance.enableAGC);
+                _phoneController.enableANS(VeerySetting.Instance.enableANS);
+                _phoneController.enableReliableProvisional(VeerySetting.Instance.enableReliableProvisional);
 
                 var rt_register = _phoneController.registerServer(3600, 3);
 
