@@ -965,6 +965,7 @@ namespace DVP_DesktopPhone
             {
                 StopRingInTone();
                 StopRingTone();
+                
                 if (_call.CallCurrentState.GetType() == typeof(CallRingingState) || _call.CallCurrentState.GetType() == typeof(CallIncommingState))
                 {
                     SetStatusMessage("Answering");
@@ -1027,7 +1028,8 @@ namespace DVP_DesktopPhone
                 {
                     SetStatusMessage("Answering");
                     _phoneController.answerCall(_call.portSipSessionId, false);
-                    webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
+                    if (webSocketlistner!=null)
+                        webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
                 }
                 else if (_agent.AgentCurrentState.GetType() == typeof(AgentIdle) && _agent.AgentMode == AgentMode.Inbound && _call.CallCurrentState.GetType() == typeof(CallIdleState))
                 {
@@ -1038,6 +1040,7 @@ namespace DVP_DesktopPhone
                     //}
                     mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call.\nPlease change Mode to Outbound.", ToolTipIcon.Warning);
                     SetStatusMessage("Fail to Make Call");
+                    if (webSocketlistner != null)
                     webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("MakeCall-Fail. AgentCurrentState: {0}, CallCurrentState: {1}", _agent.AgentCurrentState, _call.CallCurrentState), Logger.LogLevel.Error);
 
@@ -1239,10 +1242,13 @@ namespace DVP_DesktopPhone
 
         private void initAutioCodecs()
         {
+			_phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_OPUS);
+            _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_SPEEX);
+            _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_ISACWB);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMA);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMU);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_G729);
-            _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_OPUS);
+            
 
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_DTMF); // For RTP event - DTMF (RFC2833)
         }
