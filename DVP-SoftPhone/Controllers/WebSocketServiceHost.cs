@@ -29,6 +29,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         // key
         private static string _duoKey;
 
+
         /// <summary>
         /// -- WebSocketServiceHost
         /// </summary>
@@ -41,7 +42,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             try
             {
                 _duoKey = Guid.NewGuid().ToString();
-                var server = new WebSocketServer(port, IPAddress.Any)
+                var server = new WebSocketServer(port, IPAddress.Loopback)
                 {
                     OnConnected = OnConnected,
                     OnDisconnect = OnDisconnected,
@@ -82,7 +83,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             Reply(message.ToString());
         }
 
-        public void SendMessageToClient(CallFunctions message, dynamic expando)
+        public static void SendMessageToClient(CallFunctions message, dynamic expando)
         {
             try
             {
@@ -140,7 +141,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 if (callInfo.Length != 4)
                 {
                     Reply("Invalid Call Information's.");
-                    throw new FieldAccessException("Invalid Call Information's.");
+                    throw new FieldAccessException("Invalid Call Information's. " + aContext.ClientAddress);
                 }
 
                 var callFunction = (CallFunctions)Enum.Parse(typeof(CallFunctions), callInfo[1]);
@@ -154,7 +155,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 if (!_duoKey.Equals(callInfo[0]))
                 {
                     Reply("Invalid veery API Key.");
-                    throw new SecurityException("Invalid SecurityToken or Expired.");
+                    throw new SecurityException("Invalid SecurityToken or Expired. " + aContext.ClientAddress);
                 }
 
                 if (OnRecive != null)
@@ -217,8 +218,21 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
 
             try
             {
-                if (OnRecive != null)
+                if (OnRecive != null && currentContext.ClientAddress == aContext.ClientAddress)
+                {
                     OnRecive(CallFunctions.Unregistor, null, null);
+                    Reply(CallFunctions.Unregistor.ToString());
+                    currentContext = null;
+                }
+                else
+                {
+                    dynamic expando = new JObject();
+                    expando.description = "Unauthorized user try to communicate.[" + aContext.ClientAddress + "]";
+                    SendMessageToClient(CallFunctions.Unauthorized, expando);
+                    throw new InvalidOperationException("unauthorized user try to communicate.[" + aContext.ClientAddress+"]");
+                }
+
+                
             }
             catch (Exception exception)
             {

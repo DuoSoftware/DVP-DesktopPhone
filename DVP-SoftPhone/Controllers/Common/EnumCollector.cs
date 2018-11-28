@@ -27,6 +27,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.Common
         Outbound = 18,
         Inbound = 19,
         TransferIVR = 20,
+        Unauthorized = 21,
     }
 
     public struct CallLog

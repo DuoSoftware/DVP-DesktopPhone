@@ -1,36 +1,44 @@
-﻿using System;
+﻿using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
-using DuoSoftware.DuoSoftPhone.Controllers.AgentStatus;
-using DuoSoftware.DuoSoftPhone.Controllers.Common;
-using PortSIP;
+using System;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 {
     public class CallAgentClintConnectedState : CallState
     {
+        public override void OnAnswering(ref Call call)
+        {
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+        }
+
         public override void OnAnswer(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnHold(ref Call call, CallActions callAction)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnUnHold(ref Call call, CallActions callAction)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnNoAnswer(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnReset(ref Call call)
         {
-           call.CallCurrentState=new CallConnectedState();
+            call.CallCurrentState = new CallConnectedState();
         }
 
         public override void OnDisconnected(ref Call call)
@@ -41,7 +49,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnTransferReq(ref Call call, CallActions callAction)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnTranferFail(ref Call call)
@@ -101,29 +110,34 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnMakeCall(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnRinging(ref Call call, int callbackIndex, int callbackObject, int sessionId, string statusText, int statusCode)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnIncoming(ref Call call, int callbackIndex, int callbackObject, int sessionId, string callerDisplayName,
             string caller, string calleeDisplayName, string callee, string audioCodecNames, string videoCodecNames,
             bool existsAudio, bool existsVideo)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnTimeout(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnEndCallSession(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnCallConference(ref Call call)
@@ -134,7 +148,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnCallConferenceFail(ref Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnSetStatus(ref Call call)
@@ -157,7 +172,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
                     case CallActions.ETL_Requested:
                     case CallActions.ETL_InProgress:
                     case CallActions.ETL_Call:
-                        throw new InvalidOperationException(string.Format("Invalid Call Status. OnSetStatus : {0}",CallAction));
+                        throw new InvalidOperationException(string.Format("Invalid Call Status. OnSetStatus : {0}", CallAction));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -174,7 +189,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnSessinCreate(ref Call call, string sessionId)
         {
-             try { throw new NotImplementedException("Invalid Call Status."); } catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
     }
 }
