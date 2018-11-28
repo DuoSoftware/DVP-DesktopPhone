@@ -83,7 +83,24 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             Reply(message.ToString());
         }
 
-        public static void SendMessageToClient(CallFunctions message, dynamic expando)
+        private static void SendMessageToClient_test(CallFunctions message, dynamic expando)
+        {
+            try
+            {
+                if (currentContext == null) return;
+
+                expando.veery_api_key = _duoKey;
+                expando.veery_command = message.ToString();
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
+                currentContext.Send(expando.ToString());
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "Reply", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        public void SendMessageToClient(CallFunctions message, dynamic expando)
         {
             try
             {
@@ -228,7 +245,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 {
                     dynamic expando = new JObject();
                     expando.description = "Unauthorized user try to communicate.[" + aContext.ClientAddress + "]";
-                    SendMessageToClient(CallFunctions.Unauthorized, expando);
+                    SendMessageToClient_test(CallFunctions.Unauthorized, expando);
                     throw new InvalidOperationException("unauthorized user try to communicate.[" + aContext.ClientAddress+"]");
                 }
 
