@@ -163,7 +163,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Controllers\CallStatus\CallAnsweringState.cs" />
     <Compile Include="Controllers\CallStatus\CallConnectingState.cs" />
+    <Compile Include="Controllers\CallStatus\CallDisconnectingState.cs" />
+    <Compile Include="Controllers\CallStatus\CallinitiateState.cs" />
+    <Compile Include="Controllers\PhoneStatus\Phone.cs" />
+    <Compile Include="Controllers\PhoneStatus\PhoneInitializing.cs" />
+    <Compile Include="Controllers\PhoneStatus\PhoneOffline.cs" />
+    <Compile Include="Controllers\PhoneStatus\PhoneOnline.cs" />
+    <Compile Include="Controllers\PhoneStatus\PhoneState.cs" />
+    <Compile Include="Controllers\SipCallbackEvents.cs" />
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -171,14 +180,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\AgentStatus\Agent.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentBreak.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentBusy.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentIdle.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentInitiate.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentOffline.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentProfile.cs" />
-    <Compile Include="Controllers\AgentStatus\AgentState.cs" />
     <Compile Include="Controllers\CallStatus\Call.cs" />
     <Compile Include="Controllers\CallStatus\CallAgentClintConnectedState.cs" />
     <Compile Include="Controllers\CallStatus\CallAgentSupConnectedState.cs" />

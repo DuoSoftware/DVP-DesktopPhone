@@ -1,14 +1,11 @@
 ﻿using Alchemy;
 using Alchemy.Classes;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
-
 using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Dynamic;
 using System.Net;
 using System.Security;
-using DuoSoftware.DuoSoftPhone.Controllers.AgentStatus;
-using Newtonsoft.Json.Linq;
 
 
 namespace DuoSoftware.DuoSoftPhone.Controllers
@@ -125,8 +122,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 //abc123|Initiate|123456789|othr
                 dynamic expando = new JObject();
                 expando.veery_api_key = _duoKey;
-              expando.veery_command = message;
-                
+                expando.veery_command = message;
+
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
                 currentContext.Send(expando.ToString());
             }
@@ -136,7 +133,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// On Receive 
         /// </summary>
@@ -185,7 +182,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// On Connect
         /// </summary>
@@ -193,7 +190,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         private static void OnConnect(UserContext aContext)
         {
             Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
-            
+
             //try
             //{
             //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
@@ -246,14 +243,14 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                     dynamic expando = new JObject();
                     expando.description = "Unauthorized user try to communicate.[" + aContext.ClientAddress + "]";
                     SendMessageToClient_test(CallFunctions.Unauthorized, expando);
-                    throw new InvalidOperationException("unauthorized user try to communicate.[" + aContext.ClientAddress+"]");
+                    throw new InvalidOperationException("unauthorized user try to communicate.[" + aContext.ClientAddress + "]");
                 }
 
-                
+
             }
             catch (Exception exception)
             {
-               Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected", exception, Logger.LogLevel.Error);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected", exception, Logger.LogLevel.Error);
             }
         }
     }

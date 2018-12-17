@@ -12,35 +12,41 @@ Notes				:
 
 #endregion
 
-using DuoSoftware.DuoTools.DuoLogger;
+using Controllers.PhoneStatus;
+using DuoSoftware.DuoSoftPhone.Controllers;
+using DuoSoftware.DuoSoftPhone.Controllers.CallStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
+using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
+using System;
 
 #region References
-
-using System;
 
 #endregion
 
 #region Content
 
-namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
+namespace Controllers.CallStatus
 {
-    
+
     public class Call
     {
         #region Local Variables
+        private static volatile Call instance;
+        private static object syncRoot = new Object();
 
         private CallState _callCurrentState;
         private CallState _callPvState;
         public Guid currentCallLogId;
-        
+
         #endregion
 
         #region Properties
 
-        private IUiState UiState { get; set; }
+        public WebSocketServiceHost WebSocketlistner { get; private set; }
+        public IUiState UiState { get; protected internal set; }
 
-        
+
 
         public int portSipSessionId { get; set; }
 
@@ -53,7 +59,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
             set
             {
                 _callPvState = value;
-               
+
             }
         }
 
@@ -67,29 +73,29 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
             {
                 _callPvState = _callCurrentState;
                 _callCurrentState = value;
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, string.Format("Call Current States [{0}] To [{1}]",_callPvState,value),  Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, string.Format("Call Current States [{0}] To [{1}]", _callPvState, value), Logger.LogLevel.Info);
                 ChangeUI(value);
             }
         }
 
         public string PhoneNo { get; set; }
         public string CallSessionId { get; set; }
-        
+
         #endregion
 
         #region Constructors
 
-        public Call(string phoneNo, IUiState uiState)
+        public Call()
         {
-            UiState = uiState;
-            PhoneNo = phoneNo;
-            CallCurrentState = new CallIdleState();
-            
+            CallCurrentState = new CallinitiateState();
+            UiState = Phone.Instance.UiState;
+            WebSocketlistner = Phone.Instance.WebSocketlistner;
         }
 
         #endregion
 
         #region Interface Implementations
+
 
         #endregion
 
@@ -113,14 +119,53 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
                 new ComMethods.SwitchOnType<CallState>(state)
                     .Case<CallAgentClintConnectedState>(initiate => UiState.InCallAgentClintConnectedState())
                     .Case<CallAgentSupConnectedState>(i => UiState.InCallAgentSupConnectedState(state.CallAction))
-                    .Case<CallConferenceState>(b => UiState.InCallConferenceState())
-                     .Case<CallConnectedState>(b => UiState.InCallConnectedState())
-                     .Case<CallIncommingState>(b => UiState.InCallIncommingState())
-                      .Case<CallDisconnectedState>(b => UiState.InCallDisconnectedState())
+                    .Case<CallConferenceState>(b =>
+                    {
+                        var setting = VeerySetting.Instance;
+                        Phone.Instance.SendDtmf(setting.ConferenceCode);
+                        UiState.InCallConferenceState();
+                        WebSocketlistner.SendMessageToClient(CallFunctions.ConfCall);
+                    })
+                     .Case<CallConnectedState>(b =>
+                    {
+                        UiState.InCallConnectedState();
+                        UiState.ShowStatusMessage("Call Established");
+                    })
+                     .Case<CallIncommingState>(b =>
+                    {
+
+                        UiState.InCallIncommingState(PhoneNo);
+                        dynamic expando = new JObject();
+                        expando.number = PhoneNo;
+                        WebSocketlistner.SendMessageToClient(CallFunctions.IncomingCall, expando);
+
+                    })
+                      .Case<CallDisconnectingState>(b =>
+                    {
+                        UiState.InCallDisconnectingState();
+                        this.CallCurrentState = new CallDisconnectedState("Callee Disconnected");
+                        
+                    }).Case<CallDisconnectedState>(b =>
+                    {
+                        UiState.InCallDisconnectedState(this.CallCurrentState.Reason);
+                        WebSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                        this.CallCurrentState = new CallIdleState();
+                    })
                         .Case<CallHoldState>(b => UiState.InCallHoldState(state.CallAction))
                          .Case<CallIdleState>(b => UiState.InCallIdleState())
-                         //.Case<CallRingingState>(b => UiState.InCallRingingState())
-                         .Case<CallTryingState>(b => UiState.InCallTryingState())
+                    .Case<CallRingingState>(b =>
+                    {
+                        UiState.InCallRingingState();
+                        WebSocketlistner.SendMessageToClient(CallFunctions.MakeCall);
+                    })
+                         .Case<CallTryingState>(b =>
+                    {
+                        UiState.InCallTryingState();
+                        WebSocketlistner.SendMessageToClient(CallFunctions.MakeCall);
+                    }).Case<CallAnsweringState>(b =>
+                    {
+                        UiState.OnCallAnswering();
+                    })
                     .Default<CallIdleState>(t => UiState.InCallIdleState());
             }
             catch (Exception exception)
@@ -140,18 +185,28 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
         #endregion
 
         #region Public Methods
-
-        public void SetDialInfo(int portsipSessionId, Guid newGuid)
+        public static Call Instance
         {
-            currentCallLogId = newGuid;
-            portSipSessionId = portsipSessionId;
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new Call();
+                    }
+                }
+
+                return instance;
+            }
         }
 
         #endregion
 
         #endregion
 
-       
+
     }
 }
 

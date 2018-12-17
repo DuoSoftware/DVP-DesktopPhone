@@ -2,8 +2,32 @@
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.Common
 {
-    
 
+    public struct SipProfile
+    {
+        public string localIPAddress;
+        public string UserName;
+        public string Password;
+        public string DisplayName;
+        public string AuthorizationName;
+        public string Domain;
+        public string PublicIdentity;
+        public object VeeryFormat;
+        public int SipServerPort { get; set; }
+    }
+
+    public enum CallDirection
+    {
+        Incoming = 0,
+        Outgoing = 1,
+    }
+    public enum OperationMode
+    {
+        Offline = 0,
+        Inbound = 1,
+        Outbound = 2,
+        initiate = 3,
+    }
     public enum CallFunctions
     {
         IncomingCall = 0,
@@ -28,6 +52,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.Common
         Inbound = 19,
         TransferIVR = 20,
         Unauthorized = 21,
+        AnswerCallFail = 22
     }
 
     public struct CallLog
