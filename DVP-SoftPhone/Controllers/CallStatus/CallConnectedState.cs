@@ -107,7 +107,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnDisconnected(Call call, string reason)
         {
-            try { call.CallCurrentState = new CallDisconnectedState(reason);}
+            try { call.CallCurrentState = new CallDisconnectedState(reason); }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 

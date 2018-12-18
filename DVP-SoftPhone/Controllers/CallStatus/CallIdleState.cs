@@ -53,7 +53,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnDisconnecting(Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnDisconnected(Call call, string reason)
@@ -64,7 +65,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnDisconnectFail(Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnTransferReq(Call call, Phone phone)
@@ -130,9 +132,6 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
         {
             try
             {
-                var phone = Phone.Instance;
-                phone.PortsipSessionId = sessionId;
-
                 call.PhoneNo = caller.Split('@')[0].Replace("sip:", "");
                 call.CallSessionId = call.PhoneNo;
                 call.portSipSessionId = sessionId;

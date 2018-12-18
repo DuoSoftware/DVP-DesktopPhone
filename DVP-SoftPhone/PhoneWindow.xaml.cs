@@ -8,12 +8,14 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using Button = System.Windows.Controls.Button;
 using MessageBox = System.Windows.MessageBox;
 
@@ -166,7 +168,7 @@ namespace DVP_DesktopPhone
                     return;
 
                 textBlockDialingNumber.Text += btn.Content.ToString().Trim();
-                _phone.SendDtmf(GetDtmfSignalFromButtonTag(btn).ToString().ToCharArray());
+                _phone.SendDtmf(GetDtmfSignalFromButtonTag(btn));
             }
             catch (Exception exception)
             {
@@ -185,19 +187,19 @@ namespace DVP_DesktopPhone
 
         }
 
-        private int GetDtmfSignalFromButtonTag(Button button)
+        private string GetDtmfSignalFromButtonTag(Button button)
         {
             if (button == null)
-                return -1;
+                return  "-1";
 
             if (button.Tag == null)
-                return -1;
+                return "-1";
 
             int signal;
             if (int.TryParse(button.Tag.ToString(), out signal))
-                return signal;
+                return signal.ToString();
 
-            return -1;
+            return "-1";
         }
 
 
@@ -896,11 +898,11 @@ namespace DVP_DesktopPhone
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
-                    buttonHold.IsEnabled = true;
+                    buttonHold.IsEnabled = false;
                     buttonAnswer.IsEnabled = false;
-                    buttonReject.IsEnabled = false;
+                    buttonReject.IsEnabled = true;
                     buttontransferIvr.IsEnabled = false;
-                    buttontransferCall.IsEnabled = true;
+                    buttontransferCall.IsEnabled = false;
                     buttonEtl.IsEnabled = true;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = true;
@@ -924,11 +926,11 @@ namespace DVP_DesktopPhone
                     //textBlockCallStateInfo.Text = "INITIALIZING";
 
                     buttonHold.Content = "Hold";
-                    buttonHold.IsEnabled = true;
+                    buttonHold.IsEnabled = false;
                     buttonAnswer.IsEnabled = false;
                     buttonReject.IsEnabled = false;
                     buttontransferIvr.IsEnabled = false;
-                    buttontransferCall.IsEnabled = true;
+                    buttontransferCall.IsEnabled = false;
                     buttonEtl.IsEnabled = true;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = true;
@@ -1073,6 +1075,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
+                StopRingTone();
                 Dispatcher.Invoke(new Action(() =>
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
@@ -1083,15 +1086,15 @@ namespace DVP_DesktopPhone
                     buttonDialPad.Visibility = Visibility.Hidden;
                     buttonHold.Content = "Hold";
                     buttonHold.IsEnabled = false;
-                    buttonAnswer.IsEnabled = false;
-                    buttonReject.IsEnabled = false;
+                    buttonAnswer.IsEnabled = true;
+                    buttonReject.IsEnabled = true;
                     buttontransferIvr.IsEnabled = false;
                     buttontransferCall.IsEnabled = false;
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
                     textBlockCallStateInfo.Text = "IDLE";
-
+                    textBlockDialingNumber.Text = "";
                     _callDurations.Stop();
                     _callDurations.Enabled = false;
                 }));
@@ -1321,6 +1324,9 @@ namespace DVP_DesktopPhone
             }
         }
         #endregion
+
+
+       
 
     }
 }

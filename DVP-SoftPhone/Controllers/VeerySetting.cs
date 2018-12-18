@@ -19,12 +19,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             try
             {
                 var section = (NameValueCollection)ConfigurationManager.GetSection("VeerySetting");
-                TransferExtCode = section["TransferExtCode"].ToCharArray();
-                TransferIvrCode = section["TransferIvrCode"].ToCharArray();
-                TransferPhnCode = section["TransferPhnCode"].ToCharArray();
-                SwapCode = section["SwapCode"].ToCharArray();
-                ConferenceCode = section["ConferenceCode"].ToCharArray();
-                EtlCode = section["EtlCode"].ToCharArray();
+                TransferExtCode = section["TransferExtCode"];
+                TransferIvrCode = section["TransferIvrCode"];
+                TransferPhnCode = section["TransferPhnCode"];
+                SwapCode = section["SwapCode"];
+                ConferenceCode = section["ConferenceCode"];
+                EtlCode = section["EtlCode"];
                 DtmfValues = new Dictionary<char, int>
                 {
                     {'0', 0},
@@ -85,12 +85,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-        public char[] TransferExtCode { get; private set; }
-        public char[] TransferIvrCode { get; private set; }
-        public char[] TransferPhnCode { get; private set; }
-        public char[] SwapCode { get; private set; }
-        public char[] ConferenceCode { get; private set; }
-        public char[] EtlCode { get; private set; }
+        public string TransferExtCode { get; private set; }
+        public string TransferIvrCode { get; private set; }
+        public string TransferPhnCode { get; private set; }
+        public string SwapCode { get; private set; }
+        public string ConferenceCode { get; private set; }
+        public string EtlCode { get; private set; }
         public Dictionary<char, int> DtmfValues { get; private set; }
         public int AutoAnswerDelay { get; private set; }
         public bool NotificationStateValidationIgnore { get; private set; }

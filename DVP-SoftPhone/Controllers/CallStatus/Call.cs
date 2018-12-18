@@ -115,7 +115,7 @@ namespace Controllers.CallStatus
         {
             try
             {
-
+                WebSocketlistner = Phone.Instance.WebSocketlistner;
                 new ComMethods.SwitchOnType<CallState>(state)
                     .Case<CallAgentClintConnectedState>(initiate => UiState.InCallAgentClintConnectedState())
                     .Case<CallAgentSupConnectedState>(i => UiState.InCallAgentSupConnectedState(state.CallAction))
@@ -142,6 +142,7 @@ namespace Controllers.CallStatus
                     })
                       .Case<CallDisconnectingState>(b =>
                     {
+                        Phone.Instance.EndCall();
                         UiState.InCallDisconnectingState();
                         this.CallCurrentState = new CallDisconnectedState("Callee Disconnected");
                         
@@ -152,7 +153,9 @@ namespace Controllers.CallStatus
                         this.CallCurrentState = new CallIdleState();
                     })
                         .Case<CallHoldState>(b => UiState.InCallHoldState(state.CallAction))
-                         .Case<CallIdleState>(b => UiState.InCallIdleState())
+                         .Case<CallIdleState>(b => 
+                        UiState.InCallIdleState()
+                        )
                     .Case<CallRingingState>(b =>
                     {
                         UiState.InCallRingingState();
