@@ -188,7 +188,7 @@
                             <ColumnDefinition Width="66" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="0" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonAnswer"  Click="buttonPickUp_Click" Background="{x:Null}" BorderBrush="#FF91DC5A"  >
+                        <Button Style="{StaticResource TabButton}" Cursor="Hand" Grid.Row="0" Grid.Column="0" Width="64" Height="34" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonAnswer" Background="{x:Null}" BorderBrush="#FF91DC5A"  >
                             <Image Source="Resources/answer-call.png" />
                         </Button>
 

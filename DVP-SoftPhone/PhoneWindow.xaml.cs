@@ -126,7 +126,7 @@ namespace DVP_DesktopPhone
             {
 
                 buttonAnswer.IsEnabled = false;
-                if (string.IsNullOrEmpty(textBlockDialingNumber.Text))
+                /*if (string.IsNullOrEmpty(textBlockDialingNumber.Text))
                 {
                     mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Please Enter Number To Dial.", ToolTipIcon.Warning);
                     return;
@@ -139,8 +139,9 @@ namespace DVP_DesktopPhone
                 else
                 {
                     MakeCall(sender, e);
-                }
+                }*/
 
+                MakeCall(sender, e);
             }));
 
 
@@ -576,7 +577,7 @@ namespace DVP_DesktopPhone
 
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    switch (mode)
+                    /*switch (mode)
                     {
                         case OperationMode.Offline:
                             break;
@@ -589,7 +590,7 @@ namespace DVP_DesktopPhone
                         case OperationMode.initiate:
                             break;
 
-                    }
+                    }*/
 
                 }));
 
@@ -679,8 +680,7 @@ namespace DVP_DesktopPhone
 
                 Dispatcher.Invoke(new Action(() =>
                 {
-
-
+                   
                     waitPanel.Visibility = Visibility.Hidden;
                     GrdCallButton.Visibility = Visibility.Visible;
                     GrdDailpad.Visibility = Visibility.Visible;
@@ -890,6 +890,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
+                return; // disble till call server send trnasfer state in sip message
                 Dispatcher.Invoke(new Action(() =>
                 {
                     //GrdCallFunctions.Visibility = Visibility.Visible;
@@ -918,6 +919,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
+                return; // disble till call server send trnasfer state in sip message
                 Dispatcher.Invoke(new Action(() =>
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
@@ -946,6 +948,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
+                return; // disble till call server send trnasfer state in sip message
                 Dispatcher.Invoke(new Action(() =>
                 {
                     //GrdCallFunctions.Visibility = Visibility.Hidden;
@@ -1078,11 +1081,9 @@ namespace DVP_DesktopPhone
                 StopRingTone();
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    //GrdCallFunctions.Visibility = Visibility.Hidden;
-                    //GrdDailpad.Visibility = Visibility.Hidden;
-                    //
-                    //GrdAcw.Visibility=Visibility.Hidden;
-                    //textBlockCallStateInfo.Text = "";
+                    this.buttonAnswer.Click -= MakeCall;
+                    this.buttonAnswer.Click -= AnswerCall;
+                    this.buttonAnswer.Click += MakeCall;
                     buttonDialPad.Visibility = Visibility.Hidden;
                     buttonHold.Content = "Hold";
                     buttonHold.IsEnabled = false;
@@ -1097,6 +1098,7 @@ namespace DVP_DesktopPhone
                     textBlockDialingNumber.Text = "";
                     _callDurations.Stop();
                     _callDurations.Enabled = false;
+                    textBlockCallStateInfo.Text = "IDLE";
                 }));
             }
             catch (Exception exception)
@@ -1171,7 +1173,7 @@ namespace DVP_DesktopPhone
             }
         }
 
-        public void setPhoneNumber(string number)
+        public void SetPhoneNumber(string number)
         {
             try
             {
@@ -1179,6 +1181,7 @@ namespace DVP_DesktopPhone
                 Dispatcher.Invoke(new Action(() =>
                 {
                     textBlockDialingNumber.Text = number;
+                    Call.Instance.PhoneNo = number;
                 }));
             }
             catch (Exception exception)
@@ -1223,6 +1226,9 @@ namespace DVP_DesktopPhone
                 PlayRingTone();
                 Dispatcher.Invoke(new Action(() =>
                 {
+                    this.buttonAnswer.Click -= MakeCall;
+                    this.buttonAnswer.Click -= AnswerCall;
+                    this.buttonAnswer.Click += AnswerCall;
                     GrdCallFunctions.Visibility = Visibility.Hidden;
                     GrdDailpad.Visibility = Visibility.Visible;
 

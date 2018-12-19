@@ -39,7 +39,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         void InAgentBusy(CallDirection callDirection);
         void InCallMuteUnmute(bool isMute);
         void OnCallAnswering();
-        void setPhoneNumber(string number);
+        void SetPhoneNumber(string number);
     }
 
 

@@ -27,6 +27,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.Common
         Inbound = 1,
         Outbound = 2,
         initiate = 3,
+        mixmode = 4,
     }
     public enum CallFunctions
     {
