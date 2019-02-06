@@ -53,7 +53,7 @@ namespace DVP_DesktopPhone
                 {
                     SendDtmf(setting.DtmfValues[c]);
                 }
-                webSocketlistner.SendMessageToClient(CallFunctions.ConfCall);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.ConfCall);
             }
             catch (Exception exception)
             {
@@ -71,7 +71,7 @@ namespace DVP_DesktopPhone
                 {
                     SendDtmf(setting.DtmfValues[c]);
                 }
-                webSocketlistner.SendMessageToClient(CallFunctions.EtlCall);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.EtlCall);
             }
             catch (Exception exception)
             {
@@ -356,6 +356,31 @@ namespace DVP_DesktopPhone
         {
             AutoAnswerEnable = false;
         }
+
+        private void inboundMenu_Checked(object sender, RoutedEventArgs e)
+        {
+            Outbound.IsChecked = false;
+            _agent.AgentMode = AgentMode.Inbound;
+        }
+
+        private void inboundMenu_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _agent.AgentMode = AgentMode.Offline;
+        }
+
+        private void outboundMenu_Checked(object sender, RoutedEventArgs e)
+        {
+            Inbound.IsChecked = false;
+            _agent.AgentMode = AgentMode.Outbound;
+        }
+
+        private void outboundMenu_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _agent.AgentMode = AgentMode.Offline;
+        }
+
+
+
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -683,7 +708,7 @@ namespace DVP_DesktopPhone
                     string.IsNullOrEmpty(callInfo[1]) || callInfo[1] == "undefined" ||
                     string.IsNullOrEmpty(callInfo[2]) || callInfo[2] == "undefined")
                 {
-                    webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
                     return;
                 }
 
@@ -721,7 +746,7 @@ namespace DVP_DesktopPhone
             }
             catch (Exception exception)
             {
-                webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "RegistorPhone", exception, Logger.LogLevel.Error);
 
             }
@@ -789,7 +814,7 @@ namespace DVP_DesktopPhone
                             Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "TransferCall-SendDTMF", exception, Logger.LogLevel.Error);
                         }
                     }
-                    webSocketlistner.SendMessageToClient(CallFunctions.TransferCall);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.TransferCall);
                 }
             }
             catch (Exception exception)
@@ -835,7 +860,7 @@ namespace DVP_DesktopPhone
                             Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "TransferIVR-SendDTMF", exception, Logger.LogLevel.Error);
                         }
                     }
-                    webSocketlistner.SendMessageToClient(CallFunctions.TransferIVR);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.TransferIVR);
                 }
             }
             catch (Exception exception)
@@ -856,7 +881,7 @@ namespace DVP_DesktopPhone
                     _isMute = !_isMute;
                     picMic.Visibility = _isMute ? Visibility.Visible : Visibility.Hidden;
                 });
-                webSocketlistner.SendMessageToClient(_isMute ? CallFunctions.MuteCall : CallFunctions.UnmuteCall);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(_isMute ? CallFunctions.MuteCall : CallFunctions.UnmuteCall);
 
             }
             catch (Exception exception)
@@ -879,7 +904,7 @@ namespace DVP_DesktopPhone
                         _call.CallCurrentState.OnHold(ref _call, CallActions.Hold);
                         status = "Hold Call";
                     }
-                    webSocketlistner.SendMessageToClient(CallFunctions.HoldCall);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.HoldCall);
 
                 }
                 else if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
@@ -890,7 +915,7 @@ namespace DVP_DesktopPhone
                         _call.CallCurrentState.OnUnHold(ref _call, CallActions.UnHold);
                         status = "Connected";
                     }
-                    webSocketlistner.SendMessageToClient(CallFunctions.UnholdCall);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.UnholdCall);
                 }
                 if (!string.IsNullOrEmpty(status))
                 {
@@ -940,7 +965,7 @@ namespace DVP_DesktopPhone
                         _phoneController.rejectCall(_call.portSipSessionId, 486);
                         status = "Call Rejected";
                     }
-                    //webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                    //if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                 }
                 else
                     _phoneController.hangUp(_call.portSipSessionId);
@@ -951,7 +976,7 @@ namespace DVP_DesktopPhone
                 _agent.AgentCurrentState.OnEndCall(ref _agent, true);
                 if (_isMute)
                     MuteUnmute();
-                // webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                // if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
             }
             catch (Exception exception)
             {
@@ -965,12 +990,12 @@ namespace DVP_DesktopPhone
             {
                 StopRingInTone();
                 StopRingTone();
-                
+
                 if (_call.CallCurrentState.GetType() == typeof(CallRingingState) || _call.CallCurrentState.GetType() == typeof(CallIncommingState))
                 {
                     SetStatusMessage("Answering");
                     _phoneController.answerCall(_call.portSipSessionId, false);
-                    webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
+                    if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
                 }
                 else
                 {
@@ -994,6 +1019,20 @@ namespace DVP_DesktopPhone
             {
                 StopRingInTone();
                 StopRingTone();
+                if (_agent.AgentMode == AgentMode.Offline)
+                {
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+
+                        mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Invalid Agent Statud", ToolTipIcon.Error);
+                        SetStatusMessage("Fail to Make Call");
+                        buttonAnswer.IsEnabled = true;
+
+                    }));
+
+
+                    return;
+                }
                 if (_agent.AgentCurrentState.GetType() == typeof(AgentIdle) && _agent.AgentMode == AgentMode.Outbound)
                 {
                     if (!String.IsNullOrEmpty(no))
@@ -1011,13 +1050,13 @@ namespace DVP_DesktopPhone
                             mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call", ToolTipIcon.Error);
                             _agent.AgentCurrentState.OnFailMakeCall(ref _agent);
                             _call.CallCurrentState.OnTimeout(ref _call);
-                            webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                            if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                             return;
                         }
                         SetStatusMessage("Dialing");
                         _agent.PortsipSessionId = _call.portSipSessionId;
                         _call.SetDialInfo(_call.portSipSessionId, Guid.NewGuid());
-                        webSocketlistner.SendMessageToClient(CallFunctions.MakeCall);
+                        if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.MakeCall);
                     }
                     else
                     {
@@ -1028,7 +1067,7 @@ namespace DVP_DesktopPhone
                 {
                     SetStatusMessage("Answering");
                     _phoneController.answerCall(_call.portSipSessionId, false);
-                    if (webSocketlistner!=null)
+                    if (webSocketlistner != null)
                         webSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
                 }
                 else if (_agent.AgentCurrentState.GetType() == typeof(AgentIdle) && _agent.AgentMode == AgentMode.Inbound && _call.CallCurrentState.GetType() == typeof(CallIdleState))
@@ -1040,16 +1079,20 @@ namespace DVP_DesktopPhone
                     //}
                     mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call.\nPlease change Mode to Outbound.", ToolTipIcon.Warning);
                     SetStatusMessage("Fail to Make Call");
+                    buttonAnswer.IsEnabled = true;
                     if (webSocketlistner != null)
-                    webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                        webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger4, string.Format("MakeCall-Fail. AgentCurrentState: {0}, CallCurrentState: {1}", _agent.AgentCurrentState, _call.CallCurrentState), Logger.LogLevel.Error);
 
                 }
                 else
                 {
                     mynotifyicon.ShowBalloonTip(1000, "FaceTone - Phone", "Fail to Make Call.", ToolTipIcon.Warning);
-                    webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                     SetStatusMessage("Fail to Make Call");
+                    InCallIdleState();
+                    InAgentIdleState();
+                    if (webSocketlistner != null)
+                        webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
                 }
 
 
@@ -1242,13 +1285,13 @@ namespace DVP_DesktopPhone
 
         private void initAutioCodecs()
         {
-			_phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_OPUS);
+            _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_OPUS);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_SPEEX);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_ISACWB);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMA);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_PCMU);
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_G729);
-            
+
 
             _phoneController.addAudioCodec(AUDIOCODEC_TYPE.AUDIOCODEC_DTMF); // For RTP event - DTMF (RFC2833)
         }
@@ -1568,6 +1611,7 @@ namespace DVP_DesktopPhone
                 mynotifyicon.ShowBalloonTip(1000, "FaceTone", "Phone Initialized.", ToolTipIcon.Info);
                 _call = new Call(string.Empty, this);
                 _agent.AgentCurrentState.OnLogin(ref _agent);
+                if (webSocketlistner != null)
                 webSocketlistner.SendMessageToClient(CallFunctions.Initialized);
             }
             catch (Exception exception)
@@ -1583,6 +1627,7 @@ namespace DVP_DesktopPhone
             _agent.SipStatus = false;
             _sipLogined = false;
             InitializeError(statusText, statusCode);
+            if (webSocketlistner != null)
             webSocketlistner.SendMessageToClient(CallFunctions.InitializFail);
             return 0;
         }
@@ -1625,7 +1670,7 @@ namespace DVP_DesktopPhone
                 }
                 dynamic expando = new JObject();
                 expando.number = _call.PhoneNo;
-                webSocketlistner.SendMessageToClient(CallFunctions.IncomingCall, expando);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.IncomingCall, expando);
             }
             catch (Exception exception)
             {
@@ -2716,7 +2761,7 @@ namespace DVP_DesktopPhone
                     picMic.Visibility = Visibility.Hidden;
                     picSpek.Visibility = Visibility.Hidden;
                 }));
-                webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
+                if (webSocketlistner != null) webSocketlistner.SendMessageToClient(CallFunctions.EndCall);
             }
             catch (Exception exception)
             {
