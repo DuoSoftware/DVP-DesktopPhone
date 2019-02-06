@@ -26,7 +26,7 @@ namespace Controllers.PhoneStatus
             try
             {
                 phone.phoneCurrentState = new PhoneOnline();
-                phone.OprationMode = OperationMode.Inbound;
+                phone.OprationMode = OperationMode.Outbound;
                 Call.Instance.CallCurrentState = new CallIdleState();
             }
             catch (Exception exception)
@@ -68,10 +68,29 @@ namespace Controllers.PhoneStatus
         {
             try
             {
+                //if (VeerySetting.Instance.AgentConsoleintegration)
+                //{
+                //    phone.UiState.InPhoneInitializing();
+                //    phone.InitializePhone(false);
+                //}
+                //else
+                //{
+                //    var data = FileHandler.ReadUserData();
+                //    if (data == null)
+                //    {
+                //        phone.UiState.InSettingPage();
+                //        //data = FileHandler.WriteUserData("9502", "DuoS123", "duo.media1.veery.cloud");
+                //        data = FileHandler.ReadUserData();
+                //    }
+                //    phone.GenarateSipProfile(data.GetValue("name").ToString(), data.GetValue("password").ToString(), data.GetValue("domain").ToString(), Convert.ToInt16(data.GetValue("Delay").ToString()) * 1000);
+                //    phone.InitializePhone(false);
+                //    phone.phoneCurrentState.OnLoggedOn(phone);
+                //}
+
                 if (VeerySetting.Instance.AgentConsoleintegration)
                 {
                     phone.UiState.InPhoneInitializing();
-                    phone.InitializePhone(false);
+                    
                 }
                 else
                 {
@@ -83,10 +102,9 @@ namespace Controllers.PhoneStatus
                         data = FileHandler.ReadUserData();
                     }
                     phone.GenarateSipProfile(data.GetValue("name").ToString(), data.GetValue("password").ToString(), data.GetValue("domain").ToString(), Convert.ToInt16(data.GetValue("Delay").ToString()) * 1000);
-                    phone.InitializePhone(false);
-                    phone.phoneCurrentState.OnLoggedOn(phone);
+                   
                 }
-                
+                phone.InitializePhone(false);
             }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "PhoneInitializing", exception, Logger.LogLevel.Error); }
         }
