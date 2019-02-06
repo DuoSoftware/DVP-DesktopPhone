@@ -26,6 +26,7 @@ namespace Controllers.PhoneStatus
             try
             {
                 phone.phoneCurrentState = new PhoneOnline();
+                phone.OprationMode = OperationMode.Inbound;
                 Call.Instance.CallCurrentState = new CallIdleState();
             }
             catch (Exception exception)
@@ -70,6 +71,7 @@ namespace Controllers.PhoneStatus
                 if (VeerySetting.Instance.AgentConsoleintegration)
                 {
                     phone.UiState.InPhoneInitializing();
+                    phone.InitializePhone(false);
                 }
                 else
                 {
@@ -81,9 +83,10 @@ namespace Controllers.PhoneStatus
                         data = FileHandler.ReadUserData();
                     }
                     phone.GenarateSipProfile(data.GetValue("name").ToString(), data.GetValue("password").ToString(), data.GetValue("domain").ToString(), Convert.ToInt16(data.GetValue("Delay").ToString()) * 1000);
-                    
+                    phone.InitializePhone(false);
+                    phone.phoneCurrentState.OnLoggedOn(phone);
                 }
-                phone.InitializePhone(false);
+                
             }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "PhoneInitializing", exception, Logger.LogLevel.Error); }
         }

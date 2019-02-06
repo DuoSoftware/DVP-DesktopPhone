@@ -841,6 +841,9 @@ namespace DVP_DesktopPhone
                     buttonEtl.IsEnabled = false;
                     buttonswapCall.IsEnabled = false;
                     buttonConference.IsEnabled = false;
+
+                    Inbound.IsChecked = _phone.OprationMode == OperationMode.Inbound;
+                    Outbound.IsChecked = _phone.OprationMode == OperationMode.Outbound;
                 }));
             }
             catch (Exception exception)
@@ -1119,6 +1122,7 @@ namespace DVP_DesktopPhone
                     _callDurations.Stop();
                     _callDurations.Enabled = false;
                     textBlockCallStateInfo.Text = "IDLE";
+                    
                 }));
             }
             catch (Exception exception)
