@@ -156,7 +156,13 @@
                     <MenuItem x:Name="settingMenuItem" Header="Setting" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Setting" Click="SettingMenuItem_Click" Visibility="Hidden" />
                     <MenuItem x:Name="volumeMenuItem" Header="Volume" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Volume" Click="volumeMenuItem_Click" Visibility="Visible" />
                     <MenuItem x:Name="autoanswerMenu" Header="Auto Answer" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Auto Answer" IsCheckable="true" Checked="autoanswerMenu_Checked" Unchecked="autoanswerMenu_Unchecked"/>
+                    <MenuItem Header="Mode" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Mode" >
+                        <MenuItem Header="Inbound" Name="Inbound" IsCheckable="true" Checked="inboundMenu_Checked" Unchecked="inboundMenu_Unchecked"/>
+                        <MenuItem Header="Outbound" Name="Outbound" IsCheckable="true" Checked="outboundMenu_Checked" Unchecked="outboundMenu_Unchecked"/>
+                    </MenuItem>
                     <MenuItem Header="About" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="About" Click="HelpMenuItem_Click" />
+                    
+
 
                 </MenuItem>
                 <MenuItem x:Name="phone_minimize"  Height="20" Width="16" Cursor="Hand" Margin="0" ToolTip="Phone Minimize" VerticalAlignment="Center" HorizontalAlignment="Center" Click="phone_minimize_Click">

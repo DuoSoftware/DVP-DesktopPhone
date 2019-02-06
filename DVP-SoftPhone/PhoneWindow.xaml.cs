@@ -8,14 +8,12 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Markup;
 using Button = System.Windows.Controls.Button;
 using MessageBox = System.Windows.MessageBox;
 
@@ -191,7 +189,7 @@ namespace DVP_DesktopPhone
         private string GetDtmfSignalFromButtonTag(Button button)
         {
             if (button == null)
-                return  "-1";
+                return "-1";
 
             if (button.Tag == null)
                 return "-1";
@@ -360,6 +358,28 @@ namespace DVP_DesktopPhone
         private void autoanswerMenu_Unchecked(object sender, RoutedEventArgs e)
         {
             AutoAnswerEnable = false;
+        }
+
+        private void inboundMenu_Checked(object sender, RoutedEventArgs e)
+        {
+            Outbound.IsChecked = false;
+            _phone.OprationMode = OperationMode.Inbound;
+        }
+
+        private void inboundMenu_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _phone.OprationMode = OperationMode.Offline;
+        }
+
+        private void outboundMenu_Checked(object sender, RoutedEventArgs e)
+        {
+            Inbound.IsChecked = false;
+            _phone.OprationMode = OperationMode.Outbound;
+        }
+
+        private void outboundMenu_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _phone.OprationMode = OperationMode.Offline;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -680,7 +700,7 @@ namespace DVP_DesktopPhone
 
                 Dispatcher.Invoke(new Action(() =>
                 {
-                   
+
                     waitPanel.Visibility = Visibility.Hidden;
                     GrdCallButton.Visibility = Visibility.Visible;
                     GrdDailpad.Visibility = Visibility.Visible;
@@ -1332,7 +1352,7 @@ namespace DVP_DesktopPhone
         #endregion
 
 
-       
+
 
     }
 }

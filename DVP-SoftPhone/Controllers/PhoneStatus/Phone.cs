@@ -45,13 +45,13 @@ namespace Controllers.PhoneStatus
 
         internal int AutoAnswerDelay = 10000;
         internal bool AutoAnswerEnable { get; set; }
-        
+
         public WebSocketServiceHost WebSocketlistner { get; private set; }
         public string PhoneSessionId { get; private set; }
         public IUiState UiState { get; protected internal set; }
         public int acwTime { private set; get; }
 
-        public OperationMode OprationMode { get; private set; }
+        public OperationMode OprationMode { get; set; }
 
         public PhoneState phoneCurrentState
         {
@@ -370,7 +370,7 @@ namespace Controllers.PhoneStatus
                 else
                     reply = _phoneController.hangUp(_call.portSipSessionId);*/
 
-                
+
                 if (_call.CallCurrentState.GetType() == typeof(CallIncommingState))
                 {
                     reply = _phoneController.rejectCall(_call.portSipSessionId, 486);
@@ -381,7 +381,7 @@ namespace Controllers.PhoneStatus
                     reply = _phoneController.hangUp(_call.portSipSessionId);
                     Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger9, string.Format("hangUp. Agent Status : [{0}], Call Status : [{1}]", this.phoneCurrentState, _call.CallCurrentState), Logger.LogLevel.Debug);
                 }
-                    
+
 
 
                 if (reply == 0)
@@ -445,7 +445,7 @@ namespace Controllers.PhoneStatus
             try
             {
 
-                if (this.phoneCurrentState.GetType() == typeof(PhoneOnline) && this.OprationMode==OperationMode.Outbound)
+                if (this.phoneCurrentState.GetType() == typeof(PhoneOnline) && this.OprationMode == OperationMode.Outbound)
                 {
                     if (!string.IsNullOrEmpty(no))
                     {
@@ -589,7 +589,7 @@ namespace Controllers.PhoneStatus
         {
             try
             {
-                
+
                 UiState.ShowStatusMessage(". . .Registering. . .");
                 var callInfo = message.Split('-'); // "name-password-domain"
                 if (callInfo.Length < 3 || string.IsNullOrEmpty(callInfo[0]) || callInfo[0] == "undefined" ||
@@ -648,7 +648,7 @@ namespace Controllers.PhoneStatus
                 {
                     this.phoneCurrentState.OnLoggedOn(this);
                 }
-                
+
                 //InitializePhone(true);
             }
             catch (Exception exception)
@@ -665,7 +665,7 @@ namespace Controllers.PhoneStatus
             try
             {
                 this.phoneCurrentState.OnOffline(this, "Offline");
-                
+
                 /*Dispatcher.Invoke(() =>
                 {
                     textBlockIdentifier.Text = "Offline";
@@ -949,7 +949,7 @@ namespace Controllers.PhoneStatus
                 _phoneController.setAudioDeviceId(0, 0);
 
                 _phoneController.addSupportedMimeType("INFO", "text", "plain");
-               
+
 
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "InitializePhone-end", Logger.LogLevel.Info);
 
