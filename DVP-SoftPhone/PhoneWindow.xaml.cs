@@ -219,7 +219,7 @@ namespace DVP_DesktopPhone
         {
             try
             {
-                Process.Start("http://www.facetone.com/");
+                Process.Start("http://www.facetone.com/about/");
             }
             catch (Exception exception)
             {
