@@ -589,6 +589,7 @@ namespace Controllers.PhoneStatus
         {
             try
             {
+                if (!VeerySetting.Instance.AgentConsoleintegration) return;
 
                 UiState.ShowStatusMessage(". . .Registering. . .");
                 var callInfo = message.Split('-'); // "name-password-domain"
@@ -601,7 +602,9 @@ namespace Controllers.PhoneStatus
                 }
 
                 UninitializePhone();
-                var domain = callInfo[2]; var password = callInfo[1]; var username = callInfo[0];
+                var domain = callInfo[2];
+                var password = callInfo[1];
+                var username = callInfo[0];
 
                 var _sipServerPort = 5060;
                 if (callInfo[2].Contains('@'))
@@ -984,78 +987,87 @@ namespace Controllers.PhoneStatus
                         string.Format(
                             "[webSocketlistner]External Application send Commands. callFunction : {0}, Phone No : {1}",
                             callFunction, no), Logger.LogLevel.Info);
-                            var _call = Call.Instance;
-                            switch (callFunction)
+
+                            if (VeerySetting.Instance.AgentConsoleintegration)
                             {
-                                case CallFunctions.Registor:
-                                    RegistorPhone(othr);
-                                    break;
-                                case CallFunctions.Unregistor:
-                                    UnregistorPhone(othr);
-                                    break;
-                                case CallFunctions.MakeCall:
-                                    {
-                                        UiState.SetPhoneNumber(no);
-                                        MakeCall(no);
-                                    }
-                                    break;
-                                case CallFunctions.AnswerCall:
-                                    AnswerCall();
-                                    break;
-                                case CallFunctions.EndCall:
-                                case CallFunctions.RejectCall:
-                                    _call.CallCurrentState.OnDisconnecting(_call);
-                                    break;
-
-                                case CallFunctions.HoldCall:
-                                    HoldUnholdCall();
-                                    break;
-                                case CallFunctions.MuteCall:
-                                    MuteMicrophone();
-                                    break;
-                                case CallFunctions.EtlCall:
-                                    _call.CallCurrentState.OnEndLinkLine(_call, this);
-                                    break;
-                                case CallFunctions.ConfCall:
-                                    _call.CallCurrentState.OnCallConference(_call, this);
-                                    break;
-                                case CallFunctions.Inbound:
-                                    this.OprationMode = OperationMode.Inbound;
-                                    break;
-                                case CallFunctions.Outbound:
-                                    this.OprationMode = OperationMode.Outbound;
-                                    break;
-                                case CallFunctions.TransferIVR:
-                                    {
-                                        if (!string.IsNullOrEmpty(no))
+                                var _call = Call.Instance;
+                                switch (callFunction)
+                                {
+                                    case CallFunctions.Registor:
+                                        RegistorPhone(othr);
+                                        break;
+                                    case CallFunctions.Unregistor:
+                                        UnregistorPhone(othr);
+                                        break;
+                                    case CallFunctions.MakeCall:
                                         {
-                                            if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
-                                            {
-                                                HoldUnholdCall();
-                                            }
                                             UiState.SetPhoneNumber(no);
-                                            this.TransferIVR(no, _call.CallSessionId, _call.CallCurrentState.ToString());
+                                            MakeCall(no);
                                         }
-                                    }
-                                    break;
-                                case CallFunctions.TransferCall:
-                                    {
-                                        if (!string.IsNullOrEmpty(no))
-                                        {
-                                            if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
-                                            {
-                                                HoldUnholdCall();
-                                            }
-                                            UiState.SetPhoneNumber(no);
-                                            _call.CallCurrentState.OnTransferReq(_call, this);
-                                            //this.TransferCall(no, _call.CallSessionId, _call.CallCurrentState.ToString());
-                                        }
-                                    }
-                                    break;
+                                        break;
+                                    case CallFunctions.AnswerCall:
+                                        AnswerCall();
+                                        break;
+                                    case CallFunctions.EndCall:
+                                    case CallFunctions.RejectCall:
+                                        _call.CallCurrentState.OnDisconnecting(_call);
+                                        break;
 
-                                default:
-                                    throw new ArgumentOutOfRangeException("callFunction");
+                                    case CallFunctions.HoldCall:
+                                        HoldUnholdCall();
+                                        break;
+                                    case CallFunctions.MuteCall:
+                                        MuteMicrophone();
+                                        break;
+                                    case CallFunctions.EtlCall:
+                                        _call.CallCurrentState.OnEndLinkLine(_call, this);
+                                        break;
+                                    case CallFunctions.ConfCall:
+                                        _call.CallCurrentState.OnCallConference(_call, this);
+                                        break;
+                                    case CallFunctions.Inbound:
+                                        this.OprationMode = OperationMode.Inbound;
+                                        break;
+                                    case CallFunctions.Outbound:
+                                        this.OprationMode = OperationMode.Outbound;
+                                        break;
+                                    case CallFunctions.TransferIVR:
+                                        {
+                                            if (!string.IsNullOrEmpty(no))
+                                            {
+                                                if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
+                                                {
+                                                    HoldUnholdCall();
+                                                }
+                                                UiState.SetPhoneNumber(no);
+                                                this.TransferIVR(no, _call.CallSessionId, _call.CallCurrentState.ToString());
+                                            }
+                                        }
+                                        break;
+                                    case CallFunctions.TransferCall:
+                                        {
+                                            if (!string.IsNullOrEmpty(no))
+                                            {
+                                                if (_call.CallCurrentState.GetType() == typeof(CallHoldState))
+                                                {
+                                                    HoldUnholdCall();
+                                                }
+                                                UiState.SetPhoneNumber(no);
+                                                _call.CallCurrentState.OnTransferReq(_call, this);
+                                                //this.TransferCall(no, _call.CallSessionId, _call.CallCurrentState.ToString());
+                                            }
+                                        }
+                                        break;
+
+                                    default:
+                                        throw new ArgumentOutOfRangeException("callFunction");
+                                }
                             }
+                            else
+                            {
+                                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "InitializePhone", new Exception("command not implipented"), Logger.LogLevel.Error);
+                            }
+
                         }
                         catch (Exception exception)
                         {

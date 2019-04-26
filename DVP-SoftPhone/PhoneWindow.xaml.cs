@@ -1127,7 +1127,7 @@ namespace DVP_DesktopPhone
                     _callDurations.Stop();
                     _callDurations.Enabled = false;
                     textBlockCallStateInfo.Text = "IDLE";
-                    
+
 
                 }));
             }

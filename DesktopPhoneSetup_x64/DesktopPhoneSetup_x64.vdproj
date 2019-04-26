@@ -33,12 +33,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_34F787B3AB02F12DB3E99DDBED8BAD55"
-        "OwnerKey" = "8:_3B96BECE0C5F43AE80744A9EF543494F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_35CDD9C2320341B8BB81B0195EF1A507"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -99,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_79F00FED0BC42AD92384B3B3D59CA982"
+        "OwnerKey" = "8:_3B96BECE0C5F43AE80744A9EF543494F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8A251BEC6AE5027428BA259ADA350B54"
         "OwnerKey" = "8:_3B96BECE0C5F43AE80744A9EF543494F"
         "MsmSig" = "8:_UNDEFINED"
@@ -117,12 +117,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D095FF607462418DF722D73B04F0E0D"
-        "OwnerKey" = "8:_3B96BECE0C5F43AE80744A9EF543494F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_943D4D81318749E8B1E2D2E6B68145EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -137,6 +131,12 @@
         {
         "MsmKey" = "8:_98B66831426B4DD9A882962CFF927F8E"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AF9B5E5F65E298C24F987F131844781C"
+        "OwnerKey" = "8:_3B96BECE0C5F43AE80744A9EF543494F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,7 +220,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_34F787B3AB02F12DB3E99DDBED8BAD55"
+        "OwnerKey" = "8:_79F00FED0BC42AD92384B3B3D59CA982"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -244,7 +244,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D095FF607462418DF722D73B04F0E0D"
+        "OwnerKey" = "8:_AF9B5E5F65E298C24F987F131844781C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -272,6 +272,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -388,37 +396,6 @@
                     }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8E03F8D59C254FBB930E0F6E27786219"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_34F787B3AB02F12DB3E99DDBED8BAD55"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:dvp_timmers, Version=2.3.0.1, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_34F787B3AB02F12DB3E99DDBED8BAD55"
-                    {
-                    "Name" = "8:dvp_timmers.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:dvp_timmers.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8E03F8D59C254FBB930E0F6E27786219"
@@ -618,6 +595,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_79F00FED0BC42AD92384B3B3D59CA982"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:dvp_timmers, Version=2.3.0.1, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_79F00FED0BC42AD92384B3B3D59CA982"
+                    {
+                    "Name" = "8:dvp_timmers.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:dvp_timmers.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8E03F8D59C254FBB930E0F6E27786219"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8A251BEC6AE5027428BA259ADA350B54"
             {
             "AssemblyRegister" = "3:1"
@@ -700,37 +708,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D095FF607462418DF722D73B04F0E0D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DuoCallTesterLicenseKey, Version=2.3.0.1, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_8D095FF607462418DF722D73B04F0E0D"
-                    {
-                    "Name" = "8:DuoCallTesterLicenseKey.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:DuoCallTesterLicenseKey.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_8E03F8D59C254FBB930E0F6E27786219"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_943D4D81318749E8B1E2D2E6B68145EE"
             {
             "SourcePath" = "8:..\\DVP-SoftPhone\\Resources\\sdk_icon.ico"
@@ -789,6 +766,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AF9B5E5F65E298C24F987F131844781C"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DuoCallTesterLicenseKey, Version=2.3.0.1, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_AF9B5E5F65E298C24F987F131844781C"
+                    {
+                    "Name" = "8:DuoCallTesterLicenseKey.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DuoCallTesterLicenseKey.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8E03F8D59C254FBB930E0F6E27786219"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C5EC965C483E2D35312104E1B19F092D"
@@ -1061,16 +1069,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:FacetonePhone"
-        "ProductCode" = "8:{2A5F57E7-71F7-484D-9900-20D78FE51965}"
-        "PackageCode" = "8:{D762521F-A388-4242-AC07-4A9E2E4F3E81}"
+        "ProductName" = "8:FacetonePhone777"
+        "ProductCode" = "8:{CEB2AB1F-9744-4F22-947F-460DDB25020B}"
+        "PackageCode" = "8:{49DC06E7-392B-479B-9F6D-A64E47A2A819}"
         "UpgradeCode" = "8:{E8A4873E-950D-488F-957C-D9E6EE5284BF}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Veery"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
