@@ -2,6 +2,7 @@
 using Controllers.PhoneStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
@@ -128,7 +129,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
 
         public override void OnIncoming(Call call, int sessionId, string callerDisplayName, string caller, string calleeDisplayName,
-            string callee)
+            string callee, JArray call_data)
         {
             try
             {
@@ -136,6 +137,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
                 call.CallSessionId = call.PhoneNo;
                 call.portSipSessionId = sessionId;
                 call.currentCallLogId = Guid.NewGuid();
+                call.call_data = call_data;
                 call.CallCurrentState = new CallIncommingState();
             }
             catch (Exception exception)

@@ -2,6 +2,7 @@
 using Controllers.PhoneStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
 using System;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
@@ -28,7 +29,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnAnswerFail(Call call, string reason)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnHold(Call call, CallActions callAction)
@@ -57,7 +59,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnDisconnecting(Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnDisconnected(Call call, string reason)
@@ -68,7 +71,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnDisconnectFail(Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnTransferReq(Call call, Phone phone)
@@ -127,9 +131,10 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
         }
 
         public override void OnIncoming(Call call, int sessionId, string callerDisplayName, string caller, string calleeDisplayName,
-            string callee)
+            string callee, JArray call_data)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
+            try { throw new NotImplementedException("Invalid Call Status."); }
+            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
         public override void OnTimeout(Call call)

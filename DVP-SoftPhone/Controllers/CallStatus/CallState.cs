@@ -1,6 +1,7 @@
 ﻿using Controllers.CallStatus;
 using Controllers.PhoneStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
+using Newtonsoft.Json.Linq;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 {
@@ -30,7 +31,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public abstract void OnIncoming(Call call, int sessionId,
             string callerDisplayName,
-            string caller, string calleeDisplayName, string callee);
+            string caller, string calleeDisplayName, string callee, JArray call_data);
         public abstract void OnTimeout(Call call);
         public abstract void OnEndCallSession(Call call);
         public abstract void OnCallConference(Call call, Phone phone);

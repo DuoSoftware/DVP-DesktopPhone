@@ -80,6 +80,8 @@ namespace Controllers.CallStatus
 
         public string PhoneNo { get; set; }
         public string CallSessionId { get; set; }
+        public JArray call_data { get; set; }
+
 
         #endregion
 
@@ -135,6 +137,27 @@ namespace Controllers.CallStatus
                     {
 
                         UiState.InCallIncommingState(PhoneNo);
+
+                        try
+                        {
+                            dynamic expando1 = new JObject();
+                            expando1.Number = PhoneNo;
+
+
+                            //JArray jarrayObj = new JArray();
+                            //foreach (string parameterName in call_data)
+                            //{
+                            //    jarrayObj.Add(parameterName);
+                            //}
+
+                            expando1.veery_data = call_data;
+                            WebSocketlistner.SendMessageToClient(CallFunctions.ReciveCallInfo, expando1);
+                        }
+                        catch (Exception exception)
+                        {
+                            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "ReciveCallInfo", exception, Logger.LogLevel.Error);
+                        }
+
                         dynamic expando = new JObject();
                         expando.number = PhoneNo;
                         WebSocketlistner.SendMessageToClient(CallFunctions.IncomingCall, expando);
@@ -145,7 +168,7 @@ namespace Controllers.CallStatus
                         Phone.Instance.EndCall();
                         UiState.InCallDisconnectingState();
                         this.CallCurrentState = new CallDisconnectedState("Callee Disconnected");
-                        
+
                     }).Case<CallDisconnectedState>(b =>
                     {
                         UiState.InCallDisconnectedState(this.CallCurrentState.Reason);
@@ -153,7 +176,7 @@ namespace Controllers.CallStatus
                         this.CallCurrentState = new CallIdleState();
                     })
                         .Case<CallHoldState>(b => UiState.InCallHoldState(state.CallAction))
-                         .Case<CallIdleState>(b => 
+                         .Case<CallIdleState>(b =>
                         UiState.InCallIdleState()
                         )
                     .Case<CallRingingState>(b =>
