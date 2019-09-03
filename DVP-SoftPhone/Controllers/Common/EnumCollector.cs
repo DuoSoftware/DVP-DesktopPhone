@@ -54,7 +54,9 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.Common
         TransferIVR = 20,
         Unauthorized = 21,
         AnswerCallFail = 22,
-        ReciveCallInfo = 23
+        ReciveCallInfo = 23,
+        EnableAutoAnswer = 24,
+        DisableAutoAnswer = 25
     }
 
     public struct CallLog

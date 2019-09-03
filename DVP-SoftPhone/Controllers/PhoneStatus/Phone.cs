@@ -1059,6 +1059,18 @@ namespace Controllers.PhoneStatus
                                         }
                                         break;
 
+                                    case CallFunctions.EnableAutoAnswer:
+                                        {
+                                            this.AutoAnswerEnable = true;
+                                            this.AutoAnswerDelay = Convert.ToInt16(no);
+                                        }
+                                        break;
+                                    case CallFunctions.DisableAutoAnswer:
+                                        {
+                                            this.AutoAnswerEnable = false;
+                                            this.AutoAnswerDelay = Convert.ToInt16(no);
+                                        }
+                                        break;
                                     default:
                                         throw new ArgumentOutOfRangeException("callFunction");
                                 }

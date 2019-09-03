@@ -19,6 +19,7 @@ using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Threading.Tasks;
 
 #region References
 
@@ -113,6 +114,25 @@ namespace Controllers.CallStatus
 
         #region Private Methods
 
+        private void AutoAnswer()
+        {
+            try
+            {
+                var phone = Phone.Instance;
+                if (phone.AutoAnswerEnable)
+                {
+                    Task.Delay(phone.AutoAnswerDelay).ContinueWith(_ =>
+                    {
+                        phone.AnswerCall();
+                    }
+                    );
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "ReciveCallInfo", exception, Logger.LogLevel.Error);
+            }
+        }
         private void ChangeUI(CallState state)
         {
             try
@@ -152,6 +172,8 @@ namespace Controllers.CallStatus
 
                             expando1.veery_data = call_data;
                             WebSocketlistner.SendMessageToClient(CallFunctions.ReciveCallInfo, expando1);
+
+                            AutoAnswer();
                         }
                         catch (Exception exception)
                         {
