@@ -11,3 +11,12 @@ E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Debug\Pl
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.dll
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.pdb
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.csprojResolveAssemblyReference.cache
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Debug\DuoCallTesterLicenseKey.dll
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Debug\DuoCallTesterLicenseKey.pdb
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Debug\PlatformSpellCheck.dll
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Debug\PlatformSpellCheck.xml
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.csproj.CoreCompileInputs.cache
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.csproj.CopyComplete
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.dll
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.pdb
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Debug\DuoCallTesterLicenseKey.csprojAssemblyReference.cache

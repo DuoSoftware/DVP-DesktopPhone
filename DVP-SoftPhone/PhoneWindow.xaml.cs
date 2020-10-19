@@ -545,12 +545,13 @@ namespace DVP_DesktopPhone
                         StringBuilder deviceName = new StringBuilder();
                         deviceName.Length = 256;
 
-                        if (_phone.getPlayoutDeviceName(i) == 0)
+                        if (_phone.getPlayoutDeviceName(i, deviceName) == 0)
                         {
                             ComboBoxSpeakers.Items.Add(deviceName.ToString());
                         }
                         ComboBoxSpeakers.SelectedIndex = 0;
                     }
+
 
                     /*if (ComboBoxSpeakers.Items.Count > 0)
                         ComboBoxSpeakers.SelectedIndex = 0;*/
@@ -558,9 +559,9 @@ namespace DVP_DesktopPhone
                     num = _phone.getNumOfRecordingDevices();
                     for (int i = 0; i < num; ++i)
                     {
-                        var deviceName = new StringBuilder { Length = 256 };
-
-                        if (_phone.getRecordingDeviceName(i) == 0)
+                        StringBuilder deviceName = new StringBuilder();
+                        deviceName.Length = 256;
+                        if (_phone.getRecordingDeviceName(i, deviceName) == 0)
                         {
                             ComboBoxMicrophones.Items.Add(deviceName.ToString());
                         }

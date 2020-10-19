@@ -93,7 +93,6 @@ namespace Controllers.PhoneStatus
 
 
                 }
-
             }
             catch (Exception exception)
             {
@@ -606,14 +605,28 @@ namespace Controllers.PhoneStatus
                 var password = callInfo[1];
                 var username = callInfo[0];
 
-                var _sipServerPort = 5060;
-                if (callInfo[2].Contains('@'))
-                {
-                    var values = callInfo[2].Split('@');
-                    if (values.Any() && values.Length >= 2)
+                var _sipServerPort = Convert.ToInt32(settingObject["sipServerPort"]);
+
+                var overridePort = settingObject["overridePort"].ToLower().Equals("true");
+                if (overridePort)
+                {                    
+                    if (callInfo[2].Contains('@'))
                     {
-                        domain = values[1];
-                        values = domain.Split(':');
+                        var values = callInfo[2].Split('@');
+                        if (values.Any() && values.Length >= 2)
+                        {
+                            domain = values[1];
+                            values = domain.Split(':');
+                            if (values.Any() && values.Length >= 2)
+                            {
+                                domain = values[0];
+                                _sipServerPort = Convert.ToInt32(values[1]);
+                            }
+                        }
+                    }
+                    else if (callInfo[2].Contains(':'))
+                    {
+                        var values = domain.Split(':');
                         if (values.Any() && values.Length >= 2)
                         {
                             domain = values[0];
@@ -621,15 +634,7 @@ namespace Controllers.PhoneStatus
                         }
                     }
                 }
-                else if (callInfo[2].Contains(':'))
-                {
-                    var values = domain.Split(':');
-                    if (values.Any() && values.Length >= 2)
-                    {
-                        domain = values[0];
-                        _sipServerPort = Convert.ToInt32(values[1]);
-                    }
-                }
+                
 
                 _SipProfile = new SipProfile()
                 {
@@ -752,12 +757,11 @@ namespace Controllers.PhoneStatus
             return 0;
         }
 
-        public int getPlayoutDeviceName(int deviveId)
+        public int getPlayoutDeviceName(int deviveId, StringBuilder deviceName)
         {
             try
             {
-                StringBuilder deviceName = new StringBuilder();
-                deviceName.Length = 256;
+
                 return _phoneController.getPlayoutDeviceName(deviveId, deviceName, 256);
             }
             catch (Exception exception)
@@ -767,12 +771,11 @@ namespace Controllers.PhoneStatus
 
             return 0;
         }
-        public int getRecordingDeviceName(int deviveId)
+        public int getRecordingDeviceName(int deviveId, StringBuilder deviceName)
         {
             try
             {
-                StringBuilder deviceName = new StringBuilder();
-                deviceName.Length = 256;
+
                 return _phoneController.getRecordingDeviceName(deviveId, deviceName, 256);
             }
             catch (Exception exception)
@@ -782,6 +785,7 @@ namespace Controllers.PhoneStatus
 
             return 0;
         }
+
         public int getMicVolume()
         {
             try
@@ -819,7 +823,7 @@ namespace Controllers.PhoneStatus
                 Domain = domain,
                 AuthorizationName = username,
                 localIPAddress = GetLocalIpAddress(),
-                SipServerPort = 5060
+                SipServerPort = Convert.ToInt16(settingObject["sipServerPort"])
             };
 
             acwTime = 5;
@@ -839,7 +843,7 @@ namespace Controllers.PhoneStatus
                 Random rd = new Random();
                 var localPort = string.IsNullOrEmpty(settingObject["localPort"]) ? (rd.Next(1000, 5000) + 4000) : (Convert.ToInt32(settingObject["localPort"]));
                 var sipProfile = _SipProfile;
-                sipProfile.SipServerPort = Convert.ToInt16(settingObject["sipServerPort"]) > 0 ? Convert.ToInt16(settingObject["sipServerPort"]) : _SipProfile.SipServerPort;
+                sipProfile.SipServerPort = _SipProfile.SipServerPort > 0 ? _SipProfile.SipServerPort : Convert.ToInt16(settingObject["sipServerPort"]);
                 var sipServer = _SipProfile.Domain;
                 var localIp = _SipProfile.localIPAddress;
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, string.Format("userName : {0}, authName : {1}, password : {2}, localPort : {3}", userName, authName, password, localPort), Logger.LogLevel.Info);
