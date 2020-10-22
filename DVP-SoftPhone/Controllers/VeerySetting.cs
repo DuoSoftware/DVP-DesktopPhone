@@ -49,6 +49,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 AgentConsoleintegration = section["agentConsoleintegration"].ToLower().Equals("true");
                 ShowInTaskbar = section["showInTaskbar"].ToLower().Equals("true");
                 WebSocketlistnerPort = Convert.ToInt16(section["WebSocketlistnerPort"]);
+                WebSocketSslPassword = section["WebSocketSslPassword"];
+                WebSocketSslPath = section["WebSocketSslPath"];
                 stunServer = section["STUNserver"].ToString();
                 stunServerPort = section["STUNserverPort"].ToString() == "" ? 0 : Convert.ToInt16(section["STUNserverPort"].ToString());
                 audioDeviceLayer = string.IsNullOrEmpty(section["audioDeviceLayer"]) ? (0) : (Convert.ToInt32(section["audioDeviceLayer"]));
@@ -96,6 +98,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public bool NotificationStateValidationIgnore { get; private set; }
         public int AcwGap { get; private set; }
         public short WebSocketlistnerPort { get; private set; }
+
+        public string WebSocketSslPassword { get; private set; }
+
+        public string WebSocketSslPath { get; private set; }               
+
+
         public bool WebSocketlistnerEnable { get; private set; }
         public bool AgentConsoleintegration { get; private set; }
 

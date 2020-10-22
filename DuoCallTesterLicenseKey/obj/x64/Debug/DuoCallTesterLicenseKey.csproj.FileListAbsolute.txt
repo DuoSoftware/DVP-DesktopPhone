@@ -9,7 +9,7 @@ F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Debug\DuoCallTes
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Debug\DuoCallTesterLicenseKey.pdb
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Debug\PlatformSpellCheck.dll
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Debug\PlatformSpellCheck.xml
-F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Debug\DuoCallTesterLicenseKey.csproj.CoreCompileInputs.cache
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Debug\DuoCallTesterLicenseKey.csproj.CopyComplete
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Debug\DuoCallTesterLicenseKey.dll
 F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Debug\DuoCallTesterLicenseKey.pdb
+F:\DuoSoftware\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Debug\DuoCallTesterLicenseKey.csprojAssemblyReference.cache

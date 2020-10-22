@@ -2,3 +2,8 @@ E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\x86\Debug\dvp_timmer
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\x86\Debug\dvp_timmers.pdb
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\x86\Debug\dvp_timmers.dll
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\x86\Debug\dvp_timmers.pdb
+F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\bin\x86\Debug\dvp_timmers.dll
+F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\bin\x86\Debug\dvp_timmers.pdb
+F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\x86\Debug\dvp_timmers.dll
+F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\x86\Debug\dvp_timmers.pdb
+F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\x86\Debug\dvp_timmers.csprojAssemblyReference.cache

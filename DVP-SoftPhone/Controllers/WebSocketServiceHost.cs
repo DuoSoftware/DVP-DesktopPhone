@@ -1,12 +1,12 @@
-﻿using Alchemy;
-using Alchemy.Classes;
+﻿
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
+using Fleck;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net;
 using System.Security;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace DuoSoftware.DuoSoftPhone.Controllers
 {
@@ -19,13 +19,14 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
     public class WebSocketServiceHost
     {
 
-        private static UserContext currentContext;
+        private static string ListenAddress;
         //event
         public static event SocketMessage OnRecive;
 
         // key
         private static string _duoKey;
 
+        private static IWebSocketConnection webSocket;
 
         /// <summary>
         /// -- WebSocketServiceHost
@@ -34,23 +35,25 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         /// <param name="securityToken"></param>
         /// <param name="tenantId"></param>
         /// <param name="companyId"></param>
-        public WebSocketServiceHost(int port)
+        public WebSocketServiceHost(int port, string password, string fileName)
         {
             try
             {
                 _duoKey = Guid.NewGuid().ToString();
-                var server = new WebSocketServer(port, IPAddress.Loopback)
-                {
-                    OnConnected = OnConnected,
-                    OnDisconnect = OnDisconnected,
-                    OnSend = OnSend,
-                    OnConnect = OnConnect,
-                    OnReceive = OnRecieve,
-                    TimeOut = new TimeSpan(24, 5, 0)
-                };
+                ListenAddress = "wss://127.0.0.1:" + port;
 
-                Console.WriteLine(server.ListenAddress);
-                server.Start();
+                //var server = new WebSocketServer("wss://0.0.0.0:8431");
+                var server = new WebSocketServer(ListenAddress);
+
+                server.Certificate =   new X509Certificate2(fileName, password);
+                Console.WriteLine(ListenAddress);
+                server.Start(socket =>
+                {
+                    socket.OnOpen =()=> OnConnected(socket.ConnectionInfo.Id);
+                    socket.OnClose = () => OnDisconnected(socket.ConnectionInfo.Id);
+                    socket.OnMessage = message => OnRecieve(message);
+                    webSocket = socket; 
+                });
             }
             catch (Exception exception)
             {
@@ -63,11 +66,11 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         /// </summary>
         /// <param name="aContext"></param>
         /// <param name="message"></param>
-        private static void OnSend(UserContext aContext)
+        private static void OnSend(string aContext)
         {
             try
             {
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("OnSend : {0}", aContext.ClientAddress), Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("OnSend : {0}", aContext), Logger.LogLevel.Info);
             }
             catch (Exception exception)
             {
@@ -84,12 +87,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         {
             try
             {
-                if (currentContext == null) return;
+                if (webSocket == null) return;
 
                 expando.veery_api_key = _duoKey;
                 expando.veery_command = message.ToString();
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
-                currentContext.Send(expando.ToString());
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", webSocket.ConnectionInfo.Id, expando.ToString()), Logger.LogLevel.Info);
+                webSocket.Send(expando.ToString());
             }
             catch (Exception exception)
             {
@@ -101,12 +104,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         {
             try
             {
-                if (currentContext == null) return;
+                if (webSocket == null) return;
 
                 expando.veery_api_key = _duoKey;
                 expando.veery_command = message.ToString();
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
-                currentContext.Send(expando.ToString());
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", webSocket.ConnectionInfo.Id, expando.ToString()), Logger.LogLevel.Info);
+                webSocket.Send(expando.ToString());
             }
             catch (Exception exception)
             {
@@ -118,14 +121,14 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         {
             try
             {
-                if (currentContext == null) return;
+                if (webSocket == null) return;
                 //abc123|Initiate|123456789|othr
                 dynamic expando = new JObject();
                 expando.veery_api_key = _duoKey;
                 expando.veery_command = message;
 
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", currentContext.ClientAddress, expando.ToString()), Logger.LogLevel.Info);
-                currentContext.Send(expando.ToString());
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, String.Format("Reply : {0}, message : {1}", webSocket.ConnectionInfo.Id, expando.ToString()), Logger.LogLevel.Info);
+                webSocket.Send(expando.ToString());
             }
             catch (Exception exception)
             {
@@ -138,7 +141,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         /// On Receive 
         /// </summary>
         /// <param name="aContext"></param>
-        private void OnRecieve(UserContext aContext)
+        private void OnRecieve(string message)
         {
             try
             {
@@ -146,22 +149,21 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 //2). 721dab71-f9ae-44eb-9bbe-955261d4a726|Registor|123456789|9502-DuoS123-duo.media1.veery.cloud
                 //3). 94625283-874f-4de6-b870-b3aaecc9c930|MakeCall|94112375000|othr
 
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnRecieve : " + aContext.ClientAddress, Logger.LogLevel.Info);
-                if (aContext.DataFrame == null) return;
-                var message = aContext.DataFrame.ToString();
-                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, string.Format("message : {0} form : {1}", message, aContext.ClientAddress), Logger.LogLevel.Info);
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnRecieve : " + webSocket.ConnectionInfo.Id, Logger.LogLevel.Info);
+                if (string.IsNullOrEmpty(message)) return;
+                
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, string.Format("message : {0} form : {1}", message, webSocket.ConnectionInfo.Id), Logger.LogLevel.Info);
 
                 var callInfo = message.Split('|');// "token|callfunction|no|othr"
                 if (callInfo.Length != 4)
                 {
                     Reply("Invalid Call Information's.");
-                    throw new FieldAccessException("Invalid Call Information's. " + aContext.ClientAddress);
+                    throw new FieldAccessException("Invalid Call Information's. " + webSocket.ConnectionInfo.Id);
                 }
 
                 var callFunction = (CallFunctions)Enum.Parse(typeof(CallFunctions), callInfo[1]);
                 if (callFunction == CallFunctions.Initiate)
                 {
-                    currentContext = aContext;
                     _duoKey = Guid.NewGuid().ToString();
                     Reply(CallFunctions.Handshake.ToString());
                     return;
@@ -169,7 +171,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
                 if (!_duoKey.Equals(callInfo[0]))
                 {
                     Reply("Invalid veery API Key.");
-                    throw new SecurityException("Invalid SecurityToken or Expired. " + aContext.ClientAddress);
+                    throw new SecurityException("Invalid SecurityToken or Expired. " + webSocket.ConnectionInfo.Id);
                 }
 
                 if (OnRecive != null)
@@ -182,68 +184,41 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             }
         }
 
-
-        /// <summary>
-        /// On Connect
-        /// </summary>
-        /// <param name="aContext"></param>
-        private static void OnConnect(UserContext aContext)
-        {
-            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
-
-            //try
-            //{
-            //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect : " + aContext.ClientAddress, Logger.LogLevel.Info);
-            //}
-            //catch (Exception exception)
-            //{
-            //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnect", exception, Logger.LogLevel.Error);
-            //}
-        }
-
         /// <summary>
         /// On Connected 
         /// </summary>
         /// <param name="aContext"></param>
-        private static void OnConnected(UserContext aContext)
+        private static void OnConnected(Guid id)
         {
-
-            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnected : " + aContext.ClientAddress, Logger.LogLevel.Info);
-            //try
-            //{
-            //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnected : " + aContext.ClientAddress, Logger.LogLevel.Info);
-            //}
-            //catch (Exception exception)
-            //{
-            //    Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnected", exception, Logger.LogLevel.Error);
-            //}
+            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnConnected : " + id, Logger.LogLevel.Info);
+           
         }
 
         /// <summary>
         /// on disconnect
         /// </summary>
         /// <param name="aContext"></param>
-        private static void OnDisconnected(UserContext aContext)
+        private static void OnDisconnected(Guid ClientAddress)
         {
-            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected : " + aContext.ClientAddress, Logger.LogLevel.Info);
+            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected : " + ClientAddress, Logger.LogLevel.Info);
             //currentContext = null;
             //_duoKey = Guid.NewGuid().ToString();
 
 
             try
             {
-                if (OnRecive != null && currentContext.ClientAddress == aContext.ClientAddress)
+                if (OnRecive != null && ClientAddress == webSocket.ConnectionInfo.Id)
                 {
                     OnRecive(CallFunctions.Unregistor, null, null);
                     Reply(CallFunctions.Unregistor.ToString());
-                    currentContext = null;
+                    webSocket = null;
                 }
                 else
                 {
                     dynamic expando = new JObject();
-                    expando.description = "Unauthorized user try to communicate.[" + aContext.ClientAddress + "]";
+                    expando.description = "Unauthorized user try to communicate.[" + ClientAddress + "]";
                     SendMessageToClient_test(CallFunctions.Unauthorized, expando);
-                    throw new InvalidOperationException("unauthorized user try to communicate.[" + aContext.ClientAddress + "]");
+                    throw new InvalidOperationException("unauthorized user try to communicate.[" + ClientAddress + "]");
                 }
 
 

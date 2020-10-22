@@ -106,7 +106,9 @@ namespace Controllers.PhoneStatus
                 }
                 phone.InitializePhone(false);
             }
-            catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "PhoneInitializing", exception, Logger.LogLevel.Error); }
+            catch (Exception exception) { 
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "PhoneInitializing", exception, Logger.LogLevel.Error); 
+            }
         }
 
         public override void OnInitializeError(Phone phone, string statusText, int statusCode)

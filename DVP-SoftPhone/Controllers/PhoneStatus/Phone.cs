@@ -657,7 +657,7 @@ namespace Controllers.PhoneStatus
                     this.phoneCurrentState.OnLoggedOn(this);
                 }
 
-                //InitializePhone(true);
+               // InitializePhone(true);
             }
             catch (Exception exception)
             {
@@ -914,7 +914,7 @@ namespace Controllers.PhoneStatus
                 _phoneController.setSrtpPolicy(SRTP_POLICY.SRTP_POLICY_NONE, false);
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "setSrtpPolicy-end", Logger.LogLevel.Info);
 
-                string licenseKey = LicenseKeyHandler.GetLicenseKey("DuoS123");
+                string licenseKey =  LicenseKeyHandler.GetLicenseKey("DuoS123");
                 rt = _phoneController.setLicenseKey(licenseKey);
 
                 if (rt == PortSIP_Errors.ECoreTrialVersionLicenseKey)
@@ -979,7 +979,7 @@ namespace Controllers.PhoneStatus
 
                 if (VeerySetting.Instance.WebSocketlistnerEnable)
                 {
-                    WebSocketlistner = new WebSocketServiceHost(VeerySetting.Instance.WebSocketlistnerPort);
+                    WebSocketlistner = new WebSocketServiceHost(VeerySetting.Instance.WebSocketlistnerPort, VeerySetting.Instance.WebSocketSslPassword, VeerySetting.Instance.WebSocketSslPath);
 
                     WebSocketServiceHost.OnRecive += (callFunction, no, othr) =>
                     {
