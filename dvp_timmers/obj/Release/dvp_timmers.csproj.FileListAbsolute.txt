@@ -3,3 +3,9 @@ E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\Release\dvp_timmers.
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.dll
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.pdb
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.csprojResolveAssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\bin\Release\dvp_timmers.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\bin\Release\dvp_timmers.pdb
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.csproj.AssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.csproj.CoreCompileInputs.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Release\dvp_timmers.pdb

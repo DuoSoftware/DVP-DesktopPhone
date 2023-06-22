@@ -12,3 +12,9 @@ E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\bin\Debug\dvp_timmers.pd
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csprojResolveAssemblyReference.cache
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.dll
 E:\DuoProject\Applications\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.pdb
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\bin\Debug\dvp_timmers.dll
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\bin\Debug\dvp_timmers.pdb
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csproj.AssemblyReference.cache
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csproj.CoreCompileInputs.cache
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.dll
+C:\Users\Sanura\Source\Repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.pdb

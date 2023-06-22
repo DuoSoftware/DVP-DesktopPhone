@@ -5,3 +5,12 @@ E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.dll
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.pdb
 E:\DuoProject\Applications\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.csprojResolveAssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\DuoCallTesterLicenseKey.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\DuoCallTesterLicenseKey.pdb
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\PlatformSpellCheck.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\Release\PlatformSpellCheck.xml
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.csproj.AssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.csproj.CoreCompileInputs.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.csproj.CopyComplete
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\Release\DuoCallTesterLicenseKey.pdb

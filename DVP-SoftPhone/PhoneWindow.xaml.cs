@@ -833,7 +833,7 @@ namespace DVP_DesktopPhone
                     var setting = VeerySetting.Instance;
                     var tranNo = textBlockDialingNumber.Text.Trim();
 
-                    var dtmfSet = setting.TransferExtCode;
+                    var dtmfSet = setting.TransferIvrCode;
 
                     foreach (var d in dtmfSet)
                     {
