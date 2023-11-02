@@ -1,0 +1,399 @@
+(audio_processing_impl.cc:406): Capture post processor activated: 0
+(audio_device_impl.cc:98): Create
+(audio_device_impl.cc:70): Create
+(audio_device_buffer.cc:66): AudioDeviceBuffer::ctor
+(audio_device_impl.cc:104): AudioDeviceModuleImpl
+(audio_device_impl.cc:108): CheckPlatform
+(audio_device_impl.cc:113): current platform is Win32
+(audio_device_impl.cc:138): CreatePlatformSpecificObjects
+(audio_device_impl.cc:903): PlatformAudioLayer
+(audio_device_impl.cc:160): Attempting to use the Windows Core Audio APIs...
+(audio_device_core_win.cc:174): CoreAudioIsSupported
+(audio_device_core_win.cc:295): AudioDeviceWindowsCore::CoreAudioIsSupported() CoCreateInstance(MMDeviceEnumerator) succeeded (hr=0)
+(audio_device_core_win.cc:440): AudioDeviceWindowsCore created
+(audio_device_core_win.cc:450): AudioDeviceWindowsCore::AudioDeviceWindowsCore() The Avrt DLL module is now loaded
+(audio_device_core_win.cc:464): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvRevertMmThreadCharacteristics() is OK
+(audio_device_core_win.cc:467): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadCharacteristicsA() is OK
+(audio_device_core_win.cc:470): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadPriority() is OK
+(audio_device_core_win.cc:4120): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4149): #rendering endpoint devices (counting all): 4
+(audio_device_core_win.cc:4161): Endpoint 0:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75180
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39A50"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 37 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 1:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74100
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39E60"
+(audio_device_core_win.cc:4198): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -65.25 (min), 0 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 2088
+(audio_device_core_win.cc:4269): volume steps : 6 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 2:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74F80
+(audio_device_core_win.cc:4191): friendly name: "000002329BB0C890"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 28 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 3:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74880
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39F00"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -65.25 (min), 0 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 2088
+(audio_device_core_win.cc:4269): volume steps : 20 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4120): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4152): #capturing endpoint devices (counting all): 4
+(audio_device_core_win.cc:4161): Endpoint 0:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74100
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39F00"
+(audio_device_core_win.cc:4201): state (0x2)  : DISABLED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -17.25 (min), 12 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 936
+(audio_device_core_win.cc:4269): volume steps : 28 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 1:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74300
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39F00"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 1
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 23 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 2:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74980
+(audio_device_core_win.cc:4191): friendly name: "000002329BC39F00"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4274): Error when logging device information
+(audio_device_core_win.cc:4161): Endpoint 3:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74F80
+(audio_device_core_win.cc:4191): friendly name: "000002329BBDCE30"
+(audio_device_core_win.cc:4198): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -95.7596 (min), 30.2399 (max), 1.25999 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 100
+(audio_device_core_win.cc:4269): volume steps : 50 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:1752): friendly name: "000000B8117FE4E0"
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:2220): Audio Engine's current capturing mix format:
+(audio_device_core_win.cc:2222): wFormatTag     : 0xfffe (65534)
+(audio_device_core_win.cc:2226): nChannels      : 2
+(audio_device_core_win.cc:2228): nSamplesPerSec : 48000
+(audio_device_core_win.cc:2230): nAvgBytesPerSec: 384000
+(audio_device_core_win.cc:2232): nBlockAlign    : 8
+(audio_device_core_win.cc:2234): wBitsPerSample : 32
+(audio_device_core_win.cc:2235): cbSize         : 22
+(audio_device_core_win.cc:2294): VoE selected this capturing format:
+(audio_device_core_win.cc:2295): wFormatTag        : 0xfffe (65534)
+(audio_device_core_win.cc:2298): nChannels         : 2
+(audio_device_core_win.cc:2299): nSamplesPerSec    : 48000
+(audio_device_core_win.cc:2300): nAvgBytesPerSec   : 192000
+(audio_device_core_win.cc:2301): nBlockAlign       : 4
+(audio_device_core_win.cc:2302): wBitsPerSample    : 16
+(audio_device_core_win.cc:2303): cbSize            : 22
+(audio_device_core_win.cc:2304): Additional settings:
+(audio_device_core_win.cc:2305): _recAudioFrameSize: 4
+(audio_device_core_win.cc:2306): _recBlockSize     : 480
+(audio_device_core_win.cc:2307): _recChannels      : 2
+(audio_device_core_win.cc:2337): AudioDeviceBuffer must be attached before streaming can start
+(audio_device_core_win.cc:2346): IAudioClient::GetBufferSize() => 1056 (<=> 4224 bytes)
+(audio_device_core_win.cc:2368): capture side is now initialized
+(audio_device_core_win.cc:2469): no capturing stream is active => close down WASAPI only
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:1489): friendly name: "000000B8117FE4E0"
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:1903): Audio Engine's current rendering mix format:
+(audio_device_core_win.cc:1905): wFormatTag     : 0xfffe (65534)
+(audio_device_core_win.cc:1909): nChannels      : 2
+(audio_device_core_win.cc:1911): nSamplesPerSec : 48000
+(audio_device_core_win.cc:1913): nAvgBytesPerSec: 384000
+(audio_device_core_win.cc:1915): nBlockAlign    : 8
+(audio_device_core_win.cc:1917): wBitsPerSample : 32
+(audio_device_core_win.cc:1918): cbSize         : 22
+(audio_device_core_win.cc:1979): VoE selected this rendering format:
+(audio_device_core_win.cc:1980): wFormatTag         : 0x1 (1)
+(audio_device_core_win.cc:1983): nChannels          : 2
+(audio_device_core_win.cc:1984): nSamplesPerSec     : 48000
+(audio_device_core_win.cc:1985): nAvgBytesPerSec    : 192000
+(audio_device_core_win.cc:1986): nBlockAlign        : 4
+(audio_device_core_win.cc:1987): wBitsPerSample     : 16
+(audio_device_core_win.cc:1988): cbSize             : 0
+(audio_device_core_win.cc:1989): Additional settings:
+(audio_device_core_win.cc:1990): _playAudioFrameSize: 4
+(audio_device_core_win.cc:1991): _playBlockSize     : 480
+(audio_device_core_win.cc:1993): _playChannels      : 2
+(audio_device_core_win.cc:2048): AudioDeviceBuffer must be attached before streaming can start
+(audio_device_core_win.cc:2057): IAudioClient::GetBufferSize() => 1056 (<=> 4224 bytes)
+(audio_device_core_win.cc:2079): render side is now initialized
+(audio_device_core_win.cc:2632): no rendering stream is active => close down WASAPI only
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:538): ~AudioDeviceWindowsCore destroyed
+(audio_device_core_win.cc:590): AudioDeviceWindowsCore::~AudioDeviceWindowsCore() the Avrt DLL module is now unloaded
+(audio_device_core_win.cc:364): *** Windows Core Audio is supported ***
+(audio_device_core_win.cc:440): AudioDeviceWindowsCore created
+(audio_device_core_win.cc:450): AudioDeviceWindowsCore::AudioDeviceWindowsCore() The Avrt DLL module is now loaded
+(audio_device_core_win.cc:464): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvRevertMmThreadCharacteristics() is OK
+(audio_device_core_win.cc:467): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadCharacteristicsA() is OK
+(audio_device_core_win.cc:470): AudioDeviceWindowsCore::AudioDeviceWindowsCore() AvSetMmThreadPriority() is OK
+(audio_device_impl.cc:163): Windows Core Audio APIs will be utilized
+(audio_device_impl.cc:263): AttachAudioBuffer
+(audio_device_buffer.cc:188): SetRecordingSampleRate(0)
+(audio_device_buffer.cc:195): SetPlayoutSampleRate(0)
+(audio_device_buffer.cc:212): SetRecordingChannels(0)
+(audio_device_buffer.cc:219): SetPlayoutChannels(0)
+(audio_processing_impl.cc:406): Capture post processor activated: 0
+(webrtcvoiceengine.cc:241): WebRtcVoiceEngine::WebRtcVoiceEngine
+(webrtcvideoengine.cc:524): WebRtcVideoEngine::WebRtcVideoEngine()
+(webrtcvoiceengine.cc:265): WebRtcVoiceEngine::Init
+(webrtcvoiceengine.cc:278): Supported send codecs in order of preference:
+(webrtcvoiceengine.cc:281): opus/48000/2 { minptime=10 useinbandfec=1 } (111)
+(webrtcvoiceengine.cc:281): ISAC/16000/1 (103)
+(webrtcvoiceengine.cc:281): ISAC/32000/1 (104)
+(webrtcvoiceengine.cc:281): G722/8000/1 (9)
+(webrtcvoiceengine.cc:281): ILBC/8000/1 (102)
+(webrtcvoiceengine.cc:281): G729/8000/1 (18)
+(webrtcvoiceengine.cc:281): AMR/8000/1 (96)
+(webrtcvoiceengine.cc:281): AMRWB/16000/1 (97)
+(webrtcvoiceengine.cc:281): GSM/8000/1 (3)
+(webrtcvoiceengine.cc:281): SPEEX/8000/1 (98)
+(webrtcvoiceengine.cc:281): SPEEX/16000/1 (99)
+(webrtcvoiceengine.cc:281): PCMU/8000/1 (0)
+(webrtcvoiceengine.cc:281): PCMA/8000/1 (8)
+(webrtcvoiceengine.cc:281): CN/32000/1 (106)
+(webrtcvoiceengine.cc:281): CN/16000/1 (105)
+(webrtcvoiceengine.cc:281): CN/8000/1 (13)
+(webrtcvoiceengine.cc:281): telephone-event/48000/1 (110)
+(webrtcvoiceengine.cc:281): telephone-event/32000/1 (112)
+(webrtcvoiceengine.cc:281): telephone-event/16000/1 (113)
+(webrtcvoiceengine.cc:281): telephone-event/8000/1 (126)
+(webrtcvoiceengine.cc:284): Supported recv codecs in order of preference:
+(webrtcvoiceengine.cc:287): opus/48000/2 { minptime=10 useinbandfec=1 } (111)
+(webrtcvoiceengine.cc:287): ISAC/16000/1 (103)
+(webrtcvoiceengine.cc:287): ISAC/32000/1 (104)
+(webrtcvoiceengine.cc:287): G722/8000/1 (9)
+(webrtcvoiceengine.cc:287): ILBC/8000/1 (102)
+(webrtcvoiceengine.cc:287): G729/8000/1 (18)
+(webrtcvoiceengine.cc:287): AMR/8000/1 (96)
+(webrtcvoiceengine.cc:287): AMRWB/16000/1 (97)
+(webrtcvoiceengine.cc:287): GSM/8000/1 (3)
+(webrtcvoiceengine.cc:287): SPEEX/8000/1 (98)
+(webrtcvoiceengine.cc:287): SPEEX/16000/1 (99)
+(webrtcvoiceengine.cc:287): PCMU/8000/1 (0)
+(webrtcvoiceengine.cc:287): PCMA/8000/1 (8)
+(webrtcvoiceengine.cc:287): CN/32000/1 (106)
+(webrtcvoiceengine.cc:287): CN/16000/1 (105)
+(webrtcvoiceengine.cc:287): CN/8000/1 (13)
+(webrtcvoiceengine.cc:287): telephone-event/48000/1 (110)
+(webrtcvoiceengine.cc:287): telephone-event/32000/1 (112)
+(webrtcvoiceengine.cc:287): telephone-event/16000/1 (113)
+(webrtcvoiceengine.cc:287): telephone-event/8000/1 (126)
+(audio_device_impl.cc:283): Init
+(audio_device_core_win.cc:4120): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4149): #rendering endpoint devices (counting all): 4
+(audio_device_core_win.cc:4161): Endpoint 0:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75B80
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3B030"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 37 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 1:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75980
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3ABD0"
+(audio_device_core_win.cc:4198): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -65.25 (min), 0 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 2088
+(audio_device_core_win.cc:4269): volume steps : 6 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 2:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75500
+(audio_device_core_win.cc:4191): friendly name: "000002329BB0C590"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 28 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 3:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74200
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3B030"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -65.25 (min), 0 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 2088
+(audio_device_core_win.cc:4269): volume steps : 20 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4120): _EnumerateEndpointDevicesAll
+(audio_device_core_win.cc:4152): #capturing endpoint devices (counting all): 4
+(audio_device_core_win.cc:4161): Endpoint 0:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74880
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3AB80"
+(audio_device_core_win.cc:4201): state (0x2)  : DISABLED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -17.25 (min), 12 (max), 0.03125 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 936
+(audio_device_core_win.cc:4269): volume steps : 28 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 1:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB74880
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3B030"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4219): hwmask (0x3) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x3) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4235): #channels    : 1
+(audio_device_core_win.cc:4245): volume range : -63.5 (min), 0 (max), 0.5 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 127
+(audio_device_core_win.cc:4269): volume steps : 23 (nStep), 51 (nStepCount)
+(audio_device_core_win.cc:4161): Endpoint 2:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75B80
+(audio_device_core_win.cc:4191): friendly name: "000002329BC3B350"
+(audio_device_core_win.cc:4207): state (0x8)  : UNPLUGGED
+(audio_device_core_win.cc:4274): Error when logging device information
+(audio_device_core_win.cc:4161): Endpoint 3:
+(audio_device_core_win.cc:4174): ID string    : 000002329BB75580
+(audio_device_core_win.cc:4191): friendly name: "000002329BBDE2D0"
+(audio_device_core_win.cc:4198): state (0x1)  : *ACTIVE*
+(audio_device_core_win.cc:4219): hwmask (0x7) : HARDWARE_SUPPORT_VOLUME
+(audio_device_core_win.cc:4223): hwmask (0x7) : HARDWARE_SUPPORT_MUTE
+(audio_device_core_win.cc:4227): hwmask (0x7) : HARDWARE_SUPPORT_METER
+(audio_device_core_win.cc:4235): #channels    : 2
+(audio_device_core_win.cc:4245): volume range : -95.7596 (min), 30.2399 (max), 1.25999 (inc) [dB]
+(audio_device_core_win.cc:4255): #intervals   : 100
+(audio_device_core_win.cc:4269): volume steps : 50 (nStep), 51 (nStepCount)
+(audio_device_impl.cc:646): SetPlayoutDevice
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:1539): friendly name: "000000B8117FEC70"
+(audio_device_impl.cc:320): InitSpeaker
+(audio_device_core_win.cc:4066): _GetDefaultDevice
+(audio_device_impl.cc:532): StereoPlayoutIsAvailable
+(audio_device_impl.cc:539): output: 1
+(audio_device_impl.cc:544): SetStereoPlayout(1)
+(audio_device_buffer.cc:219): SetPlayoutChannels(2)
+(audio_device_impl.cc:708): SetRecordingDevice
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:1802): friendly name: "000000B8117FEC70"
+(audio_device_impl.cc:326): InitMicrophone
+(audio_device_core_win.cc:4066): _GetDefaultDevice
+(audio_device_impl.cc:489): StereoRecordingIsAvailable
+(audio_device_impl.cc:496): output: 1
+(audio_device_impl.cc:501): SetStereoRecording(1)
+(audio_device_buffer.cc:212): SetRecordingChannels(2)
+(webrtcvoiceengine.cc:361): WebRtcVoiceEngine::ApplyOptions: AudioOptions {aec: true, agc: true, ns: true, hf: true, swap: false, audio_jitter_buffer_max_packets: 50, audio_jitter_buffer_fast_accelerate: false, typing: true, agc_delta: 0, experimental_agc: false, extended_filter_aec: false, delay_agnostic_aec: false, experimental_ns: false, intelligibility_enhancer: false, level_control: false, residual_echo_detector: true, }
+(audio_device_impl.cc:831): BuiltInAECIsAvailable
+(audio_device_generic.cc:17): BuiltInAECIsAvailable: Not supported on this platform
+(audio_device_impl.cc:834): output: 0
+(apm_helpers.cc:126): Echo control set to 1 with mode 0
+(apm_helpers.cc:136): EC metrics set to 1
+(audio_device_impl.cc:847): BuiltInAGCIsAvailable
+(audio_device_generic.cc:27): BuiltInAGCIsAvailable: Not supported on this platform
+(audio_device_impl.cc:850): output: 0
+(audio_device_impl.cc:576): SetAGC(1)
+(apm_helpers.cc:90): AGC set to 1 with mode 0
+(webrtcvoiceengine.cc:513): Adjusting AGC level from default -2dB to -2dB
+(audio_device_impl.cc:863): BuiltInNSIsAvailable
+(audio_device_generic.cc:37): BuiltInNSIsAvailable: Not supported on this platform
+(audio_device_impl.cc:866): output: 0
+(apm_helpers.cc:161): NS set to 1
+(webrtcvoiceengine.cc:545): Stereo swapping enabled? 0
+(webrtcvoiceengine.cc:550): NetEq capacity is 50
+(webrtcvoiceengine.cc:556): NetEq fast mode? 0
+(webrtcvoiceengine.cc:563): Typing detection is enabled? 1
+(apm_helpers.cc:186): VAD set to 1 for typing detection.
+(webrtcvoiceengine.cc:574): Delay agnostic aec is enabled? 0
+(webrtcvoiceengine.cc:584): Extended filter aec is enabled? 0
+(webrtcvoiceengine.cc:594): Experimental ns is enabled? 0
+(webrtcvoiceengine.cc:600): Intelligibility Enhancer is enabled? 0
+(webrtcvoiceengine.cc:612): Level control: 0
+(audio_processing_impl.cc:685): Level controller activated: 0
+(audio_processing_impl.cc:692): Highpass filter activated: 1
+(audio_processing_impl.cc:718): Gain Controller 2 activated: 0
+(audio_processing_impl.cc:406): Capture post processor activated: 0
+(audio_processing_impl.cc:685): Level controller activated: 0
+(audio_processing_impl.cc:692): Highpass filter activated: 0
+(audio_processing_impl.cc:718): Gain Controller 2 activated: 0
+(audio_device_impl.cc:815): RegisterAudioCallback
+(audio_device_buffer.cc:86): RegisterAudioCallback
+(PortMedia.cxx:162): PortMedia::initialize_s AudioBase.initialize
+(AudioBase.cxx:48): AudioBase::initialize Begin
+(AudioBase.cxx:84): AudioBase::resetAudioSource
+(AudioBase.cxx:53): AudioBase::initialize End
+(PortMedia.cxx:168): PortMedia::initialize_s VideoBase.initialize
+(VideoBase.cxx:56):  VideoBase::initialize
+(VideoBase.cxx:63):  Create CaptureDevicePool
+(PortMedia.cxx:176): mPortDevice::initialize_s mPortDevice.initialize
+(PortMedia.cxx:183): mPortDevice::initialize_s Success
+(audio_device_impl.cc:632): PlayoutDevices
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_impl.cc:635): output: 1
+(audio_device_impl.cc:655): PlayoutDeviceName(0, ...)
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3759): _GetListDeviceName
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:3833): _GetListDeviceID
+(audio_device_core_win.cc:4033): _GetDeviceID
+(audio_device_impl.cc:664): output: name = Speakers (Realtek(R) Audio)
+(audio_device_impl.cc:667): output: guid = {0.0.0.00000000}.{5a5f8825-4868-4cd2-a5d6-e96ea2e4b7e0}
+(audio_device_impl.cc:694): RecordingDevices
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_impl.cc:697): output: 1
+(audio_device_impl.cc:676): RecordingDeviceName(0, ...)
+(audio_device_core_win.cc:3687): _RefreshDeviceList
+(audio_device_core_win.cc:3723): _DeviceListCount
+(audio_device_core_win.cc:3759): _GetListDeviceName
+(audio_device_core_win.cc:3968): _GetDeviceName
+(audio_device_core_win.cc:3833): _GetListDeviceID
+(audio_device_core_win.cc:4033): _GetDeviceID
+(audio_device_impl.cc:685): output: name = Microphone Array (Intel® Smart Sound Technolog

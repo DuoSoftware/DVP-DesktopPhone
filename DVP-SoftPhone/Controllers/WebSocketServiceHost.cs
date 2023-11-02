@@ -40,12 +40,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
             try
             {
                 _duoKey = Guid.NewGuid().ToString();
-                ListenAddress = "wss://127.0.0.1:" + port;
+                ListenAddress = "ws://127.0.0.1:" + port;
 
                 //var server = new WebSocketServer("wss://0.0.0.0:8431");
                 var server = new WebSocketServer(ListenAddress);
 
-                server.Certificate =   new X509Certificate2(fileName, password);
+                //server.Certificate =   new X509Certificate2(fileName, password);
                 Console.WriteLine(ListenAddress);
                 server.Start(socket =>
                 {

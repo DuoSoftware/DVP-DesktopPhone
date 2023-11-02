@@ -18,3 +18,9 @@ F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csproj.CoreCom
 F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.dll
 F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.pdb
 F:\DuoSoftware\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csprojAssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\bin\Debug\dvp_timmers.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\bin\Debug\dvp_timmers.pdb
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csproj.AssemblyReference.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.csproj.CoreCompileInputs.cache
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.dll
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\dvp_timmers\obj\Debug\dvp_timmers.pdb

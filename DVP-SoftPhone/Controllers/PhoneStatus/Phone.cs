@@ -159,7 +159,7 @@ namespace Controllers.PhoneStatus
             {
                 string myHost = Dns.GetHostName();
 
-                string myIp = (from ipAddress in Dns.GetHostEntry(myHost).AddressList
+                string myIp =  !string.IsNullOrEmpty(VeerySetting.Instance.localIp)  ? VeerySetting.Instance.localIp :  (from ipAddress in Dns.GetHostEntry(myHost).AddressList
                                where ipAddress.IsIPv6LinkLocal == false
                                where ipAddress.IsIPv6Multicast == false
                                where ipAddress.IsIPv6SiteLocal == false
@@ -412,16 +412,17 @@ namespace Controllers.PhoneStatus
                 var _call = Call.Instance;
                 if (_call.CallCurrentState.GetType() == typeof(CallRingingState) || _call.CallCurrentState.GetType() == typeof(CallIncommingState))
                 {
+                    _call.CallCurrentState = new CallAnsweringState();
                     Console.WriteLine(@"calling answer...... true");
-                    var isAnswer = _phoneController.answerCall(_call.portSipSessionId, false);
+                var isAnswer = _phoneController.answerCall(_call.portSipSessionId, false);
                     if (isAnswer >= 0)
                     {
                         _call.CallCurrentState.OnAnswering(_call);
                     }
                     else
-                    {
-                        _call.CallCurrentState.OnAnswerFail(_call, "Fail To Answer");
-                    }
+                {
+                    _call.CallCurrentState.OnAnswerFail(_call, "Fail To Answer");
+                }
                 }
                 else
                 {
@@ -568,7 +569,7 @@ namespace Controllers.PhoneStatus
                 {
                     var setting = VeerySetting.Instance;
 
-                    var dtmfSet = setting.TransferExtCode;
+                    var dtmfSet = setting.TransferIvrCode;
                     SendDtmf(dtmfSet);
                     Thread.Sleep(1000);
                     tranNo = string.Format("{0}#", tranNo);

@@ -1,0 +1,115 @@
+DEBUG | 20230626-183425.371 | PortSIPVoIPSDK | RESIP:APP | 15136 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20230626-183425.382 | PortSIPVoIPSDK | RESIP | 15136 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20230626-183426.428 | PortSIPVoIPSDK | RESIP | 15136 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230626-183426.428 | PortSIPVoIPSDK | RESIP | 15136 | security.cxx:3116 | ECDH initialized
+WARNING | 20230626-183426.428 | PortSIPVoIPSDK | RESIP | 15136 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230626-183426.428 | PortSIPVoIPSDK | RESIP | 15136 | security.cxx:3116 | ECDH initialized
+INFO | 20230626-183426.438 | PortSIPVoIPSDK | RESIP:DNS | 15136 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230626-183426.438 | PortSIPVoIPSDK | RESIP:DNS | 15136 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230626-183426.438 | PortSIPVoIPSDK | RESIP:DNS | 15136 | aresdns.cxx:408 |  name server: 8.8.8.8
+DEBUG | 20230626-183426.439 | PortSIPVoIPSDK | RESIP | 15136 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20230626-183426.439 | PortSIPVoIPSDK | RESIP | 15136 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20230626-183426.443 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15136 | transportselector.cxx:99 | No compression library available
+INFO | 20230626-183426.444 | PortSIPVoIPSDK | RESIP:DNS | 15136 | dnsutil.cxx:175 | local hostname does not contain a domain part Sanura-PC
+INFO | 20230626-183426.447 | PortSIPVoIPSDK | RESIP | 15136 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20230626-183426.447 | PortSIPVoIPSDK | RESIP | 15136 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20230626-183426.462 | PortSIPVoIPSDK | RESIP | 15136 | winsecurity.cxx:202 | 60 certs loaded of type 1
+DEBUG | 20230626-183426.462 | PortSIPVoIPSDK | RESIP:APP | 15136 | useragent.cxx:105 | new SipStack
+INFO | 20230626-183426.466 | PortSIPVoIPSDK | RESIP:APP | 15136 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20230626-183426.484 | PortSIPVoIPSDK | RESIP:APP | 15136 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20230626-183427.439 | PortSIPVoIPSDK | RESIP:APP | 15136 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20230626-183427.463 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15136 | internaltransport.cxx:121 | Creating fd=3108 V4/UDP
+DEBUG | 20230626-183427.463 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15136 | internaltransport.cxx:133 | Binding to 192.168.1.100
+INFO | 20230626-183427.464 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15136 | udptransport.cxx:60 | Creating UDP transport host=192.168.1.100 port=5060 ipv4=1
+DEBUG | 20230626-183427.464 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15136 | udptransport.cxx:74 | No compression library available: Transport: [ V4 192.168.1.100:5060 UDP flowKey=3108 ] on 192.168.1.100
+DEBUG | 20230626-183427.464 | PortSIPVoIPSDK | RESIP | 15136 | sipstack.cxx:681 | Adding domain alias: 192.168.1.100:5060
+DEBUG | 20230626-183427.464 | PortSIPVoIPSDK | RESIP:DUM | 15136 | userprofile.cxx:143 | Adding credential: realm=sanura@192.168.3.196 user=sanura
+DEBUG | 20230626-183427.465 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19684 | transportselector.cxx:221 | Adding transport: [ V4 192.168.1.100:5060 UDP transportKey=1 ]
+INFO | 20230626-183427.466 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19684 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V4 192.168.1.100:5060 UDP transportKey=1 ], key=1
+DEBUG | 20230626-183427.487 | PortSIPVoIPSDK | RESIP:DUM | 15136 | basecreator.cxx:148 | BaseCreator::makeInitialRequest: 
+
+REGISTER sip:sanura@sanura@192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---c230422ca5e2b364;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@sanura@192.168.3.196>
+From: "sanura"<sip:sanura@sanura@192.168.3.196>;tag=ec51573e
+Call-ID: 0pe9kPbE7l48Q9Ol_ImNhw..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DUM | 15136 | registrationcreator.cxx:25 | RegistrationCreator::RegistrationCreator: 000002622A0DC030
+DEBUG | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DUM | 15136 | dialogset.cxx:52 |  ************* Created DialogSet(UAC)  -- 0pe9kPbE7l48Q9Ol_ImNhw..-ec51573e*************
+INFO | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DNS | 19756 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DNS | 19756 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DNS | 19756 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20230626-183427.488 | PortSIPVoIPSDK | RESIP:DNS | 19756 | aresdns.cxx:554 |  No changes in DNS server list
+DEBUG | 20230626-183427.489 | PortSIPVoIPSDK | RESIP:DUM | 15136 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:sanura@192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---39c99951cc9a4437;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@sanura@192.168.3.196>
+From: "sanura"<sip:sanura@sanura@192.168.3.196>;tag=ec51573e
+Call-ID: 0pe9kPbE7l48Q9Ol_ImNhw..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230626-183427.490 | PortSIPVoIPSDK | RESIP:DUM | 15136 | dialogid.cxx:50 | DialogId::DialogId: 0pe9kPbE7l48Q9Ol_ImNhw..-ec51573e-
+DEBUG | 20230626-183427.490 | PortSIPVoIPSDK | RESIP:DUM | 15136 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER sanura@192.168.3.196 tid=39c99951cc9a4437 cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20230626-183427.490 | PortSIPVoIPSDK | RESIP | 15136 | sipstack.cxx:842 | SEND: SipReq:  REGISTER sanura@192.168.3.196 tid=39c99951cc9a4437 cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20230626-183427.490 | PortSIPVoIPSDK | RESIP:TRANSACTION | 19684 | timerqueue.cxx:50 | Adding timer: Timer F tid=39c99951cc9a4437 ms=32000
+DEBUG | 20230626-183427.491 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19684 | transportselector.cxx:603 | Looking up dns entries for sip:sanura@192.168.3.196
+DEBUG | 20230626-183427.491 | PortSIPVoIPSDK | RESIP:DNS | 19684 | dnsresult.cxx:261 | DnsResult::lookup sip:sanura@192.168.3.196
+DEBUG | 20230626-183427.567 | PortSIPVoIPSDK | RESIP:DNS | 19756 | dnsstub.cxx:73 | NAPTR Result: sanura@192.168.3.196 lookup failed: Domain name not found
+DEBUG | 20230626-183427.626 | PortSIPVoIPSDK | RESIP:DNS | 19756 | dnsstub.cxx:67 | SRV Result: _sip._udp.sanura@192.168.3.196 lookup failed: Domain name not found
+DEBUG | 20230626-183427.644 | PortSIPVoIPSDK | RESIP:DNS | 19756 | aresdns.cxx:590 | hostFileLookup failed for sanura@192.168.3.196
+DEBUG | 20230626-183427.644 | PortSIPVoIPSDK | RESIP:DNS | 19756 | dnsstub.cxx:49 | Host(A) Result: sanura@192.168.3.196 lookup failed: Domain name not found
+DEBUG | 20230626-183427.644 | PortSIPVoIPSDK | RESIP | 19684 | helper.cxx:374 | Helper::makeResponse(SipReq:  REGISTER sanura@192.168.3.196 tid=39c99951cc9a4437 cseq=1 REGISTER contact=sanura / 1 from(tu) code=503 reason=
+INFO | 20230626-183427.645 | PortSIPVoIPSDK | RESIP:TRANSACTION | 19684 | transactionstate.cxx:2164 | Ran out of dns entries for sanura@192.168.3.196. Send 503
+DEBUG | 20230626-183427.645 | PortSIPVoIPSDK | RESIP:TRANSACTION | 19684 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 503 No DNS results
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---39c99951cc9a4437;rport
+To: "sanura"<sip:sanura@sanura@192.168.3.196>;tag=2fe07d5d
+From: "sanura"<sip:sanura@sanura@192.168.3.196>;tag=ec51573e
+Call-ID: 0pe9kPbE7l48Q9Ol_ImNhw..
+CSeq: 1 REGISTER
+Warning: 399 Sanura-PC "No other DNS entries to try (0,0)"
+Content-Length: 0
+
+
+DEBUG | 20230626-183427.645 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogusagemanager.cxx:1607 | Got: SipResp: 503 tid=39c99951cc9a4437 cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230626-183427.645 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 503 tid=39c99951cc9a4437 cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230626-183427.645 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogid.cxx:50 | DialogId::DialogId: 0pe9kPbE7l48Q9Ol_ImNhw..-ec51573e-2fe07d5d
+DEBUG | 20230626-183427.646 | PortSIPVoIPSDK | RESIP:DUM | 19708 | clientregistration.cxx:645 | Application requested delayed retry on 408 or internal 503: 57
+DEBUG | 20230626-183427.646 | PortSIPVoIPSDK | RESIP:TRANSACTION | 19708 | timerqueue.cxx:124 | Adding application timer: DumTimeout::RegistrationRetry: duration=57 seq=1 ms=57000
+WARNING | 20230626-183500.806 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20230626-183500.806 | PortSIPVoIPSDK | RESIP:DUM | 19708 | handlemanager.cxx:93 | Waiting for usages to be deleted (2)
+DEBUG | 20230626-183500.806 | PortSIPVoIPSDK | RESIP:DUM | 19708 | handlemanager.cxx:96 | 1 -> AppDialogSet 1
+DEBUG | 20230626-183500.807 | PortSIPVoIPSDK | RESIP:DUM | 19708 | handlemanager.cxx:96 | 2 -> ClientRegistration sip:sanura@sanura@192.168.3.196
+INFO | 20230626-183500.807 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20230626-183500.807 | PortSIPVoIPSDK | RESIP:TRANSACTION | 19776 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20230626-183500.807 | PortSIPVoIPSDK | RESIP:DUM | 19708 | dialogusagemanager.cxx:1350 | TU unregistered 
+INFO | 20230626-183501.106 | PortSIPVoIPSDK | RESIP | 19776 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20230626-183501.136 | PortSIPVoIPSDK | RESIP:DUM | 20328 | dialogusagemanager.cxx:158 | DialogUsageManager::mDialogSetMap has 1 DialogSets
+DEBUG | 20230626-183501.136 | PortSIPVoIPSDK | RESIP:DUM | 20328 | dialogusagemanager.cxx:162 | DialgSetId:0pe9kPbE7l48Q9Ol_ImNhw..-ec51573e
+DEBUG | 20230626-183501.136 | PortSIPVoIPSDK | RESIP:DUM | 20328 | clientregistration.cxx:71 | ClientRegistration::~ClientRegistration
+INFO | 20230626-183501.138 | PortSIPVoIPSDK | RESIP:DUM | 20328 | dialogusagemanager.cxx:1201 | DialogUsageManager::destroy() not posting to stack
+DEBUG | 20230626-183501.138 | PortSIPVoIPSDK | RESIP:DUM | 20328 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: 0pe9kPbE7l48Q9Ol_ImNhw..-ec51573e*************
+DEBUG | 20230626-183501.139 | PortSIPVoIPSDK | RESIP | 20328 | sipstack.cxx:226 | SipStack::~SipStack()
+INFO | 20230626-183501.139 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20328 | udptransport.cxx:92 | Shutting down [ V4 192.168.1.100:5060 UDP flowKey=3108 transportKey=1 ] tf=0 evt=0 stats: poll=0 txtry=0 txmsg=0 txfail=0 rxtry=0 rxmsg=0 rxka=0 rxtr=0
+DEBUG | 20230626-183501.140 | PortSIPVoIPSDK | RESIP | 20328 | security.cxx:1244 | BaseSecurity::~BaseSecurity

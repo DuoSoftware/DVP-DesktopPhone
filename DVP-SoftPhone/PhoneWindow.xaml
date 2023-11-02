@@ -41,7 +41,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
+
     <Border CornerRadius="70" Padding="0,9,0,4" BorderThickness="5" >
         <!--<Border.BorderBrush>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -147,7 +147,7 @@
                 <GradientStop Color="WhiteSmoke" Offset="0.81"/>
             </LinearGradientBrush>
         </Border.Background>
-        <Grid >            
+        <Grid >
             <Menu VerticalAlignment="Top" HorizontalAlignment="Right" Background="{x:Null}" Margin="0,9,16,0" Height="16" Width="49">
                 <MenuItem  Height="20" Width="16" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="Setting">
                     <MenuItem.Icon>
@@ -161,7 +161,7 @@
                         <MenuItem Header="Outbound" Name="Outbound" IsCheckable="true" Checked="outboundMenu_Checked" Unchecked="outboundMenu_Unchecked"/>
                     </MenuItem>
                     <MenuItem Header="About" Height="20"  Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,1,0" ToolTip="About" Click="HelpMenuItem_Click" />
-                    
+
 
 
                 </MenuItem>
@@ -175,7 +175,7 @@
                         <Image Source="Resources/exit.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                
+
             </Menu>
             <Border x:Name="BorderNumpad" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="200" Height="200" Margin="0,0,0,32">
                 <Grid >
@@ -245,34 +245,34 @@
                     </Grid>
                     <Border Panel.ZIndex="5000" Visibility="Hidden"  x:Name="GrdVolume" BorderBrush="#FF797979" Background="#FF404040" BorderThickness="2" Margin="0,4,0,0" CornerRadius="10" >
                         <Grid  Margin="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="30"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
                                 <RowDefinition Height="30"/>
                                 <RowDefinition Height="60"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="53"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="53"/>
                                 <ColumnDefinition Width="125"/>
                                 <ColumnDefinition Width="16"/>
-                        </Grid.ColumnDefinitions>                     
-                        <Label Grid.Row="0" Grid.Column="0" Content="Speaker" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Speaker" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <ComboBox x:Name="ComboBoxSpeakers" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" Height="20" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
-                        <Label Grid.Row="1" Grid.Column="0" Content="Microphone" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Microphone" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <ComboBox x:Name="ComboBoxMicrophones" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Height="20" Width="130" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="Speaker" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="TrackBarSpeaker" Grid.Row="2" Grid.Column="1" Height="30" Width="116" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Center" ValueChanged="TrackBarSpeaker_ValueChanged" Maximum="255" TickFrequency="10" SmallChange="5" LargeChange="10"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Speaker" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Slider x:Name="TrackBarSpeaker" Grid.Row="2" Grid.Column="1" Height="30" Width="116" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Center" ValueChanged="TrackBarSpeaker_ValueChanged" Maximum="255" TickFrequency="10" SmallChange="5" LargeChange="10"/>
                             <CheckBox x:Name="chkboxMuteSpeaker" Grid.Row="2" Grid.Column="3" Width="15" Height="16" Margin="0" ToolTip="Mute Speaker" VerticalAlignment="Center" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" Cursor="Hand" HorizontalAlignment="Center" Click="chkboxMuteSpeaker_Click"/>
-                        <Label Grid.Row="3" Grid.Column="0" Content="Microphone" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="TrackBarMicrophone" Grid.Row="3" Grid.Column="1" Height="30" Width="116" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" ValueChanged="TrackBarMicrophone_ValueChanged" Maximum="255" TickFrequency="10" SmallChange="5" LargeChange="10"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Microphone" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Slider x:Name="TrackBarMicrophone" Grid.Row="3" Grid.Column="1" Height="30" Width="116" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" ValueChanged="TrackBarMicrophone_ValueChanged" Maximum="255" TickFrequency="10" SmallChange="5" LargeChange="10"/>
                             <CheckBox x:Name="CheckBoxMute" Grid.Row="3" Grid.Column="3" Width="15" Height="16" Margin="0" ToolTip="Mute microphone" VerticalAlignment="Center" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" Cursor="Hand" HorizontalAlignment="Center" Click="CheckBoxMute_Click"/>
                             <CheckBox  x:Name="ButtonTestAudio" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Width="Auto" Height="16" Margin="7,0,0,0" Content="Test Audio" VerticalAlignment="Center" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" Cursor="Hand" HorizontalAlignment="Left" Click="ButtonTestAudio_Click"/>
 
 
                             <Button x:Name="btnSave"  Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0" Height="30" Margin="0,0,0,19" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" PreviewMouseDown="buttonKeyPad_MouseDown" PreviewMouseUp="buttonKeyPad_MouseUp" BorderBrush="#FF817B7B" Cursor="Hand" Width="185" Click="btnSave_Click"/>
-                        
+
                         </Grid>
                     </Border>
                     <Grid Visibility="Hidden" x:Name="GrdCallFunctions" Margin="0,0,0,0">
@@ -323,7 +323,7 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="BorderDisplay" Height="163" VerticalAlignment="Top" BorderBrush="#FFA5A5A5" BorderThickness="1" CornerRadius="20" Width="205" HorizontalAlignment="Center" Margin="0,33,0,0" Background="#EDFFFFFF">
+            <Border x:Name="BorderDisplay" BorderBrush="#FFA5A5A5" BorderThickness="1" CornerRadius="20" Width="204" HorizontalAlignment="Center" Margin="0,33,0,231" Background="#EDFFFFFF">
                 <Grid>
                     <TextBlock x:Name="textBlockRegStatus" HorizontalAlignment="Left" Height="24" Margin="8,8,0,0" TextWrapping="Wrap" Text="Offline" VerticalAlignment="Top" Width="82" FontSize="16" FontFamily="Times New Roman"/>
                     <TextBlock x:Name="textBlockIdentifier" HorizontalAlignment="Right" Height="16" Margin="0,8,8,0" TextWrapping="Wrap" Text="Identifier" VerticalAlignment="Top" TextAlignment="Right" FontSize="16" FontFamily="Times New Roman"/>
@@ -336,9 +336,10 @@
             </Border>
             <Image HorizontalAlignment="Left" Height="21" Margin="28,5,0,0" VerticalAlignment="Top" Width="24" Source="pack://siteoforigin:,,,/Resources/facetone-logo.ico"  />
             <TextBlock Height="16" TextWrapping="Wrap" Text="Facetone" Margin="92,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" LineHeight="14" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Height="12" TextWrapping="Wrap" Margin="0,409,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" LineHeight="14" TextAlignment="Center" Width="40" FontSize="8" TextDecorations="Underline" FontWeight="Bold" Text="v3.0.1.1" />
 
-            
+
         </Grid>
     </Border>
-    
+
 </Window>

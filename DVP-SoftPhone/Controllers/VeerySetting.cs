@@ -43,6 +43,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
 
                 AutoAnswerDelay = (int)TimeSpan.FromSeconds(Convert.ToInt16(section["AutoAnswerDelay"])).TotalMilliseconds;
 
+                localIp = section["localIp"].ToString();
+
                 NotificationStateValidationIgnore = section["NotificationStateValidationIgnore"].Equals("1");
                 AcwGap = Convert.ToInt16(section["acwGap"]);
                 WebSocketlistnerEnable = section["WebSocketlistnerEnable"].ToLower().Equals("true");
@@ -127,5 +129,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public NS_MODES enableANS { get; set; }
 
         public bool enableReliableProvisional { get; set; }
+
+        public string localIp { get; set;  }
     }
 }

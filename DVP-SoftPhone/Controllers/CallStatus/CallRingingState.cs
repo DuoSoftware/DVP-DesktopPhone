@@ -12,7 +12,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
     {
         public override void OnAnswering(Call call)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }
+            try {
+                call.UiState.ShowStatusMessage("Answering");
+                call.CallCurrentState = new CallAnsweringState();
+                call.WebSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
+
+            }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 
@@ -23,7 +28,12 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.CallStatus
 
         public override void OnAnswerFail(Call call, string reason)
         {
-            try { throw new NotImplementedException("Invalid Call Status."); }
+            try
+            {
+                call.UiState.ShowMessage(reason, ToolTipIcon.Error);
+                call.WebSocketlistner.SendMessageToClient(CallFunctions.AnswerCallFail);
+                call.CallCurrentState = new CallIdleState();
+            }
             catch (Exception exception) { Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger3, "", exception, Logger.LogLevel.Error); }
         }
 

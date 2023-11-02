@@ -29,6 +29,7 @@ namespace DVP_DesktopPhone
         NotifyIcon mynotifyicon = new NotifyIcon();
         private bool isCallAnswerd;
         private System.Media.SoundPlayer _wavPlayer = new System.Media.SoundPlayer();
+        private System.Media.SoundPlayer _beepPlayer = new System.Media.SoundPlayer();
         private int AutoAnswerDelay = 10000;
         private bool AutoAnswerEnable = false;
         System.Timers.Timer _callDurations;
@@ -424,7 +425,7 @@ namespace DVP_DesktopPhone
             string filePath = string.Format("{0}{1}", appDataFolder, "\\veery\\ringtone.wav");
 
             _wavPlayer = (File.Exists(filePath)) ? new System.Media.SoundPlayer(filePath) : new System.Media.SoundPlayer(Properties.Resources.ringtone);
-
+            _beepPlayer = (File.Exists(filePath)) ? new System.Media.SoundPlayer(filePath) : new System.Media.SoundPlayer(Properties.Resources.beep);
             _phone.phoneCurrentState.OnLogin(_phone, this);
 
             this.ShowInTaskbar = VeerySetting.Instance.ShowInTaskbar;
@@ -1017,7 +1018,7 @@ namespace DVP_DesktopPhone
                     //GrdDailpad.Visibility = Visibility.Hidden;
                     //
                     //textBlockCallStateInfo.Text = "INITIALIZING";
-
+                    
                     buttonHold.Content = "Hold";
                     buttonHold.IsEnabled = false;
                     buttonAnswer.IsEnabled = false;
@@ -1066,6 +1067,10 @@ namespace DVP_DesktopPhone
                     textBlockCallStateInfo.Text = string.IsNullOrEmpty(reason) ? "DISCONNECTED" : reason;
                     picMic.Visibility = Visibility.Hidden;
                     picSpek.Visibility = Visibility.Hidden;
+
+                    PlayBeepTone();
+
+                    Thread.Sleep(1000);
                 }));
 
             }
@@ -1358,6 +1363,21 @@ namespace DVP_DesktopPhone
             catch (Exception exception)
             {
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "PlayRingTone", exception, Logger.LogLevel.Error);
+            }
+        }
+
+        private void PlayBeepTone()
+        {
+            try
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "Start to play beep tone", Logger.LogLevel.Info);
+                Dispatcher.Invoke(() =>
+                { _beepPlayer.Play(); });
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "PlayBeepTone > End", Logger.LogLevel.Info);
+            }
+            catch (Exception exception)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDefault, "PlayBeepTone", exception, Logger.LogLevel.Error);
             }
         }
         #endregion

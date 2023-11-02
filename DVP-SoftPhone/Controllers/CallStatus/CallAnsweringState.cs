@@ -18,9 +18,11 @@ using DuoSoftware.DuoTools.DuoLogger;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 #endregion
 namespace Controllers.CallStatus
 {
@@ -35,7 +37,8 @@ namespace Controllers.CallStatus
         {
             try
             {
-                throw new NotImplementedException("Invalid Call Status.");
+                call.UiState.ShowStatusMessage("Answering");
+                call.WebSocketlistner.SendMessageToClient(CallFunctions.AnswerCall);
             }
             catch (Exception exception)
             {
@@ -59,7 +62,9 @@ namespace Controllers.CallStatus
         {
             try
             {
-                throw new NotImplementedException("Invalid Call Status.");
+                call.UiState.ShowMessage(reason, ToolTipIcon.Error);
+                call.WebSocketlistner.SendMessageToClient(CallFunctions.AnswerCallFail);
+                call.CallCurrentState = new CallIdleState();
             }
             catch (Exception exception)
             {

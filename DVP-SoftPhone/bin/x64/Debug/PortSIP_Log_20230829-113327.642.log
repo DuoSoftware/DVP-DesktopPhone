@@ -1,0 +1,730 @@
+DEBUG | 20230829-113327.646 | PortSIPVoIPSDK | RESIP:APP | 19488 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20230829-113327.650 | PortSIPVoIPSDK | RESIP | 19488 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20230829-113327.664 | PortSIPVoIPSDK | RESIP | 19488 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230829-113327.664 | PortSIPVoIPSDK | RESIP | 19488 | security.cxx:3116 | ECDH initialized
+WARNING | 20230829-113327.666 | PortSIPVoIPSDK | RESIP | 19488 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230829-113327.666 | PortSIPVoIPSDK | RESIP | 19488 | security.cxx:3116 | ECDH initialized
+INFO | 20230829-113327.680 | PortSIPVoIPSDK | RESIP:DNS | 19488 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230829-113327.680 | PortSIPVoIPSDK | RESIP:DNS | 19488 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230829-113327.680 | PortSIPVoIPSDK | RESIP:DNS | 19488 | aresdns.cxx:408 |  name server: 8.8.8.8
+DEBUG | 20230829-113327.680 | PortSIPVoIPSDK | RESIP | 19488 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20230829-113327.680 | PortSIPVoIPSDK | RESIP | 19488 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20230829-113327.681 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19488 | transportselector.cxx:99 | No compression library available
+INFO | 20230829-113327.694 | PortSIPVoIPSDK | RESIP | 19488 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20230829-113327.694 | PortSIPVoIPSDK | RESIP | 19488 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20230829-113327.715 | PortSIPVoIPSDK | RESIP | 19488 | winsecurity.cxx:202 | 62 certs loaded of type 1
+DEBUG | 20230829-113327.715 | PortSIPVoIPSDK | RESIP:APP | 19488 | useragent.cxx:105 | new SipStack
+INFO | 20230829-113327.717 | PortSIPVoIPSDK | RESIP:APP | 19488 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20230829-113327.724 | PortSIPVoIPSDK | RESIP:APP | 19488 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20230829-113328.266 | PortSIPVoIPSDK | RESIP:APP | 19488 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19488 | internaltransport.cxx:121 | Creating fd=3752 V4/UDP
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19488 | internaltransport.cxx:133 | Binding to 192.168.1.153
+INFO | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19488 | udptransport.cxx:60 | Creating UDP transport host=192.168.1.153 port=5060 ipv4=1
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:TRANSPORT | 19488 | udptransport.cxx:74 | No compression library available: Transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 ] on 192.168.1.153
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP | 19488 | sipstack.cxx:681 | Adding domain alias: 192.168.1.153:5060
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:DUM | 19488 | userprofile.cxx:143 | Adding credential: realm=192.168.1.29 user=agent1
+DEBUG | 20230829-113328.302 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:221 | Adding transport: [ V4 192.168.1.153:5060 UDP transportKey=1 ]
+INFO | 20230829-113328.304 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V4 192.168.1.153:5060 UDP transportKey=1 ], key=1
+DEBUG | 20230829-113328.334 | PortSIPVoIPSDK | RESIP:DUM | 19488 | basecreator.cxx:148 | BaseCreator::makeInitialRequest: 
+
+REGISTER sip:agent1@192.168.1.29 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---4563175b1afe5700;rport
+Max-Forwards: 70
+Contact: <sip:agent1>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DUM | 19488 | registrationcreator.cxx:25 | RegistrationCreator::RegistrationCreator: 0000011D38487200
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DUM | 19488 | dialogset.cxx:52 |  ************* Created DialogSet(UAC)  -- YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55*************
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DUM | 19488 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---f7bf4c6c9d99c061;rport
+Max-Forwards: 70
+Contact: <sip:agent1>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DUM | 19488 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DUM | 19488 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.1.29 tid=f7bf4c6c9d99c061 cseq=1 REGISTER contact=agent1 / 1 from(tu)
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP | 19488 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.1.29 tid=f7bf4c6c9d99c061 cseq=1 REGISTER contact=agent1 / 1 from(tu)
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer F tid=f7bf4c6c9d99c061 ms=32000
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.1.29
+DEBUG | 20230829-113328.335 | PortSIPVoIPSDK | RESIP:DNS | 20592 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.1.29
+INFO | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:DNS | 28020 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:DNS | 28020 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:DNS | 28020 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:DNS | 28020 | aresdns.cxx:554 |  No changes in DNS server list
+DEBUG | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 ]
+DEBUG | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=f7bf4c6c9d99c061 ms=500
+DEBUG | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.338 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---f7bf4c6c9d99c061;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:TRANSPORT | 2328 | transport.cxx:392 | incoming from: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:253 | Whitelisting 192.168.1.29(1): 192.168.1.29
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---f7bf4c6c9d99c061;rport=5060
+To: "agent1" <sip:agent1@192.168.1.29>;tag=4S8S1QUr9HjUr
+From: "agent1" <sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.9-release-21-a615e85afc~64bit
+WWW-Authenticate: Digest realm="192.168.1.29", nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31", algorithm=MD5, qop="auth"
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer K tid=f7bf4c6c9d99c061 ms=5000
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1607 | Got: SipResp: 401 tid=f7bf4c6c9d99c061 cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230829-113328.523 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 401 tid=f7bf4c6c9d99c061 cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:340 | ClientAuthManager::RealmState::handleAuth: 0000011D302982D8 Digest realm="192.168.1.29", nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31", algorithm=MD5, qop="auth" is proxy: 0
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from invalid to current
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | userprofile.cxx:166 | Found credential for realm: realm=192.168.1.29 user=agent1192.168.1.29
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:151 | Produced response to digest challenge for UserProfile: "agent1"<sip:agent1@192.168.1.29>[realm=192.168.1.29 user=agent1]
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogset.cxx:255 | about to re-send request with digest credentials
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP | 28092 | helper.cxx:1332 | nonceCount is now: [00000001]
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---0f585f6806fa756b;rport
+Max-Forwards: 70
+Contact: <sip:agent1>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.1.29 tid=0f585f6806fa756b cseq=2 REGISTER contact=agent1 / 2 from(tu)
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP | 28092 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.1.29 tid=0f585f6806fa756b cseq=2 REGISTER contact=agent1 / 2 from(tu)
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer F tid=0f585f6806fa756b ms=32000
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.1.29
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DNS | 20592 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.1.29
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 ]
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=0f585f6806fa756b ms=500
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:31 |  Add auth, 0000011D388751E0 in response to: Digest realm="192.168.1.29", nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31", algorithm=MD5, qop="auth"
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="70d34f8017fa71c05906c2f7682b3f76",cnonce="2674a49a21214f4e1ba6b07fd27060f5",nc=00000001,qop=auth,algorithm=MD5
+DEBUG | 20230829-113328.524 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---0f585f6806fa756b;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="70d34f8017fa71c05906c2f7682b3f76",cnonce="2674a49a21214f4e1ba6b07fd27060f5",nc=00000001,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:TRANSPORT | 2328 | transport.cxx:392 | incoming from: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:253 | Whitelisting 192.168.1.29(1): 192.168.1.29
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:DNS | 28020 | rrvip.cxx:128 | updating an existing vip: 192.168.1.29 with 192.168.1.29
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---0f585f6806fa756b;rport=5060
+Contact: <sip:agent1@192.168.1.153:5060>;expires=3600
+To: "agent1" <sip:agent1@192.168.1.29>;tag=521j3jcv6t8Dm
+From: "agent1" <sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 2 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Tue, 29 Aug 2023 06:03:28 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.9-release-21-a615e85afc~64bit
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer K tid=0f585f6806fa756b ms=5000
+DEBUG | 20230829-113328.630 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=0f585f6806fa756b cseq=2 REGISTER contact=agent1@192.168.1.153:5060 / 2 from(wire)
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=0f585f6806fa756b cseq=2 REGISTER contact=agent1@192.168.1.153:5060 / 2 from(wire)
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55to cached
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from current to cached
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-521j3jcv6t8Dm
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:26 | First keep alive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20230829-113328.631 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=1 ms=3240000
+INFO | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientregistration.cxx:303 | requesting refresh of ClientRegistration sip:agent1@192.168.1.29
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP | 28092 | helper.cxx:1332 | nonceCount is now: [00000002]
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---3eb70141321a3775;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.1.29 tid=3eb70141321a3775 cseq=3 REGISTER contact=agent1@192.168.1.153:5060 / 3 from(tu)
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP | 28092 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.1.29 tid=3eb70141321a3775 cseq=3 REGISTER contact=agent1@192.168.1.153:5060 / 3 from(tu)
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer F tid=3eb70141321a3775 ms=32000
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.1.29
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DNS | 20592 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.1.29
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 ]
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=3eb70141321a3775 ms=500
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:31 |  Add auth, 0000011D388751E0 in response to: Digest realm="192.168.1.29", nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31", algorithm=MD5, qop="auth"
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="0ce7c4ee1650e6cefa724ae0d05f8094",cnonce="4a4878103edfdabdc87ba15be244e5e7",nc=00000002,qop=auth,algorithm=MD5
+DEBUG | 20230829-113328.632 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---3eb70141321a3775;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="0ce7c4ee1650e6cefa724ae0d05f8094",cnonce="4a4878103edfdabdc87ba15be244e5e7",nc=00000002,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:TRANSPORT | 2328 | transport.cxx:392 | incoming from: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:253 | Whitelisting 192.168.1.29(1): 192.168.1.29
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DNS | 28020 | rrvip.cxx:128 | updating an existing vip: 192.168.1.29 with 192.168.1.29
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---3eb70141321a3775;rport=5060
+Contact: <sip:agent1@192.168.1.153:5060>;expires=3600
+To: "agent1" <sip:agent1@192.168.1.29>;tag=7mm468D30cNKB
+From: "agent1" <sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 3 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Tue, 29 Aug 2023 06:03:28 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.9-release-21-a615e85afc~64bit
+Content-Length: 0
+
+
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer K tid=3eb70141321a3775 ms=5000
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=3eb70141321a3775 cseq=3 REGISTER contact=agent1@192.168.1.153:5060 / 3 from(wire)
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=3eb70141321a3775 cseq=3 REGISTER contact=agent1@192.168.1.153:5060 / 3 from(wire)
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55to cached
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from cached to cached
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-7mm468D30cNKB
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:DUM | 28092 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20230829-113328.768 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=2 ms=3240000
+DEBUG | 20230829-113358.636 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113358.636 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113358.636 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113358.636 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113358.636 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113428.637 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113428.637 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113428.637 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113428.637 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113428.637 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113458.645 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113458.645 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113458.645 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113458.645 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113458.646 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113528.651 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113528.651 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113528.651 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113528.651 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113528.651 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113558.661 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113558.661 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113558.661 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113558.661 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113558.661 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113628.664 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113628.664 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113628.664 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113628.664 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113628.664 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113658.677 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113658.677 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113658.677 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113658.677 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113658.677 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113728.686 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113728.686 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113728.686 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113728.686 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113728.686 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113758.692 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113758.692 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113758.692 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113758.692 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113758.692 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113828.703 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113828.703 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113828.703 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113828.703 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113828.703 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113858.717 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113858.717 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113858.717 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113858.717 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113858.717 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113928.718 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113928.720 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113928.721 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113928.721 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113928.721 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-113958.734 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-113958.734 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-113958.734 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-113958.734 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-113958.734 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114028.738 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114028.738 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114028.739 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114028.739 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114028.739 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114058.751 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114058.751 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114058.751 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114058.751 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114058.751 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114128.756 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114128.756 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114128.757 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114128.757 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114128.757 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114158.771 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114158.771 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114158.771 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114158.771 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114158.771 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114228.782 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114228.782 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114228.785 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114228.785 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114228.785 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114258.800 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114258.800 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114258.800 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114258.800 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114258.800 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114328.814 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114328.814 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114328.814 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114328.814 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114328.814 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114358.829 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114358.829 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114358.829 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114358.829 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114358.829 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114428.836 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114428.836 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114428.836 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114428.836 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114428.836 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114458.850 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114458.850 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114458.850 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114458.850 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114458.850 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114528.854 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114528.854 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114528.854 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114528.854 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114528.854 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114558.861 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114558.861 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114558.861 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114558.861 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114558.861 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114628.866 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114628.866 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114628.866 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114628.866 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114628.866 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114658.877 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114658.877 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114658.877 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114658.877 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114658.878 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114728.878 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114728.884 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114728.887 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114728.887 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114728.888 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114758.890 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114758.890 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114758.890 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114758.890 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114758.890 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114828.899 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114828.899 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114828.906 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114828.906 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114828.907 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114858.911 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114858.911 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114858.911 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114858.911 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114858.911 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114928.919 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114928.919 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114928.919 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114928.919 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114928.920 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20230829-114958.932 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0)
+DEBUG | 20230829-114958.932 | PortSIPVoIPSDK | RESIP:DUM | 28092 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20230829-114958.932 | PortSIPVoIPSDK | RESIP:TRANSACTION | 28092 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ](0) ms=30000
+DEBUG | 20230829-114958.932 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-114958.938 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+
+
+sigcomp id=
+INFO | 20230829-115007.694 | PortSIPVoIPSDK | RESIP:DUM | 11172 | clientregistration.cxx:197 | Removing binding
+DEBUG | 20230829-115007.696 | PortSIPVoIPSDK | RESIP | 11172 | helper.cxx:1332 | nonceCount is now: [00000003]
+DEBUG | 20230829-115007.696 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---e97ac04016d3f031;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230829-115007.699 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogid.cxx:50 | DialogId::DialogId: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55-
+DEBUG | 20230829-115007.699 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.1.29 tid=e97ac04016d3f031 cseq=4 REGISTER contact=agent1@192.168.1.153:5060 / 4 from(tu)
+DEBUG | 20230829-115007.699 | PortSIPVoIPSDK | RESIP | 11172 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.1.29 tid=e97ac04016d3f031 cseq=4 REGISTER contact=agent1@192.168.1.153:5060 / 4 from(tu)
+DEBUG | 20230829-115007.700 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer F tid=e97ac04016d3f031 ms=32000
+DEBUG | 20230829-115007.700 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.1.29
+DEBUG | 20230829-115007.700 | PortSIPVoIPSDK | RESIP:DNS | 20592 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.1.29
+DEBUG | 20230829-115007.700 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 ]
+DEBUG | 20230829-115007.701 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=e97ac04016d3f031 ms=500
+DEBUG | 20230829-115007.701 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-115007.703 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:31 |  Add auth, 0000011D38875BF0 in response to: Digest realm="192.168.1.29", nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31", algorithm=MD5, qop="auth"
+DEBUG | 20230829-115007.703 | PortSIPVoIPSDK | RESIP:DUM | 20592 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="ec59f85a0465be64b0b6ef1f3c0edf8e",cnonce="ef51815742d72e3953861843a29ee3c8",nc=00000003,qop=auth,algorithm=MD5
+DEBUG | 20230829-115007.704 | PortSIPVoIPSDK | RESIP:TRANSPORT | 20592 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.1.29:5060 UDP targetDomain=192.168.1.29 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ]
+
+REGISTER sip:192.168.1.29 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---e97ac04016d3f031;rport
+Max-Forwards: 70
+Contact: <sip:agent1@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "agent1"<sip:agent1@192.168.1.29>
+From: "agent1"<sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="agent1",realm="192.168.1.29",nonce="ca8e51a8-029c-4f18-8eea-bae2e7394b31",uri="sip:192.168.1.29",response="ec59f85a0465be64b0b6ef1f3c0edf8e",cnonce="ef51815742d72e3953861843a29ee3c8",nc=00000003,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+WARNING | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | handlemanager.cxx:93 | Waiting for usages to be deleted (2)
+DEBUG | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | handlemanager.cxx:96 | 1 -> AppDialogSet 1
+DEBUG | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | handlemanager.cxx:96 | 2 -> ClientRegistration sip:agent1@192.168.1.29
+INFO | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:TRANSACTION | 7272 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20230829-115007.705 | PortSIPVoIPSDK | RESIP:DUM | 28092 | dialogusagemanager.cxx:1350 | TU unregistered 
+DEBUG | 20230829-115007.801 | PortSIPVoIPSDK | RESIP:TRANSPORT | 2328 | transport.cxx:392 | incoming from: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ]
+DEBUG | 20230829-115007.802 | PortSIPVoIPSDK | RESIP:DNS | 28020 | dnsresult.cxx:253 | Whitelisting 192.168.1.29(1): 192.168.1.29
+DEBUG | 20230829-115007.802 | PortSIPVoIPSDK | RESIP:DNS | 28020 | rrvip.cxx:128 | updating an existing vip: 192.168.1.29 with 192.168.1.29
+WARNING | 20230829-115007.802 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | tuselector.cxx:75 | Send to TU that no longer exists: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---e97ac04016d3f031;rport=5060
+Contact: <sip:agent1@192.168.1.151:5060>;expires=2694
+To: "agent1" <sip:agent1@192.168.1.29>;tag=mB6Zpa41yXZvm
+From: "agent1" <sip:agent1@192.168.1.29>;tag=3d9f7d55
+Call-ID: YzTWUKBvqYM9_n-EnZmj7Q..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Tue, 29 Aug 2023 06:20:08 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.9-release-21-a615e85afc~64bit
+Content-Length: 0
+
+
+DEBUG | 20230829-115007.802 | PortSIPVoIPSDK | RESIP:TRANSACTION | 20592 | timerqueue.cxx:50 | Adding timer: Timer K tid=e97ac04016d3f031 ms=5000
+INFO | 20230829-115008.021 | PortSIPVoIPSDK | RESIP | 7272 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogusagemanager.cxx:158 | DialogUsageManager::mDialogSetMap has 1 DialogSets
+DEBUG | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogusagemanager.cxx:162 | DialgSetId:YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55
+DEBUG | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | clientregistration.cxx:71 | ClientRegistration::~ClientRegistration
+DEBUG | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | keepalivemanager.cxx:78 | Last association removed for keep alive id=0: [ V4 192.168.1.29:5060 UDP flowKey=3752 transportKey=1 ]
+INFO | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogusagemanager.cxx:1201 | DialogUsageManager::destroy() not posting to stack
+DEBUG | 20230829-115008.114 | PortSIPVoIPSDK | RESIP:DUM | 11172 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: YzTWUKBvqYM9_n-EnZmj7Q..-3d9f7d55*************
+DEBUG | 20230829-115008.116 | PortSIPVoIPSDK | RESIP | 11172 | sipstack.cxx:226 | SipStack::~SipStack()
+WARNING | 20230829-115008.116 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11172 | transactioncontroller.cxx:72 | On shutdown, there are Client TransactionStates remaining!
+DEBUG | 20230829-115008.117 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11172 | transactionmap.cxx:18 | e97ac04016d3f031 -> 0000011D3A8A13F0: tid=e97ac04016d3f031 [ ClientNonInvite/Completed unreliable target=[ V4 0.0.0.0:0 UNKNOWN_TRANSPORT ]]
+INFO | 20230829-115008.117 | PortSIPVoIPSDK | RESIP:TRANSPORT | 11172 | udptransport.cxx:92 | Shutting down [ V4 192.168.1.153:5060 UDP flowKey=3752 transportKey=1 ] tf=0 evt=0 stats: poll=41 txtry=37 txmsg=37 txfail=0 rxtry=4 rxmsg=4 rxka=0 rxtr=4
+DEBUG | 20230829-115008.121 | PortSIPVoIPSDK | RESIP | 11172 | security.cxx:1244 | BaseSecurity::~BaseSecurity

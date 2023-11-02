@@ -1,0 +1,369 @@
+DEBUG | 20230828-124652.747 | PortSIPVoIPSDK | RESIP:APP | 18600 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20230828-124652.761 | PortSIPVoIPSDK | RESIP | 18600 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20230828-124652.784 | PortSIPVoIPSDK | RESIP | 18600 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230828-124652.784 | PortSIPVoIPSDK | RESIP | 18600 | security.cxx:3116 | ECDH initialized
+WARNING | 20230828-124652.784 | PortSIPVoIPSDK | RESIP | 18600 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20230828-124652.784 | PortSIPVoIPSDK | RESIP | 18600 | security.cxx:3116 | ECDH initialized
+INFO | 20230828-124652.801 | PortSIPVoIPSDK | RESIP:DNS | 18600 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230828-124652.801 | PortSIPVoIPSDK | RESIP:DNS | 18600 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230828-124652.801 | PortSIPVoIPSDK | RESIP:DNS | 18600 | aresdns.cxx:408 |  name server: 8.8.8.8
+DEBUG | 20230828-124652.802 | PortSIPVoIPSDK | RESIP | 18600 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20230828-124652.802 | PortSIPVoIPSDK | RESIP | 18600 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20230828-124652.806 | PortSIPVoIPSDK | RESIP:TRANSPORT | 18600 | transportselector.cxx:99 | No compression library available
+INFO | 20230828-124652.821 | PortSIPVoIPSDK | RESIP | 18600 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20230828-124652.821 | PortSIPVoIPSDK | RESIP | 18600 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20230828-124652.837 | PortSIPVoIPSDK | RESIP | 18600 | winsecurity.cxx:202 | 62 certs loaded of type 1
+DEBUG | 20230828-124652.838 | PortSIPVoIPSDK | RESIP:APP | 18600 | useragent.cxx:105 | new SipStack
+INFO | 20230828-124652.843 | PortSIPVoIPSDK | RESIP:APP | 18600 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20230828-124652.854 | PortSIPVoIPSDK | RESIP:APP | 18600 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20230828-124653.641 | PortSIPVoIPSDK | RESIP:APP | 18600 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20230828-124653.702 | PortSIPVoIPSDK | RESIP:TRANSPORT | 18600 | internaltransport.cxx:121 | Creating fd=4052 V4/UDP
+DEBUG | 20230828-124653.702 | PortSIPVoIPSDK | RESIP:TRANSPORT | 18600 | internaltransport.cxx:133 | Binding to 192.168.1.153
+INFO | 20230828-124653.703 | PortSIPVoIPSDK | RESIP:TRANSPORT | 18600 | udptransport.cxx:60 | Creating UDP transport host=192.168.1.153 port=5060 ipv4=1
+DEBUG | 20230828-124653.703 | PortSIPVoIPSDK | RESIP:TRANSPORT | 18600 | udptransport.cxx:74 | No compression library available: Transport: [ V4 192.168.1.153:5060 UDP flowKey=4052 ] on 192.168.1.153
+DEBUG | 20230828-124653.703 | PortSIPVoIPSDK | RESIP | 18600 | sipstack.cxx:681 | Adding domain alias: 192.168.1.153:5060
+DEBUG | 20230828-124653.706 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:221 | Adding transport: [ V4 192.168.1.153:5060 UDP transportKey=1 ]
+DEBUG | 20230828-124653.707 | PortSIPVoIPSDK | RESIP:DUM | 18600 | userprofile.cxx:143 | Adding credential: realm=192.168.3.196 user=sanura
+INFO | 20230828-124653.706 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V4 192.168.1.153:5060 UDP transportKey=1 ], key=1
+INFO | 20230828-124653.736 | PortSIPVoIPSDK | RESIP:DNS | 12728 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20230828-124653.736 | PortSIPVoIPSDK | RESIP:DNS | 12728 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20230828-124653.736 | PortSIPVoIPSDK | RESIP:DNS | 12728 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20230828-124653.736 | PortSIPVoIPSDK | RESIP:DNS | 12728 | aresdns.cxx:554 |  No changes in DNS server list
+DEBUG | 20230828-124653.737 | PortSIPVoIPSDK | RESIP:DUM | 18600 | basecreator.cxx:148 | BaseCreator::makeInitialRequest: 
+
+REGISTER sip:sanura@192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---acdfd94cbc020e25;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.737 | PortSIPVoIPSDK | RESIP:DUM | 18600 | registrationcreator.cxx:25 | RegistrationCreator::RegistrationCreator: 000001FE26F686F0
+DEBUG | 20230828-124653.739 | PortSIPVoIPSDK | RESIP:DUM | 18600 | dialogset.cxx:52 |  ************* Created DialogSet(UAC)  -- jXD4BnD_UtZI_YNfO786KQ..-1d88e670*************
+DEBUG | 20230828-124653.739 | PortSIPVoIPSDK | RESIP:DUM | 18600 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---8ecb865eb602c63f;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.740 | PortSIPVoIPSDK | RESIP:DUM | 18600 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-
+DEBUG | 20230828-124653.740 | PortSIPVoIPSDK | RESIP:DUM | 18600 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=8ecb865eb602c63f cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20230828-124653.741 | PortSIPVoIPSDK | RESIP | 18600 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=8ecb865eb602c63f cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20230828-124653.741 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer F tid=8ecb865eb602c63f ms=32000
+DEBUG | 20230828-124653.741 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20230828-124653.741 | PortSIPVoIPSDK | RESIP:DNS | 15160 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20230828-124653.742 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20230828-124653.742 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=8ecb865eb602c63f ms=500
+DEBUG | 20230828-124653.742 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124653.742 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---8ecb865eb602c63f;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230828-124653.822 | PortSIPVoIPSDK | RESIP:TRANSPORT | 1228 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124653.822 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20230828-124653.822 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---8ecb865eb602c63f;rport=5060
+To: "sanura" <sip:sanura@192.168.3.196>;tag=Sm029r4g40UaK
+From: "sanura" <sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+WWW-Authenticate: Digest realm="192.168.3.196", nonce="37768fb9-ddd0-48c4-9b27-069372186fca", algorithm=MD5, qop="auth"
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.822 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer K tid=8ecb865eb602c63f ms=5000
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1607 | Got: SipResp: 401 tid=8ecb865eb602c63f cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 401 tid=8ecb865eb602c63f cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:340 | ClientAuthManager::RealmState::handleAuth: 000001FE27324038 Digest realm="192.168.3.196", nonce="37768fb9-ddd0-48c4-9b27-069372186fca", algorithm=MD5, qop="auth" is proxy: 0
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from invalid to current
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | userprofile.cxx:166 | Found credential for realm: realm=192.168.3.196 user=sanura192.168.3.196
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:151 | Produced response to digest challenge for UserProfile: "sanura"<sip:sanura@192.168.3.196>[realm=192.168.3.196 user=sanura]
+DEBUG | 20230828-124653.823 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogset.cxx:255 | about to re-send request with digest credentials
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP | 11832 | helper.cxx:1332 | nonceCount is now: [00000001]
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---01d0f1042538f97f;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=01d0f1042538f97f cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP | 11832 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=01d0f1042538f97f cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer F tid=01d0f1042538f97f ms=32000
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DNS | 15160 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=01d0f1042538f97f ms=500
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124653.824 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:31 |  Add auth, 000001FE273242D0 in response to: Digest realm="192.168.3.196", nonce="37768fb9-ddd0-48c4-9b27-069372186fca", algorithm=MD5, qop="auth"
+DEBUG | 20230828-124653.825 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="419bd79c0c7930315c8dd25a12295dc4",cnonce="7b649dcd3739f47d251588c392a2daf2",nc=00000001,qop=auth,algorithm=MD5
+DEBUG | 20230828-124653.825 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---01d0f1042538f97f;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="419bd79c0c7930315c8dd25a12295dc4",cnonce="7b649dcd3739f47d251588c392a2daf2",nc=00000001,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:TRANSPORT | 1228 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---01d0f1042538f97f;rport=5060
+Contact: <sip:sanura@192.168.1.153:5060>;expires=3600
+To: "sanura" <sip:sanura@192.168.3.196>;tag=tXSUBmNm19HXe
+From: "sanura" <sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 2 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Mon, 28 Aug 2023 07:16:53 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DNS | 12728 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer K tid=01d0f1042538f97f ms=5000
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=01d0f1042538f97f cseq=2 REGISTER contact=sanura@192.168.1.153:5060 / 2 from(wire)
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=01d0f1042538f97f cseq=2 REGISTER contact=sanura@192.168.1.153:5060 / 2 from(wire)
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning jXD4BnD_UtZI_YNfO786KQ..-1d88e670to cached
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from current to cached
+DEBUG | 20230828-124653.982 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-tXSUBmNm19HXe
+DEBUG | 20230828-124653.986 | PortSIPVoIPSDK | RESIP:DUM | 11832 | keepalivemanager.cxx:26 | First keep alive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ], interval=30s, supportsOutbound=false
+DEBUG | 20230828-124653.986 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11832 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ](0) ms=30000
+DEBUG | 20230828-124653.986 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20230828-124653.986 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11832 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=1 ms=3240000
+INFO | 20230828-124653.987 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientregistration.cxx:303 | requesting refresh of ClientRegistration sip:sanura@192.168.3.196
+DEBUG | 20230828-124653.987 | PortSIPVoIPSDK | RESIP | 11832 | helper.cxx:1332 | nonceCount is now: [00000002]
+DEBUG | 20230828-124653.987 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---6b173b17a6363421;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=6b173b17a6363421 cseq=3 REGISTER contact=sanura@192.168.1.153:5060 / 3 from(tu)
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP | 11832 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=6b173b17a6363421 cseq=3 REGISTER contact=sanura@192.168.1.153:5060 / 3 from(tu)
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer F tid=6b173b17a6363421 ms=32000
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DNS | 15160 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=6b173b17a6363421 ms=500
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:31 |  Add auth, 000001FE27324440 in response to: Digest realm="192.168.3.196", nonce="37768fb9-ddd0-48c4-9b27-069372186fca", algorithm=MD5, qop="auth"
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="c89ae035f272be2f5a75d3f802cee7f6",cnonce="68e8da1f0f96ae4b021c31d962bdbf0c",nc=00000002,qop=auth,algorithm=MD5
+DEBUG | 20230828-124653.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---6b173b17a6363421;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="c89ae035f272be2f5a75d3f802cee7f6",cnonce="68e8da1f0f96ae4b021c31d962bdbf0c",nc=00000002,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:TRANSPORT | 1228 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DNS | 12728 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---6b173b17a6363421;rport=5060
+Contact: <sip:sanura@192.168.1.153:5060>;expires=3600
+To: "sanura" <sip:sanura@192.168.3.196>;tag=U6jmDF6Qyj8Fa
+From: "sanura" <sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 3 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Mon, 28 Aug 2023 07:16:53 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer K tid=6b173b17a6363421 ms=5000
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=6b173b17a6363421 cseq=3 REGISTER contact=sanura@192.168.1.153:5060 / 3 from(wire)
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=6b173b17a6363421 cseq=3 REGISTER contact=sanura@192.168.1.153:5060 / 3 from(wire)
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning jXD4BnD_UtZI_YNfO786KQ..-1d88e670to cached
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from cached to cached
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-U6jmDF6Qyj8Fa
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:DUM | 11832 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20230828-124654.088 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11832 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=2 ms=3240000
+INFO | 20230828-124723.976 | PortSIPVoIPSDK | RESIP:DUM | 4932 | clientregistration.cxx:197 | Removing binding
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP | 4932 | helper.cxx:1332 | nonceCount is now: [00000003]
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---23ca5623226a9062;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogid.cxx:50 | DialogId::DialogId: jXD4BnD_UtZI_YNfO786KQ..-1d88e670-
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=23ca5623226a9062 cseq=4 REGISTER contact=sanura@192.168.1.153:5060 / 4 from(tu)
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP | 4932 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=23ca5623226a9062 cseq=4 REGISTER contact=sanura@192.168.1.153:5060 / 4 from(tu)
+DEBUG | 20230828-124723.976 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer F tid=23ca5623226a9062 ms=32000
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:DNS | 15160 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=23ca5623226a9062 ms=500
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:31 |  Add auth, 000001FE27324890 in response to: Digest realm="192.168.3.196", nonce="37768fb9-ddd0-48c4-9b27-069372186fca", algorithm=MD5, qop="auth"
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:DUM | 15160 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="a526b4f7fa8e53d2798217bcc699931f",cnonce="7f4d56b56d5b05356e008346095fcee9",nc=00000003,qop=auth,algorithm=MD5
+DEBUG | 20230828-124723.977 | PortSIPVoIPSDK | RESIP:TRANSPORT | 15160 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.153:5060;branch=z9hG4bK-524287-1---23ca5623226a9062;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.153:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="37768fb9-ddd0-48c4-9b27-069372186fca",uri="sip:192.168.3.196",response="a526b4f7fa8e53d2798217bcc699931f",cnonce="7f4d56b56d5b05356e008346095fcee9",nc=00000003,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+WARNING | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | handlemanager.cxx:93 | Waiting for usages to be deleted (2)
+DEBUG | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | handlemanager.cxx:96 | 1 -> AppDialogSet 1
+DEBUG | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | handlemanager.cxx:96 | 2 -> ClientRegistration sip:sanura@192.168.3.196
+INFO | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:TRANSACTION | 12360 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20230828-124723.978 | PortSIPVoIPSDK | RESIP:DUM | 11832 | dialogusagemanager.cxx:1350 | TU unregistered 
+WARNING | 20230828-124723.995 | PortSIPVoIPSDK | RESIP:TRANSACTION | 12360 | tuselector.cxx:75 | Send to TU that no longer exists: 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ](0)
+DEBUG | 20230828-124724.099 | PortSIPVoIPSDK | RESIP:TRANSPORT | 1228 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ]
+DEBUG | 20230828-124724.100 | PortSIPVoIPSDK | RESIP:DNS | 12728 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20230828-124724.100 | PortSIPVoIPSDK | RESIP:DNS | 12728 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+WARNING | 20230828-124724.100 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | tuselector.cxx:75 | Send to TU that no longer exists: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.153:5060;received=192.168.1.153;branch=z9hG4bK-524287-1---23ca5623226a9062;rport=5060
+To: "sanura" <sip:sanura@192.168.3.196>;tag=y1yyj0r2NDB8c
+From: "sanura" <sip:sanura@192.168.3.196>;tag=1d88e670
+Call-ID: jXD4BnD_UtZI_YNfO786KQ..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Mon, 28 Aug 2023 07:17:24 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20230828-124724.100 | PortSIPVoIPSDK | RESIP:TRANSACTION | 15160 | timerqueue.cxx:50 | Adding timer: Timer K tid=23ca5623226a9062 ms=5000
+INFO | 20230828-124724.277 | PortSIPVoIPSDK | RESIP | 12360 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20230828-124724.356 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogusagemanager.cxx:158 | DialogUsageManager::mDialogSetMap has 1 DialogSets
+DEBUG | 20230828-124724.357 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogusagemanager.cxx:162 | DialgSetId:jXD4BnD_UtZI_YNfO786KQ..-1d88e670
+DEBUG | 20230828-124724.357 | PortSIPVoIPSDK | RESIP:DUM | 4932 | clientregistration.cxx:71 | ClientRegistration::~ClientRegistration
+DEBUG | 20230828-124724.357 | PortSIPVoIPSDK | RESIP:DUM | 4932 | keepalivemanager.cxx:78 | Last association removed for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=4052 transportKey=1 ]
+INFO | 20230828-124724.357 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogusagemanager.cxx:1201 | DialogUsageManager::destroy() not posting to stack
+DEBUG | 20230828-124724.357 | PortSIPVoIPSDK | RESIP:DUM | 4932 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: jXD4BnD_UtZI_YNfO786KQ..-1d88e670*************
+DEBUG | 20230828-124724.358 | PortSIPVoIPSDK | RESIP | 4932 | sipstack.cxx:226 | SipStack::~SipStack()
+WARNING | 20230828-124724.358 | PortSIPVoIPSDK | RESIP:TRANSACTION | 4932 | transactioncontroller.cxx:72 | On shutdown, there are Client TransactionStates remaining!
+DEBUG | 20230828-124724.358 | PortSIPVoIPSDK | RESIP:TRANSACTION | 4932 | transactionmap.cxx:18 | 23ca5623226a9062 -> 000001FE272E4EB0: tid=23ca5623226a9062 [ ClientNonInvite/Completed unreliable target=[ V4 0.0.0.0:0 UNKNOWN_TRANSPORT ]]
+INFO | 20230828-124724.358 | PortSIPVoIPSDK | RESIP:TRANSPORT | 4932 | udptransport.cxx:92 | Shutting down [ V4 192.168.1.153:5060 UDP flowKey=4052 transportKey=1 ] tf=0 evt=0 stats: poll=8 txtry=4 txmsg=4 txfail=0 rxtry=4 rxmsg=4 rxka=0 rxtr=4
+DEBUG | 20230828-124724.359 | PortSIPVoIPSDK | RESIP | 4932 | security.cxx:1244 | BaseSecurity::~BaseSecurity
