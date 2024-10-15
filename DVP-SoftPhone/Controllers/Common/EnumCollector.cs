@@ -56,7 +56,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers.Common
         AnswerCallFail = 22,
         ReciveCallInfo = 23,
         EnableAutoAnswer = 24,
-        DisableAutoAnswer = 25
+        DisableAutoAnswer = 25,
+        FreeswitchConnectionLost = 26
     }
 
     public struct CallLog

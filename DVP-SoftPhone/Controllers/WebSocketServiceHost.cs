@@ -200,7 +200,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         /// <param name="aContext"></param>
         private static void OnDisconnected(Guid ClientAddress)
         {
-            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected : " + ClientAddress, Logger.LogLevel.Info);
+            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected (ClientAddress) : " + ClientAddress, Logger.LogLevel.Info);
+            Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger2, "OnDisconnected (webSocket.ConnectionInfo.Id): " + webSocket.ConnectionInfo.Id, Logger.LogLevel.Info);
             //currentContext = null;
             //_duoKey = Guid.NewGuid().ToString();
 

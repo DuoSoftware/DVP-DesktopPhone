@@ -1,0 +1,650 @@
+DEBUG | 20240827-164935.714 | PortSIPVoIPSDK | RESIP:APP | 33112 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20240827-164935.721 | PortSIPVoIPSDK | RESIP | 33112 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20240827-164935.728 | PortSIPVoIPSDK | RESIP | 33112 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20240827-164935.728 | PortSIPVoIPSDK | RESIP | 33112 | security.cxx:3116 | ECDH initialized
+WARNING | 20240827-164935.728 | PortSIPVoIPSDK | RESIP | 33112 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20240827-164935.728 | PortSIPVoIPSDK | RESIP | 33112 | security.cxx:3116 | ECDH initialized
+INFO | 20240827-164935.740 | PortSIPVoIPSDK | RESIP:DNS | 33112 | aresdns.cxx:397 | DNS initialization: found  3 name servers
+INFO | 20240827-164935.740 | PortSIPVoIPSDK | RESIP:DNS | 33112 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20240827-164935.740 | PortSIPVoIPSDK | RESIP:DNS | 33112 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20240827-164935.740 | PortSIPVoIPSDK | RESIP:DNS | 33112 | aresdns.cxx:403 |  name server: fe80::1
+DEBUG | 20240827-164935.741 | PortSIPVoIPSDK | RESIP | 33112 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20240827-164935.741 | PortSIPVoIPSDK | RESIP | 33112 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20240827-164935.742 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | transportselector.cxx:99 | No compression library available
+INFO | 20240827-164935.753 | PortSIPVoIPSDK | RESIP | 33112 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20240827-164935.753 | PortSIPVoIPSDK | RESIP | 33112 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20240827-164935.775 | PortSIPVoIPSDK | RESIP | 33112 | winsecurity.cxx:202 | 66 certs loaded of type 1
+DEBUG | 20240827-164935.775 | PortSIPVoIPSDK | RESIP:APP | 33112 | useragent.cxx:105 | new SipStack
+INFO | 20240827-164935.778 | PortSIPVoIPSDK | RESIP:APP | 33112 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20240827-164935.782 | PortSIPVoIPSDK | RESIP:APP | 33112 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20240827-164937.779 | PortSIPVoIPSDK | RESIP:APP | 33112 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20240827-164937.825 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | internaltransport.cxx:121 | Creating fd=3760 V4/UDP
+DEBUG | 20240827-164937.825 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | internaltransport.cxx:133 | Binding to 0.0.0.0
+INFO | 20240827-164937.826 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | udptransport.cxx:60 | Creating UDP transport host= port=5060 ipv4=1
+DEBUG | 20240827-164937.826 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | udptransport.cxx:74 | No compression library available: Transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 ]
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 127.0.0.1:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 127.0.0.1:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 169.254.10.240:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 192.168.1.20:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 169.254.14.203:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 169.254.186.110:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 192.168.137.1:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 169.254.205.157:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: 10.212.134.204:5060
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | internaltransport.cxx:121 | Creating fd=2996 V6/UDP
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | internaltransport.cxx:133 | Binding to ::
+INFO | 20240827-164937.832 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | udptransport.cxx:60 | Creating UDP transport host= port=5060 ipv4=0
+DEBUG | 20240827-164937.832 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33112 | udptransport.cxx:74 | No compression library available: Transport: [ V6 :: port=5060 UDP flowKey=2996 ]
+DEBUG | 20240827-164937.833 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:221 | Adding transport: [ V4 0.0.0.0:5060 UDP transportKey=1 ]
+INFO | 20240827-164937.834 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V4 0.0.0.0:5060 UDP transportKey=1 ], key=1
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: ::1:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::308d:abc7:626c:17a1:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::b3e8:1847:7c7:b6f:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::148a:afac:2ba2:853c:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::5249:e406:e9a0:9e9a:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::f6c3:1ab7:e018:7a6c:5060
+DEBUG | 20240827-164937.840 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:681 | Adding domain alias: fe80::2435:9148:cc06:fad8:5060
+DEBUG | 20240827-164937.841 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:221 | Adding transport: [ V6 :: port=5060 UDP transportKey=2 ]
+INFO | 20240827-164937.841 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V6 :: port=5060 UDP transportKey=2 ], key=2
+DEBUG | 20240827-164937.845 | PortSIPVoIPSDK | RESIP:DUM | 33112 | userprofile.cxx:143 | Adding credential: realm=172.16.25.172 user=sanura
+INFO | 20240827-164937.883 | PortSIPVoIPSDK | RESIP:DNS | 27608 | aresdns.cxx:397 | DNS initialization: found  3 name servers
+INFO | 20240827-164937.883 | PortSIPVoIPSDK | RESIP:DNS | 27608 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20240827-164937.883 | PortSIPVoIPSDK | RESIP:DNS | 27608 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20240827-164937.883 | PortSIPVoIPSDK | RESIP:DNS | 27608 | aresdns.cxx:403 |  name server: fe80::1
+INFO | 20240827-164937.883 | PortSIPVoIPSDK | RESIP:DNS | 27608 | aresdns.cxx:554 |  No changes in DNS server list
+DEBUG | 20240827-164937.886 | PortSIPVoIPSDK | RESIP:DUM | 33112 | basecreator.cxx:148 | BaseCreator::makeInitialRequest: 
+
+REGISTER sip:sanura@172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---4dfc1b38cdc06559;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-164937.887 | PortSIPVoIPSDK | RESIP:DUM | 33112 | registrationcreator.cxx:25 | RegistrationCreator::RegistrationCreator: 000002032731CC70
+DEBUG | 20240827-164937.888 | PortSIPVoIPSDK | RESIP:DUM | 33112 | dialogset.cxx:52 |  ************* Created DialogSet(UAC)  -- Ywhvpk6pZQXcpzP9biRS9w..-6469f623*************
+DEBUG | 20240827-164937.889 | PortSIPVoIPSDK | RESIP:DUM | 33112 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---b33d794380c5221a;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 1 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-164937.892 | PortSIPVoIPSDK | RESIP:DUM | 33112 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-
+DEBUG | 20240827-164937.892 | PortSIPVoIPSDK | RESIP:DUM | 33112 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 172.16.25.172 tid=b33d794380c5221a cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20240827-164937.892 | PortSIPVoIPSDK | RESIP | 33112 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 172.16.25.172 tid=b33d794380c5221a cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20240827-164937.893 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer F tid=b33d794380c5221a ms=32000
+DEBUG | 20240827-164937.893 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:603 | Looking up dns entries for sip:172.16.25.172
+DEBUG | 20240827-164937.893 | PortSIPVoIPSDK | RESIP:DNS | 13720 | dnsresult.cxx:261 | DnsResult::lookup sip:172.16.25.172
+DEBUG | 20240827-164937.894 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ]
+DEBUG | 20240827-164937.895 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=b33d794380c5221a ms=500
+DEBUG | 20240827-164937.895 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164937.895 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | internaltransport.cxx:121 | Creating fd=2364 V4/UDP
+DEBUG | 20240827-164937.896 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ] -> [ V4 10.212.134.204:0 UDP targetDomain=172.16.25.172 ] sent-by= sent-port=0
+DEBUG | 20240827-164937.896 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 transportKey=1 ] tlsDomain= via [ V4 10.212.134.204:5060 UDP targetDomain=172.16.25.172 ]
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---b33d794380c5221a;rport
+Max-Forwards: 70
+Contact: <sip:sanura@10.212.134.204:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 1 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-164937.963 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13488 | transport.cxx:392 | incoming from: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:253 | Whitelisting 172.16.25.172(1): 172.16.25.172
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---b33d794380c5221a;rport=47895
+To: "sanura" <sip:sanura@172.16.25.172>;tag=cNpHcjmBt0Uce
+From: "sanura" <sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.11-release-25-f24064f7c9~64bit
+WWW-Authenticate: Digest realm="172.16.25.172", nonce="ec1a9e71-428e-4250-88e5-66e497a09172", algorithm=MD5, qop="auth"
+Content-Length: 0
+
+
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer K tid=b33d794380c5221a ms=5000
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipResp: 401 tid=b33d794380c5221a cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 401 tid=b33d794380c5221a cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:340 | ClientAuthManager::RealmState::handleAuth: 000002032E621F18 Digest realm="172.16.25.172", nonce="ec1a9e71-428e-4250-88e5-66e497a09172", algorithm=MD5, qop="auth" is proxy: 0
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from invalid to current
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | userprofile.cxx:166 | Found credential for realm: realm=172.16.25.172 user=sanura172.16.25.172
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:151 | Produced response to digest challenge for UserProfile: "sanura"<sip:sanura@172.16.25.172>[realm=172.16.25.172 user=sanura]
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogset.cxx:255 | about to re-send request with digest credentials
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP | 31844 | helper.cxx:1332 | nonceCount is now: [00000001]
+DEBUG | 20240827-164937.964 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---998c4d4bbdbede34;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 2 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 172.16.25.172 tid=998c4d4bbdbede34 cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP | 31844 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 172.16.25.172 tid=998c4d4bbdbede34 cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer F tid=998c4d4bbdbede34 ms=32000
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:603 | Looking up dns entries for sip:172.16.25.172
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:DNS | 13720 | dnsresult.cxx:261 | DnsResult::lookup sip:172.16.25.172
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ]
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=998c4d4bbdbede34 ms=500
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ] -> [ V4 10.212.134.204:0 UDP targetDomain=172.16.25.172 ] sent-by= sent-port=0
+DEBUG | 20240827-164937.965 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:31 |  Add auth, 000002032E6221B0 in response to: Digest realm="172.16.25.172", nonce="ec1a9e71-428e-4250-88e5-66e497a09172", algorithm=MD5, qop="auth"
+DEBUG | 20240827-164937.966 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="f7a6f8245d75d689941b3e4fa511c7f5",cnonce="1539d9293de02b63bc18fdeb611dab8f",nc=00000001,qop=auth,algorithm=MD5
+DEBUG | 20240827-164937.966 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 transportKey=1 ] tlsDomain= via [ V4 10.212.134.204:5060 UDP targetDomain=172.16.25.172 ]
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---998c4d4bbdbede34;rport
+Max-Forwards: 70
+Contact: <sip:sanura@10.212.134.204:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 2 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="f7a6f8245d75d689941b3e4fa511c7f5",cnonce="1539d9293de02b63bc18fdeb611dab8f",nc=00000001,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-164938.070 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13488 | transport.cxx:392 | incoming from: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:253 | Whitelisting 172.16.25.172(1): 172.16.25.172
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---998c4d4bbdbede34;rport=47895
+Contact: <sip:sanura@10.212.134.204>;expires=30
+To: "sanura" <sip:sanura@172.16.25.172>;tag=DyFaeD5eQ9HZS
+From: "sanura" <sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 2 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Tue, 27 Aug 2024 11:19:38 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.11-release-25-f24064f7c9~64bit
+Content-Length: 0
+
+
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:DNS | 27608 | rrvip.cxx:128 | updating an existing vip: 172.16.25.172 with 172.16.25.172
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer K tid=998c4d4bbdbede34 ms=5000
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=998c4d4bbdbede34 cseq=2 REGISTER contact=sanura@10.212.134.204 / 2 from(wire)
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=998c4d4bbdbede34 cseq=2 REGISTER contact=sanura@10.212.134.204 / 2 from(wire)
+DEBUG | 20240827-164938.071 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning Ywhvpk6pZQXcpzP9biRS9w..-6469f623to cached
+DEBUG | 20240827-164938.072 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from current to cached
+DEBUG | 20240827-164938.072 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-DyFaeD5eQ9HZS
+DEBUG | 20240827-164938.073 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:26 | First keep alive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false
+DEBUG | 20240827-164938.073 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-164938.073 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20240827-164938.073 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=25 seq=1 ms=25000
+DEBUG | 20240827-164938.165 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13488 | transport.cxx:392 | incoming from: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+NOTIFY sip:sanura@10.212.134.204 SIP/2.0
+Via: SIP/2.0/UDP 172.16.25.172;rport=5060;branch=z9hG4bKcaZQ2cB4QUBgD
+Max-Forwards: 70
+Route: <sip:sanura@10.212.134.204>
+Contact: <sip:mod_sofia@172.16.25.172:5060>
+To: <sip:sanura@172.16.25.172>
+From: <sip:sanura@172.16.25.172>;tag=e782F8Njmj8HN
+Call-ID: 16e632bf-df09-123d-3eb6-005056a1d80d
+CSeq: 87824997 NOTIFY
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Type: application/simple-message-summary
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.11-release-25-f24064f7c9~64bit
+Subscription-State: terminated;reason=noresource
+Event: message-summary
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Content-Length: 67
+
+Messages-Waiting: no
+Message-Account: sip:sanura@172.16.25.172
+
+
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire)
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire)
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP | 13720 | helper.cxx:374 | Helper::makeResponse(SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire) code=100 reason=
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=caZQ2cB4QUBgD ms=3500
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+NOTIFY sip:sanura@10.212.134.204 SIP/2.0
+Via: SIP/2.0/UDP 172.16.25.172;rport=5060;branch=z9hG4bKcaZQ2cB4QUBgD
+Max-Forwards: 70
+Route: <sip:sanura@10.212.134.204>
+Contact: <sip:mod_sofia@172.16.25.172:5060>
+To: <sip:sanura@172.16.25.172>
+From: <sip:sanura@172.16.25.172>;tag=e782F8Njmj8HN
+Call-ID: 16e632bf-df09-123d-3eb6-005056a1d80d
+CSeq: 87824997 NOTIFY
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Type: application/simple-message-summary
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.11-release-25-f24064f7c9~64bit
+Subscription-State: terminated;reason=noresource
+Event: message-summary
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Content-Length: 67
+
+Messages-Waiting: no
+Message-Account: sip:sanura@172.16.25.172
+
+
+DEBUG | 20240827-164938.166 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire)
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire)
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogset.cxx:84 |  ************* Created DialogSet(UAS) *************: 16e632bf-df09-123d-3eb6-005056a1d80d-ad0b763e
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: 16e632bf-df09-123d-3eb6-005056a1d80d-ac8cc21c-e782F8Njmj8HN
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: 16e632bf-df09-123d-3eb6-005056a1d80d-783dfc1f-e782F8Njmj8HN
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP:DUM | 31844 | serveroutofdialogreq.cxx:52 | ServerOutOfDialogReq::dispatch - handler found for NOTIFY method.
+DEBUG | 20240827-164938.168 | PortSIPVoIPSDK | RESIP | 31844 | sipmessage.cxx:1066 | SipMessage::getContents: application/simple-message-summary
+DEBUG | 20240827-164938.169 | PortSIPVoIPSDK | RESIP | 31844 | helper.cxx:374 | Helper::makeResponse(SipReq:  NOTIFY sanura@10.212.134.204 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact=mod_sofia@172.16.25.172:5060 / 87824997 from(wire) code=200 reason=
+DEBUG | 20240827-164938.169 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 172.16.25.172;rport=5060;branch=z9hG4bKcaZQ2cB4QUBgD
+Contact: <sip:>
+To: <sip:sanura@172.16.25.172>;tag=43ca5560
+From: <sip:sanura@172.16.25.172>;tag=e782F8Njmj8HN
+Call-ID: 16e632bf-df09-123d-3eb6-005056a1d80d
+CSeq: 87824997 NOTIFY
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP | 31844 | sipstack.cxx:825 | SEND: SipResp: 200 tid=caZQ2cB4QUBgD cseq=87824997 NOTIFY contact= / 87824997 from(tu)
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer J tid=caZQ2cB4QUBgD ms=32000
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1119 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 10.212.134.204:0 UDP flowKey=3760 transportKey=1 ] sent-by=172.16.25.172 sent-port=0
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 10.212.134.204:5060 UDP flowKey=3760 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 172.16.25.172;rport=5060;branch=z9hG4bKcaZQ2cB4QUBgD
+Contact: <sip:10.212.134.204:5060>
+To: <sip:sanura@172.16.25.172>;tag=43ca5560
+From: <sip:sanura@172.16.25.172>;tag=e782F8Njmj8HN
+Call-ID: 16e632bf-df09-123d-3eb6-005056a1d80d
+CSeq: 87824997 NOTIFY
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-164938.170 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2503 | Got merged request removal request
+DEBUG | 20240827-164938.171 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer:  ms=32000
+DEBUG | 20240827-164938.171 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: 16e632bf-df09-123d-3eb6-005056a1d80d-ad0b763e*************
+DEBUG | 20240827-165003.080 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Registration: duration=25 seq=1
+INFO | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:303 | requesting refresh of ClientRegistration sip:sanura@172.16.25.172
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP | 31844 | helper.cxx:1332 | nonceCount is now: [00000002]
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---d411c8050a085175;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 3 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 172.16.25.172 tid=d411c8050a085175 cseq=3 REGISTER contact=sanura / 3 from(tu)
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP | 31844 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 172.16.25.172 tid=d411c8050a085175 cseq=3 REGISTER contact=sanura / 3 from(tu)
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer F tid=d411c8050a085175 ms=32000
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:603 | Looking up dns entries for sip:172.16.25.172
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DNS | 13720 | dnsresult.cxx:261 | DnsResult::lookup sip:172.16.25.172
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ]
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=d411c8050a085175 ms=500
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ] -> [ V4 10.212.134.204:0 UDP targetDomain=172.16.25.172 ] sent-by= sent-port=0
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:31 |  Add auth, 000002032E622BC0 in response to: Digest realm="172.16.25.172", nonce="ec1a9e71-428e-4250-88e5-66e497a09172", algorithm=MD5, qop="auth"
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="7130cc8b85918294822820d38d03834b",cnonce="cd338778dc2f286e7c413325742f2d3f",nc=00000002,qop=auth,algorithm=MD5
+DEBUG | 20240827-165003.081 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 transportKey=1 ] tlsDomain= via [ V4 10.212.134.204:5060 UDP targetDomain=172.16.25.172 ]
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---d411c8050a085175;rport
+Max-Forwards: 70
+Contact: <sip:sanura@10.212.134.204:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 3 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="7130cc8b85918294822820d38d03834b",cnonce="cd338778dc2f286e7c413325742f2d3f",nc=00000002,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13488 | transport.cxx:392 | incoming from: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:253 | Whitelisting 172.16.25.172(1): 172.16.25.172
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:DNS | 27608 | rrvip.cxx:128 | updating an existing vip: 172.16.25.172 with 172.16.25.172
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.212.134.204:5060;branch=z9hG4bK-524287-1---d411c8050a085175;rport=47895
+Contact: <sip:sanura@10.212.134.204>;expires=30
+To: "sanura" <sip:sanura@172.16.25.172>;tag=Fg2UH36NHUy4g
+From: "sanura" <sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 3 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Tue, 27 Aug 2024 11:20:03 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.11-release-25-f24064f7c9~64bit
+Content-Length: 0
+
+
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer K tid=d411c8050a085175 ms=5000
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=d411c8050a085175 cseq=3 REGISTER contact=sanura@10.212.134.204 / 3 from(wire)
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=d411c8050a085175 cseq=3 REGISTER contact=sanura@10.212.134.204 / 3 from(wire)
+DEBUG | 20240827-165003.159 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning Ywhvpk6pZQXcpzP9biRS9w..-6469f623to cached
+DEBUG | 20240827-165003.160 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from cached to cached
+DEBUG | 20240827-165003.160 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-Fg2UH36NHUy4g
+DEBUG | 20240827-165003.160 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20240827-165003.160 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=25 seq=2 ms=25000
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 10.212.134.204:0 UDP flowKey=3760 transportKey=1 ] sent-by= sent-port=0
+DEBUG | 20240827-165008.082 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 10.212.134.204:5060 UDP flowKey=3760 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240827-165010.178 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+
+DEBUG | 20240827-165010.195 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2511 | Merged request removed
+DEBUG | 20240827-165028.161 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Registration: duration=25 seq=2
+INFO | 20240827-165028.164 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:303 | requesting refresh of ClientRegistration sip:sanura@172.16.25.172
+DEBUG | 20240827-165028.171 | PortSIPVoIPSDK | RESIP | 31844 | helper.cxx:1332 | nonceCount is now: [00000003]
+DEBUG | 20240827-165028.171 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---9966b7243d2d4053;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 4 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-165028.177 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-
+DEBUG | 20240827-165028.177 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 172.16.25.172 tid=9966b7243d2d4053 cseq=4 REGISTER contact=sanura / 4 from(tu)
+DEBUG | 20240827-165028.177 | PortSIPVoIPSDK | RESIP | 31844 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 172.16.25.172 tid=9966b7243d2d4053 cseq=4 REGISTER contact=sanura / 4 from(tu)
+DEBUG | 20240827-165028.178 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer F tid=9966b7243d2d4053 ms=32000
+DEBUG | 20240827-165028.179 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:603 | Looking up dns entries for sip:172.16.25.172
+DEBUG | 20240827-165028.179 | PortSIPVoIPSDK | RESIP:DNS | 13720 | dnsresult.cxx:261 | DnsResult::lookup sip:172.16.25.172
+DEBUG | 20240827-165028.181 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ]
+DEBUG | 20240827-165028.181 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=500
+DEBUG | 20240827-165028.181 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165028.181 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ] -> [ V4 192.168.1.20:0 UDP targetDomain=172.16.25.172 ] sent-by= sent-port=0
+DEBUG | 20240827-165028.185 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:31 |  Add auth, 000002032E622320 in response to: Digest realm="172.16.25.172", nonce="ec1a9e71-428e-4250-88e5-66e497a09172", algorithm=MD5, qop="auth"
+DEBUG | 20240827-165028.186 | PortSIPVoIPSDK | RESIP:DUM | 13720 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="fc5691cdc7322f6c2eab5b0246af8fd3",cnonce="82428d7ad28b21d1f91c25c13275145a",nc=00000003,qop=auth,algorithm=MD5
+DEBUG | 20240827-165028.186 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP targetDomain=172.16.25.172 ]
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.20:5060;branch=z9hG4bK-524287-1---9966b7243d2d4053;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.20:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 4 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="172.16.25.172",nonce="ec1a9e71-428e-4250-88e5-66e497a09172",uri="sip:172.16.25.172",response="fc5691cdc7322f6c2eab5b0246af8fd3",cnonce="82428d7ad28b21d1f91c25c13275145a",nc=00000003,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-165028.693 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=1000
+DEBUG | 20240827-165029.698 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=2000
+DEBUG | 20240827-165031.706 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165035.714 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165038.087 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+DEBUG | 20240827-165038.088 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240827-165038.088 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-165038.088 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165038.088 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 192.168.1.20:0 UDP flowKey=3760 transportKey=1 ] sent-by= sent-port=0
+DEBUG | 20240827-165038.088 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP flowKey=3760 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240827-165039.720 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165043.728 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165047.737 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165051.738 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165055.747 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165059.747 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=9966b7243d2d4053 ms=4000
+DEBUG | 20240827-165100.182 | PortSIPVoIPSDK | RESIP | 13720 | helper.cxx:374 | Helper::makeResponse(SipReq:  REGISTER 172.16.25.172 tid=9966b7243d2d4053 cseq=4 REGISTER contact=sanura@192.168.1.20:5060 / 4 from(tu) code=408 reason=
+DEBUG | 20240827-165100.183 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:187 | Remove vip 172.16.25.172(1)
+DEBUG | 20240827-165100.183 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 408 Request Timeout
+Via: SIP/2.0/UDP 192.168.1.20:5060;branch=z9hG4bK-524287-1---9966b7243d2d4053;rport
+To: "sanura"<sip:sanura@172.16.25.172>;tag=cbbf5554
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 4 REGISTER
+Content-Length: 0
+
+
+DEBUG | 20240827-165100.184 | PortSIPVoIPSDK | RESIP:DNS | 27608 | rrvip.cxx:96 | removed vip 172.16.25.172(1): 172.16.25.172
+DEBUG | 20240827-165100.184 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipResp: 408 tid=9966b7243d2d4053 cseq=4 REGISTER / 4 from(wire)
+DEBUG | 20240827-165100.184 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 408 tid=9966b7243d2d4053 cseq=4 REGISTER / 4 from(wire)
+DEBUG | 20240827-165100.185 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning Ywhvpk6pZQXcpzP9biRS9w..-6469f623to cached
+DEBUG | 20240827-165100.186 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from cached to cached
+DEBUG | 20240827-165100.186 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-cbbf5554
+DEBUG | 20240827-165100.188 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:645 | Application requested delayed retry on 408 or internal 503: 45
+DEBUG | 20240827-165100.188 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: DumTimeout::RegistrationRetry: duration=45 seq=3 ms=45000
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 192.168.1.20:0 UDP flowKey=3760 transportKey=1 ] sent-by= sent-port=0
+DEBUG | 20240827-165108.092 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP flowKey=3760 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 192.168.1.20:0 UDP flowKey=3760 transportKey=1 ] sent-by= sent-port=0
+DEBUG | 20240827-165138.105 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP flowKey=3760 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::RegistrationRetry: duration=45 seq=3
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---7ac8165a90e4b010;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 5 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 172.16.25.172 tid=7ac8165a90e4b010 cseq=5 REGISTER contact=sanura / 5 from(tu)
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP | 31844 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 172.16.25.172 tid=7ac8165a90e4b010 cseq=5 REGISTER contact=sanura / 5 from(tu)
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer F tid=7ac8165a90e4b010 ms=32000
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:603 | Looking up dns entries for sip:172.16.25.172
+DEBUG | 20240827-165145.196 | PortSIPVoIPSDK | RESIP:DNS | 13720 | dnsresult.cxx:261 | DnsResult::lookup sip:172.16.25.172
+DEBUG | 20240827-165145.197 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ]
+DEBUG | 20240827-165145.197 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=500
+DEBUG | 20240827-165145.197 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165145.197 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 ] -> [ V4 192.168.1.20:0 UDP targetDomain=172.16.25.172 ] sent-by= sent-port=0
+DEBUG | 20240827-165145.197 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP targetDomain=172.16.25.172 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP targetDomain=172.16.25.172 ]
+
+REGISTER sip:172.16.25.172 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.20:5060;branch=z9hG4bK-524287-1---7ac8165a90e4b010;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.20:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@172.16.25.172>
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 5 REGISTER
+Expires: 30
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240827-165145.710 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=1000
+DEBUG | 20240827-165146.722 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=2000
+DEBUG | 20240827-165148.731 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165152.739 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165156.742 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165200.750 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165204.763 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:TRANSACTION | 31844 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0) ms=30000
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:982 | Found transport: [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:918 | Looked up source for destination: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] -> [ V4 192.168.1.20:0 UDP flowKey=3760 transportKey=1 ] sent-by= sent-port=0
+DEBUG | 20240827-165208.114 | PortSIPVoIPSDK | RESIP:TRANSPORT | 13720 | transportselector.cxx:1335 | Transmitting to [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ] tlsDomain= via [ V4 192.168.1.20:5060 UDP flowKey=3760 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240827-165208.777 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165212.792 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165216.803 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=7ac8165a90e4b010 ms=4000
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP | 13720 | helper.cxx:374 | Helper::makeResponse(SipReq:  REGISTER 172.16.25.172 tid=7ac8165a90e4b010 cseq=5 REGISTER contact=sanura@192.168.1.20:5060 / 5 from(tu) code=408 reason=
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:DNS | 27608 | dnsresult.cxx:187 | Remove vip 172.16.25.172(1)
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:TRANSACTION | 13720 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 408 Request Timeout
+Via: SIP/2.0/UDP 192.168.1.20:5060;branch=z9hG4bK-524287-1---7ac8165a90e4b010;rport
+To: "sanura"<sip:sanura@172.16.25.172>;tag=8762c268
+From: "sanura"<sip:sanura@172.16.25.172>;tag=6469f623
+Call-ID: Ywhvpk6pZQXcpzP9biRS9w..
+CSeq: 5 REGISTER
+Content-Length: 0
+
+
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1607 | Got: SipResp: 408 tid=7ac8165a90e4b010 cseq=5 REGISTER / 5 from(wire)
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 408 tid=7ac8165a90e4b010 cseq=5 REGISTER / 5 from(wire)
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogid.cxx:50 | DialogId::DialogId: Ywhvpk6pZQXcpzP9biRS9w..-6469f623-8762c268
+DEBUG | 20240827-165217.207 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:632 | Application requested failure on Retry-After
+DEBUG | 20240827-165217.211 | PortSIPVoIPSDK | RESIP:DUM | 31844 | clientregistration.cxx:71 | ClientRegistration::~ClientRegistration
+DEBUG | 20240827-165217.211 | PortSIPVoIPSDK | RESIP:DUM | 31844 | keepalivemanager.cxx:78 | Last association removed for keep alive id=0: [ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ]
+DEBUG | 20240827-165217.213 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: Ywhvpk6pZQXcpzP9biRS9w..-6469f623*************
+DEBUG | 20240827-165238.129 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 172.16.25.172:5060 UDP flowKey=3760 transportKey=1 ](0)
+WARNING | 20240827-165737.927 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20240827-165737.927 | PortSIPVoIPSDK | RESIP:DUM | 31844 | handlemanager.cxx:93 | Waiting for usages to be deleted (0)
+INFO | 20240827-165737.927 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20240827-165737.928 | PortSIPVoIPSDK | RESIP:TRANSACTION | 11016 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20240827-165737.928 | PortSIPVoIPSDK | RESIP:DUM | 31844 | dialogusagemanager.cxx:1350 | TU unregistered 
+INFO | 20240827-165738.232 | PortSIPVoIPSDK | RESIP | 11016 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20240827-165738.298 | PortSIPVoIPSDK | RESIP | 32332 | sipstack.cxx:226 | SipStack::~SipStack()
+INFO | 20240827-165738.301 | PortSIPVoIPSDK | RESIP:TRANSPORT | 32332 | udptransport.cxx:92 | Shutting down [ V4 0.0.0.0:5060 UDP flowKey=3760 transportKey=1 ] tf=0 evt=0 stats: poll=35 txtry=31 txmsg=31 txfail=0 rxtry=4 rxmsg=4 rxka=0 rxtr=4
+INFO | 20240827-165738.301 | PortSIPVoIPSDK | RESIP:TRANSPORT | 32332 | udptransport.cxx:92 | Shutting down [ V6 :: port=5060 UDP flowKey=2996 transportKey=2 ] tf=0 evt=0 stats: poll=0 txtry=0 txmsg=0 txfail=0 rxtry=0 rxmsg=0 rxka=0 rxtr=0
+DEBUG | 20240827-165738.301 | PortSIPVoIPSDK | RESIP:TRANSPORT | 32332 | transportselector.cxx:127 | Closing TransportSelector::mSocket[]
+DEBUG | 20240827-165738.303 | PortSIPVoIPSDK | RESIP | 32332 | security.cxx:1244 | BaseSecurity::~BaseSecurity

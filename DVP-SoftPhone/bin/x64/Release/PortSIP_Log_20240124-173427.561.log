@@ -1,0 +1,1958 @@
+DEBUG | 20240124-173427.577 | PortSIPVoIPSDK | RESIP:APP | 28280 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20240124-173427.593 | PortSIPVoIPSDK | RESIP | 28280 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20240124-173427.640 | PortSIPVoIPSDK | RESIP | 28280 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20240124-173427.640 | PortSIPVoIPSDK | RESIP | 28280 | security.cxx:3116 | ECDH initialized
+WARNING | 20240124-173427.643 | PortSIPVoIPSDK | RESIP | 28280 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20240124-173427.644 | PortSIPVoIPSDK | RESIP | 28280 | security.cxx:3116 | ECDH initialized
+INFO | 20240124-173427.691 | PortSIPVoIPSDK | RESIP:DNS | 28280 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20240124-173427.691 | PortSIPVoIPSDK | RESIP:DNS | 28280 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20240124-173427.691 | PortSIPVoIPSDK | RESIP:DNS | 28280 | aresdns.cxx:408 |  name server: 8.8.8.8
+DEBUG | 20240124-173427.692 | PortSIPVoIPSDK | RESIP | 28280 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20240124-173427.693 | PortSIPVoIPSDK | RESIP | 28280 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20240124-173427.700 | PortSIPVoIPSDK | RESIP:TRANSPORT | 28280 | transportselector.cxx:99 | No compression library available
+INFO | 20240124-173427.756 | PortSIPVoIPSDK | RESIP | 28280 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20240124-173427.757 | PortSIPVoIPSDK | RESIP | 28280 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20240124-173427.858 | PortSIPVoIPSDK | RESIP | 28280 | winsecurity.cxx:202 | 63 certs loaded of type 1
+DEBUG | 20240124-173427.858 | PortSIPVoIPSDK | RESIP:APP | 28280 | useragent.cxx:105 | new SipStack
+INFO | 20240124-173427.867 | PortSIPVoIPSDK | RESIP:APP | 28280 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20240124-173427.890 | PortSIPVoIPSDK | RESIP:APP | 28280 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20240124-173434.608 | PortSIPVoIPSDK | RESIP:APP | 28280 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20240124-173434.726 | PortSIPVoIPSDK | RESIP:TRANSPORT | 28280 | internaltransport.cxx:121 | Creating fd=5488 V4/UDP
+DEBUG | 20240124-173434.726 | PortSIPVoIPSDK | RESIP:TRANSPORT | 28280 | internaltransport.cxx:133 | Binding to 192.168.1.160
+INFO | 20240124-173434.728 | PortSIPVoIPSDK | RESIP:TRANSPORT | 28280 | udptransport.cxx:60 | Creating UDP transport host=192.168.1.160 port=5060 ipv4=1
+DEBUG | 20240124-173434.728 | PortSIPVoIPSDK | RESIP:TRANSPORT | 28280 | udptransport.cxx:74 | No compression library available: Transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 ] on 192.168.1.160
+DEBUG | 20240124-173434.729 | PortSIPVoIPSDK | RESIP | 28280 | sipstack.cxx:681 | Adding domain alias: 192.168.1.160:5060
+DEBUG | 20240124-173434.737 | PortSIPVoIPSDK | RESIP:DUM | 28280 | userprofile.cxx:143 | Adding credential: realm=192.168.3.196 user=sanura
+DEBUG | 20240124-173434.738 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:221 | Adding transport: [ V4 192.168.1.160:5060 UDP transportKey=1 ]
+INFO | 20240124-173434.742 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:293 | TransportSelector::addTransport:  added transport for tuple=[ V4 192.168.1.160:5060 UDP transportKey=1 ], key=1
+DEBUG | 20240124-173434.876 | PortSIPVoIPSDK | RESIP:DUM | 28280 | basecreator.cxx:148 | BaseCreator::makeInitialRequest: 
+
+REGISTER sip:sanura@192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---8f473e4531127a0b;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.877 | PortSIPVoIPSDK | RESIP:DUM | 28280 | registrationcreator.cxx:25 | RegistrationCreator::RegistrationCreator: 0000025F70BAC500
+DEBUG | 20240124-173434.878 | PortSIPVoIPSDK | RESIP:DUM | 28280 | dialogset.cxx:52 |  ************* Created DialogSet(UAC)  -- ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976*************
+DEBUG | 20240124-173434.879 | PortSIPVoIPSDK | RESIP:DUM | 28280 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---fc85337acd00c63d;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.882 | PortSIPVoIPSDK | RESIP:DUM | 28280 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-
+DEBUG | 20240124-173434.883 | PortSIPVoIPSDK | RESIP:DUM | 28280 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=fc85337acd00c63d cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20240124-173434.883 | PortSIPVoIPSDK | RESIP | 28280 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=fc85337acd00c63d cseq=1 REGISTER contact=sanura / 1 from(tu)
+DEBUG | 20240124-173434.883 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer F tid=fc85337acd00c63d ms=32000
+DEBUG | 20240124-173434.884 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20240124-173434.885 | PortSIPVoIPSDK | RESIP:DNS | 30712 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+INFO | 20240124-173434.889 | PortSIPVoIPSDK | RESIP:DNS | 35688 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20240124-173434.889 | PortSIPVoIPSDK | RESIP:DNS | 35688 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20240124-173434.889 | PortSIPVoIPSDK | RESIP:DNS | 35688 | aresdns.cxx:408 |  name server: 8.8.8.8
+INFO | 20240124-173434.889 | PortSIPVoIPSDK | RESIP:DNS | 35688 | aresdns.cxx:554 |  No changes in DNS server list
+DEBUG | 20240124-173434.890 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20240124-173434.890 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=fc85337acd00c63d ms=500
+DEBUG | 20240124-173434.891 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173434.891 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.160:5060;branch=z9hG4bK-524287-1---fc85337acd00c63d;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 1 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173434.913 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173434.913 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 192.168.1.160:5060;received=192.168.1.160;branch=z9hG4bK-524287-1---fc85337acd00c63d;rport=5060
+To: "sanura" <sip:sanura@192.168.3.196>;tag=pS2gva62mF12g
+From: "sanura" <sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 1 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+WWW-Authenticate: Digest realm="192.168.3.196", nonce="c82c41b0-17f5-4223-8505-f82b3149392d", algorithm=MD5, qop="auth"
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.914 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer K tid=fc85337acd00c63d ms=5000
+DEBUG | 20240124-173434.914 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20240124-173434.914 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipResp: 401 tid=fc85337acd00c63d cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20240124-173434.914 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 401 tid=fc85337acd00c63d cseq=1 REGISTER / 1 from(wire)
+DEBUG | 20240124-173434.916 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:340 | ClientAuthManager::RealmState::handleAuth: 0000025F67896C78 Digest realm="192.168.3.196", nonce="c82c41b0-17f5-4223-8505-f82b3149392d", algorithm=MD5, qop="auth" is proxy: 0
+DEBUG | 20240124-173434.917 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from invalid to current
+DEBUG | 20240124-173434.917 | PortSIPVoIPSDK | RESIP:DUM | 8476 | userprofile.cxx:166 | Found credential for realm: realm=192.168.3.196 user=sanura192.168.3.196
+DEBUG | 20240124-173434.917 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:151 | Produced response to digest challenge for UserProfile: "sanura"<sip:sanura@192.168.3.196>[realm=192.168.3.196 user=sanura]
+DEBUG | 20240124-173434.917 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:255 | about to re-send request with digest credentials
+DEBUG | 20240124-173434.918 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:1332 | nonceCount is now: [00000001]
+DEBUG | 20240124-173434.918 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---495d941feb3a9609;rport
+Max-Forwards: 70
+Contact: <sip:sanura>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.920 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-
+DEBUG | 20240124-173434.920 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=495d941feb3a9609 cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20240124-173434.921 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=495d941feb3a9609 cseq=2 REGISTER contact=sanura / 2 from(tu)
+DEBUG | 20240124-173434.921 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer F tid=495d941feb3a9609 ms=32000
+DEBUG | 20240124-173434.921 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20240124-173434.921 | PortSIPVoIPSDK | RESIP:DNS | 30712 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20240124-173434.922 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20240124-173434.922 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=495d941feb3a9609 ms=500
+DEBUG | 20240124-173434.922 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173434.923 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:31 |  Add auth, 0000025F67DC17C0 in response to: Digest realm="192.168.3.196", nonce="c82c41b0-17f5-4223-8505-f82b3149392d", algorithm=MD5, qop="auth"
+DEBUG | 20240124-173434.923 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="3a498679999a32f9bb0329ebb2d5ba54",cnonce="cc9f4ea1d73ae53f8acb0d33299fb214",nc=00000001,qop=auth,algorithm=MD5
+DEBUG | 20240124-173434.924 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.160:5060;branch=z9hG4bK-524287-1---495d941feb3a9609;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 2 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="3a498679999a32f9bb0329ebb2d5ba54",cnonce="cc9f4ea1d73ae53f8acb0d33299fb214",nc=00000001,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173434.980 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173434.981 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20240124-173434.981 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.160:5060;received=192.168.1.160;branch=z9hG4bK-524287-1---495d941feb3a9609;rport=5060
+Contact: <sip:sanura@192.168.1.160:5060>;expires=3600
+To: "sanura" <sip:sanura@192.168.3.196>;tag=Q2U9X5p6HrQNc
+From: "sanura" <sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 2 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Wed, 24 Jan 2024 12:04:35 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.981 | PortSIPVoIPSDK | RESIP:DNS | 35688 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+DEBUG | 20240124-173434.981 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer K tid=495d941feb3a9609 ms=5000
+DEBUG | 20240124-173434.982 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=495d941feb3a9609 cseq=2 REGISTER contact=sanura@192.168.1.160:5060 / 2 from(wire)
+DEBUG | 20240124-173434.982 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=495d941feb3a9609 cseq=2 REGISTER contact=sanura@192.168.1.160:5060 / 2 from(wire)
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976to cached
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from current to cached
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-Q2U9X5p6HrQNc
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:26 | First keep alive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173434.983 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20240124-173434.985 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=1 ms=3240000
+INFO | 20240124-173434.986 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientregistration.cxx:303 | requesting refresh of ClientRegistration sip:sanura@192.168.3.196
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:1332 | nonceCount is now: [00000002]
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---12b8181a34ac5f20;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=12b8181a34ac5f20 cseq=3 REGISTER contact=sanura@192.168.1.160:5060 / 3 from(tu)
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=12b8181a34ac5f20 cseq=3 REGISTER contact=sanura@192.168.1.160:5060 / 3 from(tu)
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer F tid=12b8181a34ac5f20 ms=32000
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20240124-173434.987 | PortSIPVoIPSDK | RESIP:DNS | 30712 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+DEBUG | 20240124-173434.988 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20240124-173434.988 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=12b8181a34ac5f20 ms=500
+DEBUG | 20240124-173434.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173434.988 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:31 |  Add auth, 0000025F67DC1650 in response to: Digest realm="192.168.3.196", nonce="c82c41b0-17f5-4223-8505-f82b3149392d", algorithm=MD5, qop="auth"
+DEBUG | 20240124-173434.988 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="3b2b7ef15191291ef3c27a05f154dc40",cnonce="591a5e07feacb0911de96faac03b2b05",nc=00000002,qop=auth,algorithm=MD5
+DEBUG | 20240124-173434.989 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.160:5060;branch=z9hG4bK-524287-1---12b8181a34ac5f20;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 3 REGISTER
+Expires: 3600
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="3b2b7ef15191291ef3c27a05f154dc40",cnonce="591a5e07feacb0911de96faac03b2b05",nc=00000002,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173435.022 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173435.023 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20240124-173435.023 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.160:5060;received=192.168.1.160;branch=z9hG4bK-524287-1---12b8181a34ac5f20;rport=5060
+Contact: <sip:sanura@192.168.1.160:5060>;expires=3600
+To: "sanura" <sip:sanura@192.168.3.196>;tag=SmeU1UrDca4tK
+From: "sanura" <sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 3 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Wed, 24 Jan 2024 12:04:35 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20240124-173435.023 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer K tid=12b8181a34ac5f20 ms=5000
+DEBUG | 20240124-173435.023 | PortSIPVoIPSDK | RESIP:DNS | 35688 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+DEBUG | 20240124-173435.023 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipResp: 200 tid=12b8181a34ac5f20 cseq=3 REGISTER contact=sanura@192.168.1.160:5060 / 3 from(wire)
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2157 | DialogUsageManager::processResponse: 
+
+SipResp: 200 tid=12b8181a34ac5f20 cseq=3 REGISTER contact=sanura@192.168.1.160:5060 / 3 from(wire)
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:128 | ClientAuthManager::handle: transitioning ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976to cached
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientauthmanager.cxx:314 | ClientAuthManager::RealmState::transition from cached to cached
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-SmeU1UrDca4tK
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | clientregistration.cxx:466 | Clearing service route ([])
+DEBUG | 20240124-173435.024 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Registration: duration=3240 seq=2 ms=3240000
+DEBUG | 20240124-173504.983 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173504.985 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173504.985 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173504.986 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173504.986 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173534.987 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173534.987 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173534.988 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173534.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173534.988 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173604.989 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173604.989 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173604.989 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173604.991 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173604.991 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173622.652 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173622.653 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 878b8ace-c82c-415e-a9c5-29422a581cee
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706069886 1706069887 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 28096 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173622.654 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.655 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.655 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire) code=100 reason=
+DEBUG | 20240124-173622.688 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=925a.2af114c5.0 ms=80
+DEBUG | 20240124-173622.688 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 878b8ace-c82c-415e-a9c5-29422a581cee
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706069886 1706069887 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 28096 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173622.711 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.735 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.762 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:84 |  ************* Created DialogSet(UAS) *************: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65
+DEBUG | 20240124-173622.768 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173622.768 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 100 Trying
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173622.776 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: d4f75a3c-3553-123d-8895-000c2989ab70-16f17573-y1cQa3cZXpKrD
+DEBUG | 20240124-173622.776 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:854 | mState == 3 Creating a new Dialog from msg: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 878b8ace-c82c-415e-a9c5-29422a581cee
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706069886 1706069887 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 28096 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173622.815 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:88 | UAS dialog ID creation, DS: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65
+DEBUG | 20240124-173622.815 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:63 | DialogId::DialogId: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65-y1cQa3cZXpKrD
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:177 | ************** Created Dialog as UAS **************
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:178 | mRemoteNameAddr: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:179 | mLocalNameAddr: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:180 | mLocalContact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:181 | mRemoteTarget: <sip:mod_sofia@192.168.3.197:5060>
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:274 | Dialog::Dialog d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65-y1cQa3cZXpKrD
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:901 | ### Calling CreateAppDialog ###: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 878b8ace-c82c-415e-a9c5-29422a581cee
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706069886 1706069887 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 28096 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.816 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:66 | Association added for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173622.818 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:438 | Dialog::dispatch  --  Created new server invite sessionSipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173622.916 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:83 | ^^^ InviteSession::InviteSession 0000025F70E6F8E0
+DEBUG | 20240124-173622.949 | PortSIPVoIPSDK | RESIP | 8476 | sipmessage.cxx:1066 | SipMessage::getContents: application/sdp
+DEBUG | 20240124-173623.056 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:2179 | Got sdp
+
+INFO | 20240124-173623.070 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Start -> UAS_Offer
+INFO | 20240124-173623.273 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:140 | UAS_Offer: provisional(180)
+INFO | 20240124-173623.273 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Offer -> UAS_EarlyOffer
+DEBUG | 20240124-173623.273 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire) code=180 reason=
+DEBUG | 20240124-173623.274 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Content-Length: 0
+
+
+DEBUG | 20240124-173623.302 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit1xx: duration=60 seq=1 ms=60000
+DEBUG | 20240124-173623.303 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173623.303 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 180 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=sanura@192.168.1.160:5060 / 78495199 from(tu)
+DEBUG | 20240124-173623.304 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173623.304 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173634.991 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173634.992 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173634.992 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173634.992 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173634.993 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+WARNING | 20240124-173648.231 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:2038 | CallManager::answerCall begin
+WARNING | 20240124-173648.231 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:2056 | CallManager::answerCall 1
+WARNING | 20240124-173648.231 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:2076 | CallManager::answerCall 2
+WARNING | 20240124-173648.231 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5226 | CallManager::answer begin
+WARNING | 20240124-173648.233 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5280 | CallManager::answer createSdpContent
+WARNING | 20240124-173648.233 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5288 | CallManager::answer createSdpContent End
+WARNING | 20240124-173649.660 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5301 | CallManager::answer createAudioChannel
+INFO | 20240124-173649.660 | PortSIPVoIPSDK | RESIP:DUM | 4888 | serverinvitesession.cxx:396 | UAS_EarlyOffer: provideAnswer
+INFO | 20240124-173649.661 | PortSIPVoIPSDK | RESIP:DUM | 4888 | invitesession.cxx:2791 | Transition UAS_EarlyOffer -> UAS_EarlyProvidedAnswer
+INFO | 20240124-173649.661 | PortSIPVoIPSDK | RESIP:DUM | 4888 | serverinvitesession.cxx:663 | UAS_EarlyProvidedAnswer: accept(200)
+INFO | 20240124-173649.661 | PortSIPVoIPSDK | RESIP:DUM | 4888 | invitesession.cxx:2791 | Transition UAS_EarlyProvidedAnswer -> UAS_Accepted
+DEBUG | 20240124-173649.661 | PortSIPVoIPSDK | RESIP | 4888 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire) code=200 reason=
+DEBUG | 20240124-173649.661 | PortSIPVoIPSDK | RESIP:DUM | 4888 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173649.663 | PortSIPVoIPSDK | RESIP:TRANSACTION | 4888 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit200: duration=500 seq=78495199 ms=500
+DEBUG | 20240124-173649.663 | PortSIPVoIPSDK | RESIP:TRANSACTION | 4888 | timerqueue.cxx:124 | Adding application timer: DumTimeout::WaitForAck: duration=32000 seq=78495199 ms=32000
+DEBUG | 20240124-173649.664 | PortSIPVoIPSDK | RESIP:DUM | 4888 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669695 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20000 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+
+DEBUG | 20240124-173649.664 | PortSIPVoIPSDK | RESIP | 4888 | sipstack.cxx:825 | SEND: SipResp: 200 tid=925a.2af114c5.0 cseq=78495199 INVITE contact=sanura@192.168.1.160:5060 / 78495199 from(tu)
+DEBUG | 20240124-173649.665 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173649.665 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bK9Zt0m5D0KD1FN
+Record-Route: <sip:192.168.3.196;lr;ftag=y1cQa3cZXpKrD>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669695 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20000 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+sigcomp id=
+DEBUG | 20240124-173649.666 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer StaleServer tid=925a.2af114c5.0 ms=32000
+WARNING | 20240124-173649.666 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5328 | CallManager::answer provideAnswer
+WARNING | 20240124-173649.666 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:5364 | CallManager::answer End 
+WARNING | 20240124-173649.666 | PortSIPVoIPSDK | RESIP:APP | 4888 | callmanager.cxx:2082 | CallManager::answerCall End
+DEBUG | 20240124-173649.694 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173649.694 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKcU6atp0aB837Q
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173649.694 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173649.695 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173649.695 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKcU6atp0aB837Q
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173649.697 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173649.697 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+INFO | 20240124-173649.697 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+DEBUG | 20240124-173649.697 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65-y1cQa3cZXpKrD
+DEBUG | 20240124-173649.698 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK925a.2af114c5.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKcU6atp0aB837Q
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495199 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173649.698 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+INFO | 20240124-173649.698 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:1042 | dispatchAccepted: SipReq:  ACK sanura@192.168.1.160:5060 tid=925a.2af114c5.2 cseq=78495199 ACK contact=mod_sofia@192.168.3.197:5060 / 78495199 from(wire)
+INFO | 20240124-173649.699 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Accepted -> InviteSession::Connected
+DEBUG | 20240124-173650.163 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit200: duration=500 seq=78495199
+DEBUG | 20240124-173656.653 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173656.657 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173656.657 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire) code=100 reason=
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=7dcf.117fed41.0 ms=3500
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+INFO | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+DEBUG | 20240124-173656.658 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65-y1cQa3cZXpKrD
+DEBUG | 20240124-173656.659 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173656.659 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+INFO | 20240124-173656.660 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2188 | Received SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire)
+DEBUG | 20240124-173656.660 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=7dcf.117fed41.0 cseq=78495200 BYE / 78495200 from(wire) code=200 reason=
+DEBUG | 20240124-173656.661 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+Content-Length: 0
+
+
+DEBUG | 20240124-173656.661 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173656.661 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 200 tid=7dcf.117fed41.0 cseq=78495200 BYE contact=sanura@192.168.1.160:5060 / 78495200 from(tu)
+INFO | 20240124-173656.661 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition InviteSession::Connected -> InviteSession::Terminated
+DEBUG | 20240124-173656.661 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer J tid=7dcf.117fed41.0 ms=32000
+DEBUG | 20240124-173656.661 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173656.662 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK7dcf.117fed41.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKD4Z3UHHe8gttK
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=630b1c65
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=y1cQa3cZXpKrD
+Call-ID: d4f75a3c-3553-123d-8895-000c2989ab70
+CSeq: 78495200 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173656.662 | PortSIPVoIPSDK | RESIP:APP | 8476 | callmanager.cxx:8601 | onCallTerminated with call ID = -279921362
+DEBUG | 20240124-173657.781 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:89 | ^^^ InviteSession::~InviteSession 0000025F70E6F8E0
+DEBUG | 20240124-173657.782 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:279 | Dialog::~Dialog() 
+DEBUG | 20240124-173657.782 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:83 | Association removed for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], refCount=1
+DEBUG | 20240124-173657.782 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2503 | Got merged request removal request
+DEBUG | 20240124-173657.782 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer:  ms=32000
+DEBUG | 20240124-173657.782 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: d4f75a3c-3553-123d-8895-000c2989ab70-630b1c65*************
+DEBUG | 20240124-173704.994 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173704.994 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173704.995 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173704.995 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173704.995 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173721.664 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::WaitForAck: duration=32000 seq=78495199
+DEBUG | 20240124-173723.304 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit1xx: duration=60 seq=1
+DEBUG | 20240124-173729.783 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+
+DEBUG | 20240124-173729.784 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2511 | Merged request removed
+DEBUG | 20240124-173734.995 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173734.995 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173734.996 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173734.996 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173734.996 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173746.455 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173746.457 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 25a6b068-5ad9-441e-994a-59634dc48729
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706068564 1706068565 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 29502 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173746.457 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.458 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.458 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire) code=100 reason=
+DEBUG | 20240124-173746.461 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=63c9.80aae3b1.0 ms=80
+DEBUG | 20240124-173746.461 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 25a6b068-5ad9-441e-994a-59634dc48729
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706068564 1706068565 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 29502 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173746.462 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.462 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.462 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:84 |  ************* Created DialogSet(UAS) *************: 06f0427d-3554-123d-8895-000c2989ab70-c7121828
+DEBUG | 20240124-173746.462 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 06f0427d-3554-123d-8895-000c2989ab70-ee7ddc73-3eBKKa1gF32NQ
+DEBUG | 20240124-173746.462 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:854 | mState == 3 Creating a new Dialog from msg: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 25a6b068-5ad9-441e-994a-59634dc48729
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706068564 1706068565 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 29502 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:88 | UAS dialog ID creation, DS: 06f0427d-3554-123d-8895-000c2989ab70-c7121828
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:63 | DialogId::DialogId: 06f0427d-3554-123d-8895-000c2989ab70-c7121828-3eBKKa1gF32NQ
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:177 | ************** Created Dialog as UAS **************
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:178 | mRemoteNameAddr: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:179 | mLocalNameAddr: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:180 | mLocalContact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:181 | mRemoteTarget: <sip:mod_sofia@192.168.3.197:5060>
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:274 | Dialog::Dialog 06f0427d-3554-123d-8895-000c2989ab70-c7121828-3eBKKa1gF32NQ
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:901 | ### Calling CreateAppDialog ###: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: 25a6b068-5ad9-441e-994a-59634dc48729
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706068564 1706068565 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 29502 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173746.463 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.464 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:66 | Association added for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173746.464 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:438 | Dialog::dispatch  --  Created new server invite sessionSipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173746.464 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:83 | ^^^ InviteSession::InviteSession 0000025F70EFAE70
+DEBUG | 20240124-173746.464 | PortSIPVoIPSDK | RESIP | 8476 | sipmessage.cxx:1066 | SipMessage::getContents: application/sdp
+DEBUG | 20240124-173746.466 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:2179 | Got sdp
+
+INFO | 20240124-173746.467 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Start -> UAS_Offer
+INFO | 20240124-173746.483 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:140 | UAS_Offer: provisional(180)
+INFO | 20240124-173746.483 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Offer -> UAS_EarlyOffer
+DEBUG | 20240124-173746.483 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire) code=180 reason=
+DEBUG | 20240124-173746.483 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Content-Length: 0
+
+
+DEBUG | 20240124-173746.484 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit1xx: duration=60 seq=1 ms=60000
+DEBUG | 20240124-173746.484 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173746.484 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 180 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=sanura@192.168.1.160:5060 / 78495241 from(tu)
+DEBUG | 20240124-173746.485 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173746.485 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+WARNING | 20240124-173751.239 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2038 | CallManager::answerCall begin
+WARNING | 20240124-173751.240 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2056 | CallManager::answerCall 1
+WARNING | 20240124-173751.240 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2076 | CallManager::answerCall 2
+WARNING | 20240124-173751.240 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5226 | CallManager::answer begin
+WARNING | 20240124-173751.240 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5280 | CallManager::answer createSdpContent
+WARNING | 20240124-173751.241 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5288 | CallManager::answer createSdpContent End
+WARNING | 20240124-173753.469 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5301 | CallManager::answer createAudioChannel
+INFO | 20240124-173753.469 | PortSIPVoIPSDK | RESIP:DUM | 34140 | serverinvitesession.cxx:396 | UAS_EarlyOffer: provideAnswer
+INFO | 20240124-173753.469 | PortSIPVoIPSDK | RESIP:DUM | 34140 | invitesession.cxx:2791 | Transition UAS_EarlyOffer -> UAS_EarlyProvidedAnswer
+INFO | 20240124-173753.469 | PortSIPVoIPSDK | RESIP:DUM | 34140 | serverinvitesession.cxx:663 | UAS_EarlyProvidedAnswer: accept(200)
+INFO | 20240124-173753.470 | PortSIPVoIPSDK | RESIP:DUM | 34140 | invitesession.cxx:2791 | Transition UAS_EarlyProvidedAnswer -> UAS_Accepted
+DEBUG | 20240124-173753.470 | PortSIPVoIPSDK | RESIP | 34140 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire) code=200 reason=
+DEBUG | 20240124-173753.470 | PortSIPVoIPSDK | RESIP:DUM | 34140 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173753.470 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34140 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit200: duration=500 seq=78495241 ms=500
+DEBUG | 20240124-173753.478 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34140 | timerqueue.cxx:124 | Adding application timer: DumTimeout::WaitForAck: duration=32000 seq=78495241 ms=32000
+DEBUG | 20240124-173753.479 | PortSIPVoIPSDK | RESIP:DUM | 34140 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669778 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20002 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+
+DEBUG | 20240124-173753.479 | PortSIPVoIPSDK | RESIP | 34140 | sipstack.cxx:825 | SEND: SipResp: 200 tid=63c9.80aae3b1.0 cseq=78495241 INVITE contact=sanura@192.168.1.160:5060 / 78495241 from(tu)
+WARNING | 20240124-173753.479 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5328 | CallManager::answer provideAnswer
+WARNING | 20240124-173753.480 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5364 | CallManager::answer End 
+WARNING | 20240124-173753.480 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2082 | CallManager::answerCall End
+DEBUG | 20240124-173753.486 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173753.487 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKeDSvXc2H5SgDF
+Record-Route: <sip:192.168.3.196;lr;ftag=3eBKKa1gF32NQ>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669778 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20002 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+sigcomp id=
+DEBUG | 20240124-173753.489 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer StaleServer tid=63c9.80aae3b1.0 ms=32000
+DEBUG | 20240124-173753.548 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173753.549 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKFpjNZ7jN226Za
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173753.549 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173753.549 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173753.550 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKFpjNZ7jN226Za
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173753.555 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173753.555 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+INFO | 20240124-173753.555 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+DEBUG | 20240124-173753.555 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 06f0427d-3554-123d-8895-000c2989ab70-c7121828-3eBKKa1gF32NQ
+DEBUG | 20240124-173753.555 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK63c9.80aae3b1.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKFpjNZ7jN226Za
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495241 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173753.556 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+INFO | 20240124-173753.556 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:1042 | dispatchAccepted: SipReq:  ACK sanura@192.168.1.160:5060 tid=63c9.80aae3b1.2 cseq=78495241 ACK contact=mod_sofia@192.168.3.197:5060 / 78495241 from(wire)
+INFO | 20240124-173753.556 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Accepted -> InviteSession::Connected
+DEBUG | 20240124-173753.977 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit200: duration=500 seq=78495241
+DEBUG | 20240124-173804.996 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173804.997 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173804.997 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173804.997 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173804.998 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173825.479 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::WaitForAck: duration=32000 seq=78495241
+DEBUG | 20240124-173834.998 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173835.000 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173835.001 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173835.001 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173835.002 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173839.231 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173839.232 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173839.233 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+DEBUG | 20240124-173839.234 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+DEBUG | 20240124-173839.234 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire) code=100 reason=
+DEBUG | 20240124-173839.235 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=33c9.c4086236.0 ms=3500
+DEBUG | 20240124-173839.235 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173839.235 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+DEBUG | 20240124-173839.236 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+INFO | 20240124-173839.236 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+DEBUG | 20240124-173839.236 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 06f0427d-3554-123d-8895-000c2989ab70-c7121828-3eBKKa1gF32NQ
+DEBUG | 20240124-173839.237 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173839.237 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+INFO | 20240124-173839.237 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2188 | Received SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire)
+DEBUG | 20240124-173839.239 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=33c9.c4086236.0 cseq=78495242 BYE / 78495242 from(wire) code=200 reason=
+DEBUG | 20240124-173839.239 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+Content-Length: 0
+
+
+DEBUG | 20240124-173839.239 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173839.241 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 200 tid=33c9.c4086236.0 cseq=78495242 BYE contact=sanura@192.168.1.160:5060 / 78495242 from(tu)
+INFO | 20240124-173839.241 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition InviteSession::Connected -> InviteSession::Terminated
+DEBUG | 20240124-173839.241 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer J tid=33c9.c4086236.0 ms=32000
+DEBUG | 20240124-173839.241 | PortSIPVoIPSDK | RESIP:APP | 8476 | callmanager.cxx:8601 | onCallTerminated with call ID = 1085357865
+DEBUG | 20240124-173839.242 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173839.242 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bK33c9.c4086236.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKgZBe123rZBXjp
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=c7121828
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=3eBKKa1gF32NQ
+Call-ID: 06f0427d-3554-123d-8895-000c2989ab70
+CSeq: 78495242 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173840.354 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:89 | ^^^ InviteSession::~InviteSession 0000025F70EFAE70
+DEBUG | 20240124-173840.355 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:279 | Dialog::~Dialog() 
+DEBUG | 20240124-173840.355 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:83 | Association removed for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], refCount=1
+DEBUG | 20240124-173840.356 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2503 | Got merged request removal request
+DEBUG | 20240124-173840.356 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer:  ms=32000
+DEBUG | 20240124-173840.356 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: 06f0427d-3554-123d-8895-000c2989ab70-c7121828*************
+DEBUG | 20240124-173846.485 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit1xx: duration=60 seq=1
+DEBUG | 20240124-173859.975 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173859.975 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: d006f893-fd5a-4c0c-a42b-b3c3c21bc1d2
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706079366 1706079367 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 18774 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173859.976 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.976 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.976 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire) code=100 reason=
+DEBUG | 20240124-173859.976 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=df2b.7aec093.0 ms=80
+DEBUG | 20240124-173859.976 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: d006f893-fd5a-4c0c-a42b-b3c3c21bc1d2
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706079366 1706079367 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 18774 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:84 |  ************* Created DialogSet(UAS) *************: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 32c279d0-3554-123d-8895-000c2989ab70-3129b029-7jgptp4y36U0N
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:854 | mState == 3 Creating a new Dialog from msg: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: d006f893-fd5a-4c0c-a42b-b3c3c21bc1d2
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706079366 1706079367 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 18774 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173859.977 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:88 | UAS dialog ID creation, DS: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:63 | DialogId::DialogId: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b-7jgptp4y36U0N
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:177 | ************** Created Dialog as UAS **************
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:178 | mRemoteNameAddr: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:179 | mLocalNameAddr: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:180 | mLocalContact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:181 | mRemoteTarget: <sip:mod_sofia@192.168.3.197:5060>
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:274 | Dialog::Dialog 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b-7jgptp4y36U0N
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:901 | ### Calling CreateAppDialog ###: 
+
+INVITE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Max-Forwards: 69
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Content-Disposition: session
+Content-Type: application/sdp
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Allow-Events: talk, hold, conference, presence, as-feature-event, dialog, line-seize, call-info, sla, include-session-description, presence.winfo, message-summary, refer
+Remote-Party-ID: "Rusiru" <sip:0775957037@192.168.3.196>;party=calling;screen=yes;privacy=off
+X-session: d006f893-fd5a-4c0c-a42b-b3c3c21bc1d2
+X-FS-Support: update_display,send_info
+Content-Length: 222
+
+v=0
+o=FreeSWITCH 1706079366 1706079367 IN IP4 192.168.3.197
+s=FreeSWITCH
+c=IN IP4 192.168.3.197
+t=0 0
+m=audio 18774 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=ptime:20
+
+DEBUG | 20240124-173859.978 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.979 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:66 | Association added for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173859.979 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:438 | Dialog::dispatch  --  Created new server invite sessionSipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173859.979 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:83 | ^^^ InviteSession::InviteSession 0000025F70EFAE70
+DEBUG | 20240124-173859.979 | PortSIPVoIPSDK | RESIP | 8476 | sipmessage.cxx:1066 | SipMessage::getContents: application/sdp
+DEBUG | 20240124-173859.979 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:2179 | Got sdp
+
+INFO | 20240124-173859.979 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Start -> UAS_Offer
+INFO | 20240124-173859.982 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:140 | UAS_Offer: provisional(180)
+INFO | 20240124-173859.982 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Offer -> UAS_EarlyOffer
+DEBUG | 20240124-173859.982 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire) code=180 reason=
+DEBUG | 20240124-173859.984 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Content-Length: 0
+
+
+DEBUG | 20240124-173859.984 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit1xx: duration=60 seq=1 ms=60000
+DEBUG | 20240124-173859.984 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173859.984 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 180 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=sanura@192.168.1.160:5060 / 78495278 from(tu)
+DEBUG | 20240124-173859.985 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173859.985 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 180 Ringing
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173905.002 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173905.021 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=2
+DEBUG | 20240124-173905.021 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173905.031 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173905.031 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173912.356 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+
+DEBUG | 20240124-173912.356 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2511 | Merged request removed
+WARNING | 20240124-173918.207 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2038 | CallManager::answerCall begin
+WARNING | 20240124-173918.207 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2056 | CallManager::answerCall 1
+WARNING | 20240124-173918.207 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2076 | CallManager::answerCall 2
+WARNING | 20240124-173918.207 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5226 | CallManager::answer begin
+WARNING | 20240124-173918.221 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5280 | CallManager::answer createSdpContent
+WARNING | 20240124-173918.223 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5288 | CallManager::answer createSdpContent End
+WARNING | 20240124-173919.823 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5301 | CallManager::answer createAudioChannel
+INFO | 20240124-173919.823 | PortSIPVoIPSDK | RESIP:DUM | 34140 | serverinvitesession.cxx:396 | UAS_EarlyOffer: provideAnswer
+INFO | 20240124-173919.823 | PortSIPVoIPSDK | RESIP:DUM | 34140 | invitesession.cxx:2791 | Transition UAS_EarlyOffer -> UAS_EarlyProvidedAnswer
+INFO | 20240124-173919.824 | PortSIPVoIPSDK | RESIP:DUM | 34140 | serverinvitesession.cxx:663 | UAS_EarlyProvidedAnswer: accept(200)
+INFO | 20240124-173919.824 | PortSIPVoIPSDK | RESIP:DUM | 34140 | invitesession.cxx:2791 | Transition UAS_EarlyProvidedAnswer -> UAS_Accepted
+DEBUG | 20240124-173919.824 | PortSIPVoIPSDK | RESIP | 34140 | helper.cxx:374 | Helper::makeResponse(SipReq:  INVITE sanura@192.168.1.160:5060 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire) code=200 reason=
+DEBUG | 20240124-173919.824 | PortSIPVoIPSDK | RESIP:DUM | 34140 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-173919.825 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34140 | timerqueue.cxx:124 | Adding application timer: DumTimeout::Retransmit200: duration=500 seq=78495278 ms=500
+DEBUG | 20240124-173919.825 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34140 | timerqueue.cxx:124 | Adding application timer: DumTimeout::WaitForAck: duration=32000 seq=78495278 ms=32000
+DEBUG | 20240124-173919.827 | PortSIPVoIPSDK | RESIP:DUM | 34140 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669851 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20004 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+
+DEBUG | 20240124-173919.828 | PortSIPVoIPSDK | RESIP | 34140 | sipstack.cxx:825 | SEND: SipResp: 200 tid=df2b.7aec093.0 cseq=78495278 INVITE contact=sanura@192.168.1.160:5060 / 78495278 from(tu)
+WARNING | 20240124-173919.830 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5328 | CallManager::answer provideAnswer
+DEBUG | 20240124-173919.830 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+WARNING | 20240124-173919.830 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:5364 | CallManager::answer End 
+WARNING | 20240124-173919.830 | PortSIPVoIPSDK | RESIP:APP | 34140 | callmanager.cxx:2082 | CallManager::answerCall End
+DEBUG | 20240124-173919.831 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKH8462XmvvmK5H
+Record-Route: <sip:192.168.3.196;lr;ftag=7jgptp4y36U0N>
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 INVITE
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Content-Type: application/sdp
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 204
+
+v=0
+o=- 465669851 1 IN IP4 192.168.1.160
+s=portsip.com
+c=IN IP4 192.168.1.160
+t=0 0
+m=audio 20004 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=sendrecv
+sigcomp id=
+DEBUG | 20240124-173919.831 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer StaleServer tid=df2b.7aec093.0 ms=32000
+DEBUG | 20240124-173919.868 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173919.869 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKjHyZ4r5ZSX9QD
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173919.869 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173919.870 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173919.870 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKjHyZ4r5ZSX9QD
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173919.871 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173919.873 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+INFO | 20240124-173919.873 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+DEBUG | 20240124-173919.873 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b-7jgptp4y36U0N
+DEBUG | 20240124-173919.873 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+ACK sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKdf2b.7aec093.2
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKjHyZ4r5ZSX9QD
+Max-Forwards: 69
+Contact: <sip:mod_sofia@192.168.3.197:5060>
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495278 ACK
+Content-Length: 0
+
+
+DEBUG | 20240124-173919.873 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+INFO | 20240124-173919.874 | PortSIPVoIPSDK | RESIP:DUM | 8476 | serverinvitesession.cxx:1042 | dispatchAccepted: SipReq:  ACK sanura@192.168.1.160:5060 tid=df2b.7aec093.2 cseq=78495278 ACK contact=mod_sofia@192.168.3.197:5060 / 78495278 from(wire)
+INFO | 20240124-173919.874 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition UAS_Accepted -> InviteSession::Connected
+DEBUG | 20240124-173920.326 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit200: duration=500 seq=78495278
+DEBUG | 20240124-173926.485 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173926.549 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:189 | TuSelector::selectTransactionUser: Checking which TU message belongs to:
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173926.550 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:83 | TransactionUser::isForMe: TU=DialogUsageManager, Checking rule... : SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+DEBUG | 20240124-173926.557 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | transactionuser.cxx:86 | TransactionUser::isForMe: TU=DialogUsageManager, Match! : SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+DEBUG | 20240124-173926.558 | PortSIPVoIPSDK | RESIP | 30712 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire) code=100 reason=
+DEBUG | 20240124-173926.558 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer Trying tid=cf2b.d7296032.0 ms=3500
+DEBUG | 20240124-173926.558 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173926.581 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1607 | Got: SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+DEBUG | 20240124-173926.582 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1965 | DialogUsageManager::processRequest: SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+INFO | 20240124-173926.582 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2025 | Handling in-dialog request: SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+DEBUG | 20240124-173926.583 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogid.cxx:50 | DialogId::DialogId: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b-7jgptp4y36U0N
+DEBUG | 20240124-173926.583 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:529 | Found matching dialog mClientSubscriptions(0), mServerSubscriptions(0) for 
+
+BYE sip:sanura@192.168.1.160:5060 SIP/2.0
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Max-Forwards: 69
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Reason: SIP;description="User Hung Up"
+Content-Length: 0
+
+
+DEBUG | 20240124-173926.585 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:407 | Dialog::dispatch: SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+INFO | 20240124-173926.585 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2188 | Received SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire)
+DEBUG | 20240124-173926.585 | PortSIPVoIPSDK | RESIP | 8476 | helper.cxx:374 | Helper::makeResponse(SipReq:  BYE sanura@192.168.1.160:5060 tid=cf2b.d7296032.0 cseq=78495279 BYE / 78495279 from(wire) code=200 reason=
+DEBUG | 20240124-173926.587 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:1052 | Dialog::makeResponse: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+Content-Length: 0
+
+
+DEBUG | 20240124-173926.588 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:991 | SEND: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+
+DEBUG | 20240124-173926.588 | PortSIPVoIPSDK | RESIP | 8476 | sipstack.cxx:825 | SEND: SipResp: 200 tid=cf2b.d7296032.0 cseq=78495279 BYE contact=sanura@192.168.1.160:5060 / 78495279 from(tu)
+INFO | 20240124-173926.590 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:2791 | Transition InviteSession::Connected -> InviteSession::Terminated
+DEBUG | 20240124-173926.590 | PortSIPVoIPSDK | RESIP:APP | 8476 | callmanager.cxx:8601 | onCallTerminated with call ID = 1237929063
+DEBUG | 20240124-173926.597 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer J tid=cf2b.d7296032.0 ms=32000
+DEBUG | 20240124-173926.598 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1119 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173926.605 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.3.196:5060;branch=z9hG4bKcf2b.d7296032.0
+Via: SIP/2.0/UDP 192.168.3.197;received=192.168.3.197;rport=5060;branch=z9hG4bKKtQr6Kp3p6ZaS
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>"
+To: <sip:sanura@192.168.3.196:5060;ctid=1351502100676294031>;tag=bd3c911b
+From: "Rusiru" <sip:0775957037@192.168.3.196>;tag=7jgptp4y36U0N
+Call-ID: 32c279d0-3554-123d-8895-000c2989ab70
+CSeq: 78495279 BYE
+User-Agent: veery_soft_phone
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-173927.783 | PortSIPVoIPSDK | RESIP:DUM | 8476 | invitesession.cxx:89 | ^^^ InviteSession::~InviteSession 0000025F70EFAE70
+DEBUG | 20240124-173927.784 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialog.cxx:279 | Dialog::~Dialog() 
+DEBUG | 20240124-173927.784 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:83 | Association removed for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], refCount=1
+DEBUG | 20240124-173927.784 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2503 | Got merged request removal request
+DEBUG | 20240124-173927.784 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer:  ms=32000
+DEBUG | 20240124-173927.785 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: 32c279d0-3554-123d-8895-000c2989ab70-bd3c911b*************
+DEBUG | 20240124-173935.024 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-173935.024 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-173935.025 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-173935.025 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-173935.025 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+DEBUG | 20240124-173951.826 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::WaitForAck: duration=32000 seq=78495278
+DEBUG | 20240124-173959.784 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+
+DEBUG | 20240124-173959.784 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:2511 | Merged request removed
+DEBUG | 20240124-173959.985 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+DumTimeout::Retransmit1xx: duration=60 seq=1
+DEBUG | 20240124-174005.025 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:70 | Send to TU: DialogUsageManager size=0 
+
+KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0)
+DEBUG | 20240124-174005.025 | PortSIPVoIPSDK | RESIP:DUM | 8476 | keepalivemanager.cxx:100 | Refreshing keepalive for id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ], interval=30s, supportsOutbound=false, refCount=1
+DEBUG | 20240124-174005.026 | PortSIPVoIPSDK | RESIP:TRANSACTION | 8476 | timerqueue.cxx:124 | Adding application timer: KeepAliveTimeout[ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ](0) ms=30000
+DEBUG | 20240124-174005.026 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-174005.026 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+
+
+sigcomp id=
+INFO | 20240124-174008.221 | PortSIPVoIPSDK | RESIP:DUM | 33828 | clientregistration.cxx:197 | Removing binding
+DEBUG | 20240124-174008.223 | PortSIPVoIPSDK | RESIP | 33828 | helper.cxx:1332 | nonceCount is now: [00000003]
+DEBUG | 20240124-174008.224 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogusagemanager.cxx:991 | SEND: 
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/ ;branch=z9hG4bK-524287-1---d4f7062608afdf4a;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+
+DEBUG | 20240124-174008.224 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogid.cxx:50 | DialogId::DialogId: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976-
+DEBUG | 20240124-174008.224 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogusagemanager.cxx:1152 | Send: SipReq:  REGISTER 192.168.3.196 tid=d4f7062608afdf4a cseq=4 REGISTER contact=sanura@192.168.1.160:5060 / 4 from(tu)
+DEBUG | 20240124-174008.224 | PortSIPVoIPSDK | RESIP | 33828 | sipstack.cxx:842 | SEND: SipReq:  REGISTER 192.168.3.196 tid=d4f7062608afdf4a cseq=4 REGISTER contact=sanura@192.168.1.160:5060 / 4 from(tu)
+DEBUG | 20240124-174008.401 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer F tid=d4f7062608afdf4a ms=32000
+WARNING | 20240124-174008.412 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20240124-174008.412 | PortSIPVoIPSDK | RESIP:DUM | 8476 | handlemanager.cxx:93 | Waiting for usages to be deleted (2)
+DEBUG | 20240124-174008.412 | PortSIPVoIPSDK | RESIP:DUM | 8476 | handlemanager.cxx:96 | 1 -> AppDialogSet 1
+DEBUG | 20240124-174008.416 | PortSIPVoIPSDK | RESIP:DUM | 8476 | handlemanager.cxx:96 | 2 -> ClientRegistration sip:sanura@192.168.3.196
+DEBUG | 20240124-174008.415 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:603 | Looking up dns entries for sip:192.168.3.196
+DEBUG | 20240124-174008.418 | PortSIPVoIPSDK | RESIP:DNS | 30712 | dnsresult.cxx:261 | DnsResult::lookup sip:192.168.3.196
+INFO | 20240124-174008.417 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20240124-174008.419 | PortSIPVoIPSDK | RESIP:TRANSACTION | 34568 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20240124-174008.422 | PortSIPVoIPSDK | RESIP:DUM | 8476 | dialogusagemanager.cxx:1350 | TU unregistered 
+DEBUG | 20240124-174008.422 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:514 | Numeric result so return immediately: [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 ]
+DEBUG | 20240124-174008.424 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer E1 tid=d4f7062608afdf4a ms=500
+DEBUG | 20240124-174008.424 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:982 | Found transport: [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-174008.433 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:31 |  Add auth, 0000025F67DC1370 in response to: Digest realm="192.168.3.196", nonce="c82c41b0-17f5-4223-8505-f82b3149392d", algorithm=MD5, qop="auth"
+DEBUG | 20240124-174008.435 | PortSIPVoIPSDK | RESIP:DUM | 30712 | clientauthmanager.cxx:87 | ClientAuthDecorator, proxy: 0 Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="596b93bf021e19bc2b3823f0d7f9cb88",cnonce="4606f9fe98332410709583d3b8512664",nc=00000003,qop=auth,algorithm=MD5
+DEBUG | 20240124-174008.435 | PortSIPVoIPSDK | RESIP:TRANSPORT | 30712 | transportselector.cxx:1335 | Transmitting to [ V4 192.168.3.196:5060 UDP targetDomain=192.168.3.196 transportKey=1 ] tlsDomain= via [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ]
+
+REGISTER sip:192.168.3.196 SIP/2.0
+Via: SIP/2.0/UDP 192.168.1.160:5060;branch=z9hG4bK-524287-1---d4f7062608afdf4a;rport
+Max-Forwards: 70
+Contact: <sip:sanura@192.168.1.160:5060>;+sip.instance="<urn:uuid:C164751D-3757-5A75-42D7-F2DC5610905E>";expires=0
+To: "sanura"<sip:sanura@192.168.3.196>
+From: "sanura"<sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, REGISTER, SUBSCRIBE, INFO, PUBLISH
+Supported: replaces, answermode, eventlist, outbound, path
+User-Agent: veery_soft_phone
+Authorization: Digest username="sanura",realm="192.168.3.196",nonce="c82c41b0-17f5-4223-8505-f82b3149392d",uri="sip:192.168.3.196",response="596b93bf021e19bc2b3823f0d7f9cb88",cnonce="4606f9fe98332410709583d3b8512664",nc=00000003,qop=auth,algorithm=MD5
+Allow-Events: hold, talk, conference
+Content-Length: 0
+
+sigcomp id=
+DEBUG | 20240124-174008.502 | PortSIPVoIPSDK | RESIP:TRANSPORT | 31236 | transport.cxx:392 | incoming from: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+DEBUG | 20240124-174008.503 | PortSIPVoIPSDK | RESIP:DNS | 35688 | dnsresult.cxx:253 | Whitelisting 192.168.3.196(1): 192.168.3.196
+DEBUG | 20240124-174008.503 | PortSIPVoIPSDK | RESIP:DNS | 35688 | rrvip.cxx:128 | updating an existing vip: 192.168.3.196 with 192.168.3.196
+WARNING | 20240124-174008.516 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | tuselector.cxx:75 | Send to TU that no longer exists: 
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 192.168.1.160:5060;received=192.168.1.160;branch=z9hG4bK-524287-1---d4f7062608afdf4a;rport=5060
+To: "sanura" <sip:sanura@192.168.3.196>;tag=aev0Z7p9t1yrr
+From: "sanura" <sip:sanura@192.168.3.196>;tag=b1ad8976
+Call-ID: ogl-SRfoyH3Cv3Wx5hNg7w..
+CSeq: 4 REGISTER
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE
+Date: Wed, 24 Jan 2024 12:10:08 GMT
+Supported: timer, path, replaces
+User-Agent: FreeSWITCH-mod_sofia/1.10.5-release-17-25569c1631~64bit
+Content-Length: 0
+
+
+DEBUG | 20240124-174008.518 | PortSIPVoIPSDK | RESIP:TRANSACTION | 30712 | timerqueue.cxx:50 | Adding timer: Timer K tid=d4f7062608afdf4a ms=5000
+INFO | 20240124-174008.531 | PortSIPVoIPSDK | RESIP | 34568 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20240124-174008.599 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogusagemanager.cxx:158 | DialogUsageManager::mDialogSetMap has 1 DialogSets
+DEBUG | 20240124-174008.600 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogusagemanager.cxx:162 | DialgSetId:ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976
+DEBUG | 20240124-174008.602 | PortSIPVoIPSDK | RESIP:DUM | 33828 | clientregistration.cxx:71 | ClientRegistration::~ClientRegistration
+DEBUG | 20240124-174008.602 | PortSIPVoIPSDK | RESIP:DUM | 33828 | keepalivemanager.cxx:78 | Last association removed for keep alive id=0: [ V4 192.168.3.196:5060 UDP flowKey=5488 transportKey=1 ]
+INFO | 20240124-174008.602 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogusagemanager.cxx:1201 | DialogUsageManager::destroy() not posting to stack
+DEBUG | 20240124-174008.602 | PortSIPVoIPSDK | RESIP:DUM | 33828 | dialogset.cxx:122 |  ********** DialogSet::~DialogSet: ogl-SRfoyH3Cv3Wx5hNg7w..-b1ad8976*************
+DEBUG | 20240124-174008.612 | PortSIPVoIPSDK | RESIP | 33828 | sipstack.cxx:226 | SipStack::~SipStack()
+WARNING | 20240124-174008.614 | PortSIPVoIPSDK | RESIP:TRANSACTION | 33828 | transactioncontroller.cxx:72 | On shutdown, there are Client TransactionStates remaining!
+DEBUG | 20240124-174008.617 | PortSIPVoIPSDK | RESIP:TRANSACTION | 33828 | transactionmap.cxx:18 | d4f7062608afdf4a -> 0000025F67E3EC70: tid=d4f7062608afdf4a [ ClientNonInvite/Completed unreliable target=[ V4 0.0.0.0:0 UNKNOWN_TRANSPORT ]]
+INFO | 20240124-174008.618 | PortSIPVoIPSDK | RESIP:TRANSPORT | 33828 | udptransport.cxx:92 | Shutting down [ V4 192.168.1.160:5060 UDP flowKey=5488 transportKey=1 ] tf=0 evt=0 stats: poll=38 txtry=25 txmsg=25 txfail=0 rxtry=13 rxmsg=13 rxka=0 rxtr=13
+DEBUG | 20240124-174008.623 | PortSIPVoIPSDK | RESIP | 33828 | security.cxx:1244 | BaseSecurity::~BaseSecurity

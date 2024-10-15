@@ -45,6 +45,8 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
 
                 localIp = section["localIp"].ToString();
 
+                CallServerIP = section["CallServerIP"].ToString();
+
                 NotificationStateValidationIgnore = section["NotificationStateValidationIgnore"].Equals("1");
                 AcwGap = Convert.ToInt16(section["acwGap"]);
                 WebSocketlistnerEnable = section["WebSocketlistnerEnable"].ToLower().Equals("true");
@@ -131,5 +133,7 @@ namespace DuoSoftware.DuoSoftPhone.Controllers
         public bool enableReliableProvisional { get; set; }
 
         public string localIp { get; set;  }
+
+        public string CallServerIP { get; set; }
     }
 }

@@ -5,12 +5,14 @@ using DuoSoftware.DuoSoftPhone.Controllers;
 using DuoSoftware.DuoSoftPhone.Controllers.CallStatus;
 using DuoSoftware.DuoSoftPhone.Controllers.Common;
 using DuoSoftware.DuoTools.DuoLogger;
+using Newtonsoft.Json.Linq;
 using PortSIP;
 using System;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -32,7 +34,6 @@ namespace Controllers.PhoneStatus
         private NameValueCollection settingObject;
 
 
-
         private PortSIPLib _phoneController;
         private static volatile Phone instance;
         private static object syncRoot = new Object();
@@ -52,6 +53,7 @@ namespace Controllers.PhoneStatus
         public int acwTime { private set; get; }
 
         public OperationMode OprationMode { get; set; }
+        public bool keepPinging = false;
 
         public PhoneState phoneCurrentState
         {
@@ -673,8 +675,10 @@ namespace Controllers.PhoneStatus
         {
             try
             {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "UnregistorPhone - Before Canceling Pinging Task", Logger.LogLevel.Info);
+                keepPinging = false; // Signal the ping thread to stop
                 this.phoneCurrentState.OnOffline(this, "Offline");
-
+                
                 /*Dispatcher.Invoke(() =>
                 {
                     textBlockIdentifier.Text = "Offline";
@@ -699,7 +703,7 @@ namespace Controllers.PhoneStatus
             {
                 var callid = Call.Instance.portSipSessionId;
                 _phoneController.hangUp(callid);
-                _phoneController.rejectCall(callid, 486);
+                _phoneController.rejectCall(callid, 486); 
                 _phoneController.unRegisterServer();
                 _phoneController.unInitialize();
                 _phoneController.releaseCallbackHandlers();
@@ -799,7 +803,7 @@ namespace Controllers.PhoneStatus
                 return 0;
             }
         }
-
+        
         public int getSpeakerVolume()
         {
             try
@@ -831,11 +835,55 @@ namespace Controllers.PhoneStatus
 
             AutoAnswerDelay = delay;
         }
+        private void PingHost(string nameOrAddress)
+        {
+            Ping pingSender = new Ping();
 
+            try
+            {
+                // Send a ping and capture the response
+                PingReply reply = pingSender.Send(nameOrAddress);
+                
+                if (reply.Status == IPStatus.Success)
+                {
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDeviceMonitor, $" Status: {reply.Status}", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Roundtrip time: {reply.RoundtripTime}ms", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Address: {reply.Address}", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Time to live: {reply.Options.Ttl}", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Don't fragment: {reply.Options.DontFragment}", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Buffer size: {reply.Buffer.Length} bytes\n", Logger.LogLevel.Info);
+                }
+                else
+                {
+                    WebSocketlistner.SendMessageToClient(CallFunctions.FreeswitchConnectionLost);
+                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDeviceMonitor, $" Status: {reply.Status}", Logger.LogLevel.Info);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoDeviceMonitor, $"Ping failed due to an exception: {ex.Message}", Logger.LogLevel.Info);
+            }
+        }
+
+
+        private void StartPinging(string ipAddress)
+        {
+            int interval = 5000; // Time interval between pings (1 second)
+
+            // Continuously ping the IP address
+            while (keepPinging)
+            {
+                PingHost(ipAddress);
+                Thread.Sleep(interval); // Wait for the next ping
+            }
+        }
+
+        
         public void InitializePhone(bool isReInit)
         {
             try
             {
+                keepPinging = true;
 
                 var userName = _SipProfile.AuthorizationName;
                 var password = _SipProfile.Password;
@@ -851,6 +899,14 @@ namespace Controllers.PhoneStatus
 
                 int errorCode = 0;
 
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"Pinging {sipServer} continuously.", Logger.LogLevel.Info);
+
+                Thread pingThread = new Thread(() => StartPinging(VeerySetting.Instance.CallServerIP));
+                pingThread.IsBackground = true; // Make it a background thread
+                pingThread.Start();
+
+                Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "Pinging in background", Logger.LogLevel.Info);
+                
                 _phoneController = new PortSIPLib(0, 0, new SipCallbackEvents());
                 _phoneController.createCallbackHandlers();
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "createCallbackHandlers-end, call initialize method", Logger.LogLevel.Info);
@@ -942,7 +998,7 @@ namespace Controllers.PhoneStatus
                 _phoneController.enableANS(VeerySetting.Instance.enableANS);
                 _phoneController.enableReliableProvisional(VeerySetting.Instance.enableReliableProvisional);
 
-                var rt_register = _phoneController.registerServer(3600, 3);
+                var rt_register = _phoneController.registerServer(60, 1);
 
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "registerServer-end", Logger.LogLevel.Info);
                 if (rt_register != 0)

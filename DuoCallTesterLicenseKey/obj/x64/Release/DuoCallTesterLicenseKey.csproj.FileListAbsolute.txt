@@ -17,6 +17,6 @@ C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Re
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\bin\x64\Release\PlatformSpellCheck.xml
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallTesterLicenseKey.csproj.AssemblyReference.cache
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallTesterLicenseKey.csproj.CoreCompileInputs.cache
-C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallTesterLicenseKey.csproj.CopyComplete
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallTesterLicenseKey.dll
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallTesterLicenseKey.pdb
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DuoCallTesterLicenseKey\obj\x64\Release\DuoCallT.D6D73098.Up2Date

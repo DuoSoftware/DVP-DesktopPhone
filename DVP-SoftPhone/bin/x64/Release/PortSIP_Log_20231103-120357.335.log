@@ -1,0 +1,34 @@
+DEBUG | 20231103-120357.337 | PortSIPVoIPSDK | RESIP:APP | 21356 | callmanager.cxx:7022 | Initialize SDK16.2.0
+DEBUG | 20231103-120357.346 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:1154 | BaseSecurity::BaseSecurity
+WARNING | 20231103-120358.406 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20231103-120358.406 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:3116 | ECDH initialized
+WARNING | 20231103-120358.407 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:3069 | unable to load DH parameters (required for PFS): TlsDHParamsFilename not specified
+DEBUG | 20231103-120358.407 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:3116 | ECDH initialized
+INFO | 20231103-120358.415 | PortSIPVoIPSDK | RESIP:DNS | 21356 | aresdns.cxx:397 | DNS initialization: found  2 name servers
+INFO | 20231103-120358.415 | PortSIPVoIPSDK | RESIP:DNS | 21356 | aresdns.cxx:408 |  name server: 192.168.5.254
+INFO | 20231103-120358.415 | PortSIPVoIPSDK | RESIP:DNS | 21356 | aresdns.cxx:408 |  name server: 8.8.8.8
+DEBUG | 20231103-120358.415 | PortSIPVoIPSDK | RESIP | 21356 | compression.cxx:44 | COMPRESSION SUPPORT NOT COMPILED IN
+DEBUG | 20231103-120358.415 | PortSIPVoIPSDK | RESIP | 21356 | compression.cxx:47 | Compression configuration object created; algorithm = 0
+DEBUG | 20231103-120358.419 | PortSIPVoIPSDK | RESIP:TRANSPORT | 21356 | transportselector.cxx:99 | No compression library available
+INFO | 20231103-120358.421 | PortSIPVoIPSDK | RESIP:DNS | 21356 | dnsutil.cxx:175 | local hostname does not contain a domain part Sanura-PC
+INFO | 20231103-120358.424 | PortSIPVoIPSDK | RESIP | 21356 | winsecurity.cxx:151 | Root System certificate store opened
+INFO | 20231103-120358.424 | PortSIPVoIPSDK | RESIP | 21356 | winsecurity.cxx:173 | WinSecurity::getCerts: reading certs from store type=Root
+INFO | 20231103-120358.444 | PortSIPVoIPSDK | RESIP | 21356 | winsecurity.cxx:202 | 63 certs loaded of type 1
+DEBUG | 20231103-120358.445 | PortSIPVoIPSDK | RESIP:APP | 21356 | useragent.cxx:105 | new SipStack
+INFO | 20231103-120358.448 | PortSIPVoIPSDK | RESIP:APP | 21356 | callmanager.cxx:4715 | initializeMediaLibrary Create 
+INFO | 20231103-120358.459 | PortSIPVoIPSDK | RESIP:APP | 21356 | callmanager.cxx:4723 | initializeMediaLibrary  initialize
+INFO | 20231103-120359.247 | PortSIPVoIPSDK | RESIP:APP | 21356 | callmanager.cxx:4738 | initializeMediaLibrary  initialize Success
+DEBUG | 20231103-120359.271 | PortSIPVoIPSDK | RESIP:TRANSPORT | 21356 | internaltransport.cxx:121 | Creating fd=3144 V4/UDP
+DEBUG | 20231103-120359.271 | PortSIPVoIPSDK | RESIP:TRANSPORT | 21356 | internaltransport.cxx:133 | Binding to 10.212.134.205
+INFO | 20231103-120359.272 | PortSIPVoIPSDK | RESIP:TRANSPORT | 21356 | transport.cxx:185 | The requested address is not valid in its context. This normally results from an attempt to bind to an address that is not valid for the local computer
+ERR | 20231103-120359.272 | PortSIPVoIPSDK | RESIP:TRANSPORT | 21356 | internaltransport.cxx:148 | Could not bind to [ V4 10.212.134.205:5060 UDP flowKey=3144 ]
+DEBUG | 20231103-120359.272 | PortSIPVoIPSDK | RESIP | 21356 | baseexception.cxx:21 | BaseException at c:\portsip\resiprocate\resip\stack\internaltransport.cxx:149 Could not use port
+ERR | 20231103-120359.281 | PortSIPVoIPSDK | RESIP | 21356 | sipstack.cxx:470 | Failed to create transport: V4 UDP 5060 on 10.212.134.205: TransportException Could not use port @ c:\portsip\resiprocate\resip\stack\internaltransport.cxx:149
+WARNING | 20231103-120359.285 | PortSIPVoIPSDK | RESIP:DUM | 27844 | dialogusagemanager.cxx:291 | force shutdown 
+DEBUG | 20231103-120359.286 | PortSIPVoIPSDK | RESIP:DUM | 27844 | handlemanager.cxx:93 | Waiting for usages to be deleted (0)
+INFO | 20231103-120359.286 | PortSIPVoIPSDK | RESIP:DUM | 27844 | dialogusagemanager.cxx:255 | DialogUsageManager::onAllHandlesDestroyed: removing TU
+INFO | 20231103-120359.286 | PortSIPVoIPSDK | RESIP:TRANSACTION | 29272 | tuselector.cxx:52 | TransactionUserMessage::RemoveTransactionUser TU: DialogUsageManager size=0
+INFO | 20231103-120359.287 | PortSIPVoIPSDK | RESIP:DUM | 27844 | dialogusagemanager.cxx:1350 | TU unregistered 
+INFO | 20231103-120359.585 | PortSIPVoIPSDK | RESIP | 29272 | eventstackthread.cxx:96 | Shutting down stack thread
+DEBUG | 20231103-120359.680 | PortSIPVoIPSDK | RESIP | 21356 | sipstack.cxx:226 | SipStack::~SipStack()
+DEBUG | 20231103-120359.681 | PortSIPVoIPSDK | RESIP | 21356 | security.cxx:1244 | BaseSecurity::~BaseSecurity

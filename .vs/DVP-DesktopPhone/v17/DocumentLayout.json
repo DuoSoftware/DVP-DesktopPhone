@@ -1,0 +1,206 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\controllers\\phonestatus\\phone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\phonestatus\\phone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|c:\\users\\sanura\\source\\repos\\dvp-desktopphone\\dvp-softphone\\phonewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\phonewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|c:\\users\\sanura\\source\\repos\\dvp-desktopphone\\dvp-softphone\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|c:\\users\\sanura\\source\\repos\\dvp-desktopphone\\dvp-softphone\\controllers\\veerysetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\veerysetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|c:\\users\\sanura\\source\\repos\\dvp-desktopphone\\dvp-softphone\\controllers\\common\\enumcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\common\\enumcollector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\controllers\\websocketservicehost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\websocketservicehost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|c:\\users\\sanura\\source\\repos\\dvp-desktopphone\\dvp-softphone\\portsip\\portsiplib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\portsip\\portsiplib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\controllers\\phonestatus\\phoneonline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\phonestatus\\phoneonline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\controllers\\callstatus\\callansweringstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\callstatus\\callansweringstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\dvp-softphone\\controllers\\callstatus\\calldisconnectingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{881D1463-9F3B-49D3-B84D-4DF44E77DE1E}|DVP-SoftPhone\\DVP-DesktopPhone.csproj|solutionrelative:dvp-softphone\\controllers\\callstatus\\calldisconnectingstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PhoneWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\PhoneWindow.xaml",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\PhoneWindow.xaml",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\PhoneWindow.xaml",
+              "RelativeToolTip": "DVP-SoftPhone\\PhoneWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-04T09:43:07.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\App.xaml",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\App.xaml",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\App.xaml",
+              "RelativeToolTip": "DVP-SoftPhone\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-04T09:41:52.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CallDisconnectingState.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\CallStatus\\CallDisconnectingState.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\CallStatus\\CallDisconnectingState.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\CallStatus\\CallDisconnectingState.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\CallStatus\\CallDisconnectingState.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAA2wHYAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T11:50:01.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WebSocketServiceHost.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\WebSocketServiceHost.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\WebSocketServiceHost.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\WebSocketServiceHost.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\WebSocketServiceHost.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAnwDsAAACEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-01-23T12:43:33.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\App.config",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\App.config",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\App.config",
+              "RelativeToolTip": "DVP-SoftPhone\\App.config",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2023-10-25T07:16:12.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Phone.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\PhoneStatus\\Phone.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\PhoneStatus\\Phone.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\PhoneStatus\\Phone.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\PhoneStatus\\Phone.cs",
+              "ViewState": "AQIAAEUDAAAAAAAAAIA4wGEDAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-24T04:41:41.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VeerySetting.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\VeerySetting.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\VeerySetting.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\VeerySetting.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\VeerySetting.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAawC0AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T12:44:22.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PortSIPLib.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\PortSIP\\PortSIPLib.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\PortSIP\\PortSIPLib.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\PortSIP\\PortSIPLib.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\PortSIP\\PortSIPLib.cs",
+              "ViewState": "AQIAAMoFAAAAAAAAAAD4v9sFAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T12:12:03.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PhoneOnline.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\PhoneStatus\\PhoneOnline.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\PhoneStatus\\PhoneOnline.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\PhoneStatus\\PhoneOnline.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\PhoneStatus\\PhoneOnline.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T11:54:45.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EnumCollector.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\Common\\EnumCollector.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\Common\\EnumCollector.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\Common\\EnumCollector.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\Common\\EnumCollector.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwAUAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T04:08:29.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CallAnsweringState.cs",
+              "DocumentMoniker": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\CallStatus\\CallAnsweringState.cs",
+              "RelativeDocumentMoniker": "DVP-SoftPhone\\Controllers\\CallStatus\\CallAnsweringState.cs",
+              "ToolTip": "C:\\Users\\Sanura\\source\\repos\\DVP-DesktopPhone\\DVP-SoftPhone\\Controllers\\CallStatus\\CallAnsweringState.cs",
+              "RelativeToolTip": "DVP-SoftPhone\\Controllers\\CallStatus\\CallAnsweringState.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-10-24T05:16:53.973Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

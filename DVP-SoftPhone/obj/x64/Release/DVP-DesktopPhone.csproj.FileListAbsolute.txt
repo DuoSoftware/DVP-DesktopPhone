@@ -42,6 +42,6 @@ C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\Face
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\Properties.Resources.resources
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\DVP-DesktopPhone.csproj.GenerateResource.cache
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\DVP-DesktopPhone.csproj.CoreCompileInputs.cache
-C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\DVP-DesktopPhone.csproj.CopyComplete
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\FacetoneDesktopPhone.exe
 C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\FacetoneDesktopPhone.pdb
+C:\Users\Sanura\source\repos\DVP-DesktopPhone\DVP-SoftPhone\obj\x64\Release\DVP-Desk.B3785155.Up2Date
