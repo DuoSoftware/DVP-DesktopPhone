@@ -381,7 +381,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock Height="12" TextWrapping="Wrap" Margin="69,411,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" LineHeight="14" TextAlignment="Center" Width="40" FontSize="8" TextDecorations="None" FontWeight="Bold" Grid.Column="1" Foreground="#FFF7EFEF" ><Run Text="v3.0.2.1"/><LineBreak/><Run/></TextBlock>
+            <TextBlock Height="12" TextWrapping="Wrap" Margin="70,411,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" LineHeight="14" TextAlignment="Center" Width="40" FontSize="8" TextDecorations="None" FontWeight="Bold" Grid.Column="1" Foreground="#FFF7EFEF" ><Run Text="v3.0.2.2"/><LineBreak/><Run Text="2"/></TextBlock>
 
 
         </Grid>

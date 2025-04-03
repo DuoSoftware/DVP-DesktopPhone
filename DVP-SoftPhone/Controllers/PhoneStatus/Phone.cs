@@ -1017,6 +1017,9 @@ namespace Controllers.PhoneStatus
 
                 Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, "InitializePhone-end", Logger.LogLevel.Info);
 
+                ClickToCall clickToCall = new ClickToCall(11001);
+                clickToCall.Start(this);
+
             }
             catch (Exception exception)
             {
