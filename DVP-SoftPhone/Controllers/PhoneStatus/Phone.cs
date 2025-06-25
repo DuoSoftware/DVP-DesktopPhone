@@ -846,7 +846,7 @@ namespace Controllers.PhoneStatus
                 
                 if (reply.Status == IPStatus.Success)
                 {
-                    Logger.Instance.LogMessage(Logger.LogAppender.DuoDeviceMonitor, $" Status: {reply.Status}", Logger.LogLevel.Info);
+                    //Logger.Instance.LogMessage(Logger.LogAppender.DuoDeviceMonitor, $" Status: {reply.Status}", Logger.LogLevel.Info);
                     //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Roundtrip time: {reply.RoundtripTime}ms", Logger.LogLevel.Info);
                     //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Address: {reply.Address}", Logger.LogLevel.Info);
                     //Logger.Instance.LogMessage(Logger.LogAppender.DuoLogger1, $"  Time to live: {reply.Options.Ttl}", Logger.LogLevel.Info);
